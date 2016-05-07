@@ -1,17 +1,5 @@
 <?php
-/*
 
-Authorize.net api credentials
-
-
-API Login ID: 93pWcL9c
-
-TRANSACTION KEY: 222Ng7B7Zp8jP2Zh
-
-Secret Key: Simon
-
-
-*/
 date_default_timezone_set('America/Los_Angeles');
 //header('content-type: application/json; charset=utf-8');
 
@@ -26,13 +14,15 @@ ini_set('display_errors', 'On');
 
 session_start();
 
+//namespaces must be defined outside of a class
+require ROOT_DIR.'/authorizeNetSDK/autoload.php';
+
+
+
 
 //define('FACEBOOK_SDK_V4_SRC_DIR', ROOT_DIR . '/facebookSDK/');
 //require_once ROOT_DIR . '/facebookSDK/autoload.php';
 
-define('MYSQL_BOTH',MYSQLI_BOTH);
-define('MYSQL_NUM',MYSQLI_NUM);
-define('MYSQL_ASSOC',MYSQLI_ASSOC);
 
 // DB Connection variables
 if(strpos(ROOT_URL,"localhost") > 0) {

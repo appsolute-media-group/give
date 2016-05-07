@@ -1,5 +1,9 @@
 <?php
 
+use net\authorize\api\contract\v1 as AnetAPI;
+use net\authorize\api\controller as AnetController;
+
+
 
 class Transactions extends Database  {
 
@@ -13,7 +17,8 @@ class Transactions extends Database  {
 	public $strSuccessMessage;
 	public $strPassword;
 	public $strUsername;
-
+	public $API_SANDBOX;
+	public $API_PRODUCTION;
 
 
 	public function __construct() {
@@ -21,10 +26,92 @@ class Transactions extends Database  {
 		parent::__construct();
 		$this->strErrorMessage = "";
 		$this->strTableName = "app_transactions";
-
+		
+    	$this->API_SANDBOX = "https://apitest.authorize.net";
+    	$this->API_PRODUCTION = "https://api2.authorize.net";
 
 
 	}
+
+
+
+
+
+	function processWebTransaction($subID,$amount) {
+
+		// Common setup for API credentials
+      $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+      $merchantAuthentication->setName('93pWcL9c');
+      $merchantAuthentication->setTransactionKey('45Z2mz9bzTMq8B7M');
+      $refId = 'ref' . time();
+		
+
+      // Create the payment data for a credit card
+      $creditCard = new AnetAPI\CreditCardType();
+      $creditCard->setCardNumber("5424000000000015");
+      $creditCard->setExpirationDate("1220");
+      $creditCard->setCardCode("999");
+
+      $paymentOne = new AnetAPI\PaymentType();
+      $paymentOne->setCreditCard($creditCard);//from above
+
+      $order = new AnetAPI\OrderType();
+      $order->setDescription("Web Portal Test");
+
+      //create a transaction
+      $transactionRequestType = new AnetAPI\TransactionRequestType();
+      $transactionRequestType->setTransactionType( "authCaptureTransaction"); 
+      $transactionRequestType->setAmount($amount); //method parameter
+      $transactionRequestType->setOrder($order); //from above
+      $transactionRequestType->setPayment($paymentOne);//from above
+
+
+  	  $request = new AnetAPI\CreateTransactionRequest();
+      $request->setMerchantAuthentication($merchantAuthentication);//from above
+      $request->setRefId( $refId);//from above
+      $request->setTransactionRequest($transactionRequestType);//from above
+      $controller = new AnetController\CreateTransactionController($request);
+      $response = $controller->executeWithApiResponse($this->API_SANDBOX);
+
+
+      if ($response != null) {
+	        $tresponse = $response->getTransactionResponse();
+
+	        if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
+	          
+	          echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+	          echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+
+	        } else {
+	            
+	            echo  "Charge Credit Card ERROR :  Invalid response<br />";
+	            echo  "Charge Credit Card CODE : ".$tresponse->getResponseCode()."<br />";
+	            //echo  "Charge Credit Card getTransactionResponse : ";
+	           // print_r($tresponse)."<br />";
+
+
+	            echo  "Charge Credit Card response : <pre>";
+	            var_dump($response)."<br />";
+	            echo "</pre>";
+	        }
+	        
+      } else {
+
+        echo  "Charge Credit card Null response returned";
+
+      }
+	   
+	  //chargeCreditCard($amount);
+
+
+      die();
+
+	  return '';
+
+	}
+
+
+
 
 
     function processTransaction() {

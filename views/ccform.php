@@ -25,7 +25,18 @@
 	            </div>
 	            <div class="item-detail text-center">
               		<div class="item-detail-contents">
-              			form goes here
+
+              			<form action="/donate/form/" method="post" />
+
+              				<?php echo $this->strErrorMessage; ?>
+
+              				<input type="text" value="414141414" name="cc_num" /> <br />
+
+              				<input type="submit" value="Submit" name="submit" /> 
+
+
+              			</form>
+
               		</div>
                 </div>	
 	          </div>

@@ -5,10 +5,11 @@ class donate_controller {
 
 	public $strMethod = "";
 	public $intUserId = "";
+	public $strErrorMessage = "";
 
 	public function __construct() {
 
-		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
+		$this->strMethod = isset($_GET['method']) ? $_GET['method'] : '';
 	
 
 		if($this->strMethod == ''){ //main view
@@ -17,7 +18,7 @@ class donate_controller {
 
 		} elseif($this->strMethod == 'form'){
 
-			include_once(ROOT_DIR.'/views/ccform.php'); 
+			 $this->handleForm();
 
 		} elseif($this->strMethod == 'thankyou'){
 
@@ -26,5 +27,56 @@ class donate_controller {
 		}
 	
 	}
+
+
+
+	function handleForm() {
+
+		$amount = "10.00";
+
+
+		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
+		
+		if(isset($_POST['submit'])){
+
+			$this->strErrorMessage = "";
+			if($this->strCCnum == ''){
+				$this->strErrorMessage = "Please enter a cc num<br />";
+			}
+
+			$subID = 1; //this should be a session variable
+
+
+			$objTrans = new Transactions();
+			$this->strErrorMessage = $objTrans->processWebTransaction($subID,$amount);
+
+
+
+			if($this->strErrorMessage == ''){
+
+				include_once(ROOT_DIR.'/views/thankyou.php');
+
+			} else {
+
+				include_once(ROOT_DIR.'/views/ccform.php');
+
+			}
+
+		} else {
+
+			include_once(ROOT_DIR.'/views/ccform.php');
+
+
+		}
+
+
+		
+
+
+	}
+
+
+
+
 
 }
