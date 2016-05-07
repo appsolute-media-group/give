@@ -1,0 +1,70 @@
+<?php
+
+
+class SubLocalities extends Database  {
+
+	public $strQuery;
+	public $arrResult;
+	public $strTableName;
+	public $objDB;
+	public $intAffectedRows;
+	public $intColumns;
+	public $strErrorMessage;
+	public $strSuccessMessage;
+	public $strPassword;
+	public $strUsername;
+
+
+
+	public function __construct() {
+
+		parent::__construct();
+		$this->strErrorMessage = "";
+		$this->strTableName = "sublocalities";
+
+
+
+	}
+
+	/*
+	This method is called from within the Infopage model when populating the "My Foodbank" page
+	*/
+	public function getFoodBankInfo($ID) {
+
+		$r = array('result' => "error");
+
+		if($ID !='') {
+	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod  From $this->strTableName WHERE id=$ID";
+		    //echo $this->strQuery;
+	        if($this->query($this->strQuery)) {
+	            $details = $this->getMysqliResults($this->strQuery,true);
+	            $details = $details[0];
+	            $r = $details;
+	        }
+	    }
+
+		return $r;
+
+    }
+
+	/*
+	This method is called from within the app when populating the registration page picker
+	*/
+    function getSubLocalities() {
+
+        $details = $this->getAll();
+
+        if(!is_null($details)){
+        	$arrData = array('result' => "success","details" => $details);
+        } else {
+        	$arrData = array('result' => "error");	
+        }
+
+        return json_encode($arrData);
+	}	
+
+}
+
+
+
+?>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:9000/login.html -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> My Account</title>
+
+  <link rel="apple-touch-icon" href="http://localhost:9000/apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="./My Account_files/normalize.css">
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="./My Account_files/main.css">
+  <!-- endbuild -->
+
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="./My Account_files/analytics.js"></script><script src="./My Account_files/modernizr.js"></script>
+  <!-- endbuild -->
+
+  <!-- add stuff -->
+  <link href="./My Account_files/css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./My Account_files/font-awesome.min.css">
+
+</head>
+<body class="page login"><script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));
+//]]></script><script async="" src="./My Account_files/browser-sync-client.2.12.3.js"></script>
+
+  <!--[if lt IE 10]>
+  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+<div class="main-wrapper">
+  <div class="container-fluid">
+
+      <div class="view initial" data-view="1">
+        <div class="view-container">
+        <div class="row">
+          <div class="col-xs-12 logo-container text-center">
+            <div class="logo-inner">
+                <img src="./My Account_files/CA-Logo-lg.png" alt="" class="logo-blue">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 welcome-container text-center">
+            <div class="welcome-inner">
+                <p>
+                  Welcome to Club Appetite where we work to feed our local communities.
+                </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="sign_up" class="btn btn-signup" onclick="nextView()">Sign-Up</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="sign_up" class="btn btn-signin" onclick="goToView(4)">Sign-In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view" data-view="2">
+      <div class="view-container">
+      <div class="row">
+        <div class="col-xs-12 logo-container text-center">
+          <div class="logo-inner">
+              <img src="./My Account_files/CA-Logo-lg.png" alt="" class="logo-blue">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 welcome-container text-center">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 input-container text-center">
+          <div class="input-inner">
+            <input type="text" name="signup_foodbank" value="" placeholder="Select a Food Bank">
+            <input type="text" name="signup_username" value="" placeholder="Username">
+            <input type="text" name="signup_username" value="" placeholder="Email">
+            <input type="password" name="signup_password" value="" placeholder="Password">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 button-container text-center">
+          <div class="button-inner">
+              <button type="button" name="sign_up" class="btn btn-signup" onclick="goToView(3)">Sign-Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 button-container text-center">
+          <div class="button-inner">
+              <button type="button" name="sign_up" class="btn btn-cancel" onclick="goToView(1)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="view" data-view="3">
+      <div class="view-container">
+      <div class="row">
+        <div class="col-xs-12 logo-container text-center">
+          <div class="logo-inner">
+              <img src="./My Account_files/Club-Appetite-logo-white.png" alt="" class="logo-white">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 redeem-container text-center">
+          <div class="redeem-inner">
+              <p>
+                Do you have a points code to redeem?
+              </p>
+              <p>
+                Enter below to receive your Club Appetite points.
+              </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 input-container text-center">
+          <div class="input-inner">
+              <input type="password" name="signup_code" value="" placeholder="****">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 button-container text-center">
+          <div class="button-inner">
+              <button type="button" name="sign_up" class="btn btn-redeem">Redeem</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 button-container text-center">
+          <div class="button-inner">
+              <button type="button" name="sign_up" class="btn btn-skip">Skip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="view" data-view="4">
+    <div class="view-container">
+    <div class="row">
+      <div class="col-xs-12 logo-container text-center">
+        <div class="logo-inner">
+            <img src="./My Account_files/CA-Logo-lg.png" alt="" class="logo-blue">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 welcome-container text-center">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 input-container text-center">
+        <div class="input-inner">
+          <input type="text" name="signin_username" value="" placeholder="Username">
+          <input type="password" name="signin_password" value="" placeholder="Password">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 button-container text-center">
+        <div class="button-inner">
+            <button type="button" name="sign_up" class="btn btn-signup">Sign-In</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 button-container text-center">
+        <div class="button-inner">
+            <button type="button" name="sign_up" class="btn btn-cancel" onclick="goToView(1)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='https://www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="./My Account_files/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="./My Account_files/affix.js"></script>
+    <script src="./My Account_files/alert.js"></script>
+    <script src="./My Account_files/dropdown.js"></script>
+    <script src="./My Account_files/tooltip.js"></script>
+    <script src="./My Account_files/modal.js"></script>
+    <script src="./My Account_files/transition.js"></script>
+    <script src="./My Account_files/button.js"></script>
+    <script src="./My Account_files/popover.js"></script>
+    <script src="./My Account_files/carousel.js"></script>
+    <script src="./My Account_files/scrollspy.js"></script>
+    <script src="./My Account_files/collapse.js"></script>
+    <script src="./My Account_files/tab.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="./My Account_files/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="./My Account_files/login.js"></script>
+    <!-- endbuild -->
+
+  
+  
+<div id="window-resizer-tooltip" style="display: block;"><a href="http://localhost:9000/login.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">400</span> x <span class="tooltipHeight" id="winHeight">900</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">400</span> x <span class="tooltipHeight" id="vpHeight">761</span></div><div></div></body></html>
