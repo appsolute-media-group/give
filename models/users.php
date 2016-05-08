@@ -168,6 +168,74 @@ class Users extends Database  {
 
 	}
 
+
+
+	function loginFromWebpage() {
+	
+		//http://localhost:83/login/?doLogin=true
+
+		$this->strUseremail = isset($_POST['signin_email']) ? $_POST['signin_email'] : '';
+		$this->strPassword = isset($_POST['signin_password']) ? $_POST['signin_password'] : '';
+	
+
+    	if ($this->strUseremail != '' && $this->strPassword != '') {
+
+
+    		$this->strQuery = "SELECT id, `name`, first_name, last_name, email, picture, gender, sublocality_id, user_points, refer_code 
+				FROM user_profiles p
+				WHERE LENGTH(name) > 0 And
+				(name='" . $this->getCleanVar($this->strUsername) . "'";
+
+
+				if($this->strUseremail != ''){
+					$this->strQuery .= "OR email='" . $this->getCleanVar($this->strUseremail) . "'	";		
+				}
+
+				$this->strQuery .= " ) and password='" . $this->getCleanVar($this->strPassword) . "' LIMIT 0,1";
+
+				//echo $this->strQuery;
+
+				
+				$this->intColumns = $this->getMysqliResults( $this->strQuery, true );
+
+			
+				if($this->intColumns == false) {
+
+					return ('invalid login');
+
+				} else {
+
+					return ('Valid login');
+
+				}
+
+
+			//return json_encode($this->getUserLogin());
+
+		} else {
+
+			
+			return "no email or password";
+
+
+		}
+
+
+	}
+
+
+
+
+
+
+
+
+/*******************
+
+these are for the rest api only
+
+
+*/
 	function getUserLogin(){
 
 		//$this->strPassword = Util::bcryptString($this->strPassword);
