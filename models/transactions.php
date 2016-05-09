@@ -37,76 +37,123 @@ class Transactions extends Database  {
 
 
 
-	function processWebTransaction($subID,$amount) {
+	function processWebTransaction($ccnum,$ccexpire,$cccode,$objDetails) {
+
+		$this->arrResult = array(
+      	"result" => "error", 
+      	"reason" => "Charge Credit card Null response returned",
+      	"code" => "",
+      	"error" => "",
+      	"userdetails" => $objDetails
+      	);
+
+
+		$objSubLocalities = new SubLocalities;
+		$objSubDetails = $objSubLocalities->getAPIAuthNetKey($_SESSION['sublocality_id']); //this comes from the users session variables
+		$strAPI_Login = $objSubDetails['API_Login'];
+		$strAPI_Key = $objSubDetails['API_Key'];
 
 		// Common setup for API credentials
-      $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-      $merchantAuthentication->setName('93pWcL9c');
-      $merchantAuthentication->setTransactionKey('45Z2mz9bzTMq8B7M');
-      $refId = 'ref' . time();
-		
+		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+		$merchantAuthentication->setName($strAPI_Login);
+		$merchantAuthentication->setTransactionKey($strAPI_Key);
+		$refId = 'ref' . time();
 
-      // Create the payment data for a credit card
-      $creditCard = new AnetAPI\CreditCardType();
-      $creditCard->setCardNumber("5424000000000015");
-      $creditCard->setExpirationDate("1220");
-      $creditCard->setCardCode("999");
+		// Create the payment data for a credit card
+		$creditCard = new AnetAPI\CreditCardType();
+		$creditCard->setCardNumber($ccnum);//method parameter
+		$creditCard->setExpirationDate($ccexpire);//method parameter
+		$creditCard->setCardCode($cccode);//method parameter
 
-      $paymentOne = new AnetAPI\PaymentType();
-      $paymentOne->setCreditCard($creditCard);//from above
+		$paymentOne = new AnetAPI\PaymentType();
+		$paymentOne->setCreditCard($creditCard);//from above
 
-      $order = new AnetAPI\OrderType();
-      $order->setDescription("Web Portal Test");
+		$order = new AnetAPI\OrderType();
+		$order->setDescription($objDetails['Description']);//method parameter
 
-      //create a transaction
-      $transactionRequestType = new AnetAPI\TransactionRequestType();
-      $transactionRequestType->setTransactionType( "authCaptureTransaction"); 
-      $transactionRequestType->setAmount($amount); //method parameter
-      $transactionRequestType->setOrder($order); //from above
-      $transactionRequestType->setPayment($paymentOne);//from above
+		//create a transaction
+		$transactionRequestType = new AnetAPI\TransactionRequestType();
+		$transactionRequestType->setTransactionType( "authCaptureTransaction"); 
+		$transactionRequestType->setAmount($objDetails['Amount']); //method parameter
+		$transactionRequestType->setOrder($order); //from above
+		$transactionRequestType->setPayment($paymentOne);//from above
 
-
-  	  $request = new AnetAPI\CreateTransactionRequest();
-      $request->setMerchantAuthentication($merchantAuthentication);//from above
-      $request->setRefId( $refId);//from above
-      $request->setTransactionRequest($transactionRequestType);//from above
-      $controller = new AnetController\CreateTransactionController($request);
-      $response = $controller->executeWithApiResponse($this->API_SANDBOX);
+		$request = new AnetAPI\CreateTransactionRequest();
+		$request->setMerchantAuthentication($merchantAuthentication);//from above
+		$request->setRefId( $refId);//from above
+		$request->setTransactionRequest($transactionRequestType);//from above
+		$controller = new AnetController\CreateTransactionController($request);
 
 
-      if ($response != null) {
-	        $tresponse = $response->getTransactionResponse();
+		//this posts the actual request to authorize.net
+		$response = $controller->executeWithApiResponse($this->API_SANDBOX);
 
-	        if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
-	          
-	          echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
-	          echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+		//used to insert the data into the tranaction table
+		$transTableVals = array($_SESSION['userID'], $_SESSION['sublocality_id'], $objDetails['Type'], $objDetails['Amount']);
 
-	        } else {
-	            
-	            echo  "Charge Credit Card ERROR :  Invalid response<br />";
-	            echo  "Charge Credit Card CODE : ".$tresponse->getResponseCode()."<br />";
-	            //echo  "Charge Credit Card getTransactionResponse : ";
-	           // print_r($tresponse)."<br />";
+		if ($response != null) {
+		    $tresponse = $response->getTransactionResponse();
 
+		    if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
+		      
+		      //echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+		      //echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
 
-	            echo  "Charge Credit Card response : <pre>";
-	            var_dump($response)."<br />";
-	            echo "</pre>";
-	        }
-	        
-      } else {
-
-        echo  "Charge Credit card Null response returned";
-
-      }
-	   
-	  //chargeCreditCard($amount);
+		      $this->arrResult = array(
+		      	"result" => "success", 
+		      	"AuthCode" => $tresponse->getAuthCode(),
+		      	"TransID" => $tresponse->getTransId()
+		      	);
 
 
-      die();
+			  array_push($transTableVals,'success',$tresponse->getAuthCode(),$tresponse->getTransId());
 
-	  return '';
+			  $_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
+
+			  //user gets points for this transaction
+			  //update the user profile
+			  $keys = array('user_points');
+			  $vals = array($_SESSION['user_points']);
+
+			  $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
+
+
+		    } else {
+
+		        
+		        //echo  "Charge Credit Card ERROR :  Invalid response<br />";
+
+        		$errorNotice = $response->getMessages()->getMessage();
+				//echo "Response : " . $errorNotice[0]->getCode() . "  " .$errorNotice[0]->getText() . "<br />";
+
+        		$errorMessages = $tresponse->getErrors();
+        		$errorMessages = $errorMessages[0];
+				$errorMessageText = $errorMessages->getErrorText();
+				$errorMessageCode = $errorMessages->getErrorCode();
+				//echo "Error Code : " . $errorMessageCode . "<br />";
+				//echo "Error Text : " . $errorMessageText . "<br />";
+
+        		$this->arrResult = array(
+		      	"result" => "error", 
+		      	"code" => $errorMessages->getErrorCode(),
+		      	"error" => $errorMessages->getErrorText(),
+      			"userdetails" => $objDetails
+		      	);
+
+	
+				array_push($transTableVals,'error',$errorMessages->getErrorCode(),$errorMessages->getErrorText());
+		    }
+
+
+		}
+
+
+		//record the transaction in the local database
+		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data');
+		$r = $this->mysqliinsert($keys,$transTableVals);
+	
+
+	  	return $this->arrResult;
 
 	}
 

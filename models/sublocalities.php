@@ -26,6 +26,32 @@ class SubLocalities extends Database  {
 
 	}
 
+
+	function getAPIAuthNetKey($sublocality_id) {
+
+		$this->strQuery = "SELECT 
+				API_Login, API_Key      
+			FROM $this->strTableName s   
+			WHERE id='$sublocality_id'";
+
+
+		if($this->query( $this->strQuery )) {
+
+			$res = $this->getMysqliResults( $this->strQuery, true );
+			return $res[0];
+
+		} else {
+
+			return false;
+		}
+
+
+
+	}
+
+
+
+
 	/*
 	This method is called from within the Infopage model when populating the "My Foodbank" page
 	*/

@@ -18,14 +18,14 @@ class login_controller {
 
 
 		if($this->doLogin != ''){
-			echo $this->objUsers->loginFromWebpage();
+			$result = $this->objUsers->loginFromWebpage();
+			
 		}
 	
 		//$objUsers = json_decode($this->objUsers->showUserById($this->intUserId)); //don't forget to convert from json to a php object
 
 		//use this to see all the data being passed to the view
 		//var_dump($objUsers);
-
 
 		include_once(ROOT_DIR.'/views/login.php'); 
 

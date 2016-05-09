@@ -24,7 +24,7 @@
 	            </div>
 	            <div class="item-detail text-center">
               		<div class="item-detail-contents">
-              			content
+              			<a href="/donate/form/">content</a>
               		</div>
                 </div>	
 	          </div>

@@ -29,8 +29,10 @@
               			<form action="/donate/form/" method="post" />
 
               				<?php echo $this->strErrorMessage; ?>
-
-              				<input type="text" value="414141414" name="cc_num" /> <br />
+							amount <input type="text" value=".01" name="amount" /> <br /><br />
+              				num <input type="text" value="4111111111111111" name="cc_num" /> <br /><br />
+              				exp <input type="text" value="1226" name="cc_expiry" /> <br /><br />
+              				code <input type="text" value="123" name="cc_code" /> <br /><br />
 
               				<input type="submit" value="Submit" name="submit" /> 
 

@@ -30,7 +30,7 @@
                 <div class="row hero">
                   <div class="col-xs-12">
                     <h3>Your Account</h3>
-                    <h2 class="points">1896</h2>
+                    <h2 class="points"><?=$_SESSION['user_points'];?></h2>
                     <p>points</p>
                     <h5 class="name"><?=$objUsers->name;?></h5>
                   </div>

@@ -15,6 +15,13 @@ class main_controller {
 			//http://localhost:83/main/sublocalities/
 			$this->showSubLocalities();
 
+		} else if($this->strMethod == 'logout') {
+
+			session_unset();
+		    session_destroy();
+		    session_write_close();
+			echo "<script>window.location.href='/login/'</script>";
+			
 		} else {
 
 			$this->showMainPage();

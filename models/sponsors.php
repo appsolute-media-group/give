@@ -27,6 +27,7 @@ class Sponsors extends Database  {
 	}
 
 
+
     function getSponsors() {
 
 
