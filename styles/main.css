@@ -296,8 +296,8 @@ th {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("../fonts/glyphicons-halflings-regular.eot");
-  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("/fonts/glyphicons-halflings-regular.eot");
+  src: url("/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("/fonts/glyphicons-halflings-regular.woff") format("woff"), url("/fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
 .glyphicon {
@@ -7943,9 +7943,9 @@ input {
 .page.login .view[data-view="1"] .view-container,
 .page.login .view[data-view="2"] .view-container,
 .page.login .view[data-view="4"] .view-container {
-  background: -webkit-linear-gradient(white 50%, rgba(255, 255, 255, 0)), url("../images/welcome-bg.jpg");
-  background: -webkit-linear-gradient(rgba(255, 255, 255, 0)), url("../images/welcome-bg.jpg");
-  background: linear-gradient(to   , rgba(255, 255, 255, 0)), url("../images/welcome-bg.jpg");
+  background: -webkit-linear-gradient(white 50%, rgba(255, 255, 255, 0)), url("/images/welcome-bg.jpg");
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0)), url("/images/welcome-bg.jpg");
+  background: linear-gradient(to   , rgba(255, 255, 255, 0)), url("/images/welcome-bg.jpg");
   background-position: bottom;
   background-size: contain;
   background-repeat: no-repeat;

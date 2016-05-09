@@ -86,7 +86,7 @@ class donate_controller {
 				} 
 
 				break;
-			} while ($this->strErrorMessage = "");
+			} while ($this->strErrorMessage == "");
 
 			if($this->strErrorMessage == ''){
 

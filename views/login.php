@@ -53,20 +53,40 @@
         <div class="col-xs-12 welcome-container text-center">
         </div>
       </div>
+      
+
+
+
+
+<form method="post" action="?doRegister=true" id="regForm">
       <div class="row">
         <div class="col-xs-12 input-container text-center">
+
+          <div style="color:red;font-weight:bold;"><?php echo $this->objUsers->strErrorMessage; ?></div>
+
+
           <div class="input-inner">
-            <input type="text" name="signup_foodbank" value="" placeholder="Select a Food Bank">
-            <input type="text" name="signup_username" value="" placeholder="Username">
-            <input type="text" name="signup_username" value="" placeholder="Email">
-            <input type="password" name="signup_password" value="" placeholder="Password">
+            
+
+
+            <input type="text" name="sublocality" value="<?php echo $this->objUsers->strSublocality; ?>" placeholder="Select a Food Bank" id="sublocality">
+            <script>
+              $( "#sublocality" ).autocomplete({
+                source: <?php echo $this->arrSublocalities; ?>
+              });
+            </script>
+
+
+            <input type="text" name="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
+            <input type="text" name="signup_email" value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
+            <input type="password" name="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 button-container text-center">
           <div class="button-inner">
-              <button type="button" name="sign_up" class="btn btn-signup" onclick="goToView(3)">Sign-Up</button>
+              <button type="button" name="sign_up" class="btn btn-signup" onclick="document.getElementById('regForm').submit();">Sign-Up</button>
           </div>
         </div>
       </div>
@@ -78,13 +98,22 @@
         </div>
       </div>
     </div>
+
+      <input type="hidden" name="doRegister" value="true" />
+    </form>
+
+
+
+
+
+
   </div>
     <div class="view" data-view="3">
       <div class="view-container">
       <div class="row">
         <div class="col-xs-12 logo-container text-center">
           <div class="logo-inner">
-              <img src="/images/Club-Appetite-logo-white.png" alt="" class="logo-white"/>
+              <img src="/images/Club-Appetite-Logo-white.png" alt="" class="logo-white"/>
           </div>
         </div>
       </div>
@@ -166,3 +195,8 @@
 </div>
 </div>
 </div>
+<script src="/scripts/vendor.js"></script>
+<script src="/scripts/plugins.js"></script>
+<script src="/scripts/login.js"></script>
+
+</body>

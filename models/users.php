@@ -30,7 +30,78 @@ class Users extends Database  {
 
 	}
 
+	function registerFromWebpage() {
 
+		
+		$this->strUseremail = isset($_POST['signup_email']) ? $_POST['signup_email'] : '';
+		$this->strPassword = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
+		$this->strUsername = isset($_POST['signup_username']) ? $_POST['signup_username'] : '';
+		$this->strSublocality = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
+
+
+		do {
+
+			if($this->strUseremail == ''){
+				$this->strErrorMessage = "Please enter a email address";
+				break;
+			}
+
+			if($this->strUsername == ''){
+				$this->strErrorMessage = "Please enter a username";
+				break;
+			} else {
+
+
+				$res = $this->checkForUser($this->strUseremail);
+				if(!empty($res)){
+					$this->strErrorMessage = "That email address is already in our system";
+					break;
+				}
+
+			}
+
+			if($this->strPassword == ''){
+				$this->strErrorMessage = "Please enter a password";
+				break;
+			}
+
+			if($this->strSublocality == ''){
+				$this->strErrorMessage = "Please enter a sublocality";
+				break;
+			} else {
+
+				//$this->strSublocality
+
+
+
+			}
+
+			break;
+		} while ($this->strErrorMessage == "");
+
+
+
+
+		if($this->strErrorMessage == "") {
+
+			$referralCode = '';
+
+			$keys = array("sublocality_id", "name", "password", "email", "refer_code_used");
+			$vals = array($sublocality, $this->strUsername, $this->strPassword, $this->strUseremail, $referralCode);
+
+
+			//$this->mysqliinsert($keys,$vals);
+
+
+
+		}
+
+
+
+
+
+
+	}
 
 	function loginFromWebpage() {
 	
@@ -38,7 +109,6 @@ class Users extends Database  {
 
 		$this->strUseremail = isset($_POST['signin_email']) ? $_POST['signin_email'] : '';
 		$this->strPassword = isset($_POST['signin_password']) ? $_POST['signin_password'] : '';
-	
 
     	if ($this->strUseremail != '' && $this->strPassword != '') {
 

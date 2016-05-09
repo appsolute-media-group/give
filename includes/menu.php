@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src="/images/Club-Appetite-logo-white.png" alt="" height="34" width="87"/>
+          <img src="/images/Club-Appetite-Logo-white.png" alt="" height="34" width="87"/>
         </a>
       </div>
 
