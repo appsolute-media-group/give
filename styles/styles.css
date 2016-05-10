@@ -1,0 +1,79 @@
+input{
+	box-shadow: 1px 1px 4px #999;
+	margin-bottom: 4px;
+	margin-top: 4px;
+	background-color: #eee;
+	border: none !important;
+	padding: 5px;
+	margin: .5%;
+}
+
+::-webkit-input-placeholder {
+	color: #1B898A;
+	font-family: Gill Sans;
+	font-weight: 300;
+}
+.header {
+	background-color: rgb(027, 135, 136);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+.header-logo {
+	width: 22%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.payment-info {
+	align-content: center;
+	align-items: center;
+	text-align: center;
+}
+text {
+	font-family: Gill Sans;
+	font-weight: 300;
+	font-size:1.2vw;
+}
+.button {
+	background-color: rgb(027, 135, 136);
+	box-shadow: 1px 1px 4px #999;
+	width: 62%;
+	padding: 5px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+buttonText {
+	color: #fff;
+	font-family: Gill Sans;
+	text-align: center;
+	font-weight: 200;
+}
+.thankyou-bg {
+	width: 50%;
+	position: fixed;
+	bottom: 0px;
+	margin: auto;
+}
+.hex {
+	width: 20%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.points-gif {
+	width: 22%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: -10px;
+}
+.grocery-gif {
+	width: 30%;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	z-index: 100;
+	margin-top:-40%;
+}

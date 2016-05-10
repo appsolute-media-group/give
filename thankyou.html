@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript">
+    	function showDiv() {
+    		document.getElementById('hideBefore').style.visibility='visible';
+    	}
+    	setTimeout('showDiv()', 6500);
+
+    	function hideDiv() {
+    		document.getElementById('hideAfter').style.visibility='hidden';
+    	}
+    	setTimeout('hideDiv()', 6000);
+	</script>
+  </head>
+  <body>
+
+  <div id="hideBefore" style="visibility: hidden;">
+  	<div class="header"><img class="header-logo" src="images/logo-white.png"/></div>
+  	<img src="images/thankyou-points.gif" class="points-gif"/>
+  	<div style="position: relative;">
+  		<img src="images/hexagon.png" class="hex"/>
+  			<div class="text-container">
+  				<text style="color:#fff; position: absolute; z-index: 100; text-align: center; top:35%; margin-left:43.5%;">WAY TO GO!<br>You have earned 1000 Points</text>
+  			</div>
+  	</div>
+  </div>
+  <img src="images/grocery.gif" class="grocery-gif" id="hideAfter" style="visibility: visible;"/>
+  </body>
+ </html>
