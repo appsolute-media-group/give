@@ -80,6 +80,7 @@
             <input type="text" name="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
             <input type="text" name="signup_email" value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
             <input type="password" name="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
+            <input type="text" name="referalCode" value="<?php echo $this->objUsers->referalCode; ?>" placeholder="Referral Code" />
           </div>
         </div>
       </div>
@@ -98,7 +99,7 @@
         </div>
       </div>
     </div>
-
+      
       <input type="hidden" name="doRegister" value="true" />
     </form>
 

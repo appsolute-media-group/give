@@ -16,6 +16,7 @@ class Users extends Database  {
 	public $strUseremail;
 	public $strTimeout; 
 	public $intTokenLength; 
+	public $referalCode = '';
 
 
 
@@ -37,12 +38,13 @@ class Users extends Database  {
 		$this->strPassword = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
 		$this->strUsername = isset($_POST['signup_username']) ? $_POST['signup_username'] : '';
 		$this->strSublocality = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
+		$this->referalCode = isset($_POST['referalCode']) ? $_POST['referalCode'] : '';
 
 
 		do {
 
-			if($this->strUseremail == ''){
-				$this->strErrorMessage = "Please enter a email address";
+			if($this->strUseremail == '' || (filter_var($this->strUseremail, FILTER_VALIDATE_EMAIL) === false)){
+				$this->strErrorMessage = "Please enter a valid email address";
 				break;
 			}
 
@@ -70,9 +72,12 @@ class Users extends Database  {
 				break;
 			} else {
 
-				//$this->strSublocality
-
-
+				$objSub = new SubLocalities;
+				$sublocality = $objSub->getSubLocalityIdByName($this->strSublocality);
+				if($sublocality === false){
+					$this->strErrorMessage = "Please enter a valid sublocality";
+					break;
+				}
 
 			}
 
@@ -81,18 +86,66 @@ class Users extends Database  {
 
 
 
+		//handle the referal code
+		$validCode = false;
+
+		if(!empty($this->referalCode) && $this->referalCode != ''){
+			
+
+			$res = $this->getUserByCode($this->referalCode);
+			if(!empty($res[0])){
+				//valid code, this user gets 500 points
+				$subquery = "UPDATE $this->strTableName SET user_points = (user_points+500) WHERE refer_code ='$this->referalCode'";
+				if($this->short_query( $subquery )){
+					//we can just be quiet		
+				}
+				$validCode = true;
+			}
+
+			$res2 = $this->getSponsorByCode($this->referalCode);
+			if(!empty($res2[0])){
+				//valid code, this user gets 500 points
+				$validCode = true;
+			}
+
+		}
+
+		if(!$validCode){
+
+			$this->referalCode = null;
+
+		}
+
+
 
 		if($this->strErrorMessage == "") {
 
 			$referralCode = '';
 
 			$keys = array("sublocality_id", "name", "password", "email", "refer_code_used");
-			$vals = array($sublocality, $this->strUsername, $this->strPassword, $this->strUseremail, $referralCode);
+			$vals = array($sublocality, $this->strUsername, $this->strPassword, $this->strUseremail, $this->referalCode);
 
+			$this->mysqliinsert($keys,$vals);
 
-			//$this->mysqliinsert($keys,$vals);
+			$_SESSION['userID'] = $this->insert_id;
+			$_SESSION['name'] = $this->strUsername;
+			$_SESSION['email'] = $this->strUseremail;
+			$_SESSION['user_points'] = 0;
+			$_SESSION['refer_code'] = '';
+			$_SESSION['sublocality_id'] = $sublocality;
 
+			if(!empty($this->referalCode) && $this->referalCode != ''){
+				$res2 = $this->getSponsorByCode($this->referalCode);
+				if(!empty($res2[0])){
+					//valid code, this user gets 500 points
+					$validCode = true;
+					$keys = array("user_id", "sponsor_id", "referal_code");
+					$vals = array($_SESSION['userID'], $res2[0]['id'], $this->referalCode);
+					$this->mysqliinsert($keys,$vals,"sponsor_code_redeem");
+				}		
+			}
 
+			echo "<script>window.location.href='/main/'</script>";
 
 		}
 

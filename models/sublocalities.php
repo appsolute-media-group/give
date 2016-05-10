@@ -27,6 +27,46 @@ class SubLocalities extends Database  {
 	}
 
 
+    function getSubLocalityIdByName($name) {
+
+        $this->strQuery = "SELECT s.id      
+			FROM $this->strTableName s   
+			WHERE sub_name='$name'";
+
+		if($this->query( $this->strQuery )) {
+
+			$res = $this->getMysqliResults( $this->strQuery, true );
+			return $res[0]['id'];
+
+		} else {
+
+			return false;
+		}
+
+        return $arrData;
+	}
+
+
+	function getSubLocalityList() {
+
+        $this->strQuery = "SELECT s.sub_name, s.id      
+			FROM $this->strTableName s   
+			WHERE blnActive=1";
+
+		if($this->query( $this->strQuery )) {
+
+			$details = $this->getMysqliResults($this->strQuery,true);
+			return $details;
+
+		} else {
+
+			return false;
+		}
+
+       /// return $arrData;
+	}
+
+
 	function getAPIAuthNetKey($sublocality_id) {
 
 		$this->strQuery = "SELECT 
@@ -85,6 +125,10 @@ class SubLocalities extends Database  {
         } else {
         	$arrData = array('result' => "error");	
         }
+
+
+//Util::dump($arrData);
+
 
         return json_encode($arrData);
 	}	

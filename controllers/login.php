@@ -17,13 +17,10 @@ class login_controller {
 		$this->objUsers = new Users;
 
 		$this->objSubs = new SubLocalities;
-		$tArray = json_decode($this->objSubs->getSubLocalities());
-
-
-		$tArray = $tArray->details;
+		$tArray = $this->objSubs->getSubLocalityList();
 
 		foreach($tArray As $sub){
-			$this->arrSublocalities[] = $sub->sub_name;
+			$this->arrSublocalities[] = $sub['sub_name'];
 		}
 
 		$this->arrSublocalities = json_encode($this->arrSublocalities);
