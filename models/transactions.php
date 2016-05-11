@@ -34,7 +34,90 @@ class Transactions extends Database  {
 	}
 
 
+	function createCustomerProfile($ccnum,$ccexpire,$cccode,$objDetails){
 
+		$objSubLocalities = new SubLocalities;
+		$objSubDetails = $objSubLocalities->getAPIAuthNetKey($_SESSION['sublocality_id']); //this comes from the users session variables
+		$strAPI_Login = $objSubDetails['API_Login'];
+		$strAPI_Key = $objSubDetails['API_Key'];
+
+
+		// Common setup for API credentials
+		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+		$merchantAuthentication->setName($strAPI_Login);
+		$merchantAuthentication->setTransactionKey($strAPI_Key);
+		$refId = 'ref' . time();
+
+		// Create the payment data for a credit card
+		$creditCard = new AnetAPI\CreditCardType();//method parameter
+		$creditCard->setCardNumber($ccnum);//method parameter
+		$creditCard->setExpirationDate($ccexpire);//method parameter
+		$creditCard->setCardCode($cccode);//method parameter
+
+		$paymentCreditCard = new AnetAPI\PaymentType();
+		$paymentCreditCard->setCreditCard($creditCard);
+
+		// Create the Bill To info
+		$billto = new AnetAPI\CustomerAddressType();
+		$billto->setFirstName("Ellen");
+		$billto->setLastName("Johnson");
+		//$billto->setCompany("Souveniropolis");
+		$billto->setAddress("14 Main Street");
+		$billto->setCity("Pecan Springs");
+		$billto->setState("TX");
+		$billto->setZip("44628");
+		$billto->setCountry("CA");
+
+		// Create a Customer Profile Request
+		//  1. create a Payment Profile
+		//  2. create a Customer Profile   
+		//  3. Submit a CreateCustomerProfile Request
+		//  4. Validate Profiiel ID returned
+
+		$paymentprofile = new AnetAPI\CustomerPaymentProfileType();
+
+		$paymentprofile->setCustomerType('individual');
+		$paymentprofile->setBillTo($billto);
+		$paymentprofile->setPayment($paymentCreditCard);
+		$paymentprofiles[] = $paymentprofile;
+
+
+
+
+		$customerprofile = new AnetAPI\CustomerProfileType();
+		$customerprofile->setDescription("Web Portal Customer");
+		$customerprofile->setMerchantCustomerId("M_".$_SESSION['email']);
+		$customerprofile->setEmail($_SESSION['email']);
+		$customerprofile->setPaymentProfiles($paymentprofiles);
+
+
+
+
+		$request = new AnetAPI\CreateCustomerProfileRequest();
+		$request->setMerchantAuthentication($merchantAuthentication);
+		$request->setRefId( $refId);
+		$request->setProfile($customerprofile);
+
+
+
+		$controller = new AnetController\CreateCustomerProfileController($request);
+		$response = $controller->executeWithApiResponse($this->API_SANDBOX);
+
+
+		if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
+		{
+		  echo "Succesfully create customer profile : " . $response->getCustomerProfileId() . "\n";
+		  $paymentProfiles = $response->getCustomerPaymentProfileIdList();
+		  echo "SUCCESS: PAYMENT PROFILE ID : " . $paymentProfiles[0] . "\n";
+		}
+		else
+		{
+		  echo "ERROR :  Invalid response\n";
+		  $errorMessages = $response->getMessages()->getMessage();
+		  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+		}
+		return $response;
+	}
 
 
 	function processWebTransaction($ccnum,$ccexpire,$cccode,$objDetails) {

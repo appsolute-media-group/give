@@ -67,11 +67,43 @@ class donate_controller {
 					break;
 				}
 
+				
+				$objTrans = new Transactions();
+/*
+				$customerDetails = array(
+					"first_name" => "Kirk",
+					"last_name" => "Walker",
+					"address" => "14 Main Street",
+					"city" => "Kelowna",
+					"state" => "BC",
+					"postal" => "44628",
+					"country" => "Ca"
+					);
+
+
+				//create the customer profile and payment profile
+				$objCustomerDetails = $objTrans->createCustomerProfile(
+					$this->strCCnum,
+					$this->strCCexpire,
+					$this->strCCcode, 
+					$customerDetails);
+
+				if($objCustomerDetails['result']=="error"){
+
+					$this->strErrorMessage = $objCustomerDetails['error']."<br />";
+					break;
+
+				} 
+
+
+*/
+
 				$transactionDetails = array("Description" => "Web Portal Test", 
 					"Amount" => $this->decAmount,
 					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
 
-				$objTrans = new Transactions();
+				//proccess the transaction
+				
 				$objTransDetails = $objTrans->processWebTransaction(
 					$this->strCCnum,
 					$this->strCCexpire,

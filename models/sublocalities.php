@@ -43,7 +43,6 @@ class SubLocalities extends Database  {
 			return false;
 		}
 
-        return $arrData;
 	}
 
 
@@ -63,7 +62,6 @@ class SubLocalities extends Database  {
 			return false;
 		}
 
-       /// return $arrData;
 	}
 
 

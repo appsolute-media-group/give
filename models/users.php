@@ -17,6 +17,7 @@ class Users extends Database  {
 	public $strTimeout; 
 	public $intTokenLength; 
 	public $referalCode = '';
+	public $strSublocality = '';
 
 
 
