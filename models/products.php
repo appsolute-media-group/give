@@ -27,7 +27,7 @@ class Products extends Database  {
 	}
 
 	function getWebProducts() {
-		// $this->query = "SELECT product_name, product_img, product_price
+		// $this->strQuery = "SELECT product_name, product_img, product_price
 		// 	FROM products";
 	}
 

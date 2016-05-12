@@ -13,6 +13,10 @@ class faq_controller {
 
 		if($this->strMethod == ''){ //main view
 
+			$this->objFaq = new InfoPages;
+			$this->pageName = "faq";
+			$objFaq = json_decode($this->objFaq->getInfoPageData($this->pageName));
+
 			include_once(ROOT_DIR.'/views/faq.php'); 
 
 		}
