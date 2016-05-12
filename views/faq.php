@@ -19,12 +19,12 @@
 	          <div class="item-inner">
 	            <div class="item-header">
 	              <div class="text-center">
-	                <h1>faq</h1>
+	                <h1>FAQ</h1>
 	              </div>
 	            </div>
-	            <div class="item-detail text-center">
+	            <div style="padding: 20px;">
               		<div class="item-detail-contents">
-              			faq content
+              			<?=$objFaq->text;?>
               		</div>
                 </div>	
 	          </div>

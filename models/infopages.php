@@ -38,7 +38,7 @@ class InfoPages extends Database  {
 	            $result = $details;
 	        }
 	    }
-		return $result;
+		return json_encode($result);
 
     }
 
