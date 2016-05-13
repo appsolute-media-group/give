@@ -19,6 +19,8 @@ class Transactions extends Database  {
 	public $strUsername;
 	public $API_SANDBOX;
 	public $API_PRODUCTION;
+	public $strActiveServerURL;
+	private $merchantAuthentication;
 
 
 	public function __construct() {
@@ -31,96 +33,167 @@ class Transactions extends Database  {
     	$this->API_PRODUCTION = "https://api2.authorize.net";
 
 
-	}
-
-
-	function createCustomerProfile($ccnum,$ccexpire,$cccode,$objDetails){
+    	//set this to switch between live and sandbox
+    	$this->strActiveServerURL = $this->API_SANDBOX;
 
 		$objSubLocalities = new SubLocalities;
 		$objSubDetails = $objSubLocalities->getAPIAuthNetKey($_SESSION['sublocality_id']); //this comes from the users session variables
 		$strAPI_Login = $objSubDetails['API_Login'];
 		$strAPI_Key = $objSubDetails['API_Key'];
 
-
 		// Common setup for API credentials
-		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-		$merchantAuthentication->setName($strAPI_Login);
-		$merchantAuthentication->setTransactionKey($strAPI_Key);
-		$refId = 'ref' . time();
-
-		// Create the payment data for a credit card
-		$creditCard = new AnetAPI\CreditCardType();//method parameter
-		$creditCard->setCardNumber($ccnum);//method parameter
-		$creditCard->setExpirationDate($ccexpire);//method parameter
-		$creditCard->setCardCode($cccode);//method parameter
-
-		$paymentCreditCard = new AnetAPI\PaymentType();
-		$paymentCreditCard->setCreditCard($creditCard);
-
-		// Create the Bill To info
-		$billto = new AnetAPI\CustomerAddressType();
-		$billto->setFirstName("Ellen");
-		$billto->setLastName("Johnson");
-		//$billto->setCompany("Souveniropolis");
-		$billto->setAddress("14 Main Street");
-		$billto->setCity("Pecan Springs");
-		$billto->setState("TX");
-		$billto->setZip("44628");
-		$billto->setCountry("CA");
-
-		// Create a Customer Profile Request
-		//  1. create a Payment Profile
-		//  2. create a Customer Profile   
-		//  3. Submit a CreateCustomerProfile Request
-		//  4. Validate Profiiel ID returned
-
-		$paymentprofile = new AnetAPI\CustomerPaymentProfileType();
-
-		$paymentprofile->setCustomerType('individual');
-		$paymentprofile->setBillTo($billto);
-		$paymentprofile->setPayment($paymentCreditCard);
-		$paymentprofiles[] = $paymentprofile;
+		$this->merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
+		$this->merchantAuthentication->setName($strAPI_Login);
+		$this->merchantAuthentication->setTransactionKey($strAPI_Key);
 
 
 
-
-		$customerprofile = new AnetAPI\CustomerProfileType();
-		$customerprofile->setDescription("Web Portal Customer");
-		$customerprofile->setMerchantCustomerId("M_".$_SESSION['email']);
-		$customerprofile->setEmail($_SESSION['email']);
-		$customerprofile->setPaymentProfiles($paymentprofiles);
+	}
 
 
 
+	function getPaymentProfiles(){
 
-		$request = new AnetAPI\CreateCustomerProfileRequest();
-		$request->setMerchantAuthentication($merchantAuthentication);
-		$request->setRefId( $refId);
-		$request->setProfile($customerprofile);
+		
 
+		$request = new AnetAPI\GetCustomerProfileRequest();
+		$request->setMerchantAuthentication($this->merchantAuthentication);
+		$request->setCustomerProfileId($_SESSION['APIprofileID']);
 
+		$controller = new AnetController\GetCustomerProfileController($request);
 
-		$controller = new AnetController\CreateCustomerProfileController($request);
-		$response = $controller->executeWithApiResponse($this->API_SANDBOX);
+		$response = $controller->executeWithApiResponse($this->strActiveServerURL);
+
 
 
 		if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
 		{
-		  echo "Succesfully create customer profile : " . $response->getCustomerProfileId() . "\n";
-		  $paymentProfiles = $response->getCustomerPaymentProfileIdList();
-		  echo "SUCCESS: PAYMENT PROFILE ID : " . $paymentProfiles[0] . "\n";
+			//echo "GetCustomerProfile SUCCESS : " .  "<br />";
+			$profileSelected = $response->getProfile();
+			$paymentProfilesSelected = $profileSelected->getPaymentProfiles();
+			//echo "Profile Has " . count($paymentProfilesSelected). " Payment Profiles" . "<br />";
+			//Util::dump($paymentProfilesSelected[0]->getCustomerPaymentProfileId());
+
+			$this->arrResult = array(
+				"result" => "success", 
+				"reason" => "",
+				"code" => "",
+				"error" => "",
+				"paymentprofileid" => $paymentProfilesSelected[0]->getCustomerPaymentProfileId()
+				);
+
 		}
 		else
 		{
-		  echo "ERROR :  Invalid response\n";
-		  $errorMessages = $response->getMessages()->getMessage();
-		  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+			//echo "ERROR :  GetCustomerProfile: Invalid response<br />";
+			$errorMessages = $response->getMessages()->getMessage();
+			//echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
+
+
+			$this->arrResult = array(
+				"result" => "error", 
+				"reason" => "Failed to find payment profile",
+				"code" => $errorMessages[0]->getCode(),
+				"error" => $errorMessages[0]->getText(),
+				"paymentprofileid" => ""
+				);
+
 		}
-		return $response;
+
+		return $this->arrResult;
+
 	}
 
 
-	function processWebTransaction($ccnum,$ccexpire,$cccode,$objDetails) {
+	function ProcessProfileTransaction($profileid,$paymentprofileid, $objDetails){
+		
+		$refId = 'ref' . time();
+		
+		$profileToCharge = new AnetAPI\CustomerProfilePaymentType();
+	    $profileToCharge->setCustomerProfileId($profileid);
+	    $paymentProfile = new AnetAPI\PaymentProfileType();
+	    $paymentProfile->setPaymentProfileId($paymentprofileid);
+	    $profileToCharge->setPaymentProfile($paymentProfile);
+
+	    $transactionRequestType = new AnetAPI\TransactionRequestType();
+	    $transactionRequestType->setTransactionType( "authCaptureTransaction"); 
+	    $transactionRequestType->setAmount($objDetails['Amount']);
+	    $transactionRequestType->setProfile($profileToCharge);
+
+	    $request = new AnetAPI\CreateTransactionRequest();
+		$request->setMerchantAuthentication($this->merchantAuthentication);//from above
+		$request->setRefId( $refId);//from above
+		$request->setTransactionRequest($transactionRequestType);//from above
+		$controller = new AnetController\CreateTransactionController($request);
+
+
+		//this posts the actual request to authorize.net
+		$response = $controller->executeWithApiResponse($this->strActiveServerURL);
+
+		//used to insert the data into the tranaction table
+		$transTableVals = array($_SESSION['userID'], $_SESSION['sublocality_id'], $objDetails['Type'], $objDetails['Amount']);
+		if ($response != null) {
+		    $tresponse = $response->getTransactionResponse();
+
+		    if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
+		      
+		      echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+		      echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+
+
+		      $this->arrResult = array(
+		      	"result" => "success", 
+		      	"AuthCode" => $tresponse->getAuthCode(),
+		      	"TransID" => $tresponse->getTransId()
+		      	);
+
+
+			  array_push($transTableVals,'success',$tresponse->getAuthCode(),$tresponse->getTransId());
+
+		} else {
+
+		        
+		        //echo  "Charge Credit Card ERROR :  Invalid response<br />";
+
+        		$errorNotice = $response->getMessages()->getMessage();
+				//echo "Response : " . $errorNotice[0]->getCode() . "  " .$errorNotice[0]->getText() . "<br />";
+
+        		$errorMessages = $tresponse->getErrors();
+        		$errorMessages = $errorMessages[0];
+				$errorMessageText = $errorMessages->getErrorText();
+				$errorMessageCode = $errorMessages->getErrorCode();
+				//echo "Error Code : " . $errorMessageCode . "<br />";
+				//echo "Error Text : " . $errorMessageText . "<br />";
+
+        		$this->arrResult = array(
+		      	"result" => "error", 
+		      	"code" => $errorMessages->getErrorCode(),
+		      	"error" => $errorMessages->getErrorText(),
+      			"userdetails" => $objDetails
+		      	);
+
+	
+				array_push($transTableVals,'error',$errorMessages->getErrorCode(),$errorMessages->getErrorText());
+		    }
+
+
+		}
+
+
+		//record the transaction in the local database
+		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data');
+		$r = $this->mysqliinsert($keys,$transTableVals);
+	
+
+	  	return $this->arrResult;
+
+	}
+
+
+
+
+
+	function processWebTransaction($ccnum,$ccexpire,$cccode,$objDetails,$objCustomer) {
 
 		$this->arrResult = array(
       	"result" => "error", 
@@ -130,16 +203,6 @@ class Transactions extends Database  {
       	"userdetails" => $objDetails
       	);
 
-
-		$objSubLocalities = new SubLocalities;
-		$objSubDetails = $objSubLocalities->getAPIAuthNetKey($_SESSION['sublocality_id']); //this comes from the users session variables
-		$strAPI_Login = $objSubDetails['API_Login'];
-		$strAPI_Key = $objSubDetails['API_Key'];
-
-		// Common setup for API credentials
-		$merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-		$merchantAuthentication->setName($strAPI_Login);
-		$merchantAuthentication->setTransactionKey($strAPI_Key);
 		$refId = 'ref' . time();
 
 		// Create the payment data for a credit card
@@ -151,8 +214,21 @@ class Transactions extends Database  {
 		$paymentOne = new AnetAPI\PaymentType();
 		$paymentOne->setCreditCard($creditCard);//from above
 
+
 		$order = new AnetAPI\OrderType();
 		$order->setDescription($objDetails['Description']);//method parameter
+
+		
+		// Create the Bill To info
+		$billto = new AnetAPI\CustomerAddressType();
+		$billto->setFirstName($objCustomer['first_name']);
+		$billto->setLastName($objCustomer['last_name']);
+		//$billto->setCompany("Souveniropolis");
+		$billto->setAddress($objCustomer['address']);
+		$billto->setCity($objCustomer['city']);
+		$billto->setState($objCustomer['state']);
+		$billto->setZip($objCustomer['postal']);
+		$billto->setCountry($objCustomer['country']);
 
 		//create a transaction
 		$transactionRequestType = new AnetAPI\TransactionRequestType();
@@ -161,15 +237,18 @@ class Transactions extends Database  {
 		$transactionRequestType->setOrder($order); //from above
 		$transactionRequestType->setPayment($paymentOne);//from above
 
+
+		$transactionRequestType->setBillTo($billto);
+
 		$request = new AnetAPI\CreateTransactionRequest();
-		$request->setMerchantAuthentication($merchantAuthentication);//from above
+		$request->setMerchantAuthentication($this->merchantAuthentication);//from above
 		$request->setRefId( $refId);//from above
 		$request->setTransactionRequest($transactionRequestType);//from above
 		$controller = new AnetController\CreateTransactionController($request);
 
 
 		//this posts the actual request to authorize.net
-		$response = $controller->executeWithApiResponse($this->API_SANDBOX);
+		$response = $controller->executeWithApiResponse($this->strActiveServerURL);
 
 		//used to insert the data into the tranaction table
 		$transTableVals = array($_SESSION['userID'], $_SESSION['sublocality_id'], $objDetails['Type'], $objDetails['Amount']);
@@ -179,8 +258,9 @@ class Transactions extends Database  {
 
 		    if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
 		      
-		      //echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
-		      //echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+		      echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+		      echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+
 
 		      $this->arrResult = array(
 		      	"result" => "success", 
@@ -191,15 +271,49 @@ class Transactions extends Database  {
 
 			  array_push($transTableVals,'success',$tresponse->getAuthCode(),$tresponse->getTransId());
 
-			  $_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
 
-			  //user gets points for this transaction
-			  //update the user profile
-			  $keys = array('user_points');
-			  $vals = array($_SESSION['user_points']);
+			  //create a profile
 
-			  $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
 
+				$customerProfile = new AnetAPI\CustomerProfileBaseType();
+				$customerProfile->setDescription("Web Portal Customer");
+				$customerProfile->setMerchantCustomerId("X_".$_SESSION['userID']);
+				$customerProfile->setEmail($_SESSION['email']);
+	
+				$new_request = new AnetAPI\CreateCustomerProfileFromTransactionRequest();
+				$new_request->setMerchantAuthentication($merchantAuthentication);
+				$new_request->setTransId($tresponse->getTransId());
+				$new_request->setCustomer($customerProfile);
+
+				$new_controller = new AnetController\CreateCustomerProfileFromTransactionController($new_request);
+				$new_response = $new_controller->executeWithApiResponse($this->strActiveServerURL);
+
+				if (($new_response != null) && ($new_response->getMessages()->getResultCode() == "Ok") )
+				{
+				  echo "SUCCESS: PROFILE ID : " . $new_response->getCustomerProfileId() . "<br />";
+
+				  $ProfileId = $new_response->getCustomerProfileId();
+
+
+				}
+				else
+				{
+				  echo "ERROR :  Invalid response<br />";
+				  $errorMessages = $new_response->getMessages()->getMessage();
+				  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
+
+				  Util::dump($new_response);
+				  $ProfileId = '';
+				}
+
+				//update the user profile
+			    $keys = array('user_points','APIprofileID');
+			    $vals = array($_SESSION['user_points'],$ProfileId);
+
+			    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
+
+				$_SESSION['APIprofileID'] = $ProfileId;
+				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
 
 		    } else {
 

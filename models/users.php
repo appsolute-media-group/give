@@ -32,6 +32,21 @@ class Users extends Database  {
 
 	}
 
+
+	function updateProfile($vals){
+
+		//update the user profile with the new Profile ID from suthorize.net
+		$keys = array('APIprofileID','first_name','last_name', 'tax_address', 'tax_pc', 'tax_country', 'tax_prov', 'tax_city');
+
+
+		$r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
+		$_SESSION['APIprofileID'] = $vals[0];
+
+
+	}
+
+
+
 	function registerFromWebpage() {
 
 		
@@ -134,6 +149,7 @@ class Users extends Database  {
 			$_SESSION['user_points'] = 0;
 			$_SESSION['refer_code'] = '';
 			$_SESSION['sublocality_id'] = $sublocality;
+			$_SESSION['APIprofileID'] = "";
 
 			if(!empty($this->referalCode) && $this->referalCode != ''){
 				$res2 = $this->getSponsorByCode($this->referalCode);
@@ -167,7 +183,7 @@ class Users extends Database  {
     	if ($this->strUseremail != '' && $this->strPassword != '') {
 
 
-    		$this->strQuery = "SELECT id, `name`, first_name, last_name, email, picture, gender, sublocality_id, user_points, refer_code 
+    		$this->strQuery = "SELECT id, `name`, first_name, last_name, email, picture, gender, sublocality_id, user_points, refer_code, APIprofileID 
 				FROM user_profiles p
 				WHERE LENGTH(name) > 0 And
 				(name='" . $this->getCleanVar($this->strUsername) . "'";
@@ -200,7 +216,8 @@ class Users extends Database  {
 					$_SESSION['user_points'] = $results['user_points'];
 					$_SESSION['refer_code'] = $results['refer_code'];
 					$_SESSION['sublocality_id'] = $results['sublocality_id'];
-					
+					$_SESSION['APIprofileID'] = $results['APIprofileID'];
+
 					echo "<script>window.location.href='/main/'</script>";
 					//return ('Valid login');
 
