@@ -17,13 +17,13 @@
       <div class="view-container">
         <div class="row food-bank-logo-container">
           <div class="food-bank-logo-wrapper text-center">
-            <img src="/images/kelowna_food-bank.png" alt="" />
+            <img src="<?php echo $objCurrent['logo'] ?>" alt="" />
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 food-bank-title-container text-center">
-            <h3 class="food-bank-title">Kelowna Food Bank</h3>
-            <h6 class="food-bank-category">1234 Street Road</h6>
+            <h3 class="food-bank-title"><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Local Foodbank" ?></h3>
+            <h6 class="food-bank-category"><?php echo $objCurrent['address'] ?></h6>
           </div>
         </div>
         <div class="row" onclick="nextView()">
@@ -43,31 +43,10 @@
             <div class="col-xs-12 text-left">
               <div class="message-inner">
                 <div class="row">
-                  <div class="col-xs-12 rep-container">
-                    <div class="rep-inner">
-                      <div class="col-xs-4">
-                        <div class="rep-photo-container">
-                          <div class="rep-photo-wrapper text-center">
-                            <img src="/images/bill.jpg" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xs-8 text-left event-info">
-                        <h4 class="foodbank-rep">John Doe</h4>
-                        <h6 class="rep-position">Excecutive Manager</h6>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="message-text-container">
-                  <p class="message-text">In 1983, the Kelowna Community Food Bank Society set up operation in a church basement to meet emergency food needs for the community.<br /> <br />
-
-                  Over the next two decades, the Kelowna Food Bank great from serving 600 people per year to nearly 2,500 individuals per month, with nearly a third of them under age 16.<br /> <br />
-
-                  Thank you for all your support.<br /> <br />
-
-                  Food Bank Phone: (250) 763-7161<br />
-                  Website: www.cofoodbank.com
+                  <p class="message-text">
+                  <?php echo $objCurrent['text'] ?>
                   </p>
                 </div>
               </div>
@@ -81,19 +60,26 @@
       <div class="view-container">
         <div class="row food-bank-logo-container">
           <div class="food-bank-logo-wrapper text-center">
-            <img src="/images/kelowna_food-bank.png" alt="" />
+            <img src="<?php echo $objCurrent['logo'] ?>" alt="" />
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 food-bank-title-container text-center">
-            <h3 class="food-bank-title">Kelowna Food Bank</h3>
+            <h3 class="food-bank-title"><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Local Foodbank" ?></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 contact-address-container">
             <div class="contact-address-inner">
               <div class="col-xs-12 text-center">
-                <h4>1234 South Street, Kelowna, BC<br />V1Y 0B5</h4>
+                <h4><?php
+                  // In case some or all fields are blank, we won't have random commas
+                  $address = ($objCurrent['address']) ? $objCurrent['address'] . ', ' : "";
+                  $city = ($objCurrent['city']) ? $objCurrent['city'] . ', ' : "";
+                  $prov = ($objCurrent['prov']) ? $objCurrent['prov']: "";
+                  $postalCode = ($objCurrent['pc']) ? '<br/>' . $objCurrent['pc'] : "";
+                  echo $address . $city . $prov . $postalCode;
+                ?></h4>
               </div>
             </div>
           </div>
@@ -110,7 +96,7 @@
                 <i class="fa fa-envelope fa-2x"></i>
               </div>
               <div class="col-xs-10 text-left">
-                <a href="mailto:name@example.com"><h5>hello@kelownafood.com</h5></a>
+                <a href="<?php echo ($objCurrent['email']) ? 'mailto:' . $objCurrent['email'] : "#" ?>"><h5><?php echo ($objCurrent['email']) ? $objCurrent['email'] : "N/A" ?></h5></a>
               </div>
             </div>
           </div>
@@ -120,7 +106,7 @@
                 <i class="fa fa-phone fa-2x"></i>
               </div>
               <div class="col-xs-10 text-left">
-                <a href="tel:250555555"><h5>+1 (250) 766-1234</h5></a>
+                <a href="<?php echo ($objCurrent['tel']) ? 'tel:' . $objCurrent['tel'] : "#" ?>"><h5><?php echo ($objCurrent['tel']) ? $objCurrent['tel'] : "N/A" ?></h5></a>
               </div>
             </div>
           </div>
@@ -130,7 +116,7 @@
                 <i class="fa fa-globe fa-2x"></i>
               </div>
               <div class="col-xs-10 text-left">
-                <a href="https://website.com"><h5>www.kelownafoodbank.org</h5></a>
+                <a href="https://website.com"><h5>www.website.com</h5></a>
               </div>
             </div>
           </div>

@@ -17,6 +17,7 @@ class foodbank_controller {
 		$this->objSubLocalities = new SubLocalities;
 
 		$objCurrent = $this->objSubLocalities->getFoodBankInfo($this->sublocality_id);
+		$objCurrentContact = $this->objSubLocalities->getFoodBankContact($this->sublocality_id);
 
 		if($this->strMethod == ''){ //main view
 

@@ -98,11 +98,29 @@ class SubLocalities extends Database  {
 		$r = array('result' => "error");
 
 		if($ID !='') {
-	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod  From $this->strTableName WHERE id=$ID";
+	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod, address, city, prov, pc, tel, email   From $this->strTableName WHERE id=$ID";
 		    //echo $this->strQuery;
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
 	            $details = $details[0];
+	            $r = $details;
+	        }
+	    }
+
+		return $r;
+
+    }
+
+	public function getFoodBankContact($ID) {
+
+		$r = array('result' => "error");
+
+		if($ID !='') {
+	        $this->strQuery = "SELECT fname, lname, position   From foodbank_contacts WHERE charity_id=$ID";
+		    //echo $this->strQuery;
+	        if($this->query($this->strQuery)) {
+	            $details = $this->getMysqliResults($this->strQuery,true);
+	            $details = isset($details[0]) ? $details[0] : '';
 	            $r = $details;
 	        }
 	    }
