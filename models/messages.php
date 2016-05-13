@@ -41,7 +41,6 @@ class Messages extends Database  {
 		
 		return $details;
 
-
 	}
 
 	function getMessageById($id) {
