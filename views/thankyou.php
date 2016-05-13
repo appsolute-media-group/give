@@ -1,5 +1,5 @@
 
-<body class="page my-account">
+<body class="page give">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -15,33 +15,37 @@
 	    </div>
 
 	    <div class="view-container">
-	      <div class="row">
-	      	<div class="col-md-6 item">
-	          <div class="item-inner">
-	            <div class="item-header">
-	              <div class="text-center">
-	                <h1>Thank You</h1>
-	              </div>
-	            </div>
-	            <div class="item-detail text-center">
-              		<div class="item-detail-contents">
-              			image goes here
-              		</div>
-                </div>	
-	          </div>
-	        </div>
-
-	      </div>
-
-	      <div class="row">
-	        <div class="ad-container">
-	          <div class="col-xs-12 ad-contents text-center">
-	            <img src="/images/spot.png" />
-	          </div>
-	        </div>
-	      </div>
-
-	    </div>
+		      <div class="row">
+		        <div class="col-xs-12 give-header-container text-center">
+		          <i class="fa fa-child fa-3x"></i>
+		          <h2>Way to go!</h2>
+		          <h5>donation successful</h5>
+		        </div>
+		      </div>
+		      <div class="thank-you-points-container">
+		        <div class="row text-center">
+		          <h4>you've earned</h4>
+		          <h2>1,000</h2>
+		          <h4>points</h4>
+		        </div>
+		      </div>
+		      <div class="button-container">
+		        <div class="row">
+		          <div class="col-xs-12 text-center">
+		            <button type="button" name="return" class="btn btn-give" onclick="prevView()">return</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		    <div class="row ad-footer">
+		      <div class="ad-container">
+		        <div class="col-xs-12 ad-contents text-center">
+		          <img src="/images/spot.png" />
+		        </div>
+		      </div>
+		    </div>
+		</div>
 
 	  </div>
 
