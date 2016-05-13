@@ -24,7 +24,7 @@
 	            </div>
 	            <div style="padding: 20px;">
               		<div class="item-detail-contents">
-              			<?=$objFaq->text;?>
+              			<?=$objFaq['text'];?>
               		</div>
                 </div>	
 	          </div>

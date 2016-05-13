@@ -38,6 +38,7 @@ class InfoPages extends Database  {
 do not modify anything below this line
 
 
+
 **********************************************/
 
 
@@ -56,9 +57,12 @@ do not modify anything below this line
 	            $result = $details;
 	        }
 	    }
-		return json_encode($result);
+		return $result;
 
     }
+
+
+
 
     public function getInfoPages() {
     	
@@ -129,7 +133,7 @@ do not modify anything below this line
 		}
 
 		
-		return $arrResult;
+		return json_encode($arrResult);
 
 	}
 
