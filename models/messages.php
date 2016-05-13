@@ -27,6 +27,42 @@ class Messages extends Database  {
 	}
 
 
+
+	function getMessageArray() {
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+
+		$this->strQuery = "SELECT id, message_title, message_content, last_mod
+			FROM $this->strTableName  
+			WHERE sublocality_id='$sublocality_id' 
+			AND blnActive = 1  AND blnApproved=1";
+
+		$details = $this->getMysqliResults( $this->strQuery, true );
+		
+		return $details;
+
+
+	}
+
+	function getMessageById($id) {
+
+		$this->strQuery = "SELECT id, message_title, message_content, last_mod
+			FROM $this->strTableName  
+			WHERE id='$id' 
+			AND blnActive = 1 AND blnApproved=1";
+
+		$details = $this->getMysqliResults( $this->strQuery, true );
+		if(count($details) >0) {
+			return $details[0];
+		} else{
+			return null;
+		}
+
+	}
+
+
+
+
     function getMessages() {
 
 
