@@ -1,4 +1,4 @@
-<body class="page my-account">
+<body class="page faq-terms">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -14,28 +14,33 @@
 	    </div>
 
 	    <div class="view-container">
-	      <div class="row">
-	      	<div class="col-md-6 item">
-	          <div class="item-inner">
-	            <div class="item-header">
-	              <div class="text-center">
-	                <h1>FAQ</h1>
-	              </div>
-	            </div>
-	            <div style="padding: 20px;">
-              		<div class="item-detail-contents">
-              			<?=$objFaq['text'];?>
-              		</div>
-                </div>	
-	          </div>
+	      <div class="row info-header-container">
+	        <div class="logo-shop-wrapper text-center">
+	          <img src="/images/CA-Logo-lg.png" alt="" />
 	        </div>
-
 	      </div>
+	      <div id="top" class="row">
+	        <div class="col-xs-12 title-container text-center">
+	          <h2>FAQs</h2>
+	        </div>
+	      </div>
+	      <div class="info-container">
+	        <div class="row">
+	          <div class="col-xs-12 info-wrapper">
+	            <div class="info-inner">
+
+              			<?=$objFaq['text'];?>
+              	</div>
+              </div>	
+	        </div>
+	      </div>
+
+	    </div>
 
 	      <div class="row">
 	        <div class="ad-container">
 	          <div class="col-xs-12 ad-contents text-center">
-	            <img src="/images/spot.png" />
+	            <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 	          </div>
 	        </div>
 	      </div>

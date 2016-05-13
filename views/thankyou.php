@@ -14,13 +14,16 @@
 
 	    </div>
 
-	    <div class="view-container">
+	    <div class="">
+
+
 		      <div class="row">
 		        <div class="col-xs-12 give-header-container text-center">
 		          <i class="fa fa-child fa-3x"></i>
 		          <h2>Way to go!</h2>
 		          <h5>donation successful</h5>
 		        </div>
+
 		      </div>
 		      <div class="thank-you-points-container">
 		        <div class="row text-center">
@@ -29,29 +32,33 @@
 		          <h4>points</h4>
 		        </div>
 		      </div>
+
 		      <div class="button-container">
 		        <div class="row">
 		          <div class="col-xs-12 text-center">
-		            <button type="button" name="return" class="btn btn-give" onclick="prevView()">return</button>
+		            <button type="button" name="return" class="btn btn-give" onclick="window.location.href='/donate/';">return</button>
 		          </div>
 		        </div>
 		      </div>
-		    </div>
-		  </div>
-		    <div class="row ad-footer">
+
+		
+		    <div class="row ad-footer2">
 		      <div class="ad-container">
 		        <div class="col-xs-12 ad-contents text-center">
-		          <img src="/images/spot.png" />
+		          <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 		        </div>
 		      </div>
 		    </div>
-		</div>
+
+
+
+		</div>  
 
 	  </div>
 
 	</div>
 	<script src="/scripts/vendor.js"></script>
 	<script src="/scripts/plugins.js"></script>
-	<script src="/scripts/main.js"></script>
+
 
 </body>

@@ -32,7 +32,7 @@
                     <h3>Your Account</h3>
                     <h2 class="points"><?=$_SESSION['user_points'];?></h2>
                     <p>points</p>
-                    <h5 class="name"><?=$objUsers->name;?></h5>
+                    <h5 class="name"><?=$_SESSION['name'];?></h5>
                   </div>
                 </div>
                 <!--
@@ -52,19 +52,19 @@
 
                 <div class="row basic-navigation">
                   <div class="col-xs-4 needed-now text-center">
-                    <a href="#">
+                    <a href="/cart/">
                       <img src="/images/cart-hex.png" />
                       <h4>Needed Now</h4>
                     </a>
                   </div>
                   <div class="col-xs-4 shop-appetite text-center">
-                    <a href="#">
+                    <a href="/shop/">
                       <img src="/images/comb-hex.png" />
                       <h4>Shop Appetite</h4>
                     </a>
                   </div>
                   <div class="col-xs-4 messages text-center">
-                    <a href="#">
+                    <a href="/messages/">
                       <img src="/images/mail-hex.png" />
                       <h4>Messages</h4>
                     </a>
@@ -78,7 +78,7 @@
       <div class="row">
         <div class="ad-container">
           <div class="col-xs-12 ad-contents text-center">
-            <img src="/images/spot.png" />
+            <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
           </div>
         </div>
       </div>

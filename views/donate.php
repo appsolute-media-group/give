@@ -15,7 +15,7 @@
 
 	    <div class="view-container">
 
-	    	
+
 	      <div class="row">
         <div class="col-xs-12 give-header-container text-center">
           <i class="fa fa-group fa-3x"></i>
@@ -96,7 +96,7 @@
 	      <div class="row">
 	        <div class="ad-container">
 	          <div class="col-xs-12 ad-contents text-center">
-	            <img src="/images/spot.png" />
+	            <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 	          </div>
 	        </div>
 	      </div>
