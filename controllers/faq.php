@@ -15,7 +15,7 @@ class faq_controller {
 
 			$this->objFaq = new InfoPages;
 			$this->pageName = "faq";
-			$objFaq = json_decode($this->objFaq->getInfoPageData($this->pageName));
+			$objFaq = $this->objFaq->getInfoPageData($this->pageName);
 
 			include_once(ROOT_DIR.'/views/faq.php'); 
 

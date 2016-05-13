@@ -26,6 +26,24 @@ class InfoPages extends Database  {
 
 	}
 
+
+
+
+
+
+
+/*********************************************
+
+
+do not modify anything below this line
+
+
+**********************************************/
+
+
+
+
+
 	public function getInfoPageData($name) {
 
 		$result = array('result' => "error");
@@ -111,7 +129,7 @@ class InfoPages extends Database  {
 		}
 
 		
-		return json_encode($arrResult);
+		return $arrResult;
 
 	}
 
