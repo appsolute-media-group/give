@@ -13,7 +13,7 @@
 	      <?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
 
 	    </div>
-
+<?php //Util::dump($arrProducts); ?>
 	    <div class="view initial" data-view="1">
       <div class="view-container">
         <div class="row">
@@ -24,7 +24,12 @@
                   <h1>Needed Now</h1>
                 </div>
               </div>
-              <div class="item-detail text-center">
+
+              <div class="item-detail text-center dragon" id="scroll_view">
+
+
+
+<?php foreach($arrProducts As $p) { ?>
                 <div class="item-detail-contents">
                   <div class="row needed-item-container">
                     <div class="needed-item-inner">
@@ -41,7 +46,7 @@
                           <button type="button" name="needed-now-item-minus" class="btn btn-item">-</button>
                         </div>
                         <div class="col-xs-8">
-                          <img src="/images/groceries.jpeg" alt="" />
+                          <img src="<?php echo $p['product_img'];?>" alt="<?php echo $p['product_title'];?>" />
                         </div>
                         <div class="col-xs-2">
                           <button type="button" name="needed-now-item-plus" class="btn btn-item">+</button>
@@ -49,52 +54,34 @@
                       </div>
                       <div class="row needed-item-bottom">
                         <div class="col-xs-12">
-                          <span class="btn btn-item-amount">0</span>
-                          <p class="needed-now-item-cost">$2.60</p>
+                          <span class="btn btn-item-amount">$<span id="user_qty_display__<?php echo $p['id'];?>"><?php echo $p['user_qty'];?></span>
+                            <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" style="width:30px;color:#000000;" />
+                          </span>
+                          <p class="needed-now-item-cost">$<?php echo $p['product_price'];?></p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="item-detail-contents">
-                  <div class="row needed-item-container">
-                    <div class="needed-item-inner">
-                      <div class="row needed-item-top">
-                        <div class="col-xs-12 points-hex-container">
-                          <div class="points-hex text-center">
-                            <p>1000</p>
-                          </div>
-                          <p class="points-hex-desc">POINTS</p>
-                        </div>
-                      </div>
-                      <div class="row needed-item-middle">
-                        <div class="col-xs-2">
-                          <button type="button" name="needed-now-item-minus" class="btn btn-item">-</button>
-                        </div>
-                        <div class="col-xs-8">
-                          <img src="/images/groceries.jpeg" alt="" />
-                        </div>
-                        <div class="col-xs-2">
-                          <button type="button" name="needed-now-item-plus" class="btn btn-item">+</button>
-                        </div>
-                      </div>
-                      <div class="row needed-item-bottom">
-                        <div class="col-xs-12">
-                          <span class="btn btn-item-amount">0</span>
-                          <p class="needed-now-item-cost">$2.60</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+<?php } ?>
+
+
               </div>
+
+              <script type='text/javascript'>
+
+                new DragDivScroll( 'scroll_view', ["noXBarHide","mouseWheelX"] );
+
+              </script>
+
             </div>
           </div>
         </div>
         <div class="row total-container">
           <div class="col-xs-6 text-center">
             <p class="total">
-              TOTAL = $44.00
+              TOTAL = $<span id="grand_total">0</span>
             </p>
           </div>
           <div class="col-xs-6 text-center">

@@ -26,10 +26,33 @@ class Products extends Database  {
 
 	}
 
+
 	function getWebProducts() {
-		// $this->strQuery = "SELECT product_name, product_img, product_price
-		// 	FROM products";
+
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+
+		//this returns the full list of active records
+		$this->strSubQuery = "SELECT * FROM (SELECT p.*, '0' As user_qty
+		FROM $this->strTableName p 
+		WHERE p.blnActive = 1 
+		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=0)
+		LIMIT 10) As `a` UNION (SELECT p.*, '0' As user_qty
+		FROM $this->strTableName p 
+		WHERE p.blnActive = 1 
+		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=$sublocality_id)
+		LIMIT 10)";
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details;
+    	} else {
+    		return null;
+    	}
 	}
+
+
+
 
 	/********DO NOT USE ANYTHING BELOW THIS LINE**********/
     function getProducts() {
