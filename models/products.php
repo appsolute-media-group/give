@@ -41,7 +41,7 @@ class Products extends Database  {
 			$this->strSubQuery .= " AND p.id IN ($product_ids)";
 		}
 
-		$this->strSubQuery .= "LIMIT 10) UNION 
+		$this->strSubQuery .= " ORDER BY p.id LIMIT 10) UNION 
 		(SELECT p.*, '0' As user_qty
 		FROM $this->strTableName p 
 		WHERE p.blnActive = 1 
@@ -51,7 +51,7 @@ class Products extends Database  {
 			$this->strSubQuery .= " AND p.id IN ($product_ids)";
 		}
 
-		$this->strSubQuery .= " LIMIT 10)";
+		$this->strSubQuery .= " ORDER BY p.id LIMIT 10)";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
@@ -59,7 +59,7 @@ class Products extends Database  {
     	} else {
     		return null;
     	}
-    	
+
 	}
 
 

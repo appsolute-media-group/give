@@ -27,53 +27,31 @@
 	                </div>
 	              </div>
 	              <div class="cart-list-wrapper">
+					<?php 
+					$idx = 0;
+					$total = 0;
+					foreach($_SESSION['arrProducts'] As $p) { 
+
+						$new_price = number_format($_SESSION['arrQtys'][$idx] * $p['product_price'],2);
+						$total += $new_price;
+						?>
 
 	                <div class="row item-row">
-	                  <div class="col-xs-8">
-	                    <p>Beans and Bread</p>
+	                  <div class="col-xs-7">
+	                    <p><?php echo $p['product_name'];?></p>
 	                  </div>
-	                  <div class="col-xs-2 quantity-wrapper">
-	                    <p>x3 @</p>
-	                  </div>
-	                  <div class="col-xs-2 cost-wrapper">
-	                    <p>$6.00</p>
-	                  </div>
-	                </div>
-<!--
-	                <div class="row item-row">
-	                  <div class="col-xs-8">
-	                    <p>Beans and Bread</p>
-	                  </div>
-	                  <div class="col-xs-2 quantity-wrapper">
-	                    <p>x3 @</p>
+	                  <div class="col-xs-3 quantity-wrapper">
+	                    <p>x<?php echo $_SESSION['arrQtys'][$idx];?> @<?php echo $p['product_price'];?></p>
 	                  </div>
 	                  <div class="col-xs-2 cost-wrapper">
-	                    <p>$6.00</p>
+	                    <p>$<?php echo $new_price;?></p>
 	                  </div>
 	                </div>
-	                <div class="row item-row">
-	                  <div class="col-xs-8">
-	                    <p>Beans and Bread</p>
-	                  </div>
-	                  <div class="col-xs-2 quantity-wrapper">
-	                    <p>x3 @</p>
-	                  </div>
-	                  <div class="col-xs-2 cost-wrapper">
-	                    <p>$6.00</p>
-	                  </div>
-	                </div>
-	                <div class="row item-row">
-	                  <div class="col-xs-8">
-	                    <p>Beans and Bread</p>
-	                  </div>
-	                  <div class="col-xs-2 quantity-wrapper">
-	                    <p>x3 @</p>
-	                  </div>
-	                  <div class="col-xs-2 cost-wrapper">
-	                    <p>$6.00</p>
-	                  </div>
-	                </div>
--->
+
+					<?php 
+						$idx++;
+					}  ?>	                
+
 	              </div>
 	              <div class="row receipt-total-container">
 	                <div class="col-xs-8 text-center">
@@ -83,7 +61,7 @@
 	                </div>
 	                <div class="col-xs-4 text-center">
 	                  <h4>
-	                    $44.00
+	                    $<?php echo $total;?><input type="hidden" value="<?php echo $total;?>" id="grand_total" />
 	                  </h4>
 	                </div>
 	              </div>
@@ -105,6 +83,103 @@
 	        </div>
 	      </div>
 	    </div>
+		<div class="view" data-view="2">
+	      <div class="view-container">
+	        <div class="card-container">
+	          <div class="row">
+	            <div class="col-xs-12 info-container text-center">
+	              <h3>Card Details <i class="fa fa-credit-card"></i></h3>
+	            </div>
+	          </div>
+	          <div class="row">
+	            <div class="col-xs-12 input-container text-center">
+	              <div class="input-inner">
+
+	              	<br /><?php echo $this->strErrorMessage; ?><br />
+
+
+	              	<form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />
+		              	<!--
+		                <input type="text" name="card_name" value="" placeholder="Cardholder Name">
+		                <input type="text" name="card_number" value="" placeholder="Card Number">
+		                <input type="text" name="card_expirey" value="" placeholder="Expirey Date (mm/YY)">
+		                <input type="text" name="card_cvv" value="" placeholder="CVV">
+		                <input type="text" name="card_street" value="" placeholder="Street Address">
+		                <input type="text" name="card_city" value="" placeholder="City">
+		                <input type="text" name="card_province" value="" placeholder="Province">
+		                <input type="text" name="card_province" value="" placeholder="Postal Code">
+		                <input type="text" name="card_country" value="Canada" placeholder="Country" disabled>-->
+
+		                <input type="text" placeholder='First name' name="first_name" value="<?php echo $this->strFirstName;?>"></input>
+						<input type="text" placeholder='Last name' name="last_name" value="<?php echo $this->strLastName;?>"></input>
+						<input type="text" placeholder='Address' name="address" value="<?php echo $this->strAddress;?>"></input>
+						<input type="text" placeholder='City' name="city" value="<?php echo $this->strCity;?>"></input><br /><br />
+						<text>Province</text>
+						<select name="province" >
+						<option>BC</option>
+						<option>ON</option>
+						</select><br /><br />
+						<text>Country</text>
+						<select name="country" >
+						<option value="CA">Canada</option>
+						<option value="US">United States</option>
+						</select><br /><br />
+						<input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
+						<input type="text" placeholder='Credit Card Number' name="cc_num" value="<?php echo $this->strCCnum;?>"></input>
+						<input type="text" placeholder='CCV' name="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
+						<text>Exp. Month</text>
+						<select name="expMonth">
+						<?php 
+						for($mo=1; $mo<=12; $mo++) {
+						  echo '<option value="' .$mo. '"';
+						  echo '>' .$mo. '</option>';
+						}
+						?>
+						</select>
+						<text>Exp. Year</text>
+						<select name="expYear">
+						<?php 
+						for($year=2016; $year<=2025; $year++) {
+						  echo '<option value="' .$year. '"';
+						  echo '>' . $year. '</option>';
+						}
+						?>
+						</select>
+						<input type="hidden" name="doPost" value="true" />
+
+
+					</form>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="row">
+	            <div class="col-xs-12 button-container text-center">
+	              <div class="button-inner">
+	                  <button type="button" name="card_add" class="btn btn-checkout" onclick="$('#cc_form').submit();">Add Card</button>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="row">
+	            <div class="col-xs-12 button-container text-center">
+	              <div class="button-inner">
+	                  <button type="button" name="cancel" class="btn btn-cancel" onclick="prevView()">Cancel</button>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	  	</div>
+
+
+
+
+
+
+
+
+
+
+
 		    <div class="row ad-footer2">
 		      <div class="ad-container">
 		        <div class="col-xs-12 ad-contents text-center">
@@ -121,6 +196,6 @@
 
 	<script src="/scripts/vendor.js"></script>
 	<script src="/scripts/plugins.js"></script>
-<script src="/scripts/main.js"></script>
-<script src="/scripts/cart.js"></script>
+	<script src="/scripts/checkout.js"></script>
+
 </body>

@@ -105,46 +105,7 @@
     
 
     
-    <div class="view" data-view="3">
-      <div class="view-container">
-        <div class="card-container">
-          <div class="row">
-            <div class="col-xs-12 info-container text-center">
-              <h3>Card Details <i class="fa fa-credit-card"></i></h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 input-container text-center">
-              <div class="input-inner">
-                <input type="text" name="card_name" value="" placeholder="Cardholder Name">
-                <input type="text" name="card_number" value="" placeholder="Card Number">
-                <input type="text" name="card_expirey" value="" placeholder="Expirey Date (mm/YY)">
-                <input type="text" name="card_cvv" value="" placeholder="CVV">
-                <input type="text" name="card_street" value="" placeholder="Street Address">
-                <input type="text" name="card_city" value="" placeholder="City">
-                <input type="text" name="card_province" value="" placeholder="Province">
-                <input type="text" name="card_province" value="" placeholder="Postal Code">
-                <input type="text" name="card_country" value="Canada" placeholder="Country" disabled>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 button-container text-center">
-              <div class="button-inner">
-                  <button type="button" name="card_add" class="btn btn-checkout" onclick="nextView()">Add Card</button>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 button-container text-center">
-              <div class="button-inner">
-                  <button type="button" name="cancel" class="btn btn-cancel" onclick="prevView()">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
+    
   <div class="view" data-view="4">
     <div class="view-container">
       <div class="receipt-container">
