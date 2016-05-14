@@ -4,12 +4,26 @@
 function validateCheckout(){
 
 	var grand_total = $('#grand_total').val();
+	console.log("grand_total",grand_total);
+
+
+	//if(parseFloat(grand_total) > 0){
+		//$('#cart_form').submit();
+	//}
+
+}
+
+function Checkout(){
+
+	var grand_total = $('#grand_total').val();
+	console.log("grand_total",grand_total);
+
+
 	if(parseFloat(grand_total) > 0){
 		$('#cart_form').submit();
 	}
 
 }
-
 
 function increaseProductAmount(pID, product_amount){
 

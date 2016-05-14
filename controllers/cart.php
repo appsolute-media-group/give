@@ -8,14 +8,17 @@ class cart_controller {
 	public $objProducts = "";
 	public $strErrorMessage = "";
 	public $intPayProfileId;
+	public $intAwardAmount;
+	public $decAmount;
 
 	public function __construct() {
 
 		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
+		$this->intAwardAmount = isset($_REQUEST['var1']) ? $_REQUEST['var1'] : '';
+
 		$this->objProducts = new Products;
 
 		if($this->strMethod == ''){ //cart view
-
 
 			$arrProducts = $this->objProducts->getWebProducts("");
 
@@ -34,7 +37,7 @@ class cart_controller {
 
 		} elseif($this->strMethod == 'thankyou'){
 
-			include_once(ROOT_DIR.'/views/thankyou.php');
+			include_once(ROOT_DIR.'/views/cart_thankyou.php');
 		}
 	
 	}
@@ -44,16 +47,18 @@ class cart_controller {
 	function handleProfileCheckout(){
 
 		$objTrans = new Transactions();
-		
+		$this->handleCartSession();
+
+
 		if(isset($_POST['doPost'])){
 
 			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
-			$decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
-
+			$this->decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
+			$this->intAwardAmount = $this->decAmount*100;
 			//echo 'Processing paymentprofileid:'.$this->intPayProfileId."<br />";
 
 			$transactionDetails = array("Description" => "Web Portal Profile Transaction", 
-					"Amount" => $decAmount,
+					"Amount" => $this->decAmount,
 					'Type' => 2);//to seperate donation page(1) from product page(2) transactions
 
 
@@ -64,7 +69,7 @@ class cart_controller {
 
 			} else {
 
-				echo "<script>window.location.href='/cart/thankyou/'</script>";
+				echo "<script>window.location.href='/cart/thankyou/$this->intAwardAmount/'</script>";
 
 			}
 
@@ -90,10 +95,7 @@ class cart_controller {
 
 	}
 
-
-
-	function handleCheckout() {
-
+	function handleCartSession() {
 
 		//Util::dump($_POST);
 		$arrQty = isset($_REQUEST['user_qty']) ? $_REQUEST['user_qty'] : '';
@@ -120,7 +122,18 @@ class cart_controller {
 		}
 		//Util::dump($arrProducts);
 
+
+	}
+
+
+
+	function handleCheckout() {
+
+
+		$this->handleCartSession();
+
 		$this->decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
+		$this->intAwardAmount = $this->decAmount*100;
 		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
 		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
 		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
@@ -231,7 +244,7 @@ class cart_controller {
 
 
 			if($this->strErrorMessage == ""){
-				echo "<script>window.location.href='/cart/thankyou/'</script>";
+				echo "<script>window.location.href='/cart/thankyou/$this->intAwardAmount/'</script>";
 			}
 
 

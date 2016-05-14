@@ -58,7 +58,7 @@
                       <div class="row needed-item-bottom">
                         <div class="col-xs-12">
                           <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($p['user_qty'],2);?></span>
-                            <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" />
+                            <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" class="user_qty"/>
                             <input type="hidden" value="<?php echo $p['id'];?>" name="product_id[]" />
                           </span>
                           <p class="needed-now-item-cost">$<?php echo $p['product_price'];?></p>
@@ -89,7 +89,8 @@
             </p>
           </div>
           <div class="col-xs-6 text-center">
-            <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="validateCheckout();">CHECKOUT</button>
+            <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="validateCheckout();">VALIDATE</button> 
+            <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="Checkout();">CHECKOUT</button>
           </div>
         </div>
       </div>
@@ -98,53 +99,6 @@
 
 
     </div>
-
-
-
-
-    
-
-    
-    
-  <div class="view" data-view="4">
-    <div class="view-container">
-      <div class="receipt-container">
-        <div class="receipt-wrapper">
-          <div class="row  receipt-header">
-            <div class="col-xs-12 text-center">
-              <i class="fa fa-shopping-cart fa-5x"></i>
-            </div>
-          </div>
-            <div class="row">
-              <div class="col-xs-12 text-center">
-                <h2>Thank you for your donation</h2>
-              </div>
-            </div>
-            <div class="row receipt-points">
-              <div class="col-xs-12 points-hex-container text-center">
-                <p class="points-hex-desc">YOU'VE EARNED</p>
-                <div class="points-hex text-center">
-                  <p>1000</p>
-                </div>
-                <p class="points-hex-desc">POINTS</p>
-              </div>
-            </div>
-            <div class="row checkout-complete-button-container">
-              <div class="col-xs-12 text-center">
-                <button type="button" name="needed-now-checkout" class="btn btn-tax">Tax Receipt</button>
-              </div>
-              <div class="col-xs-12 text-center">
-                <button type="button" name="needed-now-checkout" class="btn btn-shop">Shop Appetite</button>
-              </div>
-            </div>
-        </div>
-      </div>
-      <div class="bottom-container">
-
-      </div>
-    </div>
-  </div>
-		    
 
 
 
