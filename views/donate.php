@@ -31,16 +31,16 @@
         </div>
         <div class="row amounts-container">
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10">$10</button>
+            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10" onclick="setAmount(10);">$10</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10">$25</button>
+            <button type="button" name="amount_25" class="btn btn-amount" data-toggle="button" value="25" onclick="setAmount(25);">$25</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10">$50</button>
+            <button type="button" name="amount_50" class="btn btn-amount" data-toggle="button" value="50" onclick="setAmount(50);">$50</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10">$100</button>
+            <button type="button" name="amount_100" class="btn btn-amount" data-toggle="button" value="100" onclick="setAmount(100);">$100</button>
           </div>
         </div>
       </div>
@@ -53,18 +53,18 @@
         <div class="row schedules-container">
           <div class="row">
             <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="one-time">One-Time</button>
+              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="one-time" onclick="setFreq(1);">One-Time</button>
             </div>
             <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="bi-weekly">Bi-Weekly</button>
+              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="bi-weekly" onclick="setFreq(2);">Bi-Weekly</button>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="monthly">Monthly</button>
+              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="monthly" onclick="setFreq(3);">Monthly</button>
             </div>
             <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="annual">Annual</button>
+              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="annual" onclick="setFreq(4);">Annual</button>
             </div>
           </div>
         </div>
@@ -72,10 +72,18 @@
       <div class="button-container">
         <div class="row">
           <div class="col-xs-12 text-center">
-            <button type="button" name="give" class="btn btn-give" onclick="nextView()">give</button>
+            <button type="button" name="give" class="btn btn-give" onclick="submitform()">give</button>
           </div>
         </div>
       </div>
+
+      <form action="/donate/form/" id="donate_form" method="post"/>
+
+        <input type="hidden" value="0" name="amount" id="amount" />
+        <input type="hidden" value="0" name="freq" id="freq" />
+
+      </form>
+
       <div class="disclaimer-box">
         <div class="row">
           <div class="col-xs-12 text-left">
@@ -109,5 +117,5 @@
 	<script src="/scripts/vendor.js"></script>
 <script src="/scripts/plugins.js"></script>
 <script src="/scripts/main.js"></script>
-
+<script src="/scripts/donate.js"></script>
 </body>

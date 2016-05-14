@@ -1,5 +1,13 @@
 'use strict';
 
+$(document).ready(function () {
+  var user_qty = $('.user_qty');
+  var grand_total = $('#grand_total');
+  
+  user_qty.val(0);
+  grand_total.val(0);
+
+});
 
 function validateCheckout(){
 

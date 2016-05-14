@@ -61,7 +61,7 @@
 	                </div>
 	                <div class="col-xs-4 text-center">
 	                  <h4>
-	                    $<?php echo $total;?>
+	                    $<?php echo number_format($total,2);?>
 	                  </h4>
 	                </div>
 	              </div>
@@ -95,7 +95,10 @@
 	            <div class="col-xs-12 input-container text-center">
 	              <div class="input-inner">
 
-	              	<br /><?php echo $this->strErrorMessage; ?><br />
+	              	<p><?php echo $this->strErrorMessage; ?></p>
+							
+
+					<p>You are making a purchase in the amount of $<?php echo number_format($total,2); ?></p>
 
 
 	              	<form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />

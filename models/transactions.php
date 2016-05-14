@@ -115,10 +115,14 @@ class Transactions extends Database  {
 	    $paymentProfile->setPaymentProfileId($paymentprofileid);
 	    $profileToCharge->setPaymentProfile($paymentProfile);
 
+		$order = new AnetAPI\OrderType();
+		$order->setDescription($objDetails['Description']);//method parameter
+
 	    $transactionRequestType = new AnetAPI\TransactionRequestType();
 	    $transactionRequestType->setTransactionType( "authCaptureTransaction"); 
 	    $transactionRequestType->setAmount($objDetails['Amount']);
-	    $transactionRequestType->setProfile($profileToCharge);
+	    $transactionRequestType->setOrder($order); //from above
+	    $transactionRequestType->setProfile($profileToCharge);//from above
 
 	    $request = new AnetAPI\CreateTransactionRequest();
 		$request->setMerchantAuthentication($this->merchantAuthentication);//from above
@@ -137,8 +141,8 @@ class Transactions extends Database  {
 
 		    if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
 		      
-		      echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
-		      echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+		      //echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+		      //echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
 
 
 		      $this->arrResult = array(
@@ -149,6 +153,15 @@ class Transactions extends Database  {
 
 
 			  array_push($transTableVals,'success',$tresponse->getAuthCode(),$tresponse->getTransId());
+
+			  //update the users points
+				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
+
+				//update the user profile
+			    $keys = array('user_points');
+			    $vals = array($_SESSION['user_points']);
+
+			    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
 
 		} else {
 
@@ -179,6 +192,8 @@ class Transactions extends Database  {
 
 		}
 
+
+		
 
 		//record the transaction in the local database
 		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data');
@@ -290,7 +305,7 @@ class Transactions extends Database  {
 
 				if (($new_response != null) && ($new_response->getMessages()->getResultCode() == "Ok") )
 				{
-				  echo "SUCCESS: PROFILE ID : " . $new_response->getCustomerProfileId() . "<br />";
+				  //echo "SUCCESS: PROFILE ID : " . $new_response->getCustomerProfileId() . "<br />";
 
 				  $ProfileId = $new_response->getCustomerProfileId();
 
@@ -302,9 +317,12 @@ class Transactions extends Database  {
 				  $errorMessages = $new_response->getMessages()->getMessage();
 				  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
 
-				  Util::dump($new_response);
+				  //Util::dump($new_response);
 				  $ProfileId = '';
 				}
+
+				$_SESSION['APIprofileID'] = $ProfileId;
+				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
 
 				//update the user profile
 			    $keys = array('user_points','APIprofileID');
@@ -312,8 +330,7 @@ class Transactions extends Database  {
 
 			    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
 
-				$_SESSION['APIprofileID'] = $ProfileId;
-				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
+				
 
 		    } else {
 

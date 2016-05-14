@@ -6,7 +6,8 @@ class donate_controller {
 	public $strMethod = "";
 	public $intUserId = "";
 	public $strErrorMessage = "";
-	public $decAmount = ".05";
+	public $decAmount = ".01";
+	public $intFreq = "1";
 	public $strCCnum =  "";
 	public $strCCmonth = "";
 	public $strCCyear = "";
@@ -32,6 +33,9 @@ class donate_controller {
 
 		} elseif($this->strMethod == 'form'){
 
+			$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
+			$this->intFreq = isset($_POST['freq']) ? $_POST['freq'] : '1';
+
 			if($_SESSION['APIprofileID'] == ''){
 				$this->handleForm();
 			} else {
@@ -55,14 +59,14 @@ class donate_controller {
 
 		$objTrans = new Transactions();
 		
-		if(isset($_POST['submit'])){
+		if(isset($_POST['doPost'])){
 
 			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
-			$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
+			$this->intAwardAmount = $this->decAmount*100;
 
 			echo 'Processing paymentprofileid:'.$this->intPayProfileId;
 
-			$transactionDetails = array("Description" => "Web Portal Profile Transaction", 
+			$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " website donation", 
 					"Amount" => $this->decAmount,
 					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
 
@@ -73,7 +77,7 @@ class donate_controller {
 
 			} else {
 
-				echo "<script>window.location.href='/donate/thankyou/'</script>";
+				echo "<script>window.location.href='/donate/thankyou/$this->intAwardAmount/'</script>";
 
 			}
 
@@ -106,6 +110,7 @@ class donate_controller {
 
 		
 		$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
+		$this->intAwardAmount = $this->decAmount*100;
 		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
 		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
 		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
@@ -120,7 +125,7 @@ class donate_controller {
 
 
 
-		if(isset($_POST['submit'])){
+		if(isset($_POST['doPost'])){
 
 			do {
 
@@ -192,7 +197,7 @@ class donate_controller {
 				);
 
 
-				$transactionDetails = array("Description" => "Web Portal Test", 
+				$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " website donation", 
 					"Amount" => $this->decAmount,
 					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
 
@@ -215,31 +220,36 @@ class donate_controller {
 				break;
 			} while ($this->strErrorMessage == "");
 
-			if($this->strErrorMessage == ''){
-
-				//Util::dump($objTransDetails);
-				//include_once(ROOT_DIR.'/views/thankyou.php');
-
-			} else {
-
-				
-				//include_once(ROOT_DIR.'/views/ccform.php');
-
+			if($this->strErrorMessage == ""){
+				echo "<script>window.location.href='/donate/thankyou/$this->intAwardAmount/'</script>";
 			}
-
-		} else {
-
-			//include_once(ROOT_DIR.'/views/ccform.php');
-
 
 		}
 
 
-		
-
 
 	}
 
+
+	public function getFequencyString($freq){
+
+		switch($freq){
+			case 1:
+				return "one time";
+				break;
+			case 2:
+				return "bi-weekly";
+				break;	
+			case 3:
+				return "monthly";
+				break;
+			case 4:
+				return "annual";
+				break;
+		}
+
+
+	}
 
 
 
