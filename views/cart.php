@@ -14,6 +14,8 @@
 
 	    </div>
 <?php //Util::dump($arrProducts); ?>
+
+<form action="/cart/checkout/" method="post" id="cart_form">
 	    <div class="view initial" data-view="1">
       <div class="view-container">
         <div class="row">
@@ -29,6 +31,7 @@
 
 
 
+
 <?php foreach($arrProducts As $p) { ?>
                 <div class="item-detail-contents">
                   <div class="row needed-item-container">
@@ -36,26 +39,27 @@
                       <div class="row needed-item-top">
                         <div class="col-xs-12 points-hex-container">
                           <div class="points-hex text-center">
-                            <p>1000</p>
+                            <p><?php echo $p['product_price']*1000;?></p>
                           </div>
                           <p class="points-hex-desc">POINTS</p>
                         </div>
                       </div>
                       <div class="row needed-item-middle">
                         <div class="col-xs-2">
-                          <button type="button" name="needed-now-item-minus" class="btn btn-item">-</button>
+                          <button type="button" name="needed-now-item-minus" class="btn btn-item" onclick="decreaseProductAmount(<?php echo $p['id'];?>, <?php echo $p['product_price'];?>);">-</button>
                         </div>
                         <div class="col-xs-8">
                           <img src="<?php echo $p['product_img'];?>" alt="<?php echo $p['product_title'];?>" />
                         </div>
                         <div class="col-xs-2">
-                          <button type="button" name="needed-now-item-plus" class="btn btn-item">+</button>
+                          <button type="button" name="needed-now-item-plus" class="btn btn-item" onclick="increaseProductAmount(<?php echo $p['id'];?>, <?php echo $p['product_price'];?>);">+</button>
                         </div>
                       </div>
                       <div class="row needed-item-bottom">
                         <div class="col-xs-12">
-                          <span class="btn btn-item-amount">$<span id="user_qty_display__<?php echo $p['id'];?>"><?php echo $p['user_qty'];?></span>
-                            <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" style="width:30px;color:#000000;" />
+                          <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($p['user_qty'],2);?></span>
+                            <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" />
+                            <input type="hidden" value="<?php echo $p['id'];?>" name="product_id[]" />
                           </span>
                           <p class="needed-now-item-cost">$<?php echo $p['product_price'];?></p>
                         </div>
@@ -81,103 +85,26 @@
         <div class="row total-container">
           <div class="col-xs-6 text-center">
             <p class="total">
-              TOTAL = $<span id="grand_total">0</span>
+              TOTAL = $<span id="grand_total_display">0.00</span><input type="hidden" value="0" id="grand_total" />
             </p>
           </div>
           <div class="col-xs-6 text-center">
-            <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="nextView()">CHECKOUT</button>
+            <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="validateCheckout();">CHECKOUT</button>
           </div>
         </div>
       </div>
+
+</form>
+
+
     </div>
-    <div class="view" data-view="2">
-      <div class="view-container">
-        <div class="receipt-container">
-          <div class="receipt-wrapper">
-              <div class="row receipt-header">
-                <div class="col-xs-8 text-left">
-                  <h2>YOUR CART</h2>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <i class="fa fa-shopping-cart fa-4x"></i>
-                </div>
-              </div>
-              <div class="cart-list-wrapper">
-                <div class="row item-row">
-                  <div class="col-xs-8">
-                    <p>Beans and Bread</p>
-                  </div>
-                  <div class="col-xs-2 quantity-wrapper">
-                    <p>x3 @</p>
-                  </div>
-                  <div class="col-xs-2 cost-wrapper">
-                    <p>$6.00</p>
-                  </div>
-                </div>
-                <div class="row item-row">
-                  <div class="col-xs-8">
-                    <p>Beans and Bread</p>
-                  </div>
-                  <div class="col-xs-2 quantity-wrapper">
-                    <p>x3 @</p>
-                  </div>
-                  <div class="col-xs-2 cost-wrapper">
-                    <p>$6.00</p>
-                  </div>
-                </div>
-                <div class="row item-row">
-                  <div class="col-xs-8">
-                    <p>Beans and Bread</p>
-                  </div>
-                  <div class="col-xs-2 quantity-wrapper">
-                    <p>x3 @</p>
-                  </div>
-                  <div class="col-xs-2 cost-wrapper">
-                    <p>$6.00</p>
-                  </div>
-                </div>
-                <div class="row item-row">
-                  <div class="col-xs-8">
-                    <p>Beans and Bread</p>
-                  </div>
-                  <div class="col-xs-2 quantity-wrapper">
-                    <p>x3 @</p>
-                  </div>
-                  <div class="col-xs-2 cost-wrapper">
-                    <p>$6.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row receipt-total-container">
-                <div class="col-xs-8 text-center">
-                  <h4>
-                    YOUR TOTAL:
-                  </h4>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <h4>
-                    $44.00
-                  </h4>
-                </div>
-              </div>
-              <div class="row receipt-tagline-container">
-                <div class="col-xs-12 text-center receipt-tagline">
-                  <p>
-                    Your donation puts the buying power in the hands of the Food Bank who can take the funds and purchase more for their dollar. Thank you for feeding your community!
-                  </p>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div class="bottom-container">
-          <div class="row checkout-button-container">
-            <div class="col-xs-12 text-center">
-              <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="nextView()">CHECKOUT</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
+
+
+    
+
+    
     <div class="view" data-view="3">
       <div class="view-container">
         <div class="card-container">
@@ -277,5 +204,5 @@
 	<script src="/scripts/vendor.js"></script>
 	<script src="/scripts/plugins.js"></script>
 <script src="/scripts/main.js"></script>
-
+<script src="/scripts/cart.js"></script>
 </body>
