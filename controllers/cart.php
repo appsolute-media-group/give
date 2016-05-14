@@ -7,6 +7,7 @@ class cart_controller {
 	public $intUserId = "";
 	public $objProducts = "";
 	public $strErrorMessage = "";
+	public $intPayProfileId;
 
 	public function __construct() {
 
@@ -22,11 +23,71 @@ class cart_controller {
 
 		} elseif($this->strMethod == 'checkout'){
 
-			$this->handleCheckout();
+			if($_SESSION['APIprofileID'] == ''){
+				$this->handleCheckout();
+			} else {
+				$this->handleProfileCheckout();
+			}
+
 			include_once(ROOT_DIR.'/views/checkout.php');
 
+
+		} elseif($this->strMethod == 'thankyou'){
+
+			include_once(ROOT_DIR.'/views/thankyou.php');
 		}
 	
+	}
+
+
+
+	function handleProfileCheckout(){
+
+		$objTrans = new Transactions();
+		
+		if(isset($_POST['doPost'])){
+
+			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
+			$decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
+
+			//echo 'Processing paymentprofileid:'.$this->intPayProfileId."<br />";
+
+			$transactionDetails = array("Description" => "Web Portal Profile Transaction", 
+					"Amount" => $decAmount,
+					'Type' => 2);//to seperate donation page(1) from product page(2) transactions
+
+
+			$objTransDetails = $objTrans->ProcessProfileTransaction($_SESSION['APIprofileID'], $this->intPayProfileId, $transactionDetails);
+			if($objTransDetails['result']=="error"){
+
+				$this->strErrorMessage = $objTransDetails['error']."<br />";
+
+			} else {
+
+				echo "<script>window.location.href='/cart/thankyou/'</script>";
+
+			}
+
+
+
+
+		} else {
+
+			$this->objPayProfile = $objTrans->getPaymentProfiles();
+			$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+
+			//Util::dump($objProfile);
+			if($this->objPayProfile['result']=="error"){
+
+				$this->strErrorMessage = $this->objPayProfile['error']."<br />";
+				//break;
+
+			} 
+
+		}
+
+
+
 	}
 
 
@@ -59,7 +120,7 @@ class cart_controller {
 		}
 		//Util::dump($arrProducts);
 
-		$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
+		$this->decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
 		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
 		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
 		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
@@ -148,10 +209,9 @@ class cart_controller {
 
 				$transactionDetails = array("Description" => "Web Portal Test", 
 					"Amount" => $this->decAmount,
-					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
+					'Type' => 2);//to seperate donation page(1) from product page(2) transactions
 
 				//proccess the transaction
-				/*
 				$objTransDetails = $objTrans->processWebTransaction(
 					$this->strCCnum,
 					$this->strCCmonth.$this->strCCyear,
@@ -165,9 +225,16 @@ class cart_controller {
 					break;
 
 				} 
-				*/
+				
 				break;
 			} while ($this->strErrorMessage == "");
+
+
+			if($this->strErrorMessage == ""){
+				echo "<script>window.location.href='/cart/thankyou/'</script>";
+			}
+
+
 
 		}
 

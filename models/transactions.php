@@ -281,7 +281,7 @@ class Transactions extends Database  {
 				$customerProfile->setEmail($_SESSION['email']);
 	
 				$new_request = new AnetAPI\CreateCustomerProfileFromTransactionRequest();
-				$new_request->setMerchantAuthentication($merchantAuthentication);
+				$new_request->setMerchantAuthentication($this->merchantAuthentication);
 				$new_request->setTransId($tresponse->getTransId());
 				$new_request->setCustomer($customerProfile);
 
