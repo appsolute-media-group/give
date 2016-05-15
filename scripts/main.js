@@ -29,7 +29,7 @@ function prevView() {
 
 $(document).ready(function () {
   debugView();
-
+  startRotator("#rotator");
 });
 //# sourceMappingURL=main.js.map
 
