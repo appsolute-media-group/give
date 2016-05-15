@@ -26,7 +26,7 @@ class SponsorDeals extends Database  {
 
 	}
 
-	function getSponsorWebDeals($searchTerm = '') {
+	function getSponsorWebDeals($searchTerm = "", $intId = "") {
 
 		$sublocality_id = $_SESSION['sublocality_id'];
 
@@ -48,6 +48,11 @@ class SponsorDeals extends Database  {
 
 		}
 
+		if($intId != '') {
+
+			$this->strSubQuery .= " AND s.id='$intId'";
+
+		}
 //echo ($this->strSubQuery);
 
 

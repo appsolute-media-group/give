@@ -16,9 +16,9 @@ class shop_controller {
 
 		$this->objSponsorDeals = new SponsorDeals;
 
-		if($this->strMethod == ''){ //shop view
+		if($this->strMethod == '' || $this->strMethod == 'sponsors'){ //shop view
 
-			$this->arrDeals = $this->objSponsorDeals->getSponsorWebDeals();
+			$this->arrDeals = $this->objSponsorDeals->getSponsorWebDeals('',$this->intId);
 			include_once(ROOT_DIR.'/views/shop.php'); 
 
 		} else if($this->strMethod == 'details'){ //details view

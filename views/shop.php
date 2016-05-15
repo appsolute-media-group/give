@@ -39,9 +39,16 @@
             </div>
           </div>
         </div>
-        <div class="row products-container">
+        
 
-<?php   foreach($this->arrDeals As $d) { ?>
+<?php   
+
+if(count($this->arrDeals) > 0) {?>
+
+    <div class="row products-container">
+
+<?php foreach($this->arrDeals As $d) { ?>
+
           <div class="product-wrapper" onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
             <div class="background-wrapper">
               <img src="<?php echo $d['deal_image']; ?>" alt="" />
@@ -65,6 +72,22 @@
           </div>
 
 <?php } ?>
+
+    </div>
+
+<?php } else { ?>
+
+  <div class="row text-center">
+    <br clear="all" />
+    <div style="height:150px">
+        <p>Sorry, no deals for this sponsor.</p>
+    </div>
+  </div>
+
+<?php 
+}
+
+?>
 
 
         </div>

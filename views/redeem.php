@@ -35,9 +35,9 @@
 
         <div class="row redeem-info-container">
           <div class="col-xs-12 text-left">
-            <!--
+            
             <p class="business-description">
-              
+              <!--
 
               This small town feel, big service establishment is proud to offer coffee and baked goods made from all local food and roasting sources. We are located downtown and offer a spacious inside and outside sitting-in experience.
 
@@ -45,9 +45,9 @@
 
               Our menu is an array of breakfast, tea treats, lunch and dinner dishes. We pride ourselves on having personal and working relationships with local farmers, both produce and animal products. These loyal relationships mean the best ingredients and, furthermore, the best flavour to enjoy.
             
-
+ -->
             </p>
-            -->
+           
           </div>
         </div>
 

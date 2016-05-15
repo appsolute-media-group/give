@@ -20,7 +20,7 @@
         <div class="row pre-redeem-title-container">
           <div class="col-xs-12 text-left">
             <h3 class="business-name"><?php echo $this->objDeal['deal_title'];?></h3>
-            <h5 class="business-category"><?php echo $this->objDeal['sponsor_'];?></h5>
+            <h5 class="business-category"><?php echo $this->objDeal['sponsor_name'];?></h5>
 
           </div>
         </div>
