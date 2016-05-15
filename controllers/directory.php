@@ -19,12 +19,14 @@ class directory_controller {
 		if($this->strMethod == ''){ //shop view
 
 			$this->arrSponsors = $this->objSponsors->getWebSponsors();
+
 			include_once(ROOT_DIR.'/views/directory.php'); 
 
 		} else if($this->strMethod == 'details'){ //details view
 
 
 			$this->objSponsor = $this->objSponsors->getWebSponsorById($this->intId);
+			$this->objContact = $this->objSponsors->getWebSponsorContacts($this->intId);
 			include_once(ROOT_DIR.'/views/directory_detail.php'); 
 
 

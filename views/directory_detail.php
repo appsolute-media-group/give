@@ -63,8 +63,25 @@
 		              <h6><?php echo $this->objSponsor['sponsor_address'];?>, 
 		              	<?php echo $this->objSponsor['sponsor_city'];?>, 
 		              	<?php echo $this->objSponsor['sponsor_province'];?> | <?php echo $this->objSponsor['sponsor_postal_code'];?></h6>
-		              <div class="map-container">
-		                <img src="/images/map.jpg" alt="" />
+		              <div class="map-container" style="width:100%;height:280px;">
+		                <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
+						<script>
+
+							function initialize_map() {
+								//49.8996081,-119.5947451
+								center = new google.maps.LatLng(49.8836184,-119.5013852);
+
+								var mapOptions = {
+						          center: center,
+						          zoom: 10,
+						          mapTypeId: google.maps.MapTypeId.ROADMAP
+						        };
+						      
+						        fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
+							}
+
+						</script>
+						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-EPcLFXAWERH5h1zqw4grjXCPWtD1-FM&callback=initialize_map" type="text/javascript"></script>
 		              </div>
 		            </div>
 		          </div>
@@ -82,7 +99,7 @@
 		    <div class="view-container">
 		      <div class="row business-logo-container">
 		        <div class="logo-shop-wrapper text-center">
-		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" alt="" />
+		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" alt="" style="height:150px;" />
 		        </div>
 		      </div>
 		      <div class="row">
@@ -115,7 +132,7 @@
 		              <i class="fa fa-envelope fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="mailto:name@example.com"><h4>hello@calliscoffee.com</h4></a>
+		              <a href="mailto:<?php echo $this->objContact['email'];?>"><h4><?php echo $this->objContact['email'];?></h4></a>
 		            </div>
 		          </div>
 		        </div>
@@ -125,7 +142,7 @@
 		              <i class="fa fa-phone fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="tel:250555555"><h4>+1 (250) 766-1234</h4></a>
+		              <a href="tel:250555555"><h4><?php echo $this->objContact['tel'];?></h4></a>
 		            </div>
 		          </div>
 		        </div>
@@ -135,7 +152,7 @@
 		              <i class="fa fa-globe fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="https://website.com"><h4>www.calliscoffee.com</h4></a>
+		              <a href="http://<?php echo $this->objSponsor['sponsor_url'];?>"><h4><?php echo $this->objSponsor['sponsor_url'];?></h4></a>
 		            </div>
 		          </div>
 		        </div>
@@ -145,7 +162,8 @@
 		          <div class="address-inner">
 		            <div class="col-xs-12 text-center">
 		              <div class="map-container">
-		                <img src="/images/map.jpg" alt="" />
+		                
+						
 		              </div>
 		            </div>
 		          </div>
@@ -153,8 +171,6 @@
 		      </div>
 		    </div>
 		  </div>
-
-
 
 
 	    <div class="row ad-footer2">

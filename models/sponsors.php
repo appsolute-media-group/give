@@ -22,9 +22,8 @@ class Sponsors extends Database  {
 		$this->strErrorMessage = "";
 		$this->strTableName = "sponsors";
 
-
-
 	}
+
 
 	function getWebSponsors() {
 
@@ -38,17 +37,15 @@ class Sponsors extends Database  {
 		WHERE s.sublocality_id='$sublocality_id' 
 		AND s.blnActive = 1 AND sponsor_type = 1";
 
-
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
        	 	return $details;
     	}
 
-
 	}
 
-	function getWebSponsorById($id) {
 
+	function getWebSponsorById($id) {
 
 		$this->strSubQuery = "SELECT s.*,  
 			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1) As sponsor_img,
@@ -62,8 +59,24 @@ class Sponsors extends Database  {
        	 	return $details[0];
     	}
 
+	}
+
+	function getWebSponsorContacts($id) {
+
+		$this->strSubQuery = "SELECT s.* 
+		FROM sponsor_contacts s 
+		WHERE sponsor_id='$id'
+		AND is_primary=1";
+ 
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details[0];
+    	}
 
 	}
+
+
 
 /****************
 
