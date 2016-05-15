@@ -26,7 +26,77 @@ class SponsorDeals extends Database  {
 
 	}
 
+	function getSponsorWebDeals($searchTerm = '') {
 
+		$sublocality_id = $_SESSION['sublocality_id'];
+
+
+		//this returns the full list of active sponsors
+		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
+			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+		FROM $this->strTableName  sd
+		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
+		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
+		WHERE s.sublocality_id='$sublocality_id' 
+		AND sd.blnActive = 1";
+
+
+		if($searchTerm != '') {
+
+			$this->strSubQuery .= " AND (deal_title like '%$searchTerm%' OR deal_desc like '%$searchTerm%' OR cat_title like '%$searchTerm%')";
+
+		}
+
+//echo ($this->strSubQuery);
+
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details;
+    	}
+
+
+	}
+
+
+
+
+
+	function getSponsorWebDealById($id) {
+
+
+
+		//this returns the full list of active sponsors
+		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, s.sponsor_name, 
+			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+		FROM $this->strTableName  sd
+		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
+		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
+		WHERE sd.id='$id' 
+		AND sd.blnActive = 1";
+
+
+//echo ($this->strSubQuery);
+
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details[0];
+    	}
+
+
+	}
+
+
+/****************
+
+API functions only below this line 
+
+
+
+*/
     function getSponsorDeals() {
 
 
