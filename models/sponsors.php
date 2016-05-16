@@ -25,7 +25,7 @@ class Sponsors extends Database  {
 	}
 
 
-	function getWebSponsors() {
+	function getWebSponsors($searchTerm='') {
 
 		$sublocality_id = $_SESSION['sublocality_id'];
 
@@ -35,7 +35,17 @@ class Sponsors extends Database  {
 			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2) As sponsor_img2 
 		FROM $this->strTableName s 
 		WHERE s.sublocality_id='$sublocality_id' 
-		AND s.blnActive = 1 AND sponsor_type = 1";
+		AND s.blnActive = 1 
+		AND sponsor_type = 1 ";
+
+
+		if($searchTerm != ''){
+
+			$this->strSubQuery .= " AND sponsor_name like '%$searchTerm%'";
+
+		}
+
+
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
