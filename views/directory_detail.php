@@ -60,16 +60,21 @@
 		        <div class="col-xs-12 address-container">
 		          <div class="address-inner">
 		            <div class="col-xs-12 text-center">
-		              <h6><?php echo $this->objSponsor['sponsor_address'];?>, 
-		              	<?php echo $this->objSponsor['sponsor_city'];?>, 
-		              	<?php echo $this->objSponsor['sponsor_province'];?> | <?php echo $this->objSponsor['sponsor_postal_code'];?></h6>
+		              <h6><?php 
+
+		              	  $address = ($this->objSponsor['sponsor_address']) ? $this->objSponsor['sponsor_address'] . '<br />' : "";
+		                  $city = ($this->objSponsor['sponsor_city']) ? $this->objSponsor['sponsor_city'] . ', ' : "";
+		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province']: "";
+		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '<br/>' . $this->objSponsor['sponsor_postal_code'] : "";
+		                  echo $address . $city . $prov . $postalCode;
+		                  ?></h6>
 		              <div class="map-container" style="width:100%;height:280px;">
 		                <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
 						<script>
 
 							function initialize_map() {
 								//49.8996081,-119.5947451
-								center = new google.maps.LatLng(49.8836184,-119.5013852);
+								center = new google.maps.LatLng(<?php echo $this->objSponsor['centerLat'];?>,<?php echo $this->objSponsor['centerLng'];?>);
 
 								var mapOptions = {
 						          center: center,
@@ -78,11 +83,37 @@
 						        };
 						      
 						        fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
+
+						        var title = '<?php echo $this->objSponsor["sponsor_name"];?>';
+		                        var address ='<?php echo $address . $city . $prov . $postalCode;?>';
+
+
+
+		                        var marker = new google.maps.Marker({
+		                          position: center,
+		                          map: fb_map,
+		                          title: title
+		                        });
+
+		                        var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
+
+		                        var infowindow = new google.maps.InfoWindow({
+		                          content: contentString
+		                        });
+
+		                        marker.addListener('click', function() {
+		                          infowindow.open(fb_map, marker);
+		                        });
+
+
+
 							}
 
 						</script>
 						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-EPcLFXAWERH5h1zqw4grjXCPWtD1-FM&callback=initialize_map" type="text/javascript"></script>
 		              </div>
+
+		              <?php //Util::dump($this->objSponsor); ?>
 		            </div>
 		          </div>
 		        </div>
@@ -112,10 +143,11 @@
 		        <div class="col-xs-12 contact-address-container">
 		          <div class="contact-address-inner">
 		            <div class="col-xs-12 text-center">
-		              <h4><?php echo $this->objSponsor['sponsor_address'];?>, 
-		              	<?php echo $this->objSponsor['sponsor_city'];?>, 
-		              	<?php echo $this->objSponsor['sponsor_province'];?> <br /> 
-		              	<?php echo $this->objSponsor['sponsor_postal_code'];?></h4>
+		              <h4><?php $address = ($this->objSponsor['sponsor_address']) ? $this->objSponsor['sponsor_address'] . '<br />' : "";
+		                  $city = ($this->objSponsor['sponsor_city']) ? $this->objSponsor['sponsor_city'] . ', ' : "";
+		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province']: "";
+		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '<br/>' . $this->objSponsor['sponsor_postal_code'] : "";
+		                  echo $address . $city . $prov . $postalCode; ?></h4>
 		            </div>
 		          </div>
 		        </div>
@@ -126,6 +158,7 @@
 		        </div>
 		      </div>
 		      <div class="contact-options-container">
+		      	<?php if($this->objContact['email'] != '') {?>
 		        <div class="row">
 		          <div class="col-xs-12 contact-option-container">
 		            <div class="col-xs-2 text-center">
@@ -136,6 +169,9 @@
 		            </div>
 		          </div>
 		        </div>
+		        <?php } 
+				if($this->objContact['tel'] != '') {
+		        ?>
 		        <div class="row">
 		          <div class="col-xs-12 contact-option-container">
 		            <div class="col-xs-2 text-center">
@@ -146,6 +182,9 @@
 		            </div>
 		          </div>
 		        </div>
+		        <?php } 
+				if($this->objSponsor['sponsor_url'] != '') {
+		        ?>
 		        <div class="row">
 		          <div class="col-xs-12 contact-option-container">
 		            <div class="col-xs-2 text-center">
@@ -156,6 +195,7 @@
 		            </div>
 		          </div>
 		        </div>
+		        <?php } ?>
 		      </div>
 		      <div class="row">
 		        <div class="col-xs-12 address-container">

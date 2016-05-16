@@ -49,8 +49,10 @@ class Sponsors extends Database  {
 
 		$this->strSubQuery = "SELECT s.*,  
 			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1) As sponsor_img,
-			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2) As sponsor_img2 
+			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2) As sponsor_img2,
+			l.lat As centerLat, l.lng As centerLng  
 		FROM $this->strTableName s 
+		LEFT JOIN sublocalities l on l.id=s.sublocality_id 
 		WHERE s.id='$id' 
 		AND s.blnActive = 1";
 
