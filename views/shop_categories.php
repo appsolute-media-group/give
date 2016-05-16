@@ -24,7 +24,7 @@
           <div class="col-xs-12 directory-button-container">
             <div class="directory-button-inner">
               <div class="col-xs-10 text-left">
-                <h4>Business Directory Categories</h4>
+                <h4>Business Directory</h4>
               </div>
               <div class="col-xs-2 text-right">
                 <i class="fa fa-arrow-right "></i>
