@@ -27,6 +27,24 @@ class SponsorDealCats extends Database  {
 	}
 
 
+
+	function getWebDealCats() {
+
+		$this->strSubQuery = "SELECT sdc.id, sdc.cat_title, sdc.search_data  
+		FROM $this->strTableName  sdc
+		WHERE sdc.blnActive = 1";
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details;
+    	}
+
+	}
+
+
+
+
+
     function getSponsorDealCats() {
 
 

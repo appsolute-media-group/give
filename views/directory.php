@@ -26,7 +26,10 @@
       <div class="directory-list">
 
 
-<?php   foreach($this->arrSponsors As $s) { ?>
+<?php   
+if(count($this->arrSponsors) > 0) {
+
+  foreach($this->arrSponsors As $s) { ?>
 
         <div class="row" onclick="window.location.href='/directory/details/<?php echo $s['id']; ?>/';">
           <div class="col-xs-12 directory-item-container">
@@ -46,9 +49,21 @@
           </div>
         </div>
 
-<?php } 
+<?php 
+  }
 
-Util::dump($this->arrSponsors);
+} else { ?>
+
+  <div class="row text-center">
+    <br clear="all" />
+    <div style="height:150px">
+        <p>Sorry, no sponsors to display.</p>
+    </div>
+  </div>
+
+<?php 
+
+}
 
 ?>
 

@@ -23,7 +23,11 @@
         </div>
       </div>
       <div class="message-list">
-<?php   foreach($this->arrMessages As $m) { ?>
+<?php   
+
+if(count($this->arrMessages) > 0) {
+  
+  foreach($this->arrMessages As $m) { ?>
         <div class="row" onclick="window.location.href='/messages/<?php echo $m['id']; ?>/';">
           <div class="col-xs-12 message-item-container">
             <div class="message-item-inner">
@@ -41,6 +45,19 @@
             </div>
           </div>
         </div>
+
+<?php 
+  } 
+
+
+} else { ?>
+
+  <div class="row text-center">
+    <br clear="all" />
+    <div style="height:150px">
+        <p>Sorry, no messages to display.</p>
+    </div>
+  </div>
 
 <?php 
 }

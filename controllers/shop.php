@@ -17,7 +17,17 @@ class shop_controller {
 
 		$this->objSponsorDeals = new SponsorDeals;
 
-		if($this->strMethod == '' || $this->strMethod == 'sponsors'){ //shop view
+		if($this->strMethod == '') {
+			$this->objCats = new SponsorDealCats;
+			$this->arrCats = $this->objCats->getWebDealCats();
+			include_once(ROOT_DIR.'/views/shop_categories.php'); 
+
+		} else if($this->strMethod == 'cat'){ //category view
+
+			$this->arrDeals = $this->objSponsorDeals->getSponsorWebDealsByCat($this->intId);
+			include_once(ROOT_DIR.'/views/shop.php'); 
+
+		} else if($this->strMethod == 'sponsors'){ //shop view
 
 			$this->arrDeals = $this->objSponsorDeals->getSponsorWebDeals('',$this->intId);
 			include_once(ROOT_DIR.'/views/shop.php'); 

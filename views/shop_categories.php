@@ -20,18 +20,11 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 input-container text-center">
-            <div class="input-inner">
-              <input type="text" name="shop_search" id="shop_search" value="<?php echo $this->strSearchTerm;?>" placeholder="Search">
-            </div>
-          </div>
-        </div>
         <div class="row" onclick="window.location.href='/directory';">
           <div class="col-xs-12 directory-button-container">
             <div class="directory-button-inner">
               <div class="col-xs-10 text-left">
-                <h4>Business Directory</h4>
+                <h4>Business Directory Categories</h4>
               </div>
               <div class="col-xs-2 text-right">
                 <i class="fa fa-arrow-right "></i>
@@ -43,20 +36,22 @@
 
 <?php   
 
-if(count($this->arrDeals) > 0) {?>
+if(count($this->arrCats) > 0) {?>
 
     <div class="row products-container">
 
-<?php foreach($this->arrDeals As $d) { ?>
+<?php foreach($this->arrCats As $c) { ?>
 
-          <div class="product-wrapper" onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
+          <div class="product-wrapper" onclick="window.location.href='/shop/cat/<?php echo $c['id']; ?>/';">
             <div class="background-wrapper">
-              <img src="<?php echo $d['deal_image']; ?>" alt="" />
+              <img src="" alt="" />
+
+
             </div>
             <div class="product-top">
               <div class="col-xs-12 points-hex-container">
                 <div class="points-hex text-center">
-                  <p><?php echo $d['deal_price']; ?></p>
+                  <p></p>
                 </div>
               </div>
             </div>
@@ -65,7 +60,7 @@ if(count($this->arrDeals) > 0) {?>
             <div class="product-bottom text-center">
               <div class="col-xs-12 points-hex-container">
                 <div class="text-center">
-                  <p><?php echo $d['deal_title']; ?></p>
+                  <p><?php echo $c['cat_title']; ?></p>
                 </div>
               </div>
             </div>
@@ -80,7 +75,7 @@ if(count($this->arrDeals) > 0) {?>
   <div class="row text-center">
     <br clear="all" />
     <div style="height:150px">
-        <p>Sorry, no deals to display.</p>
+        <p>Sorry, no categories for this sponsor.</p>
     </div>
   </div>
 
