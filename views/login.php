@@ -83,7 +83,12 @@
             <!-- Button trigger modal -->
 
             <a data-toggle="modal" style="font-weight:bold;" data-target="#referralCodeModal" id="code_action">
-              Referral Code?
+              <?php if($this->objUsers->referalCode != '') {
+                  $display_val = 'Referral Code Used: '. $this->objUsers->referalCode;
+                } else {
+                  $display_val = 'Referral Code?';
+                }
+                echo $display_val; ?>
             </a>
 
           </div>
@@ -192,7 +197,7 @@
         <div class="row">
           <div class="col-xs-12 input-container text-center">
             <div class="input-inner">
-                <input type="text" name="signup_code" id="signup_code" value="" placeholder="******">
+                <input type="text" name="signup_code" id="signup_code" value="<?php echo $this->objUsers->referalCode; ?>" placeholder="******">
             </div>
           </div>
         </div>

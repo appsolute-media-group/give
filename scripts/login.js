@@ -54,7 +54,7 @@ function validateRedeemCode(){
 
       if(objResult.result == 'success'){
         console.log( "success:", objResult.code );
-        $('#code_action').html("Refferal Code Used: "+code);
+        $('#code_action').html("Referral Code Used: "+code);
         hidden.val(code);
 
       } else {
