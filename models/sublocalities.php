@@ -36,7 +36,12 @@ class SubLocalities extends Database  {
 		if($this->query( $this->strQuery )) {
 
 			$res = $this->getMysqliResults( $this->strQuery, true );
-			return $res[0]['id'];
+			if(count($res)>0) {
+				return $res[0]['id'];
+			} else {
+				return false;
+			}
+			
 
 		} else {
 
