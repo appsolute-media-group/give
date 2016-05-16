@@ -1,7 +1,7 @@
 RewriteEngine On    # Turn on the rewriting engine
 
-RewriteRule    ^api/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    api.php?controller=api&method=$1&var1=$2    [NC,L]  
+RewriteRule    ^api/([A-Za-z0-9-]+)/([_a-z0-9-A-Z_]+)/?$    api.php?controller=api&method=$1&var1=$2    [NC,L]  
 
-RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    index.php?controller=$1&method=$2&var1=$3    [NC,L]  
+RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([_a-z0-9-A-Z_]+)/?$    index.php?controller=$1&method=$2&var1=$3    [NC,L]  
 RewriteRule    ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$    index.php?controller=$1&method=$2    [NC,L]  
 RewriteRule    ^([A-Za-z0-9-]+)/?$    index.php?controller=$1    [NC,L]   

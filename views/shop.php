@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-xs-12 input-container text-center">
             <div class="input-inner">
-              <input type="text" name="shop_search" value="" placeholder="Search">
+              <input type="text" name="shop_search" id="shop_search" value="<?php echo $this->strSearchTerm;?>" placeholder="Search">
             </div>
           </div>
         </div>
@@ -107,10 +107,8 @@ if(count($this->arrDeals) > 0) {?>
 
 
 <script src="/scripts/vendor.js"></script>
-
 <script src="/scripts/plugins.js"></script>
-
 <script src="/scripts/main.js"></script>
-
+<script src="/scripts/shop.js"></script>
 
 </body>
