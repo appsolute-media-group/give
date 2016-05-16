@@ -26,9 +26,18 @@
           <div class="row redeem-redemption-container">
             <div class="col-xs-12 text-left">
               <h6 class="product-value"><?php echo $this->objDeal['deal_price'];?> points</h6>
-              <?php if($this->objDeal['barcode_image'] != '') {?>
-                <img src="<?php echo $this->objDeal['barcode_image'];?>" alt="" />
-              <?php } ?>
+              <h6 class="product-value text-center" style="color:red;" id="error_message"></h6>
+              <div id="redeem_placeholder" class="text-center">
+                <?php if($this->objDeal['barcode_image'] != '') {?>
+                  <img src="<?php echo $this->objDeal['barcode_image'];?>" alt="" onclick="redeem(<?php echo $this->objDeal['id'];?>)" />
+                <?php } else {?>
+                  <div class="col-xs-12 button-container text-center">
+                    <div class="button-inner">
+                        <button type="button" name="cancel" class="btn btn-cancel" onclick="redeem(<?php echo $this->objDeal['id'];?>)">Redeem</button>
+                    </div>
+                  </div>
+                <?php } ?>
+              </div>
             </div>
           </div>
         </div>
@@ -61,10 +70,8 @@
 </div>
 
 <script src="/scripts/vendor.js"></script>
-
 <script src="/scripts/plugins.js"></script>
-
 <script src="/scripts/main.js"></script>
-
+<script src="/scripts/redeem.js"></script>
 
 </body>
