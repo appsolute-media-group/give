@@ -149,7 +149,7 @@ class donate_controller {
 				}else {
 
 					$today = date("Y-m-d H:i:s");
-					$date = "$this->strCCyear-01-$this->strCCmonth 00:00:00";
+					$date = "$this->strCCyear-$this->strCCmonth-01 00:00:00";
 
 					if ($date < $today) {
 						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
