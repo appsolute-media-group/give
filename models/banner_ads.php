@@ -15,6 +15,86 @@ class BannerAd extends Database  {
 	}
 
 
+	public function trackImpression() {
+
+		///api/trackimpression/1/
+		$data = json_decode(file_get_contents("php://input"));
+
+		if (!empty($data)) {
+			$ad_id = isset($data->var1) ? $data->var1 : '';
+		} else {
+			$ad_id = isset($_REQUEST['var1']) ? $_REQUEST['var1'] : '';
+		}
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+		$user_id = $_SESSION['userID'];
+
+
+		$this->strQuery = "UPDATE ads_impress set views=views+1 WHERE ad_id=$ad_id";
+		$error_message = $this->short_query($this->strQuery);
+
+
+		if(!$error_message) {
+			$arrResult = array('result' => "error",'code' => "update-fail","details" => $error_message);
+		} else {
+			$arrResult = array('result' => "success",'code' => "impression has been tracked", "details" => $error_message);
+		}
+
+		return json_encode($arrResult);
+
+	}
+
+
+
+
+
+
+	public function trackWebClick() {
+
+		///api/trackwebclick/1/
+		$data = json_decode(file_get_contents("php://input"));
+
+		if (!empty($data)) {
+			$ad_id = isset($data->var1) ? $data->var1 : '';
+		} else {
+			$ad_id = isset($_REQUEST['var1']) ? $_REQUEST['var1'] : '';
+		}
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+		$user_id = $_SESSION['userID'];
+
+
+		$this->strQuery = "UPDATE ads_impress set clicks=clicks+1 WHERE ad_id=$ad_id";
+		$error_message = $this->short_query($this->strQuery);
+
+		$this->strQuery = "INSERT INTO ads_clicks ( user_id, ad_id) VALUES ( $user_id, $ad_id )";
+		$error_message = $this->short_query($this->strQuery);
+
+
+		if(!$error_message) {
+			$arrResult = array('result' => "error",'code' => "update-fail","details" => $error_message);
+		} else {
+			$arrResult = array('result' => "success",'code' => "click has been tracked", "details" => $error_message);
+		}
+
+		return json_encode($arrResult);
+
+
+	}
+
+
+
+
+
+
+/*****************
+
+
+API methds
+
+
+*/
+
 
 	public function getAllBannerAds() {
 

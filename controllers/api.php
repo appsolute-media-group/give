@@ -129,6 +129,14 @@ class api_controller {
 			
 			echo $this->trackBannerClick();	
 
+	    } elseif($this->strAction == 'trackwebclick') {
+			
+			echo $this->trackWebBannerClick();	
+
+	    } elseif($this->strAction == 'trackimpression') {
+			
+			echo $this->trackImpression();	
+
 		} else {
 
 			echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found"));
@@ -170,6 +178,22 @@ class api_controller {
 
 		$this->BannerAd = new BannerAd;
 		$objCurrent = $this->BannerAd->trackClick();
+		return $objCurrent;
+
+	}
+
+	function trackWebBannerClick() {
+
+		$this->BannerAd = new BannerAd;
+		$objCurrent = $this->BannerAd->trackWebClick();
+		return $objCurrent;
+
+	}	
+
+	function trackImpression() {
+
+		$this->BannerAd = new BannerAd;
+		$objCurrent = $this->BannerAd->trackImpression();
 		return $objCurrent;
 
 	}

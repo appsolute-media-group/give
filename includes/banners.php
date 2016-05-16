@@ -9,7 +9,7 @@
 
 	foreach($arrBanners As $b){
 
-		echo '<img src="'.$b['media_file'].'" />';
+		echo '<img src="'.$b['media_file'].'" data-id="'.$b['ad_id'].'" onclick="clickaction('.$b['ad_id'].',\''.$b['url'].'\');" />';
 
 	}
 
