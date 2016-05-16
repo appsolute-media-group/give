@@ -81,7 +81,8 @@
             <input type="password" name="signup_password" id="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
 
             <!-- Button trigger modal -->
-            <a data-toggle="modal" style="font-weight:bold;" data-target="#referralCodeModal">
+
+            <a data-toggle="modal" style="font-weight:bold;" data-target="#referralCodeModal" id="code_action">
               Referral Code?
             </a>
 
@@ -104,7 +105,8 @@
       </div>
     </div>
       
-      <input type="hidden" name="doRegister" value="true" />
+    <input type="hidden" name="doRegister" value="true" />
+    <input type="hidden" name="referalCode" id="referalCode" value="">
     </form>
   </div>
 
@@ -190,14 +192,14 @@
         <div class="row">
           <div class="col-xs-12 input-container text-center">
             <div class="input-inner">
-                <input type="text" name="signup_code" value="" placeholder="******">
+                <input type="text" name="signup_code" id="signup_code" value="" placeholder="******">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">
-                <button type="button" name="sign_up" class="btn btn-redeem">Redeem</button>
+                <button type="button" name="sign_up" class="btn btn-redeem" onclick="validateRedeemCode();">Redeem</button>
             </div>
           </div>
         </div>

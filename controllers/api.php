@@ -137,6 +137,10 @@ class api_controller {
 			
 			echo $this->trackImpression();	
 
+	    } elseif($this->strAction == 'validatecode') {
+			
+			echo $this->objUsers->validateCode();
+
 		} else {
 
 			echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found"));

@@ -38,6 +38,43 @@ $(document).ready(function () {
 });
 
 
+function validateRedeemCode(){
+
+  var code = $('#signup_code').val();
+  var hidden = $('#referalCode');
+
+  var url = "/api/validatecode/"+code+"/";
+
+  $.ajax({
+    url: url,
+  })
+  .done(function( data ) {
+    if ( console && console.log ) {
+      var objResult = JSON.parse(data);
+
+      if(objResult.result == 'success'){
+        console.log( "success:", objResult.code );
+        $('#code_action').html("Refferal Code Used: "+code);
+        hidden.val(code);
+
+      } else {
+        console.log( "fail:", objResult.code );
+        console.log( "details:", objResult.details );
+        if(code != ''){
+           $('#code_action').html(objResult.details);
+        }
+       
+      }
+    }
+  });
+
+
+  $('#referralCodeModal').modal('toggle');
+ 
+
+}
+
+
 
 function validateLogin(){
 
@@ -97,7 +134,6 @@ function validateRegister(){
   }
   
 }
-
 
 function validateEmail(str) {
     var lastAtPos = str.lastIndexOf('@');

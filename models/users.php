@@ -35,6 +35,39 @@ class Users extends Database  {
 	}
 
 
+	function validateCode(){
+
+
+		//http://givedemo.clubappetite.com/api/validatecode/1/
+		$this->referalCode = isset($_GET['var1']) ? $_GET['var1'] : '';
+		$arrData = array('result' => "error" , "code"=>"Invalid", "details"=>"The code you have entered is not valid:".$this->referalCode);
+		
+		
+
+		if(!empty($this->referalCode) && $this->referalCode != ''){
+			
+			$res = $this->getUserByCode($this->referalCode);
+			if(!empty($res[0])){
+				//valid code
+				$arrData = array('result' => "success","code"=>"Valid", "details"=>"The code you have entered is valid");
+			}
+
+			$res2 = $this->getSponsorByCode($this->referalCode);
+			if(!empty($res2[0])){
+				//valid code
+				$arrData = array('result' => "success","code"=>"Valid", "details"=>"The code you have entered is valid");
+			}
+
+		}
+
+		return json_encode($arrData);
+
+
+	}
+
+
+
+
 	function updateProfile($vals){
 
 		//update the user profile with the new Profile ID from suthorize.net
