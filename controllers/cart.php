@@ -170,6 +170,13 @@ class cart_controller {
 					$this->strErrorMessage = "Please enter a cc expiry year<br />";
 					break;
 				}else {
+					$today = date("Y-m-d H:i:s");
+					$date = "$this->strCCyear-01-$this->strCCmonth 00:00:00";
+
+					if ($date < $today) {
+						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
+						break;
+					}
 					$this->strCCyear = substr($this->strCCyear,-2);
 				}
 				if($this->strCCcode == ''){

@@ -95,46 +95,39 @@
 	            <div class="col-xs-12 input-container text-center">
 	              <div class="input-inner">
 
-	              	<p><?php echo $this->strErrorMessage; ?></p>
+	              	<div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="cc_error" >
+      					<p><?php echo $this->strErrorMessage; ?></p>
+					</div>
 							
 
 					<p>You are making a purchase in the amount of $<?php echo number_format($total,2); ?></p>
 
 
 	              	<form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />
-		              	<!--
-		                <input type="text" name="card_name" value="" placeholder="Cardholder Name">
-		                <input type="text" name="card_number" value="" placeholder="Card Number">
-		                <input type="text" name="card_expirey" value="" placeholder="Expirey Date (mm/YY)">
-		                <input type="text" name="card_cvv" value="" placeholder="CVV">
-		                <input type="text" name="card_street" value="" placeholder="Street Address">
-		                <input type="text" name="card_city" value="" placeholder="City">
-		                <input type="text" name="card_province" value="" placeholder="Province">
-		                <input type="text" name="card_province" value="" placeholder="Postal Code">
-		                <input type="text" name="card_country" value="Canada" placeholder="Country" disabled>-->
+	
 		                	<input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
 							<input type="hidden" name="doPost" value="true" />
 		                <?php if($_SESSION['APIprofileID'] == '') {?>
 			                
-			                <input type="text" placeholder='First name' name="first_name" value="<?php echo $this->strFirstName;?>"></input>
-							<input type="text" placeholder='Last name' name="last_name" value="<?php echo $this->strLastName;?>"></input>
-							<input type="text" placeholder='Address' name="address" value="<?php echo $this->strAddress;?>"></input>
-							<input type="text" placeholder='City' name="city" value="<?php echo $this->strCity;?>"></input><br /><br />
+			                <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
+							<input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
+							<input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
+							<input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br /><br />
 							<text>Province</text>
-							<select name="province" >
+							<select name="province" id="province" >
 							<option>BC</option>
 							<option>ON</option>
 							</select><br /><br />
 							<text>Country</text>
-							<select name="country" >
+							<select name="country" id="country" >
 							<option value="CA">Canada</option>
 							<option value="US">United States</option>
 							</select><br /><br />
 							<input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
-							<input type="text" placeholder='Credit Card Number' name="cc_num" value="<?php echo $this->strCCnum;?>"></input>
-							<input type="text" placeholder='CCV' name="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
+							<input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo $this->strCCnum;?>"></input>
+							<input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
 							<text>Exp. Month</text>
-							<select name="expMonth">
+							<select name="expMonth" id="expMonth">
 							<?php 
 							for($mo=1; $mo<=12; $mo++) {
 							  echo '<option value="' .$mo. '"';
@@ -143,7 +136,7 @@
 							?>
 							</select>
 							<text>Exp. Year</text>
-							<select name="expYear">
+							<select name="expYear" id="expYear">
 							<?php 
 							for($year=2016; $year<=2025; $year++) {
 							  echo '<option value="' .$year. '"';
@@ -167,7 +160,7 @@
 	          <div class="row">
 	            <div class="col-xs-12 button-container text-center">
 	              <div class="button-inner">
-	                  <button type="button" name="card_add" class="btn btn-checkout" onclick="$('#cc_form').submit();">Process Transaction</button>
+	                  <button type="button" name="card_add" class="btn btn-checkout" onclick="validateForm();">Process Transaction</button>
 	              </div>
 	            </div>
 	          </div>
@@ -209,5 +202,5 @@
 	<script src="/scripts/vendor.js"></script>
 	<script src="/scripts/plugins.js"></script>
 	<script src="/scripts/checkout.js"></script>
-
+<script src="/scripts/ccform.js"></script>
 </body>
