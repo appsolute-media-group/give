@@ -28,7 +28,7 @@
 		      <div class="thank-you-points-container">
 		        <div class="row text-center">
 		          <h4>you've earned</h4>
-		          <h2>1,000</h2>
+		          <h2><?php echo $this->intAwardAmount;?></h2>
 		          <h4>points</h4>
 		        </div>
 		      </div>
@@ -59,6 +59,6 @@
 	</div>
 	<script src="/scripts/vendor.js"></script>
 	<script src="/scripts/plugins.js"></script>
-
+	<script src="/scripts/main.js"></script>
 
 </body>
