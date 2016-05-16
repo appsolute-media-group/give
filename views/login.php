@@ -61,7 +61,7 @@
       <div class="row">
         <div class="col-xs-12 input-container text-center">
 
-          <div style="color:red;font-weight:bold;font-family:'Gill-Sans'">
+          <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="reg_error">
             <?php 
               echo $this->objUsers->strErrorMessage;
             ?>
@@ -76,9 +76,9 @@
               });
             </script>
 
-            <input type="text" name="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
-            <input type="text" name="signup_email" value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
-            <input type="password" name="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
+            <input type="text" name="signup_username" id="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
+            <input type="text" name="signup_email" id="signup_email" value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
+            <input type="password" name="signup_password" id="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
 
             <!-- Button trigger modal -->
             <a data-toggle="modal" style="font-weight:bold;" data-target="#referralCodeModal">
@@ -91,7 +91,7 @@
       <div class="row">
         <div class="col-xs-12 button-container text-center">
           <div class="button-inner">
-              <button type="button" name="sign_up" class="btn btn-signup" onclick="document.getElementById('regForm').submit();">Sign-Up</button>
+              <button type="button" name="sign_up" class="btn btn-signup" onclick="validateRegister();">Sign-Up</button>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
     <div class="row">
       <div class="col-xs-12 welcome-container text-center">
 
-      <div style="color:red;font-weight:bold;font-family:'Gill-Sans'">
+      <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="login_error">
         <?php 
           echo $this->objUsers->strLoginErrorMessage;
         ?>
@@ -135,15 +135,15 @@
       <form method="post" action="?doLogin=true" id="loginForm">
         <div class="col-xs-12 input-container text-center">
           <div class="input-inner">
-            <input type="text" name="signin_email" value="" placeholder="Email">
-            <input type="password" name="signin_password" value="" placeholder="Password">
+            <input type="text" name="signin_email" id="signin_email" value="" placeholder="Email">
+            <input type="password" name="signin_password" id="signin_password" value="" placeholder="Password">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 button-container text-center">
           <div class="button-inner">
-              <button type="button" name="sign_up" class="btn btn-signup" onclick="document.getElementById('loginForm').submit();">Sign-In</button>
+              <button type="button" name="sign_up" class="btn btn-signup" onclick="validateLogin();">Sign-In</button>
           </div>
         </div>
       </div>

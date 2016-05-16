@@ -36,7 +36,74 @@ $(document).ready(function () {
   }
 
 });
-//# sourceMappingURL=main.js.map
+
+
+
+function validateLogin(){
+
+  var user = $('#signin_email').val();
+  var password = $('#signin_password').val();
+  var error = false;
+
+  if(user == '') {
+    $('#login_error').html('Please enter an email');
+    error = true;
+  }
+
+  if(password == '') {
+    $('#login_error').html('Please enter a password');
+    error = true;
+  }
+
+  if(!error){
+    document.getElementById('loginForm').submit();
+  }
+  
+}
+
+
+
+function validateRegister(){
+
+  var sublocality = $('#sublocality').val();
+  var user = $('#signup_username').val();
+  var email = $('#signup_email').val();
+  var password = $('#signup_password').val();
+  var error = false;
+
+  if(user == '') {
+    $('#reg_error').html('Please enter an username');
+    error = true;
+  }
+
+  if(password == '') {
+    $('#reg_error').html('Please enter a password');
+    error = true;
+  }
+
+  if(!validateEmail(email)) {
+    $('#reg_error').html('Please enter a valid email');
+    error = true;
+  }
+
+
+  if(sublocality == '') {
+    $('#reg_error').html('Please enter a location');
+    error = true;
+  }
+
+  if(!error){
+    document.getElementById('regForm').submit();
+  }
+  
+}
+
+
+function validateEmail(str) {
+    var lastAtPos = str.lastIndexOf('@');
+    var lastDotPos = str.lastIndexOf('.');
+    return (lastAtPos < lastDotPos && lastAtPos > 0 && str.indexOf('@@') == -1 && lastDotPos > 2 && (str.length - lastDotPos) > 2);
+}
 
 function getQueryVariable(variable)
 {
