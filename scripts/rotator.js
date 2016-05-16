@@ -6,8 +6,10 @@ function rotateBanners(elem) {
   } 
 
   var ad = next.attr('data-id');
-  //console.log('next:',ad);
-  trackImpression(ad);
+
+  if(ad != ''){
+    trackImpression(ad);
+  }
 
   active.removeClass("active").fadeOut(200);
   next.addClass("active").fadeIn(200);
@@ -23,7 +25,7 @@ function trackImpression(id){
         var objResult = JSON.parse(data);
 
         if(objResult.result == 'success'){
-         // console.log( "success:", objResult.code );
+          //console.log( "success:", objResult.code );
         } else {
           console.log( "fail:", objResult.code );
           console.log( "details:", objResult.details );
@@ -35,7 +37,6 @@ function trackImpression(id){
 
 function clickaction(id,url){
 
-  //var ad = $(this).attr('data-id');
   $.ajax({
       url: "/api/trackwebclick/"+id+"/",
     })
@@ -62,11 +63,18 @@ function prepareRotator(elem) {
   $(elem+" img:first").fadeIn(0).addClass("active");
 
   var ad = $(elem+" img:first").attr('data-id');
- // console.log('start:',ad);
-  trackImpression(ad);
+
+  if(ad != ''){
+    trackImpression(ad);
+  }
+  
 }
 
 function startRotator(elem) {
-  prepareRotator(elem);
-  setInterval("rotateBanners('"+elem+"')", 5000);
+  
+  if($(elem).length > 0){
+    prepareRotator(elem);
+    setInterval("rotateBanners('"+elem+"')", 5000);
+  }
+  
 }
