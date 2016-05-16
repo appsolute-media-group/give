@@ -10,6 +10,7 @@ class api_controller {
 	public $strSuccessMessage = "";
 	public $strAction = "";
 	public $strExtra = "";
+	public $strVar1 = "";
 	public $strPassword = "";
 	public $intId = "";
 	public $objUsers = "";
@@ -18,8 +19,12 @@ class api_controller {
 	public function __construct() {
 
 		$this->strAction = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+		if($this->strAction == '' && isset($_REQUEST['method'])){
+			$this->strAction = $_REQUEST['method'];
+		}
 		$this->intId = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 		$this->strExtra = isset($_REQUEST['extra']) ? str_replace("/","",$_REQUEST['extra']) : '';
+		$this->strVar1 = isset($_REQUEST['var1']) ? str_replace("/","",$_REQUEST['var1']) : '';
 		$this->objUsers = new Users;
 		$this->blnDebug = true;
 
@@ -65,6 +70,10 @@ class api_controller {
 		} elseif($this->strAction == 'confirmdeal') {	
 			//http://restapi.clubappetite.com/api.php?controller=api&action=confirmdeal&token=1mLguaCQ04s3Jhf4WfVZBgvcvq7OuPk4OEp&amount=5000
 			echo $this->confirmDeal();	
+
+		} elseif($this->strAction == 'confirmwebdeal') {	
+			//http://givedemo.clubappetite.com/api.php?controller=api&action=confirmdeal&amount=5000&deal_id=1
+			echo $this->confirmWebDeal();
 
 		} elseif($this->strAction == 'sponsors') {
 			//http://restapi.clubappetite.com/api.php?controller=api&action=sponsors
@@ -132,6 +141,14 @@ class api_controller {
 	}
 
 
+
+	function confirmWebDeal() {
+
+		$this->sponsorDeal = new SponsorDeals;
+		$objCurrent = $this->sponsorDeal->confirmWebDeal();
+		return $objCurrent;
+
+	}
 
 	function confirmDeal() {
 

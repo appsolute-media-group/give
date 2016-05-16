@@ -27,6 +27,147 @@ class SponsorDeals extends Database  {
 	}
 
 
+	function confirmWebDeal() {
+	
+		//http://givedemo.clubappetite.com/api/confirmwebdeal/1/
+
+		$data = json_decode(file_get_contents("php://input"));
+
+		if (!empty($data)) {
+			$deal_id = isset($data->var1) ? $data->var1 : '';
+		} else {
+			$deal_id = isset($_REQUEST['var1']) ? $_REQUEST['var1'] : '';
+		}
+
+		$amount = 0;
+		$details = $this->getMysqliResults( "SELECT deal_price from sponsor_deals WHERE id=$deal_id", true );
+		if(count($details) >0) {
+       	 	$amount = $details[0]['deal_price'];
+    	}
+
+    	
+
+//Util::dump($amount);
+
+		$arrResult = array('result' => "error");
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+		$user_id = $_SESSION['userID'];
+		$user_points = ($_SESSION['user_points']-$amount);
+
+
+		if($user_points < 0){
+
+			$arrResult += array('code' => "insufficient-points","details" => "You only have " . $_SESSION['user_points'] . " points. Required: ".$amount);
+
+		} else {
+
+			$_SESSION['user_points'] = $user_points;
+
+			$keys = array('user_points');
+			$vals = array($user_points);
+
+			$error_message = $this->mysqliupdate('user_profiles',$keys,$vals,$user_id,'id');
+			if($error_message != '') {
+				$arrResult += array('code' => "update-fail","details" => $error_message);
+			//} else {
+				//$arrResult = array('result' => "success",'code' => "points record updated", "details" => array("vals" => $vals));
+			}
+
+		
+			$keys = array('amount','deal_id','user_id','sublocality_id');
+			$vals = array($amount,$deal_id,$user_id,$sublocality_id);
+			$error_message = $this->mysqliinsert($keys,$vals,'sponsor_deal_trans');
+
+			if($error_message != '') {
+				$arrResult += array('code2' => "update-fail","details" => $error_message);
+			} else {
+				$arrResult = array('result' => "success",'code' => "record updated", "details" => "<h2>Thank you!</h2><p>You have successfully redeemed this deal.</p>" );
+			}
+		}
+
+		return json_encode($arrResult);
+
+	}
+
+
+
+	function getSponsorWebDeals($searchTerm = "", $intId = "") {
+
+		$sublocality_id = $_SESSION['sublocality_id'];
+
+
+		//this returns the full list of active sponsors
+		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
+			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+		FROM $this->strTableName  sd
+		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
+		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
+		WHERE s.sublocality_id='$sublocality_id' 
+		AND sd.blnActive = 1";
+
+
+		if($searchTerm != '') {
+
+			$this->strSubQuery .= " AND (deal_title like '%$searchTerm%' OR deal_desc like '%$searchTerm%' OR cat_title like '%$searchTerm%')";
+
+		}
+
+		if($intId != '') {
+
+			$this->strSubQuery .= " AND s.id='$intId'";
+
+		}
+//echo ($this->strSubQuery);
+
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details;
+    	}
+
+
+	}
+
+
+
+
+
+	function getSponsorWebDealById($id) {
+
+
+
+		//this returns the full list of active sponsors
+		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, s.sponsor_name, 
+			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+		FROM $this->strTableName  sd
+		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
+		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
+		WHERE sd.id='$id' 
+		AND sd.blnActive = 1";
+
+
+//echo ($this->strSubQuery);
+
+
+		$details = $this->getMysqliResults( $this->strSubQuery, true );
+		if(count($details) >0) {
+       	 	return $details[0];
+    	}
+
+
+	}
+
+
+/****************
+
+API functions only below this line 
+
+
+
+*/
     function getSponsorDeals() {
 
 

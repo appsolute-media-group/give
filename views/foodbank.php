@@ -26,7 +26,7 @@
             <h6 class="food-bank-category"><?php echo $objCurrent['address'] ?></h6>
           </div>
         </div>
-        <div class="row" onclick="nextView()">
+        <div class="row" onclick="nextView();initialize_map();">
           <div class="col-xs-12 contact-button-container">
             <div class="contact-button-inner">
               <div class="col-xs-10 text-left">
@@ -74,7 +74,7 @@
               <div class="col-xs-12 text-center">
                 <h4><?php
                   // In case some or all fields are blank, we won't have random commas
-                  $address = ($objCurrent['address']) ? $objCurrent['address'] . ', ' : "";
+                  $address = ($objCurrent['address']) ? $objCurrent['address'] . '<br />' : "";
                   $city = ($objCurrent['city']) ? $objCurrent['city'] . ', ' : "";
                   $prov = ($objCurrent['prov']) ? $objCurrent['prov']: "";
                   $postalCode = ($objCurrent['pc']) ? '<br/>' . $objCurrent['pc'] : "";
@@ -110,6 +110,7 @@
               </div>
             </div>
           </div>
+<!--
           <div class="row">
             <div class="col-xs-12 contact-option-container">
               <div class="col-xs-2 text-center">
@@ -120,14 +121,62 @@
               </div>
             </div>
           </div>
+-->
         </div>
         <div class="row">
           <div class="col-xs-12 address-container">
             <div class="address-inner">
               <div class="col-xs-12 text-center">
-                <div class="map-container">
-                  <img src="../images/map.jpg" alt="" />
-                </div>
+                <div class="map-container" style="width:100%;height:280px;">
+
+
+                    <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
+                    <script>
+
+                      function initialize_map() {
+                        //49.8996081,-119.5947451
+
+                        <?php if($objCurrent['lat'] != '' && $objCurrent['lng'] != '') { ?>
+                        center = new google.maps.LatLng(<?php echo $objCurrent['lat'];?>,<?php echo $objCurrent['lng'];?>);
+
+                        var mapOptions = {
+                              center: center,
+                              zoom: 12,
+                              mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+                          
+                        fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
+
+                        var title = '<?php echo $objCurrent["page_title"];?>';
+                        var address ='<?php echo $address . $city . $prov . $postalCode;?>';
+
+
+
+                        var marker = new google.maps.Marker({
+                          position: center,
+                          map: fb_map,
+                          title: title
+                        });
+
+                        var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
+
+                        var infowindow = new google.maps.InfoWindow({
+                          content: contentString
+                        });
+
+                        marker.addListener('click', function() {
+                          infowindow.open(fb_map, marker);
+                        });
+
+                        <?php } ?>
+
+                      }
+
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-EPcLFXAWERH5h1zqw4grjXCPWtD1-FM&callback=initialize_map" type="text/javascript"></script>
+                  
+
+                  </div>
               </div>
             </div>
           </div>

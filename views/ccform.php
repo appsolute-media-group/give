@@ -1,5 +1,5 @@
 
-<body class="page my-account">
+<body class="page needed-now">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -16,22 +16,23 @@
 
 	    <div class="view-container">
 	      <div class="row">
-	      	<div class="col-md-6 item">
+	      	<div class="item">
 	          <div class="item-inner">
 	            <div class="item-header">
 	              <div class="text-center">
 	                <h1>Your Payment Information</h1>
 	              </div>
 	            </div>
-	            <div class="item-detail text-center">
+	            <div class="text-center" style="min-height:500px;padding-top:50px;">
               		<div class="item-detail-contents">
 
-              			<form action="/donate/form/" method="post" id="cc_form" />
+              			<form action="/donate/form/?doPost=true" method="post" id="cc_form" />
 
-              				<br /><?php echo $this->strErrorMessage; ?><br />
+              				<p><?php echo $this->strErrorMessage; ?></p>
 							
 
-							<br />You are donating $<?php echo $this->decAmount; ?><br />
+							<p>You are making a <?php echo $this->getFequencyString($this->intFreq); ?> 
+								contribution of $<?php echo $this->decAmount; ?></p>
 
 
 							
@@ -79,22 +80,31 @@
 							      <br /><br />
 
 							    <?php } else { ?>
-							    	Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)
+							    	<p>Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)</p>
 							    	<input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 							    	<input type="hidden" name="amount" value="<?php echo $this->decAmount; ?>" />
 							    <?php } ?>
 
+			
+
 							      <div class="row">
-							        <div class="col-xs-12 button-container text-center">
-							          <div class="button-inner">
-							              <input type="submit" name="submit" class="btn" value="Continue" />
-							          </div>
-							        </div>
-							      </div><br /><br />
+						            <div class="col-xs-12 button-container text-center">
+						              <div class="button-inner">
+						                  <button type="button" name="card_add" class="btn btn-checkout" onclick="$('#cc_form').submit();">Process Transaction</button>
+						              </div>
+						            </div>
+						          </div>
+						          <div class="row">
+						            <div class="col-xs-12 button-container text-center">
+						              <div class="button-inner">
+						                  <button type="button" name="cancel" class="btn btn-cancel" onclick="window.location.href='/donate/';">Cancel</button>
+						              </div>
+						            </div>
+						          </div>
 							      
 							    </div>
 							  
-
+							<input type="hidden" name="doPost" value="true" />
               			</form>
 
               		</div>

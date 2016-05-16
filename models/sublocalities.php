@@ -36,7 +36,12 @@ class SubLocalities extends Database  {
 		if($this->query( $this->strQuery )) {
 
 			$res = $this->getMysqliResults( $this->strQuery, true );
-			return $res[0]['id'];
+			if(count($res)>0) {
+				return $res[0]['id'];
+			} else {
+				return false;
+			}
+			
 
 		} else {
 
@@ -98,7 +103,7 @@ class SubLocalities extends Database  {
 		$r = array('result' => "error");
 
 		if($ID !='') {
-	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod, address, city, prov, pc, tel, email   From $this->strTableName WHERE id=$ID";
+	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod, address, city, prov, pc, tel, email, lat, lng   From $this->strTableName WHERE id=$ID";
 		    //echo $this->strQuery;
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
