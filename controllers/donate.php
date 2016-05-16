@@ -66,7 +66,7 @@ class donate_controller {
 
 			echo 'Processing paymentprofileid:'.$this->intPayProfileId;
 
-			$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " website donation", 
+			$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " Club Appetite donation", 
 					"Amount" => $this->decAmount,
 					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
 

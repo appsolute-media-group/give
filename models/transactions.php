@@ -273,8 +273,8 @@ class Transactions extends Database  {
 
 		    if (($tresponse != null) && ($tresponse->getResponseCode()== 1) ) {
 		      
-		      echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
-		      echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
+		      //echo "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "<br />";
+		      //echo "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "<br />";
 
 
 		      $this->arrResult = array(
@@ -291,7 +291,7 @@ class Transactions extends Database  {
 
 
 				$customerProfile = new AnetAPI\CustomerProfileBaseType();
-				$customerProfile->setDescription("Web Portal Customer");
+				$customerProfile->setDescription("Club Appetite Benefactor");
 				$customerProfile->setMerchantCustomerId("X_".$_SESSION['userID']);
 				$customerProfile->setEmail($_SESSION['email']);
 	

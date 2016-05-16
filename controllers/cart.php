@@ -57,7 +57,7 @@ class cart_controller {
 			$this->intAwardAmount = $this->decAmount*100;
 			//echo 'Processing paymentprofileid:'.$this->intPayProfileId."<br />";
 
-			$transactionDetails = array("Description" => "Web Portal Needed Now Purchase", 
+			$transactionDetails = array("Description" => "Club Appetite Needed Now Purchase", 
 					"Amount" => $this->decAmount,
 					'Type' => 2);//to seperate donation page(1) from product page(2) transactions
 
