@@ -1,5 +1,5 @@
 <?php include_once('system/config.php'); ?>
-
+<?php include_once('system/security.php'); ?>
 <!doctype html>
 <html class="no-js" lang="">
 <head>
