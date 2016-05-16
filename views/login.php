@@ -40,6 +40,9 @@
         </div>
       </div>
     </div>
+
+
+
     <div class="view" data-view="2">
       <div class="view-container">
       <div class="row">
@@ -54,20 +57,17 @@
         </div>
       </div>
       
-
-
-
-
-<form method="post" action="?doRegister=true" id="regForm">
+    <form method="post" action="?doRegister=true" id="regForm">
       <div class="row">
         <div class="col-xs-12 input-container text-center">
 
-          <div style="color:red;font-weight:bold;"><?php echo $this->objUsers->strErrorMessage; ?></div>
-
+          <div style="color:red;font-weight:bold;font-family:'Gill-Sans'">
+            <?php 
+              echo $this->objUsers->strErrorMessage;
+            ?>
+          </div>
 
           <div class="input-inner">
-            
-
 
             <input type="text" name="sublocality" value="<?php echo $this->objUsers->strSublocality; ?>" placeholder="Select a Food Bank" id="sublocality">
             <script>
@@ -76,11 +76,15 @@
               });
             </script>
 
-
             <input type="text" name="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
             <input type="text" name="signup_email" value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
             <input type="password" name="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
-            <input type="text" name="referalCode" value="<?php echo $this->objUsers->referalCode; ?>" placeholder="Referral Code" />
+
+            <!-- Button trigger modal -->
+            <a data-toggle="modal" style="font-weight:bold;" data-target="#referralCodeModal">
+              Referral Code?
+            </a>
+
           </div>
         </div>
       </div>
@@ -102,58 +106,63 @@
       
       <input type="hidden" name="doRegister" value="true" />
     </form>
-
-
-
-
-
-
   </div>
-    <div class="view" data-view="3">
-      <div class="view-container">
-      <div class="row">
-        <div class="col-xs-12 logo-container text-center">
-          <div class="logo-inner">
-              <img src="/images/Club-Appetite-Logo-white.png" alt="" class="logo-white"/>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 redeem-container text-center">
-          <div class="redeem-inner">
-              <p>
-                Do you have a points code to redeem?
-              </p>
-              <p>
-                Enter below to receive your Club Appetite points.
-              </p>
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-xs-12 input-container text-center">
-          <div class="input-inner">
-              <input type="password" name="signup_code" value="" placeholder="****">
+
+
+  <!-- Redeem Code Modal -->
+  <div class="modal fade" id="referralCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content ">
+              
+
+        <div class="row" data-view="3">
+          <div class="col-xs-12 logo-container text-center">
+            <div class="logo-inner">
+                <img src="/images/Club-Appetite-Logo-white.png" alt="" class="logo-white"/>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 button-container text-center">
-          <div class="button-inner">
-              <button type="button" name="sign_up" class="btn btn-redeem">Redeem</button>
+        <div class="row">
+          <div class="col-xs-12 redeem-container text-center">
+            <div class="redeem-inner">
+                <p>
+                  Do you have a points code to redeem?
+                </p>
+                <p>
+                  Enter below to receive your Club Appetite points.
+                </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 button-container text-center">
-          <div class="button-inner">
-              <button type="button" name="sign_up" class="btn btn-skip">Skip</button>
+        <div class="row">
+          <div class="col-xs-12 input-container text-center">
+            <div class="input-inner">
+                <input type="text" name="signup_code" value="" placeholder="******">
+            </div>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="sign_up" class="btn btn-redeem">Redeem</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="sign_up" class="btn btn-skip" data-dismiss="modal">Skip</button>
+            </div>
+          </div>
+        </div>
+      </di v>
+
     </div>
   </div>
+
+
+
   <div class="view" data-view="4">
     <div class="view-container">
     <div class="row">
@@ -165,6 +174,13 @@
     </div>
     <div class="row">
       <div class="col-xs-12 welcome-container text-center">
+
+      <div style="color:red;font-weight:bold;font-family:'Gill-Sans'">
+        <?php 
+          echo $this->objUsers->strLoginErrorMessage;
+        ?>
+      </div>
+
       </div>
     </div>
     <div class="row">

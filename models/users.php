@@ -10,6 +10,7 @@ class Users extends Database  {
 	public $intAffectedRows;
 	public $intColumns;
 	public $strErrorMessage;
+	public $strLoginErrorMessage;
 	public $strSuccessMessage;
 	public $strPassword;
 	public $strUsername;
@@ -25,6 +26,7 @@ class Users extends Database  {
 
 		parent::__construct();
 		$this->strErrorMessage = "";
+		$this->strLoginErrorMessage = "";
 		$this->strTableName = "user_profiles";
 		$this->strTimeout = "-90 minutes"; //the timeout length for tokens
 		$this->intTokenLength = "35"; //the string length for tokens
@@ -84,17 +86,16 @@ class Users extends Database  {
 			}
 
 			if($this->strSublocality == ''){
-				$this->strErrorMessage = "Please enter a sublocality";
+				$this->strErrorMessage = "Please enter a food bank";
 				break;
 			} else {
 
 				$objSub = new SubLocalities;
 				$sublocality = $objSub->getSubLocalityIdByName($this->strSublocality);
 				if($sublocality === false){
-					$this->strErrorMessage = "Please enter a valid sublocality";
+					$this->strErrorMessage = "Please enter a valid food bank";
 					break;
 				}
-
 			}
 
 			break;
@@ -165,12 +166,6 @@ class Users extends Database  {
 			echo "<script>window.location.href='/main/'</script>";
 
 		}
-
-
-
-
-
-
 	}
 
 	function loginFromWebpage() {
@@ -203,6 +198,7 @@ class Users extends Database  {
 			
 				if($this->intColumns == false) {
 
+					$this->strLoginErrorMessage = "Invalid Login";
 					return ('invalid login');
 
 				} else {
@@ -228,7 +224,7 @@ class Users extends Database  {
 
 		} else {
 
-			
+			$this->strLoginErrorMessage = "No e-mail or password";
 			return "no email or password";
 
 
