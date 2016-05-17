@@ -35,16 +35,16 @@
         </div>
         <div class="row amounts-container">
           <div class="col-xs-3 text-center">
-            <button type="button" id="amount_1" class="btn btn-amount"  value="10" onclick="setAmount(1, 10);">$10</button>
+            <button type="button" id="amount_1" class="btn btn-amount top_button"  value="10" onclick="setAmount(1, 10);">$10</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" id="amount_2" class="btn btn-amount"  value="25" onclick="setAmount(2, 25);">$25</button>
+            <button type="button" id="amount_2" class="btn btn-amount top_button"  value="25" onclick="setAmount(2, 25);">$25</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" id="amount_3" class="btn btn-amount"  value="50" onclick="setAmount(3, 50);">$50</button>
+            <button type="button" id="amount_3" class="btn btn-amount top_button"  value="50" onclick="setAmount(3, 50);">$50</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" id="amount_4" class="btn btn-amount"  value="100" onclick="setAmount(4, 100);">$100</button>
+            <button type="button" id="amount_4" class="btn btn-amount top_button"  value="100" onclick="setAmount(4, 100);">$100</button>
           </div>         
         </div>
       </div>
@@ -57,18 +57,18 @@
         <div class="row schedules-container">
             <div class="row">
               <div class="col-xs-6 text-center">
-                <button type="button" id="freq_1" class="btn btn-amount"  value="one-time" onclick="setFreq(1);">One-Time</button>
+                <button type="button" id="freq_1" class="btn btn-amount bottom_button"  value="one-time" onclick="setFreq(1);">One-Time</button>
               </div>
               <div class="col-xs-6 text-center">
-                <button type="button" id="freq_2" class="btn btn-amount"  value="bi-weekly" onclick="setFreq(2);">Bi-Weekly</button>
+                <button type="button" id="freq_2" class="btn btn-amount bottom_button"  value="bi-weekly" onclick="setFreq(2);">Bi-Weekly</button>
               </div>
             </div>
             <div class="row">
               <div class="col-xs-6 text-center">
-                <button type="button" id="freq_3" class="btn btn-amount"  value="monthly" onclick="setFreq(3);">Monthly</button>
+                <button type="button" id="freq_3" class="btn btn-amount bottom_button"  value="monthly" onclick="setFreq(3);">Monthly</button>
               </div>
               <div class="col-xs-6 text-center">
-                <button type="button" id="freq_4" class="btn btn-amount"  value="annual" onclick="setFreq(4);">Annual</button>
+                <button type="button" id="freq_4" class="btn btn-amount bottom_button"  value="annual" onclick="setFreq(4);">Annual</button>
               </div>
             </div>
         </div>

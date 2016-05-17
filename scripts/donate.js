@@ -4,10 +4,8 @@
 function setAmount(op, amount) {
   var i;
 	$('#amount').val(amount);
-  
-  for (i = 1; i < 5; i++) { 
-    $('#amount_'+i).removeClass('active');  
-  }
+
+  $('.top_button').removeClass('active');  
 
   // add the data-toggle
   $('#amount_'+op).addClass('active');
@@ -19,11 +17,7 @@ function setAmount(op, amount) {
 function setFreq(freq){
   var i;
 	$('#freq').val(freq);
-
-  for (i = 1; i < 5; i++) { 
-    $('#freq_'+i).removeClass('active');  
-  }
-
+  $('.bottom_button').removeClass('active');  
   // add the data-toggle
   $('#freq_'+freq).addClass('active');
 
