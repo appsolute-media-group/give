@@ -12,7 +12,7 @@ function setAmount(op, amount) {
   // add the data-toggle
   $('#amount_'+op).addClass('active');
 
-	console.log('setting amount:',amount);
+	//console.log('setting amount:',amount);
 
 }
 
@@ -27,7 +27,7 @@ function setFreq(freq){
   // add the data-toggle
   $('#freq_'+freq).addClass('active');
 
-  console.log('setting freq:',freq);
+  //console.log('setting freq:',freq);
 }
 
 function submitform(){
@@ -38,7 +38,7 @@ function submitform(){
 
 $(document).ready(function () {
 
-  var freq = $('#freq').val(0);
+  var freq = $('#freq').val(1);
   var amount = $('#amount').val();
 
 

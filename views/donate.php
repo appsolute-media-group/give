@@ -17,9 +17,6 @@
 
 
 
-        
-
-
 	      <div class="row">
         <div class="col-xs-12 give-header-container text-center">
           <i class="fa fa-group fa-3x"></i>
@@ -88,7 +85,7 @@
 
         <input type="hidden" value="" name="amount" id="amount" />
         <input type="hidden" value="1" name="freq" id="freq" />
-        <input type="hidden" value="true" name="doPost" id="doPost" />
+        <!--<input type="hidden" value="true" name="doPost" id="doPost" />-->
         
       </form>
 

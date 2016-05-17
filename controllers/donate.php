@@ -246,7 +246,7 @@ class donate_controller {
 			} else {
 
 				if($this->decAmount == ''){
-	
+					$this->strErrorMessage = "Please choose an amount<br />";
 					include_once(ROOT_DIR.'/views/donate.php');
 
 				} else {
@@ -257,7 +257,14 @@ class donate_controller {
 
 		} else {
 
-			include_once(ROOT_DIR.'/views/ccform.php');
+			if($this->decAmount == ''){
+				$this->strErrorMessage = "Please choose an amount<br />";
+				include_once(ROOT_DIR.'/views/donate.php');
+
+			} else {
+				include_once(ROOT_DIR.'/views/ccform.php');
+
+			}
 		}
 
 		
