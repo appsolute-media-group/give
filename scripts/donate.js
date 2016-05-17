@@ -25,8 +25,12 @@ function setFreq(freq){
 }
 
 function submitform(){
-
-	$('#donate_form').submit();
+  if($('#amount').val() == '') {
+    $('#cc_error').html('Please choose an amount');
+  } else{
+    $('#donate_form').submit();
+  }
+	
 
 }
 
