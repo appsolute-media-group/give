@@ -39,7 +39,7 @@ function submitform(){
 $(document).ready(function () {
 
   var freq = $('#freq').val(0);
-  var amount = $('#amount').val(0);
+  var amount = $('#amount').val();
 
 
 });

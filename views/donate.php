@@ -16,12 +16,19 @@
 	    <div class="view-container">
 
 
+
+        
+
+
 	      <div class="row">
         <div class="col-xs-12 give-header-container text-center">
           <i class="fa fa-group fa-3x"></i>
           <h2>Give</h2>
           <h5>take care of your community</h5>
         </div>
+      </div>
+      <div style="color:red;font-weight:bold;font-family:'Gill-Sans';" class="text-center" id="cc_error" >
+                  <p><?php echo $this->strErrorMessage; ?></p>
       </div>
       <div class="amount-box">
         <div class="row">
@@ -79,9 +86,10 @@
 
       <form action="/donate/form/" id="donate_form" method="post"/>
 
-        <input type="hidden" value="0" name="amount" id="amount" />
-        <input type="hidden" value="0" name="freq" id="freq" />
-
+        <input type="hidden" value="" name="amount" id="amount" />
+        <input type="hidden" value="1" name="freq" id="freq" />
+        <input type="hidden" value="true" name="doPost" id="doPost" />
+        
       </form>
 
       <div class="disclaimer-box">

@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-xs-12 directory-input-container text-center">
           <div class="input-inner">
-            <input type="text" name="directory_search" value="" placeholder="Search">
+            <input type="text" name="directory_search" id="directory_search" value="<?php echo $this->strSearchTerm;?>" placeholder="Search">
           </div>
         </div>
       </div>
@@ -100,6 +100,6 @@ if(count($this->arrSponsors) > 0) {
 <script src="/scripts/vendor.js"></script>
 <script src="/scripts/plugins.js"></script>
 <script src="/scripts/main.js"></script>
-
+<script src="/scripts/directory.js"></script>
 
 </body>

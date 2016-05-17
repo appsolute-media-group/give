@@ -6,8 +6,8 @@ class donate_controller {
 	public $strMethod = "";
 	public $intUserId = "";
 	public $strErrorMessage = "";
-	public $decAmount = ".01";
-	public $intFreq = "1";
+	public $decAmount = "";
+	public $intFreq = "";
 	public $strCCnum =  "";
 	public $strCCmonth = "";
 	public $strCCyear = "";
@@ -33,7 +33,8 @@ class donate_controller {
 
 		} elseif($this->strMethod == 'form'){
 
-			$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
+			$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '';
+			$this->intAwardAmount = $this->decAmount*100;
 			$this->intFreq = isset($_POST['freq']) ? $_POST['freq'] : '1';
 
 			if($_SESSION['APIprofileID'] == ''){
@@ -41,11 +42,6 @@ class donate_controller {
 			} else {
 				$this->handleProfile();
 			}
-			 
-
-			 include_once(ROOT_DIR.'/views/ccform.php');
-
-
 
 		} elseif($this->strMethod == 'thankyou'){
 
@@ -62,41 +58,56 @@ class donate_controller {
 		if(isset($_POST['doPost'])){
 
 			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
-			$this->intAwardAmount = $this->decAmount*100;
 
-			echo 'Processing paymentprofileid:'.$this->intPayProfileId;
+			if($this->decAmount == ''){
 
-			$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " Club Appetite donation", 
-					"Amount" => $this->decAmount,
-					'Type' => 1);//to seperate donation page(1) from product page(2) transactions
-
-			$objTransDetails = $objTrans->ProcessProfileTransaction($_SESSION['APIprofileID'], $this->intPayProfileId, $transactionDetails);
-			if($objTransDetails['result']=="error"){
-
-				$this->strErrorMessage = $objTransDetails['error']."<br />";
+				$this->strErrorMessage = "Please choose an amount";
+				include_once(ROOT_DIR.'/views/donate.php');
 
 			} else {
 
-				echo "<script>window.location.href='/donate/thankyou/$this->intAwardAmount/'</script>";
+				$transactionDetails = array("Description" => $this->getFequencyString($this->intFreq) . " Club Appetite donation", 
+						"Amount" => $this->decAmount,
+						'Type' => 1);//to seperate donation page(1) from product page(2) transactions
+
+				$objTransDetails = $objTrans->ProcessProfileTransaction($_SESSION['APIprofileID'], $this->intPayProfileId, $transactionDetails);
+				if($objTransDetails['result']=="error"){
+
+					$this->strErrorMessage = $objTransDetails['error']."<br />";
+					include_once(ROOT_DIR.'/views/ccform.php');
+
+				} else {
+
+					include_once(ROOT_DIR.'/views/thankyou.php');
+
+				}
 
 			}
 
 
-
-
 		} else {
 
-			$this->objPayProfile = $objTrans->getPaymentProfiles();
-			$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+			
 
-			//Util::dump($objProfile);
-			if($this->objPayProfile['result']=="error"){
+			if($this->decAmount == ''){
 
-				$this->strErrorMessage = $this->objPayProfile['error']."<br />";
-				//break;
+				$this->strErrorMessage = "Please choose an amount";
+				include_once(ROOT_DIR.'/views/donate.php');
 
-			} 
+			} else {
 
+				$this->objPayProfile = $objTrans->getPaymentProfiles();
+				$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+
+				//Util::dump($objProfile);
+				if($this->objPayProfile['result']=="error"){
+
+					$this->strErrorMessage = $this->objPayProfile['error']."<br />";
+
+				}
+
+				include_once(ROOT_DIR.'/views/ccform.php'); 
+			}
 		}
 
 
@@ -108,9 +119,6 @@ class donate_controller {
 
 	function handleForm() {
 
-		
-		$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '.02';
-		$this->intAwardAmount = $this->decAmount*100;
 		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
 		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
 		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
@@ -129,37 +137,9 @@ class donate_controller {
 
 			do {
 
-				if($this->strCCnum == ''){
-					$this->strErrorMessage = "Please enter a cc num<br />";
-					break;
-				}
+				
 				if($this->decAmount == ''){
 					$this->strErrorMessage = "Amount is missing, please try again<br />";
-					break;
-				}
-				if($this->strCCmonth == ''){
-					$this->strErrorMessage = "Please enter a cc expiry month<br />";
-					break;
-				}else {
-					$this->strCCmonth = sprintf("%02.2d", $this->strCCmonth);
-				}
-				if($this->strCCyear == ''){
-					$this->strErrorMessage = "Please enter a cc expiry year<br />";
-					break;
-				}else {
-
-					$today = date("Y-m-d H:i:s");
-					$date = "$this->strCCyear-$this->strCCmonth-01 00:00:00";
-
-					if ($date < $today) {
-						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
-						break;
-					}
-
-					$this->strCCyear = substr($this->strCCyear,-2);
-				}
-				if($this->strCCcode == ''){
-					$this->strErrorMessage = "Please enter a cc card code<br />";
 					break;
 				}
 				if($this->strFirstName == ''){
@@ -191,6 +171,35 @@ class donate_controller {
 					break;
 				}
 
+				if($this->strCCnum == ''){
+					$this->strErrorMessage = "Please enter a cc num<br />";
+					break;
+				}
+				if($this->strCCmonth == ''){
+					$this->strErrorMessage = "Please enter a cc expiry month<br />";
+					break;
+				}else {
+					$this->strCCmonth = sprintf("%02.2d", $this->strCCmonth);
+				}
+				if($this->strCCyear == ''){
+					$this->strErrorMessage = "Please enter a cc expiry year<br />";
+					break;
+				}else {
+
+					$today = date("Y-m-d H:i:s");
+					$date = "$this->strCCyear-$this->strCCmonth-01 00:00:00";
+
+					if ($date < $today) {
+						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
+						break;
+					}
+
+					$this->strCCyear = substr($this->strCCyear,-2);
+				}
+				if($this->strCCcode == ''){
+					$this->strErrorMessage = "Please enter a cc card code<br />";
+					break;
+				}
 
 				$objTrans = new Transactions();
 
@@ -226,16 +235,32 @@ class donate_controller {
 
 				} 
 
+
 				break;
 			} while ($this->strErrorMessage == "");
 
 			if($this->strErrorMessage == ""){
-				echo "<script>window.location.href='/donate/thankyou/$this->intAwardAmount/'</script>";
+
+				include_once(ROOT_DIR.'/views/thankyou.php');
+
+			} else {
+
+				if($this->decAmount == ''){
+	
+					include_once(ROOT_DIR.'/views/donate.php');
+
+				} else {
+					include_once(ROOT_DIR.'/views/ccform.php');
+
+				}
 			}
 
+		} else {
+
+			include_once(ROOT_DIR.'/views/ccform.php');
 		}
 
-
+		
 
 	}
 
