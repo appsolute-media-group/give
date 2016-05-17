@@ -31,17 +31,17 @@
         </div>
         <div class="row amounts-container">
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="10" onclick="setAmount(10);">$10</button>
+            <button type="button" id="amount_1" class="btn btn-amount"  value="10" onclick="setAmount(1, 10);">$10</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_25" class="btn btn-amount" data-toggle="button" value="25" onclick="setAmount(25);">$25</button>
+            <button type="button" id="amount_2" class="btn btn-amount"  value="25" onclick="setAmount(2, 25);">$25</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_50" class="btn btn-amount" data-toggle="button" value="50" onclick="setAmount(50);">$50</button>
+            <button type="button" id="amount_3" class="btn btn-amount"  value="50" onclick="setAmount(3, 50);">$50</button>
           </div>
           <div class="col-xs-3 text-center">
-            <button type="button" name="amount_100" class="btn btn-amount" data-toggle="button" value="100" onclick="setAmount(100);">$100</button>
-          </div>
+            <button type="button" id="amount_4" class="btn btn-amount"  value="100" onclick="setAmount(4, 100);">$100</button>
+          </div>         
         </div>
       </div>
       <div class="schedule-box">
@@ -51,22 +51,22 @@
           </div>
         </div>
         <div class="row schedules-container">
-          <div class="row">
-            <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="one-time" onclick="setFreq(1);">One-Time</button>
+            <div class="row">
+              <div class="col-xs-6 text-center">
+                <button type="button" id="freq_1" class="btn btn-amount"  value="one-time" onclick="setFreq(1);">One-Time</button>
+              </div>
+              <div class="col-xs-6 text-center">
+                <button type="button" id="freq_2" class="btn btn-amount"  value="bi-weekly" onclick="setFreq(2);">Bi-Weekly</button>
+              </div>
             </div>
-            <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="bi-weekly" onclick="setFreq(2);">Bi-Weekly</button>
+            <div class="row">
+              <div class="col-xs-6 text-center">
+                <button type="button" id="freq_3" class="btn btn-amount"  value="monthly" onclick="setFreq(3);">Monthly</button>
+              </div>
+              <div class="col-xs-6 text-center">
+                <button type="button" id="freq_4" class="btn btn-amount"  value="annual" onclick="setFreq(4);">Annual</button>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="monthly" onclick="setFreq(3);">Monthly</button>
-            </div>
-            <div class="col-xs-6 text-center">
-              <button type="button" name="amount_10" class="btn btn-amount" data-toggle="button" value="annual" onclick="setFreq(4);">Annual</button>
-            </div>
-          </div>
         </div>
       </div>
       <div class="button-container">
