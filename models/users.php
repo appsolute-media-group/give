@@ -99,18 +99,15 @@ class Users extends Database  {
 				break;
 			}
 
-			if($this->strUsername == ''){
-				$this->strErrorMessage = "Please enter a username";
+			if($this->strUseremail == ''){
+				$this->strErrorMessage = "Please enter an email address";
 				break;
-			} else {
-
-
+			} else {	
 				$res = $this->checkForUser($this->strUseremail);
 				if(!empty($res)){
 					$this->strErrorMessage = "That email address is already in our system";
 					break;
 				}
-
 			}
 
 			if($this->strPassword == ''){

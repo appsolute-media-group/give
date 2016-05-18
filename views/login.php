@@ -77,17 +77,6 @@
               <div class="row">
                 <div class="col-xs-2 input-container text-center">&nbsp;</div>
                 <div class="col-xs-2 input-container ">
-                  <div class="fld_desc text-right">User name</div>  
-                </div>
-                <div class="col-xs-7 input-container text-left">
-                  <div class="input-inner">
-                    <input type="text"     name="signup_username" id="signup_username" value="<?php echo $this->objUsers->strUsername; ?>" placeholder="Username">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-2 input-container text-center">&nbsp;</div>
-                <div class="col-xs-2 input-container ">
                   <div class="fld_desc text-right">Email</div>  
                 </div>
                 <div class="col-xs-7 input-container text-left">
@@ -134,7 +123,8 @@
               </div>
             </div>
           </div>
-          <input type="hidden" name="doRegister" value="true" />
+          <input type="hidden" name="doRegister"      value="true" />
+          <input type="hidden" name="signup_username" value="" />
         </form>
       </div>
     </div>   <!-- data-view 2 -->

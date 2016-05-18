@@ -63,7 +63,6 @@ function validateLogin(){
 function validateRegister(){
 
   var sublocality = $('#sublocality').val();
-  var user        = $('#signup_username').val();
   var email       = $('#signup_email').val();
   var password    = $('#signup_password').val();
   var error       = false;
@@ -73,11 +72,6 @@ function validateRegister(){
     error = true;
   }
   
-  if (!error && user == '') {
-    $('#reg_error').html('Please enter an username');
-    error = true;
-  }
-
   if (!error && !validateEmail(email)) {
     $('#reg_error').html('Please enter a valid email');
     error = true;
