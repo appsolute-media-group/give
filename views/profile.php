@@ -127,15 +127,15 @@
                 <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br /><br />
                 <text>Province</text>
                 <select name="province" id="province" >
-                <option <?php Util::isSelected($val1,val2); ?>>BC</option>
-                <option>ON</option>
+                <option <?php echo Util::isSelected($this->strProvince,"BC"); ?>>BC</option>
+                <option <?php echo Util::isSelected($this->strProvince,"ON"); ?>>ON</option>
                 </select><br /><br />
                 <text>Country</text>
                 <select name="country" id="country" >
-                <option value="CA">Canada</option>
-                <option value="US">United States</option>
+                <option value="CA" <?php echo Util::isSelected($this->strCountry,"CA"); ?>>Canada</option>
+                <option value="US" <?php echo Util::isSelected($this->strCountry,"US"); ?>>United States</option>
                 </select><br /><br />
-                
+                <?php echo $this->objUser->listSublocalities; ?>
 
               </form>
             </div>
@@ -144,7 +144,7 @@
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">
-                <button type="button" name="card_add" class="btn btn-checkout" onclick="validateForm();">Save Details</button>
+                <button type="button" name="save_details" class="btn btn-checkout" onclick="validateForm();">Save Details</button>
             </div>
           </div>
         </div>
