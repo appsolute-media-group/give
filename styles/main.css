@@ -7971,7 +7971,7 @@ input {
 }
 
 .page.login .logo-container {
-  padding: 30% 10% 5%;
+  padding: 5% 10% 5%;
 }
 
 .page.login .logo-container .logo-inner img {
@@ -7990,7 +7990,7 @@ input {
 }
 
 .page.login .input-container .input-inner {
-  margin: 10% 0 5%;
+  /* margin: 0 0 5%;  */
 }
 
 .page.login .input-container .input-inner input {
@@ -8006,20 +8006,40 @@ input {
   appearance: none;
 }
 
+.fld_desc {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  color: #1b8889;
+  margin: 2px 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+.fld_select {
+  margin-top: 5px;
+  padding-top: 5px;
+  color: #1b8889;
+}
+
+
 .page.login .input-container .input-inner input::-webkit-input-placeholder {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .page.login .input-container .input-inner input::-moz-placeholder {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .page.login .input-container .input-inner input:-moz-placeholder {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .page.login .input-container .input-inner input:-ms-input-placeholder {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .page.login .input-container .input-inner input[name="signup_code"] {

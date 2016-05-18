@@ -118,19 +118,18 @@ class Users extends Database  {
 				break;
 			}
 
-			if($this->strSublocality == ''){
+			if($this->strSublocality == '0'){
 				$this->strErrorMessage = "Please enter a food bank";
 				break;
 			} else {
 
 				$objSub = new SubLocalities;
-				$sublocality = $objSub->getSubLocalityIdByName($this->strSublocality);
+				$sublocality = $objSub->verifySubLocalityId($this->strSublocality);
 				if($sublocality === false){
 					$this->strErrorMessage = "Please enter a valid food bank";
 					break;
 				}
 			}
-
 			break;
 		} while ($this->strErrorMessage == "");
 
@@ -165,8 +164,6 @@ class Users extends Database  {
 			$this->referalCode = null;
 
 		}
-
-
 
 		if($this->strErrorMessage == "") {
 

@@ -7,6 +7,7 @@ class login_controller {
 	public $doLogin = "";
 	public $intUserId = "";
 	public $arrSublocalities = array();
+	public $listSublocalities = '';
 
 	public function __construct() {
 
@@ -15,15 +16,24 @@ class login_controller {
 
 		//we need an instance of the user object
 		$this->objUsers = new Users;
-
+    // create an instance of the sublocatities object
 		$this->objSubs = new SubLocalities;
+		// create an instance of the util object
+		$this->objUtils = new Util;
+
+    // get a list of food banks
 		$tArray = $this->objSubs->getSubLocalityList();
 
+    // separate food bank name out for the auto complete
 		foreach($tArray As $sub){
 			$this->arrSublocalities[] = $sub['sub_name'];
 		}
 
 		$this->arrSublocalities = json_encode($this->arrSublocalities);
+
+    $tdropdownArray = $this->objSubs->getSubLocality_dropdown_List(1);
+		// create the list for populating a drop down for food banks
+		$this->listSublocalities = $this->objUtils->get_dropdown_items($tdropdownArray);
 
 		if($this->doLogin != ''){
 			$result = $this->objUsers->loginFromWebpage();

@@ -38,98 +38,57 @@ $(document).ready(function () {
 });
 
 
-function validateRedeemCode(){
-
-  var code = $('#signup_code').val();
-  var hidden = $('#referalCode');
-
-  var url = "/api/validatecode/"+code+"/";
-
-  $.ajax({
-    url: url,
-  })
-  .done(function( data ) {
-    if ( console && console.log ) {
-      var objResult = JSON.parse(data);
-
-      if(objResult.result == 'success'){
-        console.log( "success:", objResult.code );
-        $('#code_action').html("Referral Code Used: "+code);
-        hidden.val(code);
-
-      } else {
-        console.log( "fail:", objResult.code );
-        console.log( "details:", objResult.details );
-        if(code != ''){
-           $('#code_action').html(objResult.details);
-        }
-       
-      }
-    }
-  });
-
-
-  $('#referralCodeModal').modal('toggle');
- 
-
-}
-
-
-
 function validateLogin(){
 
-  var user = $('#signin_email').val();
+  var email    = $('#signin_email').val();
   var password = $('#signin_password').val();
-  var error = false;
+  var error    = false;
 
-  if(user == '') {
+  if (email == '') {
     $('#login_error').html('Please enter an email');
     error = true;
   }
 
-  if(password == '') {
+  if (!error && password == '') {
     $('#login_error').html('Please enter a password');
     error = true;
   }
 
-  if(!error){
+  if (!error){
     document.getElementById('loginForm').submit();
   }
   
 }
 
-
-
 function validateRegister(){
 
   var sublocality = $('#sublocality').val();
-  var user = $('#signup_username').val();
-  var email = $('#signup_email').val();
-  var password = $('#signup_password').val();
-  var error = false;
+  var user        = $('#signup_username').val();
+  var email       = $('#signup_email').val();
+  var password    = $('#signup_password').val();
+  var error       = false;
 
-  if(user == '') {
+  if (sublocality == '0') {
+    $('#reg_error').html('Please select a food bank');
+    error = true;
+  }
+  
+  if (!error && user == '') {
     $('#reg_error').html('Please enter an username');
     error = true;
   }
 
-  if(password == '') {
-    $('#reg_error').html('Please enter a password');
-    error = true;
-  }
-
-  if(!validateEmail(email)) {
+  if (!error && !validateEmail(email)) {
     $('#reg_error').html('Please enter a valid email');
     error = true;
   }
 
-
-  if(sublocality == '') {
-    $('#reg_error').html('Please enter a location');
+  if (!error && password == '') {
+    $('#reg_error').html('Please enter a password');
     error = true;
   }
 
-  if(!error){
+  if (!error){
     document.getElementById('regForm').submit();
   }
   

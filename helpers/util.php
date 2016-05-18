@@ -69,6 +69,60 @@ class Util {
         return $min + $rnd;
     }
 
+    /**
+     * Function to create the information for drop down lists, with group sections
+     *
+     */
+    public static function get_group_dd_items($array, $selected_id="") 
+    {
+    
+      $select_txt = "";       
+      $cur_grp    = "";
+    
+      if (is_array($array)) {    
+        foreach ($array as $id => $val) {
+             // has the group name changed
+          if ($cur_grp != $val['grp']) {
+             // if not first time thru, add the closing optgroup tag
+            if ($cur_grp != "") {
+              $select_txt .= '</optgroup>';
+            }
+            // add option group opening tag
+            $select_txt .= '<optgroup label="'.$val['grp'].'">';
+            $cur_grp = $val['grp'];
+          } 
+        
+          if ($selected_id == $id) {
+            $select_txt .= '<option value="'.$id.'" selected >'.stripslashes($val['name']).'</option>';
+          } else {
+            $select_txt .= '<option value="'.$id.'">'.stripslashes($val['name']).'</option>';
+          }             
+        }
+        $select_txt .= '</optgroup>';
+      }      
+      return $select_txt;
+    }   
+
+    /**
+     * Function to create the information for drop down lists
+     *
+     */
+    public static function get_dropdown_items($array, $selected_id="") 
+    {
+    
+      $select_txt = "";     
+      if (is_array($array)) {    
+        foreach ($array as $id => $val) { 
+          if ($selected_id == $id) {
+            $select_txt .= '<option value="'.$id.'" selected >'.stripslashes($val).'</option>';
+          } else {
+            $select_txt .= '<option value="'.$id.'">'.stripslashes($val).'</option>';
+          }
+        }   
+      }      
+      return $select_txt;
+    }   
+
 }
 
 ?>

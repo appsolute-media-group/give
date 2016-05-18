@@ -27,7 +27,7 @@ class SubLocalities extends Database  {
 	}
 
 
-    function getSubLocalityIdByName($name) {
+  function getSubLocalityIdByName($name) {
 
         $this->strQuery = "SELECT s.id      
 			FROM $this->strTableName s   
@@ -50,10 +50,28 @@ class SubLocalities extends Database  {
 
 	}
 
+  function verifySubLocalityId($id) {
+
+    $this->strQuery = "SELECT s.id, s.sub_name      
+                       FROM $this->strTableName s   
+                       WHERE id ='$id'";
+
+    if($this->query( $this->strQuery )) {
+
+      $res = $this->getMysqliResults( $this->strQuery, true );
+      if(count($res)>0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 
 	function getSubLocalityList() {
 
-        $this->strQuery = "SELECT s.sub_name, s.id      
+      $this->strQuery = "SELECT s.sub_name, s.id      
 			FROM $this->strTableName s   
 			WHERE blnActive=1";
 
@@ -66,9 +84,37 @@ class SubLocalities extends Database  {
 
 			return false;
 		}
-
 	}
 
+	function getSubLocality_dropdown_List($op) {
+
+      $foodbank_names = array();
+
+      $this->strQuery = "SELECT s.sub_name, s.id      
+			                   FROM $this->strTableName s   
+			                    WHERE blnActive=1";
+
+		 if ($this->query( $this->strQuery )) {
+
+			   // op = 1, set position 0 = not set
+       if ($op == 1) {
+         $foodbank_names[0] = 'Not Set';
+       }
+
+       $result = $this->getMysqliResults($this->strQuery,true);
+
+       $number_entries = count($result);
+       if ($number_entries > 0) {
+    
+         for ($i=0; $i < $number_entries; $i++) {
+           $id           = $result[$i]['id'];    
+           $name         = trim(stripslashes($result[$i]['sub_name']));  
+           $foodbank_names[$id] = $name;
+         }
+       }
+       return $foodbank_names;
+     }
+	}
 
 	function getAPIAuthNetKey($sublocality_id) {
 
@@ -87,9 +133,6 @@ class SubLocalities extends Database  {
 
 			return false;
 		}
-
-
-
 	}
 
 
@@ -146,11 +189,6 @@ class SubLocalities extends Database  {
         } else {
         	$arrData = array('result' => "error");	
         }
-
-
-//Util::dump($arrData);
-
-
         return json_encode($arrData);
 	}	
 
