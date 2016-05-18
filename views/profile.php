@@ -1,6 +1,6 @@
 
 
-<body class="page my-account">
+<body class="page needed-now">
   <!--[if lt IE 10]>
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -106,22 +106,23 @@
         <div class="row">
           <div class="col-xs-12 input-container text-center">
             <div class="input-inner">
-              <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="cc_error" >
+              <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="profile_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
               </div>
 
 
 
-              <form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />
+              <form action="/profile/?doPost=true" method="post" id="profile_form" />
   
                 <input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
                 <input type="hidden" name="doPost" value="true" />
 
-                        
+                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo $this->strEmail;?>"></input>       
                 <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
                 <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
                 <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
-                <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br /><br />
+                <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input>
+                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br /><br />
                 <text>Province</text>
                 <select name="province" id="province" >
                 <option>BC</option>
@@ -132,27 +133,8 @@
                 <option value="CA">Canada</option>
                 <option value="US">United States</option>
                 </select><br /><br />
-                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
-                <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo $this->strCCnum;?>"></input>
-                <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
-                <text>Exp. Month</text>
-                <select name="expMonth" id="expMonth">
-                <?php 
-                for($mo=1; $mo<=12; $mo++) {
-                  echo '<option value="' .$mo. '"';
-                  echo '>' .$mo. '</option>';
-                }
-                ?>
-                </select>
-                <text>Exp. Year</text>
-                <select name="expYear" id="expYear">
-                <?php 
-                for($year=2016; $year<=2025; $year++) {
-                  echo '<option value="' .$year. '"';
-                  echo '>' . $year. '</option>';
-                }
-                ?>
-                </select>
+                
+
               </form>
             </div>
           </div>
@@ -160,7 +142,7 @@
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">
-                <button type="button" name="card_add" class="btn btn-checkout" onclick="validateForm();">Process Transaction</button>
+                <button type="button" name="card_add" class="btn btn-checkout" onclick="validateForm();">Save Details</button>
             </div>
           </div>
         </div>
@@ -188,5 +170,6 @@
 <script src="/scripts/vendor.js"></script>
 <script src="/scripts/plugins.js"></script>
 <script src="/scripts/main.js"></script>
+<script src="/scripts/profile.js"></script>
 
 </body>

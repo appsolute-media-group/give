@@ -5,30 +5,48 @@ class profile_controller {
 
 	public $strMethod = "";
 	public $intUserId = "";
+	public $strEmail = "";
+	public $strErrorMessage = '';
+	public $strFirstName = "";
+	public $strLastName = "";
+	public $strAddress = "";
+	public $strCity = "";
+	public $strProvince = "";
+	public $strCountry = "";
+	public $strPostal = "";
+
 
 	public function __construct() {
 
-		//$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
-		//no need to create a method for this view, we can just do the work here in the constructor
+		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
+	
+
+		if($this->strMethod == ''){ //main view
 
 
-			
-		//we need an object for the current user
-		//this will be a session variable when the login page is done, for now hard code your own userID from the database
-		$this->objUsers = new Users;
+			$this->objUser = new Users;
+			$objUser = json_decode($this->objUser->showUserById($_SESSION['userID'])); 
+			$this->strFirstName = $objUser->first_name;
+			$this->strEmail = $objUser->email;
 
-		$this->intUserId= 1; //kirk walker
-		$objUsers = json_decode($this->objUsers->showUserById($this->intUserId)); //don't forget to convert from json to a php object
+			$this->strLastName = $objUser->last_name;
+			$this->strAddress =  $objUser->tax_address;
+			$this->strCity = $objUser->tax_city;
+			$this->strProvince = $objUser->tax_prov;
+			$this->strCountry = $objUser->tax_country;
+			$this->strPostal = $objUser->tax_pc;
 
-		//use this to see all the data being passed to the view
-		//var_dump($objUsers);
 
 
-		include_once(ROOT_DIR.'/views/profile.php'); 
+			include_once(ROOT_DIR.'/views/profile.php'); 
 
+		} 
 		
 
 	}
+
+
+
 
 
 
