@@ -109,7 +109,9 @@
               <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="profile_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
               </div>
-
+              <div style="color:green;font-weight:bold;font-family:'Gill-Sans'" id="profile_success" >
+                <p><?php echo $this->strSuccessMessage; ?></p>
+              </div>
 
 
               <form action="/profile/?doPost=true" method="post" id="profile_form" />
@@ -117,7 +119,7 @@
                 <input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
                 <input type="hidden" name="doPost" value="true" />
 
-                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo $this->strEmail;?>"></input>       
+                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo $this->strEmail;?>" readonly="true"></input>       
                 <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
                 <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
                 <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
@@ -125,7 +127,7 @@
                 <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br /><br />
                 <text>Province</text>
                 <select name="province" id="province" >
-                <option>BC</option>
+                <option <?php Util::isSelected($val1,val2); ?>>BC</option>
                 <option>ON</option>
                 </select><br /><br />
                 <text>Country</text>
@@ -165,6 +167,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 <script src="/scripts/vendor.js"></script>
 <script src="/scripts/plugins.js"></script>
 <script src="/scripts/main.js"></script>

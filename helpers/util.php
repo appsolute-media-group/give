@@ -28,6 +28,21 @@ class Util {
         return $hash;
     }
 
+    /**
+     * compares values for drop down lists
+     *
+     */
+    public static function isSelected($val1,$val2) {
+      $result = "";
+
+
+      if($val1 == $val2){
+        $result = "selected='selected'";
+      }
+
+      return $result;
+    }
+
 
 
 

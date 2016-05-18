@@ -11,6 +11,7 @@ function validateForm(){
 
   var error = false;
   $('#profile_error').html('');
+  $('#profile_success').html('');
 
   if (!error && !validateEmail($('#email').val())) {
     $('#profile_error').html('Please enter a valid email');
