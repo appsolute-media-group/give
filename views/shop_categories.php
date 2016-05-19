@@ -89,13 +89,7 @@ if(count($this->arrCats) > 0) {?>
       </div>
     </div>
 
-    <div class="row ad-footer">
-      <div class="ad-container">
-        <div class="col-xs-12 ad-contents text-center">
-          <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
-        </div>
-      </div>
-    </div>
+<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
   </div>
 </div>
 

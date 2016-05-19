@@ -10,10 +10,8 @@
 <div class="main-wrapper">
   <div class="container-fluid">
     <div class="row header">
-      
 
       <?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
-
 
     </div>
     <div class="view-container">
@@ -22,7 +20,7 @@
           <div class="item-inner">
             <div class="item-header">
               <div class="text-center">
-                <h1>Account Overview</h1>
+                <h1>Account Overview - mainpage</h1>
               </div>
             </div>
             <div class="item-detail text-center">
@@ -75,16 +73,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="ad-container">
-          <div class="col-xs-12 ad-contents text-center">
-            <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+    </div>   <!-- view-container  -->
+  </div>     <!-- container-fluid -->
+</div>       <!-- main-wrapper -->
 
 
 

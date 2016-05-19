@@ -34,7 +34,7 @@ if(count($this->arrMessages) > 0) {
               <div class="col-xs-2">
                 <div class="icon-container">
                   <div class="icon-wrapper">
-                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-envelope fa-2x"></i>
                   </div>
                 </div>
               </div>
@@ -94,18 +94,7 @@ if(count($this->arrMessages) > 0) {
   </div>
 
 
-  
-
-
-
-
-  <div class="row ad-footer2">
-      <div class="ad-container">
-        <div class="col-xs-12 ad-contents text-center">
-          <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
-        </div>
-      </div>
-    </div>
+<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
   </div>
 </div>
 

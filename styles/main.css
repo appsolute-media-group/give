@@ -7889,8 +7889,9 @@ input {
 
 .ad-container .ad-contents img {
   max-width: 100%;
+  width: 100%;
+  height: auto;
   position: absolute; 
-  left:0;
 }
 
 .btn {
