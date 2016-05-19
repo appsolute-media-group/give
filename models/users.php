@@ -251,7 +251,6 @@ class Users extends Database  {
 
 				//echo $this->strQuery;
 
-				error_log(" this->strQuery = ".$this->strQuery."  \r\n", 3, "/Users/bryanperrier/projects/php_errors/php_errors.txt");
 				$this->intColumns = $this->getMysqliResults( $this->strQuery, true );
 
 			
