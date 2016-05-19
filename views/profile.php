@@ -33,24 +33,13 @@
           </div>  
         </div>
 
-        <div class="row" >
-          <div class="col-md-6 item text-center">
-            <div class="row">
-              <div class="col-xs-12">
-                <h3>Your Account</h3>
-                <h2 class="points"><?=$_SESSION['user_points'];?></h2>
-                <p>points</p>
-                <h5 class="name"><?=$_SESSION['name'];?></h5>
-              </div>
-            </div>
-          </div>
-        </div>  
+
 
         <div class="row" onclick="nextView();">
           <div class="col-xs-12 contact-button-container">
             <div class="contact-button-inner">
               <div class="col-xs-10 text-left">
-                <h4>Contact</h4>
+                <h4>Your Details</h4>
               </div>
               <div class="col-xs-2 text-right">
                 <i class="fa fa-arrow-right "></i>
@@ -60,14 +49,17 @@
         </div>
 
 
-
-        <div class="row" >
-
-
-
-
-
-
+        <div class="row" onclick="goToView(3);">
+          <div class="col-xs-12 contact-button-container">
+            <div class="contact-button-inner">
+              <div class="col-xs-10 text-left">
+                <h4>Your Dontation Schedule</h4>
+              </div>
+              <div class="col-xs-2 text-right">
+                <i class="fa fa-arrow-right "></i>
+              </div>
+            </div>
+          </div>
         </div>
         
       </div>
@@ -90,35 +82,26 @@
           </div>  
         </div>  
 
-        <div class="row" onclick="goToView(1);">
-          <div class="col-xs-12 contact-button-container">
-            <div class="contact-button-inner">
-              <div class="col-xs-10 text-left">
-                <h4>Go Back</h4>
-              </div>
-              <div class="col-xs-2 text-right">
-                <i class="fa fa-arrow-right "></i>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         <div class="row">
-          <div class="col-xs-12 input-container text-center">
+          <div class="col-xs-12 input-container ">
             <div class="input-inner">
-              <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="profile_error" >
+              <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="profile_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
               </div>
-              <div style="color:green;font-weight:bold;font-family:'Gill-Sans'" id="profile_success" >
+              <div style="color:green;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="profile_success" >
                 <p><?php echo $this->strSuccessMessage; ?></p>
               </div>
 
 
               <form action="/profile/?doPost=true" method="post" id="profile_form" />
   
-                <input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
                 <input type="hidden" name="doPost" value="true" />
-
+                <text>Location</text>
+                <select class="fld_select"  name="sublocality" id="sublocality">
+                   <?php echo $this->listSublocalities; ?>          
+                </select><br /><br />
                 <input type="text" placeholder='Email' name="email" id="email" value="<?php echo $this->strEmail;?>" readonly="true"></input>       
                 <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
                 <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
@@ -135,7 +118,6 @@
                 <option value="CA" <?php echo Util::isSelected($this->strCountry,"CA"); ?>>Canada</option>
                 <option value="US" <?php echo Util::isSelected($this->strCountry,"US"); ?>>United States</option>
                 </select><br /><br />
-                <?php echo $this->objUser->listSublocalities; ?>
 
               </form>
             </div>
@@ -151,7 +133,7 @@
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">
-                <button type="button" name="cancel" class="btn btn-cancel" onclick="prevView()">Cancel</button>
+                <button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Cancel</button>
             </div>
           </div>
         </div>
@@ -161,15 +143,89 @@
 
 
 
-    <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+
+    <div class="view" data-view="3">
+      <div class="view-container">
+        <div class="row">
+          <div class="col-md-6 item">
+            <div class="item-inner">
+              <div class="item-header">
+                <div class="text-center">
+                  <h1>Edit Donation Schedule</h1>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div> 
+        <div class="row">
+          <div class="col-xs-12 input-container ">
+            <div class="input-inner">
+              <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="donation_error" >
+                <p><?php echo $this->strErrorMessage; ?></p>
+              </div>
+              <div style="color:green;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="donation_success" >
+                <p><?php echo $this->strSuccessMessage; ?></p>
+              </div>
+
+
+              <form action="/profile/?doDonationPost=true" method="post" id="donation_form" />
   
+     
+                <input type="hidden" name="doDonationPost" value="true" />
+                
+                <text>Donation Amount</text>
+                <select class="fld_select"  name="sublocality" id="sublocality">
+                   <option value="10">10</option> 
+                   <option value="25">25</option>
+                   <option value="50">50</option>
+                   <option value="100">100</option>       
+                </select><br /><br />
 
+                <text>Frequency</text>
+                <select class="fld_select"  name="sublocality" id="sublocality">
+                   <option value="2">Bi-Weekly</option>
+                   <option value="3">Monthly</option>
+                   <option value="4">Anually</option>       
+                </select><br /><br />
+
+                <p><text>Next Bill Date: 1/1/2018</text></p>
+
+                <p><text onclick="confirmdelete();">Cancel this donation schedule</text></p>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="save_details" class="btn btn-checkout" onclick="validateForm();">Save Details</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
+
+    <div class="row ad-footer2">
+      <div class="ad-container">
+        <div class="col-xs-12 ad-contents text-center">
+          <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 </div>
-
-
-
 
 <script src="/scripts/vendor.js"></script>
 <script src="/scripts/plugins.js"></script>
