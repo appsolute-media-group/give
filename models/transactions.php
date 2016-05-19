@@ -405,16 +405,28 @@ class Transactions extends Database  {
 				//echo "Response : " . $errorNotice[0]->getCode() . "  " .$errorNotice[0]->getText() . "<br />";
 
         		$errorMessages = $tresponse->getErrors();
-        		$errorMessages = $errorMessages[0];
-				$errorMessageText = $errorMessages->getErrorText();
-				$errorMessageCode = $errorMessages->getErrorCode();
-				//echo "Error Code : " . $errorMessageCode . "<br />";
-				//echo "Error Text : " . $errorMessageText . "<br />";
+	        	$errorMessages = $errorMessages[0];
+
+        		if($errorMessages != null){
+
+					
+	        		$errorMessageText = $errorMessages->getErrorText();
+					$errorMessageCode = $errorMessages->getErrorCode();
+
+        		} else {
+
+					$errorMessageCode = $errorNotice[0]->getCode();
+					$errorMessageText = $errorNotice[0]->getText();
+		
+        		}
+
+				echo "Error Code : " . $errorMessageCode . "<br />";
+				echo "Error Text : " . $errorMessageText . "<br />";
 
         		$this->arrResult = array(
 		      	"result" => "error", 
-		      	"code" => $errorMessages->getErrorCode(),
-		      	"error" => $errorMessages->getErrorText(),
+		      	"code" => $errorMessageCode,
+		      	"error" => $errorMessageText,
       			"userdetails" => $objDetails
 		      	);
 
