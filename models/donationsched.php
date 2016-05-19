@@ -40,17 +40,41 @@ class DonationSched extends Database  {
 			$arrResult = array('result' => "error",'code' => "??", "details" => $res);
 		}
 
-		
-		
-
-
-
         return json_encode($arrResult);
+
+	}
+
+
+	public function updateSched() {
+
+		
 
 
 
 
 	}
+
+
+
+	public function insertDonationSchedule($payID,$amount,$freq){
+
+		//$keys = array('PaymentProfileID', 'userID', 'amount', 'freq');
+		//$vals = array($payID, $_SESSION['userID'], $amount, $freq);
+
+		//$r = $this->mysqliinsert($keys,$vals);
+		$this->sql = "INSERT INTO $this->strTableName 
+		('PaymentProfileID', 'userID', 'amount', 'freq') 
+		VALUES 
+		($$payID, ".$_SESSION['userID'].", $amount, $freq) 
+		ON DUPLICATE KEY UPDATE amount=$amount,feq=$freq";
+
+		return $this->short_query($this->sql);
+
+
+	}
+
+
+
 
 }
 
