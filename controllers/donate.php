@@ -51,13 +51,22 @@ class donate_controller {
 	
 	}
 
+
+
+
+
 	function handleProfile(){
 
 		$objTrans = new Transactions();
-		
+		$this->objPayProfile = $objTrans->getPaymentProfiles();
+
+		$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+
+
+
 		if(isset($_POST['doPost'])){
 
-			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
+			//$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
 
 			if($this->decAmount == ''){
 
@@ -78,6 +87,10 @@ class donate_controller {
 
 				} else {
 
+					//insert a schedual record
+					$this->objDS = new DonationSched;
+					$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
+
 					include_once(ROOT_DIR.'/views/thankyou.php');
 
 				}
@@ -96,8 +109,7 @@ class donate_controller {
 
 			} else {
 
-				$this->objPayProfile = $objTrans->getPaymentProfiles();
-				$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+				
 
 				//Util::dump($objProfile);
 				if($this->objPayProfile['result']=="error"){
@@ -185,7 +197,7 @@ class donate_controller {
 					$this->strErrorMessage = "Please enter a cc expiry year<br />";
 					break;
 				}else {
-
+/*
 					$today = date("Y-m-d H:i:s");
 					$date = "$this->strCCyear-$this->strCCmonth-01 00:00:00";
 
@@ -193,7 +205,7 @@ class donate_controller {
 						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
 						break;
 					}
-
+*/
 					$this->strCCyear = substr($this->strCCyear,-2);
 				}
 				if($this->strCCcode == ''){
@@ -233,13 +245,24 @@ class donate_controller {
 					$this->strErrorMessage = $objTransDetails['error']."<br />";
 					break;
 
-				} 
+				} else {
+
+					//this means a new profile was created. We need to get the payment profile id
+					$this->objPayProfile = $objTrans->getPaymentProfiles();
+					$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+
+				}
 
 
 				break;
 			} while ($this->strErrorMessage == "");
 
 			if($this->strErrorMessage == ""){
+
+				//insert a schedual record
+				$this->objDS = new DonationSched;
+				$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
+
 
 				include_once(ROOT_DIR.'/views/thankyou.php');
 

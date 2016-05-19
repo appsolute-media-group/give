@@ -106,6 +106,24 @@
 		}
 
 
+		public function delete( $id, $table = ''){
+
+			$table = $table == '' ? $this->strTableName : $table;
+			$this->query = "DELETE FROM $table WHERE id=$id";
+
+			if( $this->result = $this->mysqli->query( $this->query) ) {
+				$this->affected_rows = $this->mysqli->affected_rows;
+				return true;
+			} else {
+
+				return false;
+			}
+
+
+		}
+
+
+
 		// Query function - Execute a given query.
 		public function query( $query ) {
 			// Set the query string.

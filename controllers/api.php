@@ -141,6 +141,10 @@ class api_controller {
 			
 			echo $this->objUsers->validateCode();
 
+	    } elseif($this->strAction == 'deletedonation') {
+			
+			echo $this->deleteDonation();
+
 		} else {
 
 			echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found"));
@@ -152,7 +156,13 @@ class api_controller {
 
 	}
 
+	function deleteDonation() {
 
+		$this->DonationSched = new DonationSched;
+		$objCurrent = $this->DonationSched->deleteSched();
+		return $objCurrent;
+
+	}
 
 	function confirmWebDeal() {
 
