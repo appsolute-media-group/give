@@ -63,10 +63,13 @@ class DonationSched extends Database  {
 
 		//$r = $this->mysqliinsert($keys,$vals);
 		$this->sql = "INSERT INTO $this->strTableName 
-		('PaymentProfileID', 'userID', 'amount', 'freq') 
+		(PaymentProfileID, userID, amount, freq) 
 		VALUES 
-		($$payID, ".$_SESSION['userID'].", $amount, $freq) 
-		ON DUPLICATE KEY UPDATE amount=$amount,feq=$freq";
+		($payID, ".$_SESSION['userID'].", $amount, $freq) 
+		ON DUPLICATE KEY UPDATE amount=$amount,freq=$freq,PaymentProfileID=$payID";
+
+
+		//echo $this->sql;
 
 		return $this->short_query($this->sql);
 
@@ -74,10 +77,7 @@ class DonationSched extends Database  {
 	}
 
 
-
-
 }
 
 
 
-?>

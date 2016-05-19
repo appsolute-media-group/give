@@ -52,6 +52,59 @@ class Transactions extends Database  {
 
 
 
+	function validatePaymentProfile($customerPaymentProfileId){
+
+ 		// Use an existing payment profile ID for this Merchant name and Transaction key
+  		//validationmode tests , does not send an email receipt
+  		$validationmode = "testMode";
+
+		$request = new AnetAPI\ValidateCustomerPaymentProfileRequest();
+		  
+		$request->setMerchantAuthentication($this->merchantAuthentication);
+		$request->setCustomerProfileId($_SESSION['APIprofileID']);
+		$request->setCustomerPaymentProfileId($customerPaymentProfileId);
+		$request->setValidationMode($validationmode);
+
+		$controller = new AnetController\ValidateCustomerPaymentProfileController($request);
+		$response = $controller->executeWithApiResponse($this->strActiveServerURL);
+
+		if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
+		{
+		  $validationMessages = $response->getMessages()->getMessage();
+		  //echo "Response : " . $validationMessages[0]->getCode() . "  " .$validationMessages[0]->getText() . "\n";
+		  $this->arrResult = array(
+				"result" => "success", 
+				"reason" => $validationMessages[0]->getText(),
+				"code" => $validationMessages[0]->getCode(),
+				"paymentprofileid" => $customerPaymentProfileId
+			);
+		}
+		else
+		{
+		  echo "ERROR :  Validate Customer Payment Profile: Invalid response\n";
+		  $errorMessages = $response->getMessages()->getMessage();
+		  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+
+		  $this->arrResult = array(
+			"result" => "error", 
+			"reason" => "Failed to find payment profile",
+			"code" => $errorMessages[0]->getCode(),
+			"error" => $errorMessages[0]->getText(),
+			"paymentprofileid" => ""
+		   );
+
+
+		}
+
+
+
+		return $this->arrResult;
+		
+
+	}
+
+
+
 	function getPaymentProfiles(){
 
 		
@@ -68,19 +121,19 @@ class Transactions extends Database  {
 
 		if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
 		{
+
 			//echo "GetCustomerProfile SUCCESS : " .  "<br />";
+
 			$profileSelected = $response->getProfile();
 			$paymentProfilesSelected = $profileSelected->getPaymentProfiles();
 			//echo "Profile Has " . count($paymentProfilesSelected). " Payment Profiles" . "<br />";
-			//Util::dump($paymentProfilesSelected[0]->getCustomerPaymentProfileId());
+			$lastProfileUsed = count($paymentProfilesSelected)-1;
+			$customerPaymentProfileId = $paymentProfilesSelected[$lastProfileUsed]->getCustomerPaymentProfileId();
+			//Util::dump($paymentProfilesSelected);
 
-			$this->arrResult = array(
-				"result" => "success", 
-				"reason" => "",
-				"code" => "",
-				"error" => "",
-				"paymentprofileid" => $paymentProfilesSelected[0]->getCustomerPaymentProfileId()
-				);
+
+			//need to validate it as authnet will return even invalid profiles
+			$this->arrResult = $this->validatePaymentProfile($customerPaymentProfileId);
 
 		}
 		else
@@ -88,7 +141,6 @@ class Transactions extends Database  {
 			//echo "ERROR :  GetCustomerProfile: Invalid response<br />";
 			$errorMessages = $response->getMessages()->getMessage();
 			//echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
-
 
 			$this->arrResult = array(
 				"result" => "error", 

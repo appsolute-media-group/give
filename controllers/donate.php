@@ -59,6 +59,7 @@ class donate_controller {
 
 		$objTrans = new Transactions();
 		$this->objPayProfile = $objTrans->getPaymentProfiles();
+
 		$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
 
 
@@ -196,7 +197,7 @@ class donate_controller {
 					$this->strErrorMessage = "Please enter a cc expiry year<br />";
 					break;
 				}else {
-
+/*
 					$today = date("Y-m-d H:i:s");
 					$date = "$this->strCCyear-$this->strCCmonth-01 00:00:00";
 
@@ -204,7 +205,7 @@ class donate_controller {
 						$this->strErrorMessage = "Your Credit Card is not valid (expired).<br />";
 						break;
 					}
-
+*/
 					$this->strCCyear = substr($this->strCCyear,-2);
 				}
 				if($this->strCCcode == ''){
