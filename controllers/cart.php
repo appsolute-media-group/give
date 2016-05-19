@@ -47,12 +47,15 @@ class cart_controller {
 	function handleProfileCheckout(){
 
 		$objTrans = new Transactions();
-		$this->handleCartSession();
+		$this->objPayProfile = $objTrans->getPaymentProfiles();
+		$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
 
+		$this->handleCartSession();
+		
 
 		if(isset($_POST['doPost'])){
 
-			$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
+			//$this->intPayProfileId = isset($_POST['paymentprofileid']) ? $_POST['paymentprofileid'] : '';
 			$this->decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
 			$this->intAwardAmount = $this->decAmount*100;
 			//echo 'Processing paymentprofileid:'.$this->intPayProfileId."<br />";
@@ -78,8 +81,8 @@ class cart_controller {
 
 		} else {
 
-			$this->objPayProfile = $objTrans->getPaymentProfiles();
-			$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
+			//$this->objPayProfile = $objTrans->getPaymentProfiles();
+			//$this->intPayProfileId = $this->objPayProfile['paymentprofileid'];
 
 			//Util::dump($objProfile);
 			if($this->objPayProfile['result']=="error"){
