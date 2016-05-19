@@ -247,19 +247,11 @@ class Users extends Database  {
 
     		$this->strQuery = "SELECT id, `name`, first_name, last_name, email, picture, gender, sublocality_id, user_points, refer_code, APIprofileID 
 				FROM user_profiles p
-				WHERE LENGTH(name) > 0 And
-				(name='" . $this->getCleanVar($this->strUsername) . "'";
-
-
-				if($this->strUseremail != ''){
-					$this->strQuery .= "OR email='" . $this->getCleanVar($this->strUseremail) . "'	";		
-				}
-
-				$this->strQuery .= " ) and password='" . $this->getCleanVar($this->strPassword) . "' LIMIT 0,1";
+				WHERE email = '" . $this->getCleanVar($this->strUseremail) . "' and password = '" . $this->getCleanVar($this->strPassword) . "' LIMIT 0,1";
 
 				//echo $this->strQuery;
 
-				
+				error_log(" this->strQuery = ".$this->strQuery."  \r\n", 3, "/Users/bryanperrier/projects/php_errors/php_errors.txt");
 				$this->intColumns = $this->getMysqliResults( $this->strQuery, true );
 
 			

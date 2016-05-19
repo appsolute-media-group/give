@@ -62,10 +62,10 @@
               </div>
           </div>    
             <div class="row">
-              <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
                 <div class="fld_desc text-right">Food Bank</div>  
               </div>
-              <div class="col-xs-9 col-sm-8 col-md-7 col-lg-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
                 <div class="input-inner">
                   <select class="fld_select"  name="sublocality" id="sublocality">
                      <?php echo $this->listSublocalities; ?>          
@@ -74,30 +74,30 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
                 <div class="fld_desc text-right">Email</div>  
               </div>
-              <div class="col-xs-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
                 <div class="input-inner">
                   <input type="text"     name="signup_email"    id="signup_email"    value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
                 <div class="fld_desc text-right">Password</div>  
               </div>
-              <div class="col-xs-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
                 <div class="input-inner">
                   <input type="password" name="signup_password" id="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
                 <div class="fld_desc text-right">Referral Code</div>  
               </div>
-              <div class="col-xs-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
                 <div class="input-inner">
                   <input type="text"     name="referalCode"     id="referalCode"     value="<?php echo $this->objUsers->referalCode; ?>" placeholder="Referral Code">
                 </div>
@@ -143,7 +143,7 @@
         <form method="post" action="?doLogin=true" id="loginForm">
           <div class="row">
 
-            <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+            <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
               <div class="fld_desc text-right">
                 Email
               </div>  
@@ -156,7 +156,7 @@
           </div> 
           <div class="row">
 
-            <div class="col-xs-2  col-sm-1 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+            <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
               <div class="fld_desc text-right">
                 Password
               </div>
