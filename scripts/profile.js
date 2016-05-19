@@ -15,8 +15,22 @@ function confirmdelete(){
   if(confirm('Are you sure you want to delete this?')) {
 
 
+    $.ajax({
+      url: "/api/deletedonation/",
+    })
+    .done(function( data ) {
+      if ( console && console.log ) {
+        var objResult = JSON.parse(data);
 
-    console.log('item deleted');
+        if(objResult.result == 'success'){
+          console.log( "success:", objResult.code );
+        } else {
+          console.log( "fail:", objResult.code );
+          console.log( "details:", objResult.details );
+        }
+      }
+    });
+    
   }
 
 

@@ -143,7 +143,7 @@ class api_controller {
 
 	    } elseif($this->strAction == 'deletedonation') {
 			
-			echo $this->objUsers->deleteDonation();
+			echo $this->deleteDonation();
 
 		} else {
 

@@ -20,7 +20,7 @@ class DonationSched extends Database  {
 
 		parent::__construct();
 		$this->strErrorMessage = "";
-		$this->strTableName = "";
+		$this->strTableName = "donation_schedules";
 
 
 
@@ -28,10 +28,22 @@ class DonationSched extends Database  {
 
 
 	public function deleteSched() {
-
-
-		$arrResult = array('result' => "success",'code' => "deleted");
 		
+		$userID = $_SESSION['userID'];
+		$res = $this->delete($userID,$this->strTableName);
+		if($res) {
+
+			$arrResult = array('result' => "success",'code' => "deleted");
+
+		} else {
+
+			$arrResult = array('result' => "error",'code' => "??", "details" => $res);
+		}
+
+		
+		
+
+
 
         return json_encode($arrResult);
 
