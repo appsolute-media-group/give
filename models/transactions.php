@@ -431,7 +431,7 @@ class Transactions extends Database  {
 		      	);
 
 	
-				array_push($transTableVals,'error',$errorMessages->getErrorCode(),$errorMessages->getErrorText());
+				array_push($transTableVals,'error',$errorMessageCode,$errorMessageText);
 		    }
 
 
