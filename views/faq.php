@@ -15,8 +15,8 @@
 
 	    <div class="view-container">
 	      <div class="row info-header-container">
-	        <div class="logo-shop-wrapper text-center">
-	          <img src="/images/CA-Logo-lg.png" alt="" />
+	        <div class="col-xs-12 logo-shop-wrapper text-center">
+	          <img src="/images/CA_Logo_Platform_green_557.png" class="center-block img-responsive" alt="" />
 	        </div>
 	      </div>
 	      <div id="top" class="row">
@@ -44,8 +44,7 @@
 	  </div>
 
 	</div>
-	<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 
 </body>

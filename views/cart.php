@@ -108,8 +108,7 @@
 
 	  </div>
 
-	<script src="/scripts/vendor.js"></script>
-	<script src="/scripts/plugins.js"></script>
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 <script src="/scripts/cart.js"></script>
 </body>

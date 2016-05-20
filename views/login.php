@@ -189,8 +189,8 @@
   </div>     <!-- container-fluid -->
 
 </div>
-<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
+
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/login.js"></script>
 
 </body>

@@ -1,4 +1,29 @@
+<?php
+//  $this->objContact might be null, if there are no contacts setup for this sponsor
+//  set up variables for the email & tel
 
+$email  = '';
+$tel    = '';
+
+if (isset($this->objContact['email'])) {
+	$email  = $this->objContact['email'];
+}
+
+if (isset($this->objContact['tel'])) {
+	$tel    = $this->objContact['tel'];
+}
+
+
+// do a second check to see if no data in contact record, but some in the main sponsor record, in future will always be in the contact record
+if ($email == '' and $this->objSponsor['sponsor_email'] != '') {
+	$email = $this->objSponsor['sponsor_email'];
+}
+
+if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
+	$tel = $this->objSponsor['sponsor_tel'];
+}
+
+?>
 <body class="page needed-now">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -14,18 +39,16 @@
 
 	    </div>
 
-	   
-
 	      <div class="view initial" data-view="1">
 		    <div class="view-container">
 		      <div class="row business-header-container">
 		        <div class="background-wrapper text-center">
-		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" alt="" style="height:150px;" />
+		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" class="center-block img-responsive" alt="" style="height:150px;width:auto;" />
 		        </div>
 		      </div>
 		      <div class="row business-title-container">
-		        <div class="col-xs-12 text-left">
-		          <h3 class="business-name"><?php echo $this->objSponsor['sponsor_name'];?></h3>
+		        <div class="col-xs-12 text-center">
+		          <h3 class="business-name"><?php echo $this->objSponsor['sponsor_name'];?>  directory_details</h3>
 		          <h5 class="business-category"><?php echo $this->objSponsor['sponsor_slogan'];?></h5>
 		        </div>
 		      </div>
@@ -39,7 +62,7 @@
 		        </div>
 		      </div>
 		      <div class="row business-links-container">
-		        <div class="col-xs-12 text-left">
+		        <div class="col-xs-12 text-center">
 		          <button type="button" name="business_website" class="btn btn-shop-link" onclick="window.location.href='http://<?php echo $this->objSponsor['sponsor_url'];?>';">Website</button>
 		          <button type="button" name="business_offers" class="btn btn-shop-link" onclick="window.location.href='/shop/sponsors/<?php echo $this->objSponsor['id'];?>/';">View Offers</button>
 		        </div>
@@ -68,8 +91,14 @@
 		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '<br/>' . $this->objSponsor['sponsor_postal_code'] : "";
 		                  echo $address . $city . $prov . $postalCode;
 		                  ?></h6>
-		              <div class="map-container" style="width:100%;height:280px;">
-		                <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
+		            </div>
+		          </div>
+		        </div> 
+		      </div>     
+		      <div class="row">
+		        <div class="col-xs-12">
+		          <div class="map-container" style="width:100%;height:280px;">
+		            <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
 						<script>
 
 							function initialize_map() {
@@ -82,55 +111,44 @@
 						          mapTypeId: google.maps.MapTypeId.ROADMAP
 						        };
 						      
-						        fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
+						    fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
 
-						        var title = '<?php echo $this->objSponsor["sponsor_name"];?>';
-		                        var address ='<?php echo $address . $city . $prov . $postalCode;?>';
+						    var title = '<?php echo $this->objSponsor["sponsor_name"];?>';
+		            var address ='<?php echo $address . $city . $prov . $postalCode;?>';
 
+		            var marker = new google.maps.Marker({
+		                 position: center,
+		                 map: fb_map,
+		                 title: title
+		                });
 
+		            var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
 
-		                        var marker = new google.maps.Marker({
-		                          position: center,
-		                          map: fb_map,
-		                          title: title
-		                        });
+		            var infowindow = new google.maps.InfoWindow({
+		                   content: contentString
+		                 });
 
-		                        var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
-
-		                        var infowindow = new google.maps.InfoWindow({
-		                          content: contentString
-		                        });
-
-		                        marker.addListener('click', function() {
-		                          infowindow.open(fb_map, marker);
-		                        });
-
-
+		            marker.addListener('click', function() {
+		                infowindow.open(fb_map, marker);
+		            });
 
 							}
 
 						</script>
 						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-EPcLFXAWERH5h1zqw4grjXCPWtD1-FM&callback=initialize_map" type="text/javascript"></script>
-		              </div>
+		          </div>  <!--  map-container  -->
 
-		              <?php //Util::dump($this->objSponsor); ?>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
-
-
-
-
-
+		          <?php //Util::dump($this->objSponsor); ?>
+		        </div>    <!--  col-xs-12  -->
+		      </div>      <!--  row  -->
+		    </div>        <!-- view-container -->
+		  </div>          <!-- data view 1 -->
 
 		  <div class="view" data-view="2">
 		    <div class="view-container">
 		      <div class="row business-logo-container">
 		        <div class="logo-shop-wrapper text-center">
-		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" alt="" style="height:150px;" />
+		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" class="center-block img-responsive" alt="" style="height:150px;width:auto;" />
 		        </div>
 		      </div>
 		      <div class="row">
@@ -158,19 +176,19 @@
 		        </div>
 		      </div>
 		      <div class="contact-options-container">
-		      	<?php if($this->objContact['email'] != '') {?>
+		      	<?php if($email != '') {?>
 		        <div class="row">
 		          <div class="col-xs-12 contact-option-container">
 		            <div class="col-xs-2 text-center">
 		              <i class="fa fa-envelope fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="mailto:<?php echo $this->objContact['email'];?>"><h4><?php echo $this->objContact['email'];?></h4></a>
+		              <a href="mailto:<?php echo $email;?>"><h4><?php echo $email;?></h4></a>
 		            </div>
 		          </div>
 		        </div>
 		        <?php } 
-				if($this->objContact['tel'] != '') {
+				if($tel != '') {
 		        ?>
 		        <div class="row">
 		          <div class="col-xs-12 contact-option-container">
@@ -178,7 +196,7 @@
 		              <i class="fa fa-phone fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="tel:250555555"><h4><?php echo $this->objContact['tel'];?></h4></a>
+		              <a href="tel:<?php echo $tel;?>"><h4><?php echo $tel;?></h4></a>
 		            </div>
 		          </div>
 		        </div>
@@ -208,7 +226,7 @@
 		            </div>
 		          </div>
 		        </div>
-		      </div>
+		      </div>   <!-- row -->
 		    </div>
 		  </div>
 
@@ -218,9 +236,7 @@
 
 </div>
 
-<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
-
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 
 </body>

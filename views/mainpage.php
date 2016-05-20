@@ -5,8 +5,6 @@
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-
-
 <div class="main-wrapper">
   <div class="container-fluid">
     <div class="row header">
@@ -16,13 +14,19 @@
     </div>
     <div class="view-container">
       <div class="row">
-        <div class="col-md-6 item">
+        <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
           <div class="item-inner">
             <div class="item-header">
               <div class="text-center">
-                <h1>Account Overview - mainpage</h1>
+                <h1>Account Overview</h1>
               </div>
             </div>
+          </div>
+        </div>
+      </div>      
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3  col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 item">
+          <div class="item-inner">
             <div class="item-detail text-center">
               <div class="item-detail-contents">
                 <div class="row hero">
@@ -79,9 +83,7 @@
 </div>       <!-- main-wrapper -->
 
 
-
-<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 
 </body>

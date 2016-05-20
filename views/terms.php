@@ -4,9 +4,7 @@
 	<![endif]-->
 
 	<div class="main-wrapper">
-
 	  <div class="container-fluid">
-	    
 	    <div class="row header">
 	      
 	      <?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
@@ -15,8 +13,8 @@
 
 	    <div class="view-container">
 	      <div class="row info-header-container">
-	        <div class="logo-shop-wrapper text-center">
-	          <img src="/images/CA-Logo-lg.png" alt="" />
+	        <div class="col-xs-12  logo-shop-wrapper text-center">
+	          <img src="/images/CA_Logo_Platform_green_557.png" class="center-block img-responsive" alt="" />
 	        </div>
 	      </div>
 	      <div id="top" class="row">
@@ -40,12 +38,9 @@
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
 	    </div>
-
 	  </div>
-
 	</div>
-	<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 
 </body>

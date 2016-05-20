@@ -37,7 +37,7 @@ if(count($this->arrSponsors) > 0) {
               <div class="col-xs-4">
                 <div class="business-logo-container">
                   <div class="business-logo-wrapper text-center">
-                    <img src="<?php echo $s['sponsor_img']; ?>" alt="" style="height:80px;" />
+                    <img src="<?php echo $s['sponsor_img']; ?>" class="center-block img-responsive" alt="" style="height:80px; width:auto;" />
                   </div>
                 </div>
               </div>
@@ -78,10 +78,7 @@ if(count($this->arrSponsors) > 0) {
   </div>
 </div>
 
-
-
-<script src="/scripts/vendor.js"></script>
-<script src="/scripts/plugins.js"></script>
+<script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 <script src="/scripts/directory.js"></script>
 
