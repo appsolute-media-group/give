@@ -25,7 +25,7 @@
         </div>
       </div>      
       <div class="row">
-        <div class="col-xs-6 col-xs-offset-3  col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 item">
+        <div class="col-xs-10 col-xs-offset-1  col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 item">
           <div class="item-inner">
             <div class="item-detail text-center">
               <div class="item-detail-contents">
