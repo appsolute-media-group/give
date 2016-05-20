@@ -11,34 +11,28 @@
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="/styles/vendor.css">
-
-  <link rel="stylesheet" href="/styles/main.css">
-
-  <script src="/scripts/vendor/modernizr.js"></script>
-
   
 
-  <!-- add stuff -->
+  <!-- css files -->
   <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+  <link rel="stylesheet" href="/styles/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/jquery-ui.1.11.4.css">
+  <link rel="stylesheet" href="/styles/smoothness/jquery-ui.theme.1.11.4.css">
+  <link rel="stylesheet" href="/styles/normalize.css">
+  <link rel="stylesheet" href="/styles/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  
+  <!-- javascript libraries -->
+  <script src="/scripts/vendor/modernizr.js"></script>
+  <script src="/scripts/jquery-1.12.2.js"></script>
+  <script src="/scripts/jquery-ui.1.11.4.js"></script>
   <script src='/scripts/dragdivscroll.js'></script>
   <script src='/scripts/rotator.js'></script>
   
 </head>
 
-
-
 <?php include_once('system/core.php'); ?>
-
-
-
 
 
 </html>
