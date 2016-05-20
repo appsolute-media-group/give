@@ -7,10 +7,9 @@
     <div class="row header">
     	<?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
     </div>
-    <div class="view initial" data-view="1">
-      <div class="view-container">
+    <div class="view-container">
         <div class="row">
-          <div class="col-md-6 item">
+          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
@@ -31,14 +30,13 @@
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>    
 
 <?php   
 
 if(count($this->arrCats) > 0) {?>
 
-    <div class="row products-container">
+        <div class="row products-container">
 
 <?php foreach($this->arrCats As $c) { ?>
 
@@ -68,30 +66,23 @@ if(count($this->arrCats) > 0) {?>
 
 <?php } ?>
 
-    </div>
+        </div>  <!-- products-container -->
 
 <?php } else { ?>
 
-  <div class="row text-center">
-    <br clear="all" />
-    <div style="height:150px">
-        <p>Sorry, no categories for this sponsor.</p>
-    </div>
-  </div>
-
-<?php 
-}
-
-?>
-
-
+        <div class="row text-center">
+          <br clear="all" />
+          <div style="height:150px">
+             <p>Sorry, no categories for this sponsor.</p>
+          </div>
         </div>
-      </div>
-    </div>
+
+<?php } ?>
 
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
-  </div>
-</div>
+    </div>  <!-- view-container  -->
+  </div>      <!-- container-fluid  -->
+</div>        <!-- main-wrapper  -->
 
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
