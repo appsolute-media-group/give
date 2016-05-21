@@ -13,9 +13,9 @@ class faq_controller {
 
 		if($this->strMethod == ''){ //main view
 
-			$this->objFaq = new InfoPages;
-			$this->pageName = "faq";
-			$objFaq = $this->objFaq->getInfoPageData($this->pageName);
+			$this->objFaq = new Faq;
+
+			$objFaq = $this->objFaq->getFaqQuestions();
 
 			include_once(ROOT_DIR.'/views/faq.php'); 
 

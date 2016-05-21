@@ -29,20 +29,26 @@
 	          <div class="col-xs-12 info-wrapper">
 	            <div class="info-inner">
 
-              			<?=$objFaq['text'];?>
-              	</div>
-              </div>	
+<?php if (count($objFaq) > 0) { 
+        foreach ($objFaq As $info) { 
+          echo "<strong>".$info['question']."</strong><br><br>"; 
+          echo $info['answer']."<br><br>";
+        }
+      } else { ?>
+       
+                <div style="height:150px">
+                  <p>Sorry, no FAQs to display.</p>
+                </div>
+<?php }  ?>
+              </div>
+            </div>	
 	        </div>
 	      </div>
-
 	    </div>
 
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
-	    </div>
-
 	  </div>
-
 	</div>
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>

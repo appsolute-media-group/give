@@ -11,11 +11,10 @@
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
-  
 
   <!-- css files -->
   <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/styles/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/font-awesome-4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="/styles/jquery-ui.1.11.4.css">
   <link rel="stylesheet" href="/styles/smoothness/jquery-ui.theme.1.11.4.css">
   <link rel="stylesheet" href="/styles/normalize.css">

@@ -29,43 +29,32 @@
               <h6 class="product-value text-center" style="color:red;" id="error_message"></h6>
               <div id="redeem_placeholder" class="text-center">
                 <?php if($this->objDeal['barcode_image'] != '') {?>
-                  <img src="<?php echo $this->objDeal['barcode_image'];?>" alt="" onclick="redeem(<?php echo $this->objDeal['id'];?>)" />
+                  <img src="<?php echo $this->objDeal['barcode_image'];?>" alt="" class="center-block img-responsive" onclick="redeem(<?php echo $this->objDeal['id'];?>)" />
                 <?php } else {?>
                   <div class="col-xs-12 button-container text-center">
                     <div class="button-inner">
                         <button type="button" name="cancel" class="btn btn-cancel" onclick="redeem(<?php echo $this->objDeal['id'];?>)">Redeem</button>
                     </div>
-                  </div>
+                  </div> 
                 <?php } ?>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
-
-        <div class="row redeem-info-container">
-          <div class="col-xs-12 text-left">
-            
-            <p class="business-description">
-              <!--
-
-              This small town feel, big service establishment is proud to offer coffee and baked goods made from all local food and roasting sources. We are located downtown and offer a spacious inside and outside sitting-in experience.
-
-              Some of our most popular items include our Dark Chocolate Mocha complete with chocolate whip cream, our luxurious chai latte and of course, our signature Calli Cappuccino.
-
-              Our menu is an array of breakfast, tea treats, lunch and dinner dishes. We pride ourselves on having personal and working relationships with local farmers, both produce and animal products. These loyal relationships mean the best ingredients and, furthermore, the best flavour to enjoy.
-            
- -->
-            </p>
-           
-          </div>
-        </div>
-
-
       </div>
 
-      <?php //Util::dump($this->objDeal);?>
+      <div class="row redeem-info-container">
+        <div class="col-xs-12 text-left">
+            
+          <p class="business-description">
 
-    </div> 
+          </p>
+           
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>
 

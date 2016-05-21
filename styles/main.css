@@ -8503,7 +8503,7 @@ input {
 
 .page.shop .input-container .input-inner,
 .page.shop .directory-input-container .input-inner {
-  margin: 10% 0 5%;
+  margin: 5% 0 5%;
 }
 
 .page.shop .input-container .input-inner input,
@@ -8641,7 +8641,7 @@ input {
   position: relative;
   width: 50%;
   display: inline-block;
-  min-height: 100px;
+  min-height: 150px;
   font-size: 16px;
   overflow: hidden;
 }

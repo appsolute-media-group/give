@@ -13,7 +13,7 @@
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>shop appetite</h1>
+                  <h1>shop appetite  cats</h1>
                 </div>
               </div>
             </div>
@@ -44,13 +44,13 @@
 
 if(count($this->arrDeals) > 0) {?>
 
-        <div class="row products-container">
+        <div class="row products-container col-xs-12 text-center">
 
 <?php foreach($this->arrDeals As $d) { ?>
 
-          <div class="product-wrapper" onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
-            <div class="background-wrapper">
-              <img src="<?php echo $d['deal_image']; ?>" alt="" />
+          <div class="product-wrapper " onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
+            <div class="background-wrapper col-xs-12 text-center">
+              <img src="<?php echo $d['deal_image']; ?>" class="center-block img-responsive" alt="" style="height:150px; width:auto;" />
             </div>
             <div class="product-top">
               <div class="col-xs-12 points-hex-container">
