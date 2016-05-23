@@ -5,7 +5,6 @@
 	<![endif]-->
 
 	<div class="main-wrapper">
-
 	  <div class="container-fluid">
 	    
 	    <div class="row header">
@@ -15,8 +14,6 @@
 	    </div>
 
 	    <div class="">
-
-
 		      <div class="row">
 		        <div class="col-xs-12 give-header-container text-center">
 		          <i class="fa fa-child fa-3x"></i>
@@ -36,18 +33,16 @@
 		      <div class="button-container">
 		        <div class="row">
 		          <div class="col-xs-12 text-center">
-		            <button type="button" name="return" class="btn btn-give" onclick="window.location.href='/donate/';">return</button>
+		            <button type="button" name="return" class="btn btn-give" onclick="window.location.href='/main/';">return</button>
 		          </div>
 		        </div>
 		      </div>
-
+		  </div>  
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
-		</div>  
-
-	  </div>
-
-	</div>
+	  </div>     <!-- container-fluid -->
+	</div>       <!-- main-wrapper -->
+	
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 

@@ -30,7 +30,9 @@
           <div class="col-xs-12 text-left">
             <div class="message-inner">
               <h4 class="message-title"><?php echo $this->arrMessages['message_title']; ?></h4>
+              <!--
               <h6 class="message-date"><?php echo $this->arrMessages['last_mod']; ?></h6>
+              -->
               <p class="message-text"><?php echo str_replace("\n","<br />",$this->arrMessages['message_content']); ?></p>
 
             </div>

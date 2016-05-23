@@ -13,7 +13,7 @@
       <div class="view-container">
         <div class="row redeem-header-container">
           <div class="logo-shop-wrapper text-center">
-            <img src="/images/shop-logo-white.png" alt="" />
+            <img src="/images/shop-logo-white.png" class="center-block img-responsive" alt="" />
           </div>
         </div>
         <div class="row redeem-slip-container">

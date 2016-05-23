@@ -55,19 +55,19 @@
                 <div class="row basic-navigation">
                   <div class="col-xs-4 needed-now text-center">
                     <a href="/cart/">
-                      <img src="/images/cart-hex.png" />
+                      <img src="/images/cart-hex.png" class="center-block img-responsive"  />
                       <h4>Needed Now</h4>
                     </a>
                   </div>
                   <div class="col-xs-4 shop-appetite text-center">
                     <a href="/shop/">
-                      <img src="/images/comb-hex.png" />
+                      <img src="/images/comb-hex.png" class="center-block img-responsive" />
                       <h4>Shop Appetite</h4>
                     </a>
                   </div>
                   <div class="col-xs-4 messages text-center">
                     <a href="/messages/">
-                      <img src="/images/mail-hex.png" />
+                      <img src="/images/mail-hex.png" class="center-block img-responsive" />
                       <h4>Messages</h4>
                     </a>
                   </div>

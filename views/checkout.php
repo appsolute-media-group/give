@@ -5,9 +5,7 @@
 	<![endif]-->
 
 	<div class="main-wrapper">
-
 	  <div class="container-fluid">
-	    
 	    <div class="row header">
 	      
 	      <?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
@@ -18,60 +16,60 @@
 	      <div class="view-container">
 	        <div class="receipt-container">
 	          <div class="receipt-wrapper">
-	              <div class="row receipt-header">
-	                <div class="col-xs-8 text-left">
-	                  <h2>YOUR CART</h2>
-	                </div>
-	                <div class="col-xs-4 text-center">
-	                  <i class="fa fa-shopping-cart fa-4x"></i>
-	                </div>
+	            <div class="row receipt-header">
+	              <div class="col-xs-8 text-left">
+	                <h2>YOUR CART</h2>
 	              </div>
-	              <div class="cart-list-wrapper">
-					<?php 
+	              <div class="col-xs-4 text-center">
+	                <i class="fa fa-shopping-cart fa-4x"></i>
+	              </div>
+	            </div>
+	            <div class="cart-list-wrapper">
+<?php 
 					$idx = 0;
 					$total = 0;
 					foreach($_SESSION['arrProducts'] As $p) { 
 
 						$new_price = number_format($_SESSION['arrQtys'][$idx] * $p['product_price'],2);
 						$total += $new_price;
-						?>
+?>
 
-	                <div class="row item-row">
-	                  <div class="col-xs-7">
-	                    <p><?php echo $p['product_name'];?></p>
-	                  </div>
-	                  <div class="col-xs-3 quantity-wrapper">
-	                    <p>x<?php echo $_SESSION['arrQtys'][$idx];?> @<?php echo $p['product_price'];?></p>
-	                  </div>
-	                  <div class="col-xs-2 cost-wrapper">
-	                    <p>$<?php echo $new_price;?></p>
-	                  </div>
+	              <div class="row item-row">
+	                <div class="col-xs-6">
+	                  <p><?php echo $p['product_name'];?></p>
 	                </div>
+	                <div class="col-xs-4 quantity-wrapper">
+	                  <p>x<?php echo $_SESSION['arrQtys'][$idx];?> @<?php echo $p['product_price'];?></p>
+	                </div>
+	                <div class="col-xs-2 cost-wrapper">
+	                  <p>$<?php echo $new_price;?></p>
+	                </div>
+	              </div>
 
 					<?php 
 						$idx++;
 					}  ?>	                
 
+	            </div>
+	            <div class="row receipt-total-container">
+	              <div class="col-xs-8 text-center">
+	                <h4>
+	                  YOUR TOTAL:
+	                </h4>
 	              </div>
-	              <div class="row receipt-total-container">
-	                <div class="col-xs-8 text-center">
-	                  <h4>
-	                    YOUR TOTAL:
-	                  </h4>
-	                </div>
-	                <div class="col-xs-4 text-center">
-	                  <h4>
-	                    $<?php echo number_format($total,2);?>
-	                  </h4>
-	                </div>
+	              <div class="col-xs-4 text-center">
+	                <h4>
+	                  $<?php echo number_format($total,2);?>
+	                </h4>
 	              </div>
-	              <div class="row receipt-tagline-container">
-	                <div class="col-xs-12 text-center receipt-tagline">
-	                  <p>
+	            </div>
+	            <div class="row receipt-tagline-container">
+	              <div class="col-xs-12 text-center receipt-tagline">
+	                <p>
 	                    Your donation puts the buying power in the hands of the Food Bank who can take the funds and purchase more for their dollar. Thank you for feeding your community!
-	                  </p>
-	                </div>
+	                </p>
 	              </div>
+	            </div>
 	          </div>
 	        </div>
 	        <div class="bottom-container">
@@ -82,8 +80,9 @@
 	          </div>
 	        </div>
 	      </div>
-	    </div>
-		<div class="view" data-view="2">
+	    </div>     <!-- data-view="1" -->
+		  
+		  <div class="view" data-view="2">
 	      <div class="view-container">
 	        <div class="card-container">
 	          <div class="row">
@@ -94,66 +93,65 @@
 	          <div class="row">
 	            <div class="col-xs-12 input-container text-center">
 	              <div class="input-inner">
+	                <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="cc_error" >
+      					    <p><?php echo $this->strErrorMessage; ?></p>
+					        </div>
+                  <p>You are making a purchase in the amount of $<?php echo number_format($total,2); ?></p>
 
-	              	<div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="cc_error" >
-      					<p><?php echo $this->strErrorMessage; ?></p>
-					</div>
-							
-
-					<p>You are making a purchase in the amount of $<?php echo number_format($total,2); ?></p>
-
-
-	              	<form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />
-	
-		                	<input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
-							<input type="hidden" name="doPost" value="true" />
-		                <?php if($_SESSION['APIprofileID'] == '') {?>
-			                
-			                <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
-							<input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
-							<input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
-							<input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br /><br />
-							<text>Province</text>
-							<select name="province" id="province" >
-							<option>BC</option>
-							<option>ON</option>
-							</select><br /><br />
-							<text>Country</text>
-							<select name="country" id="country" >
-							<option value="CA">Canada</option>
-							<option value="US">United States</option>
-							</select><br /><br />
-							<input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
-							<input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo $this->strCCnum;?>"></input>
-							<input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
-							<text>Exp. Month</text>
-							<select name="expMonth" id="expMonth">
-							<?php 
+	                <form action="/cart/checkout/?doPost=true" method="post" id="cc_form" />
+		                <input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
+							      <input type="hidden" name="doPost" value="true" />
+<?php if($_SESSION['APIprofileID'] == '') { ?>
+			              <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
+							      <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
+							      <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
+							      <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br /><br />
+							      <div class=" text-left">
+									    <span>Province&nbsp;&nbsp;
+									      <select name="province" id="province" >
+									        <option>BC</option>
+									        <option>ON</option>
+									      </select></span><br />
+									  </div>
+									  <div class=" text-left">
+									    <span class="text-left">Country&nbsp;&nbsp;
+									     <select name="country" id="country" >
+									      <option value="CA">Canada</option>
+									      <option value="US">United States</option>
+									     </select></span><br />
+									  </div>   
+							      <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
+							      <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo $this->strCCnum;?>"></input>
+							      <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
+							      <text>Exp. Month</text>
+							      <select name="expMonth" id="expMonth">
+<?php 
 							for($mo=1; $mo<=12; $mo++) {
 							  echo '<option value="' .$mo. '"';
 							  echo '>' .$mo. '</option>';
 							}
-							?>
-							</select>
-							<text>Exp. Year</text>
-							<select name="expYear" id="expYear">
-							<?php 
-							for($year=2016; $year<=2025; $year++) {
+?>
+							      </select>
+							      <text>Exp. Year</text>
+							      <select name="expYear" id="expYear">
+<?php 
+							$str_yr = date('Y');
+              $end_yr = $str_yr + 10;
+              for($year = $str_yr; $year <= $end_yr; $year++) {
 							  echo '<option value="' .$year. '"';
 							  echo '>' . $year. '</option>';
 							}
-							?>
-							</select>
-							
+?>
+							      </select><br /><br />
 
-						<?php } else { ?>
+<?php } else { ?>
 
-							Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)
-							<input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
-							
-						<?php } ?>
+							      Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br /><br />
+							      <input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 
-					</form>
+<?php } ?>
+
+					        </form>
 	              </div>
 	            </div>
 	          </div>
@@ -171,18 +169,15 @@
 	              </div>
 	            </div>
 	          </div>
-	        </div>
+	        </div>  <!-- card-container -->
 	      </div>
-	  	</div>
+	  	</div>      <!-- data-view="2" -->
 
 
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
-
-
-		</div>  
-
-	  </div>
+    </div>     <!-- container-fluid -->
+  </div>       <!-- main-wrapper -->
 
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
