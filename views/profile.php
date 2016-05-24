@@ -15,14 +15,11 @@
 
     </div>
 
-
-
-
     <div class="view initial" data-view="1">
       <div class="view-container">
 
         <div class="row">
-          <div class="col-md-6 item">
+          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
@@ -34,7 +31,6 @@
         </div>
 
         <div class="item-inner" style="min-height: 280px;">
-
           <div class="row" onclick="nextView();">
             <div class="col-xs-12 contact-button-container">
               <div class="contact-button-inner">
@@ -74,18 +70,14 @@
               </div>
             </div>
           </div> 
-
         </div>
-
       </div>
-    </div>
-
-
+    </div>   <!-- data-view="1" -->
 
     <div class="view" data-view="2">
       <div class="view-container">
         <div class="row">
-          <div class="col-md-6 item">
+          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
@@ -96,8 +88,6 @@
           </div>  
         </div>  
 
-
-
         <div class="row">
           <div class="col-xs-12 input-container ">
             <div class="input-inner">
@@ -107,7 +97,6 @@
               <div style="color:green;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="profile_success" >
                 <p><?php echo $this->strSuccessMessage; ?></p>
               </div>
-
 
               <form action="/profile/?doPost=true" method="post" id="profile_form" />
   
@@ -121,17 +110,21 @@
                 <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
                 <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
                 <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input>
-                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br /><br />
-                <text>Province</text>
-                <select name="province" id="province" >
-                <option <?php echo Util::isSelected($this->strProvince,"BC"); ?>>BC</option>
-                <option <?php echo Util::isSelected($this->strProvince,"ON"); ?>>ON</option>
-                </select><br /><br />
-                <text>Country</text>
-                <select name="country" id="country" >
-                <option value="CA" <?php echo Util::isSelected($this->strCountry,"CA"); ?>>Canada</option>
-                <option value="US" <?php echo Util::isSelected($this->strCountry,"US"); ?>>United States</option>
-                </select><br /><br />
+                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br />
+                <div class=" text-left">
+                  <span>Province&nbsp;&nbsp;
+                    <select name="province" id="province" >
+                      <option>BC</option>
+                      <option>ON</option>
+                    </select></span><br />
+                </div>
+                <div class=" text-left">
+                  <span class="text-left">Country&nbsp;&nbsp;
+                    <select name="country" id="country" >
+                      <option value="CA">Canada</option>
+                      <option value="US">United States</option>
+                    </select></span><br />
+                </div><br />
 
               </form>
             </div>
@@ -152,16 +145,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>   <!-- data-view="2" -->
   
-
-
-
-
     <div class="view" data-view="3">
       <div class="view-container">
         <div class="row">
-          <div class="col-md-6 item">
+          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
@@ -175,13 +164,8 @@
           <div class="col-xs-12 input-container ">
             <div class="input-inner" style="min-height:180px;padding-top:30px;">
 
-
-
-
 <?php if(count($this->objDonationHistory)> 0) { ?>
                
-
-
 
               <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="donation_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
@@ -243,12 +227,12 @@
           </div>
         </div>
       </div>
-    </div>
-</div>
+    </div>   <!-- data-view="3" -->
+
     <div class="view" data-view="5" >
       <div class="view-container">
         <div class="row">
-          <div class="col-md-6 item">
+          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
@@ -295,8 +279,6 @@
 
 } ?>
 
-
-
               </div>
               <div class="row">
                 <div class="col-xs-12 button-container text-center">
@@ -310,16 +292,12 @@
         </div>
 
       </div>
-    </div>
-
-
-
+    </div>   <!-- data-view="5" -->
 
     <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
-  </div>
-
-</div>
+  </div>     <!-- container-fluid -->
+</div>       <!-- main-wrapper -->
 
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
