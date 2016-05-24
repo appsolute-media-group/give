@@ -24,8 +24,11 @@
           <h5>take care of your community</h5>
         </div>
       </div>
+      <div style="font-weight:bold;font-family:'Gill-Sans';" class="text-center">
+        <a href="/profile/?doDonationPost=true">Update / Cancel Donataion Schedule</a>
+      </div>
       <div style="color:red;font-weight:bold;font-family:'Gill-Sans';" class="text-center" id="cc_error" >
-                  <p><?php echo $this->strErrorMessage; ?></p>
+        <p><?php echo $this->strErrorMessage; ?></p>
       </div>
       <div class="amount-box">
         <div class="row">
