@@ -138,6 +138,28 @@ class Util {
       return $select_txt;
     }   
 
+    /**
+     * make sure that empty sql dates are set to ""
+     *
+     */
+    public static function clear_empty_date($this_date) {
+      if ($this_date == "0000-00-00") {
+        $this_date = "";
+      }
+      return $this_date;
+    }
+
+    /**
+     * make sure that empty sql dates are set to ""
+     *
+     */
+    public static function clear_empty_datetime($this_date) {
+      if ($this_date == "0000-00-00 00:00:00") {
+        $this_date = "";
+      }
+      return $this_date;
+    }
+
 }
 
 ?>
