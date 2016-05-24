@@ -173,7 +173,16 @@
         </div> 
         <div class="row">
           <div class="col-xs-12 input-container ">
-            <div class="input-inner">
+            <div class="input-inner" style="min-height:180px;padding-top:30px;">
+
+
+
+
+<?php if(count($this->objDonationHistory)> 0) { ?>
+               
+
+
+
               <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="donation_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
               </div>
@@ -209,7 +218,12 @@
                 </div>
 
               </form>
+              
+<?php } else {
 
+      echo "<div class='text-center'><p>You have not made any donations.</p><p><a href='/donate/'>Donate Now >></a></p></div>";
+
+} ?>
       
             </div>
           </div>
@@ -247,11 +261,40 @@
         <div class="row">
           <div class="col-xs-12 input-container ">
             <div class="input-inner">
-              <div class="row" style="border:1px solid red;min-height:180px;">
+              <div class="row" style="min-height:180px;padding-top:30px;">
 
 
+<?php if(count($this->objDonationHistory)> 0) { ?>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Result</th>
+                    </tr>
+                  <?php 
 
-                <?php Util::dump($this->objDonationHistory); ?>
+                  foreach($this->objDonationHistory As $item){ ?>
+
+                    <tr>
+                      <td><?php echo $item['trans_date']; ?></td>
+                      <td>$<?php echo $item['trans_amount']; ?></td>
+                      <td><?php echo $item['trans_details']; ?></td>
+                    </tr>
+
+
+                  <?php } 
+
+
+                  //Util::dump($this->objDonationHistory); ?>
+                  </table>
+                </div>
+<?php } else {
+
+      echo "<div class='text-center'><p>You have not made any donations.</p><p><a href='/donate/'>Donate Now >></a></p></div>";
+
+} ?>
+
 
 
               </div>
