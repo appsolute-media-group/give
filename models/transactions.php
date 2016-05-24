@@ -420,8 +420,8 @@ class Transactions extends Database  {
 		
         		}
 
-				echo "Error Code : " . $errorMessageCode . "<br />";
-				echo "Error Text : " . $errorMessageText . "<br />";
+				//echo "Error Code : " . $errorMessageCode . "<br />";
+				//echo "Error Text : " . $errorMessageText . "<br />";
 
         		$this->arrResult = array(
 		      	"result" => "error", 

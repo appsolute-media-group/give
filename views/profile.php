@@ -33,7 +33,7 @@
           </div>  
         </div>
 
-
+<div class="item-inner" style="border:1px solid red;min-height: 280px;">
 
         <div class="row" onclick="nextView();">
           <div class="col-xs-12 contact-button-container">
@@ -63,6 +63,10 @@
         </div>
         
       </div>
+</div>
+
+
+
 
     </div>
 
@@ -215,13 +219,7 @@
 
 
 
-    <div class="row ad-footer2">
-      <div class="ad-container">
-        <div class="col-xs-12 ad-contents text-center">
-          <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
-        </div>
-      </div>
-    </div>
+    <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
   </div>
 
