@@ -32,15 +32,45 @@ class Messages extends Database  {
 
 		$sublocality_id = $_SESSION['sublocality_id'];
 
-		$this->strQuery = "SELECT id, message_title, message_content, last_mod
-			FROM $this->strTableName  
-			WHERE sublocality_id='$sublocality_id' 
-			AND blnActive = 1  AND blnApproved=1";
+		$this->strQuery = "SELECT id, message_title, message_content, last_mod, start_date, end_date
+			                 FROM $this->strTableName  
+			                 WHERE sublocality_id='$sublocality_id' AND 
+			                       blnActive = 1 AND 
+			                       blnApproved = 1";
 
 		$details = $this->getMysqliResults( $this->strQuery, true );
 		
-		return $details;
-
+    // step thru the array, checking the start and end dates
+    if (count($details) > 0) {
+    	$today_str = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+    	$date_details = array();
+    	for ($i=0; $i < count($details); $i++) {
+        $is_ok        = true;
+        $id           = $details[$i]['id'];    
+        $msg_title    = trim(stripslashes($details[$i]['message_title']));  
+        $msg_content  = trim(stripslashes($details[$i]['message_content'])); 
+        $last_mod     = $details[$i]['last_mod'];    
+        $start_date   = $details[$i]['start_date'];
+        $end_date     = $details[$i]['end_date'];
+        // check for null dates ('0000-00-00') and reset to ""
+        $start_date     = Util::clear_empty_date($start_date);
+        $end_date       = Util::clear_empty_date($end_date);
+         // check for start and end dates
+        if ($start_date > '' and $end_date > '') {
+          $is_ok = ($today_str >= $start_date and $today_str <= $end_date);
+        }
+        if ($is_ok) {
+          $date_details[$i]['id']              = $id;    
+          $date_details[$i]['message_title']   = $msg_title;    
+          $date_details[$i]['message_content'] = $msg_content;  
+          $date_details[$i]['last_mod']        = $last_mod;    
+          $date_details[$i]['start_date']      = $start_date;
+          $date_details[$i]['end_date']        = $end_date;
+        }
+      }
+      $details = $date_details;
+    }
+    return $details;
 	}
 
 	function getMessageById($id) {

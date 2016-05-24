@@ -27,7 +27,17 @@
 
 if(count($this->arrMessages) > 0) {
   
-  foreach($this->arrMessages As $m) { ?>
+  foreach($this->arrMessages As $m) { 
+       $msg_content = $m['message_content'];
+       if (strlen($msg_content) >= 80) {
+         $msg_content = substr($msg_content, 0, 77). " ... ";
+       }
+       $msg_expires = 'Message Expires: never';
+       if ($m['end_date'] > '') {
+         $msg_expires = 'Message Expires on '.$m['end_date'];
+       }
+
+        ?>
         <div class="row" onclick="window.location.href='/messages/<?php echo $m['id']; ?>/';">
           <div class="col-xs-12 message-item-container">
             <div class="message-item-inner">
@@ -40,7 +50,8 @@ if(count($this->arrMessages) > 0) {
               </div>
               <div class="col-xs-10 text-left message-info">
                 <h4 class="message-title"><?php echo $m['message_title']; ?></h4>
-                <p class="message-text"><?php echo substr($m['message_content'],0,35). ' ...'; ?></p>
+                <p class="message-text"><?php echo $msg_content; ?></p><br>
+                <p class="message-text"><?php echo $msg_expires; ?></p>
               </div>
             </div>
           </div>
