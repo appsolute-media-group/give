@@ -81,9 +81,9 @@ class Transactions extends Database  {
 		}
 		else
 		{
-		  echo "ERROR :  Validate Customer Payment Profile: Invalid response\n";
+		  // echo "ERROR :  Validate Customer Payment Profile: Invalid response\n";
 		  $errorMessages = $response->getMessages()->getMessage();
-		  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
+		  //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
 
 		  $this->arrResult = array(
 			"result" => "error", 
@@ -239,8 +239,8 @@ class Transactions extends Database  {
 		
         		}
 
-				echo "Error Code : " . $errorMessageCode . "<br />";
-				echo "Error Text : " . $errorMessageText . "<br />";
+				//echo "Error Code : " . $errorMessageCode . "<br />";
+				//echo "Error Text : " . $errorMessageText . "<br />";
 
         		$this->arrResult = array(
 		      	"result" => "error", 
@@ -257,10 +257,27 @@ class Transactions extends Database  {
 		}
 
 
-		
+		//need to pull the last transaction that had a ccnum in it to use again for this record.
+
+		$this->strQuery = "SELECT ccnum,ccexpire FROM 
+			$this->strTableName 
+		WHERE userID=".$_SESSION['userID']. " 
+		ORDER BY trans_date DESC LIMIT 0,1";
+
+		if($this->short_query( $this->strQuery )){
+			$r = $this->getMysqliResults( $this->strQuery, true );
+			if (!empty($r)) {
+				$res = $r[0];
+				array_push($transTableVals,$res['ccnum'],$res['ccexpire']);
+			} else {
+				array_push($transTableVals,'null','null');
+			}
+		} else {
+			array_push($transTableVals,'null','null');
+		}
 
 		//record the transaction in the local database
-		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data');
+		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data','ccnum','ccexpire');
 		$r = $this->mysqliinsert($keys,$transTableVals);
 	
 
@@ -439,9 +456,10 @@ class Transactions extends Database  {
 
 
 		//record the transaction in the local database
-		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data');
+		$keys = array('userID','sublocality_id','trans_type','trans_amount','trans_details','trans_code','trans_data','ccnum','ccexpire');
+		
+		array_push($transTableVals,("************".substr($ccnum, -4)),$ccexpire);
 		$r = $this->mysqliinsert($keys,$transTableVals);
-	
 
 	  	return $this->arrResult;
 
