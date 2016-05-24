@@ -45,6 +45,26 @@ class DonationSched extends Database  {
 
 	}
 
+	public function getHistoryByUser() {
+
+		$this->strQuery = "SELECT * FROM app_transactions WHERE userID=".$_SESSION['userID'];
+
+		if($this->short_query( $this->strQuery )){
+			$r = $this->getMysqliResults( $this->strQuery, true );
+			//if(isset($r[0])){
+				//$r=$r[0];
+			//} else {
+				//$r = false;
+			//}
+			
+		} else {
+
+			$r = false;
+		}
+		return $r;
+
+
+	}
 
 	public function getAllByUser() {
 

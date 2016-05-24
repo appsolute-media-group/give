@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <div class="row" onclick="goToView(4);">
+          <div class="row" onclick="goToView(5);">
             <div class="col-xs-12 contact-button-container">
               <div class="contact-button-inner">
                 <div class="col-xs-10 text-left">
@@ -231,17 +231,41 @@
       </div>
     </div>
 </div>
-    <div class="view" data-view="4">
+    <div class="view" data-view="5" >
       <div class="view-container">
-
-
         <div class="row">
-          <div class="col-xs-12 button-container text-center">
-            <div class="button-inner">
-                <button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Cancel</button>
+          <div class="col-md-6 item">
+            <div class="item-inner">
+              <div class="item-header">
+                <div class="text-center">
+                  <h1>Edit Donation Schedule</h1>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div> 
+        <div class="row">
+          <div class="col-xs-12 input-container ">
+            <div class="input-inner">
+              <div class="row" style="border:1px solid red;min-height:180px;">
+
+
+
+                <?php Util::dump($this->objDonationHistory); ?>
+
+
+              </div>
+              <div class="row">
+                <div class="col-xs-12 button-container text-center">
+                  <div class="button-inner">
+                      <button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Go Back</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 

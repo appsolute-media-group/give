@@ -34,7 +34,12 @@ class profile_controller {
 			$this->objUsers = new Users;
 			$this->objSubs = new SubLocalities;
 			$this->objDS = new DonationSched;
+
+		
 			$this->objDonations = $this->objDS->getAllByUser();
+			$this->objDonationHistory = $this->objDS->getHistoryByUser();
+
+
 
 			$this->objUser = json_decode($this->objUsers->showUserById($_SESSION['userID'])); 
 			
