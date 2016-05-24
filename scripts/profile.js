@@ -4,7 +4,9 @@ $(document).ready(function () {
   if (getQueryVariable('doPost')){
     goToView(2);
   }
-
+  if (getQueryVariable('doDonationPost')){
+    goToView(3);
+  }
 });
 
 
@@ -24,6 +26,7 @@ function confirmdelete(){
 
         if(objResult.result == 'success'){
           console.log( "success:", objResult.code );
+          window.location.href='/profile/';
         } else {
           console.log( "fail:", objResult.code );
           console.log( "details:", objResult.details );
@@ -33,7 +36,15 @@ function confirmdelete(){
     
   }
 
+}
 
+
+function submitDonateform(){
+ // if($('#amount').val() == '') {
+    //$('#donation_error').html('Please choose an amount');
+ // } else{
+    $('#donation_form').submit();
+ // }
 
 }
 

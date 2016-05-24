@@ -36,7 +36,7 @@ class Util {
       $result = "";
 
 
-      if((string)$val1 == (string)$val2){
+      if($val1 == $val2){
         $result = "selected='selected'";
       }
 

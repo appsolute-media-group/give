@@ -33,7 +33,7 @@
           </div>  
         </div>
 
-<div class="item-inner" style="border:1px solid red;min-height: 280px;">
+<div class="item-inner" style="min-height: 280px;">
 
         <div class="row" onclick="nextView();">
           <div class="col-xs-12 contact-button-container">
@@ -178,31 +178,33 @@
                 <input type="hidden" name="doDonationPost" value="true" />
                 
                 <text>Donation Amount</text>
-                <select class="fld_select"  name="sublocality" id="sublocality">
-                   <option value="10">10</option> 
-                   <option value="25">25</option>
-                   <option value="50">50</option>
-                   <option value="100">100</option>       
+                <select class="fld_select"  name="amount" id="amount">
+                   <option value="10" <?php echo Util::isSelected($this->objDonations['amount'],'10.00'); ?>>10</option> 
+                   <option value="25" <?php echo Util::isSelected($this->objDonations['amount'],'25.00'); ?>>25</option>
+                   <option value="50" <?php echo Util::isSelected($this->objDonations['amount'],'50.00'); ?>>50</option>
+                   <option value="100" <?php echo Util::isSelected($this->objDonations['amount'],'100.00'); ?>>100</option>       
                 </select><br /><br />
 
                 <text>Frequency</text>
-                <select class="fld_select"  name="sublocality" id="sublocality">
-                   <option value="2">Bi-Weekly</option>
-                   <option value="3">Monthly</option>
-                   <option value="4">Anually</option>       
+                <select class="fld_select"  name="freq" id="freq">
+                   <option value="2" <?php echo Util::isSelected($this->objDonations['freq'],'2'); ?>>Bi-Weekly</option>
+                   <option value="3" <?php echo Util::isSelected($this->objDonations['freq'],'3'); ?>>Monthly</option>
+                   <option value="4" <?php echo Util::isSelected($this->objDonations['freq'],'4'); ?>>Anually</option>       
                 </select><br /><br />
 
                 <p><text>Next Bill Date: 1/1/2018</text></p>
 
                 <p><text onclick="confirmdelete();">Cancel this donation schedule</text></p>
               </form>
+
+      
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">
-                <button type="button" name="save_details" class="btn btn-checkout" onclick="validateForm();">Save Details</button>
+                <button type="button" name="save_details" class="btn btn-checkout" onclick="submitDonateform();">Save Details</button>
             </div>
           </div>
         </div>

@@ -30,9 +30,11 @@ function submitform(){
   } else{
     $('#donate_form').submit();
   }
-	
 
 }
+
+
+
 
 $(document).ready(function () {
 

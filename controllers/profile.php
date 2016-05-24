@@ -7,6 +7,8 @@ class profile_controller {
 	public $intUserId = "";
 	public $objUsers;
 	public $objUser;
+	public $objDS;
+	public $objDonations;
 	public $arrSubs;
 
 	public $intSublocalityId = "";
@@ -31,15 +33,24 @@ class profile_controller {
 
 			$this->objUsers = new Users;
 			$this->objSubs = new SubLocalities;
+			$this->objDS = new DonationSched;
+			$this->objDonations = $this->objDS->getAllByUser();
 
 			$this->objUser = json_decode($this->objUsers->showUserById($_SESSION['userID'])); 
 			
+
+
+
 			$this->arrSubs = $this->objSubs->getSubLocality_dropdown_List(1);
 
 
 			if(isset($_POST['doPost'])){
 
 				$this->handleForm();
+
+			} elseif(isset($_POST['doDonationPost'])){
+
+				$this->handleDonateForm();
 
 			} else {
 
@@ -72,13 +83,22 @@ class profile_controller {
 		$this->strPostal = $this->objUser->tax_pc;
 		$this->intSublocalityId = $this->objUser->sublocality_id;
 
+
+	}
+
+
+	function handleDonateForm() {
+
+		$this->decAmount = isset($_POST['amount']) ? $_POST['amount'] : '';
+		$this->intFreq = isset($_POST['freq']) ? $_POST['freq'] : '';
+
 		
-		
+		$this->objDS->updateDonationSchedule($this->decAmount,$this->intFreq);
+		$this->objDonations = $this->objDS->getAllByUser();
 
 
 
 	}
-
 
 
 	function handleForm() {

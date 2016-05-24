@@ -45,23 +45,39 @@ class DonationSched extends Database  {
 	}
 
 
-	public function updateSched() {
+	public function getAllByUser() {
 
-		
+		$this->strQuery = "SELECT * FROM $this->strTableName WHERE userID=".$_SESSION['userID'];
 
+		if($this->short_query( $this->strQuery )){
+			$r = $this->getMysqliResults( $this->strQuery, true );
+			$r=$r[0];
+		} else {
 
+			$r = false;
+		}
+		return $r;
 
 
 	}
 
 
+	public function updateDonationSchedule($amount,$freq){
+
+
+		$this->sql = "UPDATE $this->strTableName 
+		SET amount=$amount, freq=$freq WHERE userID=".$_SESSION['userID'];
+
+
+		return $this->short_query($this->sql);
+
+
+	}
+
 
 	public function insertDonationSchedule($payID,$amount,$freq){
 
-		//$keys = array('PaymentProfileID', 'userID', 'amount', 'freq');
-		//$vals = array($payID, $_SESSION['userID'], $amount, $freq);
-
-		//$r = $this->mysqliinsert($keys,$vals);
+	
 		$this->sql = "INSERT INTO $this->strTableName 
 		(PaymentProfileID, userID, amount, freq) 
 		VALUES 
@@ -69,7 +85,6 @@ class DonationSched extends Database  {
 		ON DUPLICATE KEY UPDATE amount=$amount,freq=$freq,PaymentProfileID=$payID";
 
 
-		//echo $this->sql;
 
 		return $this->short_query($this->sql);
 
