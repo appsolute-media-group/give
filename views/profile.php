@@ -194,7 +194,10 @@
 
                 <p><text>Next Bill Date: 1/1/2018</text></p>
 
-                <p><text onclick="confirmdelete();">Cancel this donation schedule</text></p>
+                <div class="text-center">
+                  <p><a href="javascript:confirmdelete();">Cancel this donation schedule</a></p>
+                </div>
+
               </form>
 
       

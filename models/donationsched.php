@@ -30,10 +30,11 @@ class DonationSched extends Database  {
 	public function deleteSched() {
 		
 		$userID = $_SESSION['userID'];
-		$res = $this->delete($userID,$this->strTableName);
+		$res = $this->short_query("DELETE from $this->strTableName WHERE userID=".$userID);
+		
 		if($res) {
 
-			$arrResult = array('result' => "success",'code' => "deleted");
+			$arrResult = array('result' => "success",'code' => "deleted", "details" => $res);
 
 		} else {
 

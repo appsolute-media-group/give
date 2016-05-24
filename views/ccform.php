@@ -80,7 +80,9 @@
 								 	  <br /><br />
 
 <?php } else { ?>
-							    	<p>Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)</p><br /><br />
+							    	<p>Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br />
+									<div class="text-center"><a href="javascript:confirmcarddelete();">delete this card</a></div>
+							        </p><br />
 							    	<input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 							    	
 <?php } ?>

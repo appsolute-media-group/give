@@ -26,7 +26,8 @@ function confirmdelete(){
 
         if(objResult.result == 'success'){
           console.log( "success:", objResult.code );
-          window.location.href='/profile/';
+          console.log( "details:", objResult.details );
+          //window.location.href='/profile/';
         } else {
           console.log( "fail:", objResult.code );
           console.log( "details:", objResult.details );

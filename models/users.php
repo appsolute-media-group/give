@@ -34,7 +34,28 @@ class Users extends Database  {
 
 	}
 
+	function deleteCard() {
 
+		$userID = $_SESSION['userID'];
+		$_SESSION['APIprofileID'] = '';
+		
+		$res = $this->short_query("UPDATE $this->strTableName SET APIprofileID=Null WHERE id=".$userID);
+		
+		if($res) {
+
+			$arrResult = array('result' => "success",'code' => "deleted", "details" => $res);
+
+		} else {
+
+			$arrResult = array('result' => "error",'code' => "??", "details" => $res);
+		}
+
+        return json_encode($arrResult);
+
+
+
+
+	}
 
 
 	function updateWebUser($objData) {

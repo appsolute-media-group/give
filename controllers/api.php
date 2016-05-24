@@ -145,6 +145,10 @@ class api_controller {
 			
 			echo $this->deleteDonation();
 
+	    } elseif($this->strAction == 'deletecard') {
+			
+			echo $this->deleteCard();
+
 		} else {
 
 			echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found"));
@@ -153,6 +157,13 @@ class api_controller {
 
 
 
+
+	}
+
+	function deleteCard() {
+
+		$objCurrent = $this->objUsers->deleteCard();
+		return $objCurrent;
 
 	}
 

@@ -43,3 +43,35 @@ function validateForm(){
   }
   
 }
+
+
+function confirmcarddelete(){
+
+
+  if(confirm('Are you sure you want to delete credit card?')) {
+
+
+    $.ajax({
+      url: "/api/deletecard/",
+    })
+    .done(function( data ) {
+      if ( console && console.log ) {
+        var objResult = JSON.parse(data);
+
+        if(objResult.result == 'success'){
+          console.log( "success:", objResult.code );
+          console.log( "details:", objResult.details );
+          location.reload();
+          //window.location.href='/profile/';
+        } else {
+          console.log( "fail:", objResult.code );
+          console.log( "details:", objResult.details );
+        }
+      }
+    });
+    
+  }
+
+}
+
+
