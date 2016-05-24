@@ -20,8 +20,8 @@
 
     <div class="view initial" data-view="1">
       <div class="view-container">
-        <div class="row">
 
+        <div class="row">
           <div class="col-md-6 item">
             <div class="item-inner">
               <div class="item-header">
@@ -33,41 +33,51 @@
           </div>  
         </div>
 
-<div class="item-inner" style="min-height: 280px;">
+        <div class="item-inner" style="min-height: 280px;">
 
-        <div class="row" onclick="nextView();">
-          <div class="col-xs-12 contact-button-container">
-            <div class="contact-button-inner">
-              <div class="col-xs-10 text-left">
-                <h4>Your Details</h4>
-              </div>
-              <div class="col-xs-2 text-right">
-                <i class="fa fa-arrow-right "></i>
+          <div class="row" onclick="nextView();">
+            <div class="col-xs-12 contact-button-container">
+              <div class="contact-button-inner">
+                <div class="col-xs-10 text-left">
+                  <h4>Your Details</h4>
+                </div>
+                <div class="col-xs-2 text-right">
+                  <i class="fa fa-arrow-right "></i>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
 
-        <div class="row" onclick="goToView(3);">
-          <div class="col-xs-12 contact-button-container">
-            <div class="contact-button-inner">
-              <div class="col-xs-10 text-left">
-                <h4>Your Dontation Schedule</h4>
-              </div>
-              <div class="col-xs-2 text-right">
-                <i class="fa fa-arrow-right "></i>
+          <div class="row" onclick="goToView(3);">
+            <div class="col-xs-12 contact-button-container">
+              <div class="contact-button-inner">
+                <div class="col-xs-10 text-left">
+                  <h4>Your Dontation Schedule</h4>
+                </div>
+                <div class="col-xs-2 text-right">
+                  <i class="fa fa-arrow-right "></i>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="row" onclick="goToView(4);">
+            <div class="col-xs-12 contact-button-container">
+              <div class="contact-button-inner">
+                <div class="col-xs-10 text-left">
+                  <h4>Your Dontation History</h4>
+                </div>
+                <div class="col-xs-2 text-right">
+                  <i class="fa fa-arrow-right "></i>
+                </div>
+              </div>
+            </div>
+          </div> 
+
         </div>
-        
+
       </div>
-</div>
-
-
-
-
     </div>
 
 
@@ -211,6 +221,20 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12 button-container text-center">
+            <div class="button-inner">
+                <button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="view" data-view="4">
+      <div class="view-container">
+
+
         <div class="row">
           <div class="col-xs-12 button-container text-center">
             <div class="button-inner">

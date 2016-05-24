@@ -52,7 +52,12 @@ class DonationSched extends Database  {
 
 		if($this->short_query( $this->strQuery )){
 			$r = $this->getMysqliResults( $this->strQuery, true );
-			$r=$r[0];
+			if(isset($r[0])){
+				$r=$r[0];
+			} else {
+				$r = false;
+			}
+			
 		} else {
 
 			$r = false;
