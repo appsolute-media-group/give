@@ -24,9 +24,10 @@
           <h5>take care of your community</h5>
         </div>
       </div>
-      <div style="font-weight:bold;font-family:'Gill-Sans';" class="text-center">
-        <a href="/profile/?doDonationPost=true">Update / Cancel Donataion Schedule</a>
-      </div>
+
+
+
+
       <div style="color:red;font-weight:bold;font-family:'Gill-Sans';" class="text-center" id="cc_error" >
         <p><?php echo $this->strErrorMessage; ?></p>
       </div>
@@ -84,6 +85,14 @@
         </div>
       </div>
 
+      <div class="button-container">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <button type="button" name="give" class="btn btn-give" onclick="window.location.href='/profile/?doDonationPost=true'">Update / Cancel Donataion Schedule</button>
+          </div>
+        </div>
+      </div>
+      
       <form action="/donate/form/" id="donate_form" method="post"/>
 
         <input type="hidden" value="" name="amount" id="amount" />

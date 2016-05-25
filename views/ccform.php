@@ -28,8 +28,8 @@
               					<p><?php echo $this->strErrorMessage; ?></p>
 							    </div>
 
-							    <p>You are making a <?php echo $this->getFequencyString($this->intFreq); ?> 
-								   contribution of $<?php echo $this->decAmount; ?></p>
+							    <p><b>You are making a <?php echo $this->getFequencyString($this->intFreq); ?> 
+								   contribution of $<?php echo $this->decAmount; ?></b></p>
 
 
 							    <form action="/donate/form/?doPost=true" method="post" id="cc_form" />
@@ -81,7 +81,17 @@
 
 <?php } else { ?>
 							    	<p>Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br />
-									<div class="text-center"><a href="javascript:confirmcarddelete();">delete this card</a></div>
+									<br />
+					                <div class="button-container">
+					                  <div class="row">
+					                    <div class="col-xs-12 text-center">
+					                      <button type="button" name="delete" class="btn btn-give" onclick="confirmcarddelete();">delete this card</button>
+					                    </div>
+					                  </div>
+					                </div>
+
+							
+
 							        </p><br />
 							    	<input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 							    	

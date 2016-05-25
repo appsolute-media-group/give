@@ -195,11 +195,19 @@
                    <option value="4" <?php echo Util::isSelected($this->objDonations['freq'],'4'); ?>>Anually</option>       
                 </select><br /><br />
 
-                <p><text>Next Bill Date: 1/1/2018</text></p>
+                <!--<p><text>Next Bill Date: 1/1/2018</text></p>-->
 
-                <div class="text-center">
-                  <p><a href="javascript:confirmdelete();">Cancel this donation schedule</a></p>
+<br />
+                <div class="button-container">
+                  <div class="row">
+                    <div class="col-xs-12 text-center">
+                      <button type="button" name="give" class="btn btn-give" onclick="confirmdelete();">Cancel this donation schedule</button>
+                    </div>
+                  </div>
                 </div>
+
+<br /><br />
+
 
               </form>
               

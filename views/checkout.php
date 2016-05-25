@@ -147,7 +147,19 @@
 <?php } else { ?>
 
 							      Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br /><br />
-							      <div class="text-center"><a href="javascript:confirmcarddelete();">delete this card</a></div>
+					
+							      <br />
+					                <div class="button-container">
+					                  <div class="row">
+					                    <div class="col-xs-12 text-center">
+					                      <button type="button" name="delete" class="btn btn-give" onclick="confirmcarddelete();">delete this card</button>
+					                    </div>
+					                  </div>
+					                </div>
+
+								<br /><br />
+
+
 							      <input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 
 <?php } ?>
