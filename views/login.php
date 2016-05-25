@@ -46,7 +46,7 @@
         <div class="row">
           <div class="col-xs-12 logo-container text-center">
             <div class="logo-inner">
-              <img src="/images/CA-Logo-lg.png" class="center-block img-responsive logo-blue" alt="" />
+              <img src="/images/CA_Logo_Platform_green_557.png" class="center-block img-responsive logo-blue" alt="" />
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
       
         <form method="post" action="?doRegister=true" id="regForm">
           <div class="row">
-              <div class="col-xs-8 col-xs-offset-2 style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="reg_error">
+              <div class="col-xs-8 col-xs-offset-2" style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="reg_error">
 <?php  echo $this->objUsers->strErrorMessage;  ?>
               </div>
           </div>    
@@ -129,7 +129,7 @@
         <div class="row">
           <div class="col-xs-12 logo-container text-center">
             <div class="logo-inner">
-              <img src="/images/CA-Logo-lg.png" class="center-block img-responsive logo-blue" alt="" />
+              <img src="/images/CA_Logo_Platform_green_557.png" class="center-block img-responsive logo-blue" alt="" />
             </div>
           </div>
         </div>
