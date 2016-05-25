@@ -244,7 +244,7 @@
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>Edit Donation Schedule</h1>
+                  <h1>Your Past Donations</h1>
                 </div>
               </div>
             </div>
