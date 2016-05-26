@@ -1,5 +1,8 @@
 RewriteEngine On    # Turn on the rewriting engine
 
+
+RewriteRule    ^cron/([A-Za-z0-9-]+)/?$    /api.php?controller=cron&method=$1    [NC,L] 
+
 RewriteRule    ^api/([A-Za-z0-9-]+)/([_a-z0-9-A-Z_]+)/?$    api.php?controller=api&method=$1&var1=$2    [NC,L]  
 RewriteRule    ^api/([A-Za-z0-9-]+)/?$    api.php?controller=api&method=$1   [NC,L]  
 

@@ -88,6 +88,20 @@ class DonationSched extends Database  {
 	}
 
 
+	public function getAllByDate($date) {
+
+		$this->strQuery = "SELECT * FROM $this->strTableName WHERE last_run='".$date."'";
+
+		if($this->short_query( $this->strQuery )){
+			$r = $this->getMysqliResults( $this->strQuery, true );		
+		} else {
+			$r = false;
+		}
+		return $r;
+
+	}
+
+
 	public function updateDonationSchedule($amount,$freq){
 
 
@@ -103,19 +117,32 @@ class DonationSched extends Database  {
 
 	public function insertDonationSchedule($payID,$amount,$freq){
 
-	
-		$this->sql = "INSERT INTO $this->strTableName 
-		(PaymentProfileID, userID, amount, freq) 
-		VALUES 
-		($payID, ".$_SESSION['userID'].", $amount, $freq) 
-		ON DUPLICATE KEY UPDATE amount=$amount,freq=$freq,PaymentProfileID=$payID";
+		if($freq > 1) {
+			$this->sql = "INSERT INTO $this->strTableName 
+			(PaymentProfileID, userID, amount, freq) 
+			VALUES 
+			($payID, ".$_SESSION['userID'].", $amount, $freq) 
+			ON DUPLICATE KEY UPDATE amount=$amount,freq=$freq,PaymentProfileID=$payID";
 
 
 
-		return $this->short_query($this->sql);
+			return $this->short_query($this->sql);
+		}
+
+	}
+
+
+	public function updateLastRun($id) {
+
+		$sql = "UPDATE donation_schedules SET last_run='".date('Y-m-d')."' WHERE id=".$id;
+		$this->short_query($sql);
+		echo "<br />".$sql;
+
 
 
 	}
+
+
 
 
 }
