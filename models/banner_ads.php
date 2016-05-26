@@ -229,8 +229,9 @@ API methds
 		AND ad_id>0
 		AND a.blnActive=1 
 		AND c.is_active=1 
-		AND s.blnActive=1 
-		AND '$date' BETWEEN c.start_date AND c.end_date";
+		AND s.blnActive=1 ";
+		AND ('$date' BETWEEN c.start_date AND c.end_date) 
+		OR c.start_date IS NULL";
 		//ORDER BY RAND()";
 
 		if($page <> 'all') {
