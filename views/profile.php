@@ -178,7 +178,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
           <div class="col-xs-12 input-container ">
             <div class="input-inner" style="min-height:180px;padding-top:30px;">
 
-<?php if(count($this->objDonationHistory)> 0) { ?>
+<?php if($this->objDonations) { ?>
                
 
               <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="donation_error" >
@@ -219,9 +219,11 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
               
 <?php } else {
 
-      echo "<div class='text-center'><p>You have not made any donations.</p><p><a href='/donate/'>Donate Now >></a></p></div>";
+      echo "<div class='text-center'><p>You do not have any donations scheduled.</p><p><a href='/donate/'>Donate Now >></a></p></div>";
 
-} ?>
+} 
+
+?>
       
             </div>
           </div>

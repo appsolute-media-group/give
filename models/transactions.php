@@ -160,7 +160,7 @@ class Transactions extends Database  {
 	function ProcessProfileTransaction($profileid,$paymentprofileid, $objDetails){
 		
 		$refId = 'ref' . time();
-		
+	
 		$profileToCharge = new AnetAPI\CustomerProfilePaymentType();
 	    $profileToCharge->setCustomerProfileId($profileid);
 	    $paymentProfile = new AnetAPI\PaymentProfileType();
@@ -300,6 +300,9 @@ class Transactions extends Database  {
       	);
 
 		$refId = 'ref' . time();
+		$ProfileId = "";
+
+
 
 		// Create the payment data for a credit card
 		$creditCard = new AnetAPI\CreditCardType();
@@ -405,13 +408,8 @@ class Transactions extends Database  {
 				$_SESSION['APIprofileID'] = $ProfileId;
 				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
 
-				//update the user profile
-			    $keys = array('user_points','APIprofileID');
-			    $vals = array($_SESSION['user_points'],$ProfileId);
-
-			    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
-
 				
+
 
 		    } else {
 
@@ -452,7 +450,26 @@ class Transactions extends Database  {
 		    }
 
 
+		    
+
+
 		}
+
+		
+		//update the user profile
+	    $keys = array('user_points','APIprofileID','tax_fullname','first_name','last_name','tax_address','tax_prov','tax_city','tax_pc','tax_country');
+	    $vals = array($_SESSION['user_points'],
+	    	$ProfileId,
+	    	$objCustomer['first_name'] . ' ' . $objCustomer['last_name'],
+	    	$objCustomer['first_name'],
+	    	$objCustomer['last_name'],
+	    	$objCustomer['address'],
+	    	$objCustomer['city'],
+	    	$objCustomer['state'],
+			$objCustomer['postal'],
+	    	$objCustomer['country']);
+
+	    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
 
 
 		//record the transaction in the local database

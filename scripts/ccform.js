@@ -61,8 +61,8 @@ function confirmcarddelete(){
         if(objResult.result == 'success'){
           console.log( "success:", objResult.code );
           console.log( "details:", objResult.details );
+          alert("Card Has Been Deleted.");
           location.reload();
-          //window.location.href='/profile/';
         } else {
           console.log( "fail:", objResult.code );
           console.log( "details:", objResult.details );
