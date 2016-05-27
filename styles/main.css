@@ -8260,6 +8260,7 @@ input {
 .page.needed-now .btn-checkout {
   padding: 7px 10px;
   border-radius: 50px;
+  font-size: 1.5em;
 }
 
 .page.needed-now .btn-checkout {
@@ -8268,7 +8269,7 @@ input {
 }
 
 .page.needed-now .receipt-container {
-  background-color: #4a8a1d;
+  /*  background-color: #4a8a1d;  */
   padding-bottom: 10px;
 }
 
@@ -8287,7 +8288,8 @@ input {
 }
 
 .page.needed-now .receipt-container .receipt-wrapper h1, .page.needed-now .receipt-container .receipt-wrapper h2, .page.needed-now .receipt-container .receipt-wrapper h3, .page.needed-now .receipt-container .receipt-wrapper h4, .page.needed-now .receipt-container .receipt-wrapper h5, .page.needed-now .receipt-container .receipt-wrapper h6, .page.needed-now .receipt-container .receipt-wrapper p, .page.needed-now .receipt-container .receipt-wrapper i {
-  color: #fff;
+  /* color: #fff;  */
+  color: #000;
 }
 
 .page.needed-now .receipt-container .receipt-wrapper .receipt-header {
@@ -8413,6 +8415,22 @@ input {
   margin: auto;
   color: #1b8889;
 }
+
+.page.needed-now .link-button-container {
+  padding: 0 0 20px;
+}
+
+
+.page.needed-now .link-button-container .link_button {
+  padding: 7px 10px;
+  border-radius: 50px;
+  color: #fff;
+  min-width: 125px;
+  background-color: #f0bb1a;
+  display: inline-block;
+  margin: 5px;
+}
+
 
 .page.needed-now .view[data-view="4"] .receipt-header {
   padding: 20px 0 0;
@@ -8894,7 +8912,13 @@ input {
   width: 90%;
 }
 
-.page.faq-terms .info-header-container .logo-shop-wrapper {
+.page.faq-terms .info-header-container  {
+  padding: .5em;
+  color: #ffffff;
+  background-color: #6ec0c4;
+}  
+
+.page.faq-terms .logo-shop-wrapper {
   padding: 5px 0 5px;
 }
 
@@ -9011,8 +9035,11 @@ input {
 
 .page.events-messages .messages-header-container,
 .page.events-messages .events-header-container {
-  padding: 30px 0 0;
-  color: #1b8889;
+  /* padding: 30px 0 0;
+  color: #1b8889; */
+  padding: .5em;
+  color: #ffffff;
+  background-color: #6ec0c4;
 }
 
 .page.events-messages .message-list,
@@ -9176,6 +9203,12 @@ input {
   color: #1b8889;
 }
 
+.page.give .give-title-container {
+  padding: .5em;
+  color: #ffffff;
+  background-color: #4a8a1d;
+}
+
 .page.give .amount-box,
 .page.give .schedule-box,
 .page.give .disclaimer-box {
@@ -9234,6 +9267,17 @@ input {
 }
 
 .page.give .button-container .btn-give {
+  padding: 7px 10px;
+  border-radius: 50px;
+  color: #fff;
+  min-width: 125px;
+  background-color: #f0bb1a;
+  display: inline-block;
+  margin: 5px;
+}
+
+
+.page.give .button-container .link_button {
   padding: 7px 10px;
   border-radius: 50px;
   color: #fff;
@@ -9354,6 +9398,12 @@ input {
 
 .page.food-bank .contact-food-bank-links-container {
   margin: 10px 0;
+}
+
+.page.food-bank .my-food-bank-header-container {
+  padding: .5em;
+  color: #ffffff;
+  background-color: #6ec0c4;
 }
 
 .page.food-bank .food-bank-logo-container .food-bank-logo-wrapper {

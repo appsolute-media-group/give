@@ -1,4 +1,20 @@
+<?php 
 
+$country_lst = array();
+$prov_lst    = array();
+$objProvList = new ProvList;
+
+$country_lst = $objProvList->getCountry_dd_List();
+$prov_lst    = $objProvList->getProv_dd_List('CA');
+
+
+// create the list for populating a drop down for countries and provinces
+// create an instance of the util object
+$this->objUtils = new Util;
+$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst);
+$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
+
+?>
 
 <body class="page needed-now">
   <!--[if lt IE 10]>
@@ -19,11 +35,11 @@
       <div class="view-container">
 
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>Your Profile</h1>
+                  <h1>your profile</h1>
                 </div>
               </div>
             </div>
@@ -77,11 +93,11 @@
     <div class="view" data-view="2">
       <div class="view-container">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>Edit Profile</h1>
+                  <h1>edit profile</h1>
                 </div>
               </div>
             </div>
@@ -114,15 +130,13 @@
                 <div class=" text-left">
                   <span>Province&nbsp;&nbsp;
                     <select name="province" id="province" >
-                      <option>BC</option>
-                      <option>ON</option>
+                     <?php echo $prov_lst_dd; ?>          
                     </select></span><br />
                 </div>
                 <div class=" text-left">
                   <span class="text-left">Country&nbsp;&nbsp;
                     <select name="country" id="country" >
-                      <option value="CA">Canada</option>
-                      <option value="US">United States</option>
+                      <?php echo $country_lst_dd; ?>  
                     </select></span><br />
                 </div><br />
 
@@ -150,11 +164,11 @@
     <div class="view" data-view="3">
       <div class="view-container">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>Edit Donation Schedule</h1>
+                  <h1>edit donation schedule</h1>
                 </div>
               </div>
             </div>
@@ -195,19 +209,11 @@
                    <option value="4" <?php echo Util::isSelected($this->objDonations['freq'],'4'); ?>>Anually</option>       
                 </select><br /><br />
 
-                <!--<p><text>Next Bill Date: 1/1/2018</text></p>-->
+                <p><text>Next Bill Date: 1/1/2018</text></p>
 
-<br />
-                <div class="button-container">
-                  <div class="row">
-                    <div class="col-xs-12 text-center">
-                      <button type="button" name="give" class="btn btn-give" onclick="confirmdelete();">Cancel this donation schedule</button>
-                    </div>
-                  </div>
+                <div class="text-center link-button-container">
+                  <span class="link_button text-center" ><a href="javascript:confirmdelete();">Cancel this donation schedule</a></span>
                 </div>
-
-<br /><br />
-
 
               </form>
               
@@ -240,11 +246,11 @@
     <div class="view" data-view="5" >
       <div class="view-container">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>Your Past Donations</h1>
+                  <h1>edit donation schedule</h1>
                 </div>
               </div>
             </div>

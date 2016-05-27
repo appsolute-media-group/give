@@ -9,11 +9,11 @@
     </div>
     <div class="view-container">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1  col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 item">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>shop appetite  cats</h1>
+                  <h1>shop appetite</h1>
                 </div>
               </div>
             </div>

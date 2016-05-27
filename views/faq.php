@@ -4,7 +4,6 @@
 	<![endif]-->
 
 	<div class="main-wrapper">
-
 	  <div class="container-fluid">
 	    
 	    <div class="row header">
@@ -14,16 +13,16 @@
 	    </div>
 
 	    <div class="view-container">
-	      <div class="row info-header-container">
-	        <div class="col-xs-12 logo-shop-wrapper text-center">
-	          <img src="/images/CA_Logo_Platform_green_557.png" class="center-block img-responsive" alt="" />
-	        </div>
-	      </div>
-	      <div id="top" class="row">
-	        <div class="col-xs-12 title-container text-center">
-	          <h2>FAQs</h2>
-	        </div>
-	      </div>
+        <div class="row ">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+            <div class="info-header-container">
+              <div class="text-center">
+               <h1>faqs</h1>
+              </div>
+            </div>
+          </div>
+        </div> 
+
 	      <div class="info-container">
 	        <div class="row">
 	          <div class="col-xs-12 info-wrapper">
@@ -48,8 +47,8 @@
 
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
-	  </div>
-	</div>
+    </div>     <!-- container-fluid -->
+  </div>       <!-- main-wrapper -->
 <script src="/scripts/bootstrap.js"></script>
 <script src="/scripts/main.js"></script>
 

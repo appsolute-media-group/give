@@ -13,15 +13,21 @@
 
 	    </div>
 
-	    <div class="">
+	    <div class="view-container">
 		      <div class="row">
+		        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+              <div class="give-title-container">
+                <div class="text-center">
+                  <h1>way to go!&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-child fa-1x"></i></h1>
+                </div>
+              </div>
+            </div>
+
 		        <div class="col-xs-12 give-header-container text-center">
-		          <i class="fa fa-child fa-3x"></i>
-		          <h2>Way to go!</h2>
 		          <h5>donation successful</h5>
 		        </div>
-
 		      </div>
+
 		      <div class="thank-you-points-container">
 		        <div class="row text-center">
 		          <h4>you've earned</h4>

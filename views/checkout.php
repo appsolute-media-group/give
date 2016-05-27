@@ -1,4 +1,20 @@
+<?php 
 
+$country_lst = array();
+$prov_lst    = array();
+$objProvList = new ProvList;
+
+$country_lst = $objProvList->getCountry_dd_List();
+$prov_lst    = $objProvList->getProv_dd_List('CA');
+
+
+// create the list for populating a drop down for countries and provinces
+// create an instance of the util object
+$this->objUtils = new Util;
+$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst);
+$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
+
+?>
 <body class="page needed-now">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -14,17 +30,22 @@
 
 	    <div class="view initial" data-view="1">
 	      <div class="view-container">
+          <div class="row">  
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+              <div class="item-inner">
+                <div class="item-header">
+                  <div class="text-center">
+                    <h1>your cart&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-shopping-cart fa-1x"></i></h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
 	        <div class="receipt-container">
 	          <div class="receipt-wrapper">
-	            <div class="row receipt-header">
-	              <div class="col-xs-8 text-left">
-	                <h2>YOUR CART</h2>
-	              </div>
-	              <div class="col-xs-4 text-center">
-	                <i class="fa fa-shopping-cart fa-4x"></i>
-	              </div>
-	            </div>
 	            <div class="cart-list-wrapper">
+	            <br>
 <?php 
 					$idx = 0;
 					$total = 0;
@@ -84,12 +105,18 @@
 		  
 		  <div class="view" data-view="2">
 	      <div class="view-container">
+	        <div class="row">  
+	          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+              <div class="item-inner">
+                <div class="item-header">
+                  <div class="text-center">
+                    <h1>card details&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-credit-card"></i></h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
 	        <div class="card-container">
-	          <div class="row">
-	            <div class="col-xs-12 info-container text-center">
-	              <h3>Card Details <i class="fa fa-credit-card"></i></h3>
-	            </div>
-	          </div>
 	          <div class="row">
 	            <div class="col-xs-12 input-container text-center">
 	              <div class="input-inner">
@@ -105,19 +132,17 @@
 			              <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
 							      <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
 							      <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
-							      <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br /><br />
+							      <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br />
 							      <div class=" text-left">
 									    <span>Province&nbsp;&nbsp;
 									      <select name="province" id="province" >
-									        <option>BC</option>
-									        <option>ON</option>
+									        <?php echo $prov_lst_dd; ?>
 									      </select></span><br />
 									  </div>
 									  <div class=" text-left">
 									    <span class="text-left">Country&nbsp;&nbsp;
 									     <select name="country" id="country" >
-									      <option value="CA">Canada</option>
-									      <option value="US">United States</option>
+									      <?php echo $country_lst_dd; ?>
 									     </select></span><br />
 									  </div>   
 							      <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
@@ -147,19 +172,7 @@
 <?php } else { ?>
 
 							      Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br /><br />
-					
-							      <br />
-					                <div class="button-container">
-					                  <div class="row">
-					                    <div class="col-xs-12 text-center">
-					                      <button type="button" name="delete" class="btn btn-give" onclick="confirmcarddelete();">delete this card</button>
-					                    </div>
-					                  </div>
-					                </div>
-
-								<br /><br />
-
-
+							      <div class="text-center"><a href="javascript:confirmcarddelete();">delete this card</a></div>
 							      <input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 
 <?php } ?>

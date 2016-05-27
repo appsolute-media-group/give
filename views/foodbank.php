@@ -14,6 +14,16 @@
 
 	    <div class="view initial" data-view="1">
         <div class="view-container">
+          <div class="row ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+              <div class="my-food-bank-header-container">
+                <div class="text-center">
+                  <h1>my food bank</h1>
+                </div>
+              </div>
+            </div>
+          </div> 
+
           <div class="row food-bank-logo-container">
             <div class="food-bank-logo-wrapper text-center">
               <img src="<?php echo $objCurrent['logo'] ?>" class="center-block img-responsive" alt="" />
@@ -55,6 +65,15 @@
     
       <div class="view" data-view="2">
         <div class="view-container">
+          <div class="row ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+              <div class="my-food-bank-header-container">
+                <div class="text-center">
+                  <h1>my food bank</h1>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row food-bank-logo-container">
             <div class="food-bank-logo-wrapper text-center">
               <img src="<?php echo $objCurrent['logo'] ?>" class="center-block img-responsive" alt="" />
@@ -108,18 +127,18 @@
                 </div>
               </div>
             </div>
-<!--
+
             <div class="row">
               <div class="col-xs-12 contact-option-container">
                 <div class="col-xs-2 text-center">
                   <i class="fa fa-globe fa-2x"></i>
                 </div>
                 <div class="col-xs-10 text-left">
-                  <a href="https://website.com"><h5>www.website.com</h5></a>
+                  <a href="<?php echo ($objCurrent['url']) ? $objCurrent['url'] : "#" ?>"><h5><?php echo ($objCurrent['url']) ? $objCurrent['url'] : "" ?></h5>
                 </div>
               </div>
             </div>
--->
+
           </div>
           <div class="row">
             <div class="col-xs-12 address-container">
