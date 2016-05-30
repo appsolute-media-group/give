@@ -13,7 +13,7 @@
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>shop appetite cats</h1>
+                  <h1>shop appetite</h1>
                 </div>
               </div>
             </div>
