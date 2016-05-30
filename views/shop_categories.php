@@ -13,7 +13,7 @@
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>shop appetite</h1>
+                  <h1>shop appetite cats</h1>
                 </div>
               </div>
             </div>
@@ -49,7 +49,11 @@ if(count($this->arrCats) > 0) {?>
             <div class="product-top">
               <div class="col-xs-12 points-hex-container">
                 <div class="points-hex text-center">
+<?php   if ($c['icon_font'] != "") { ?>                
+                  <p><i class="fa <?php echo $c['icon_font']; ?> fa-2x"></i></p>
+<?php   } else { ?>   
                   <p></p>
+<?php   } ?>                  
                 </div>
               </div>
             </div>
