@@ -51,7 +51,7 @@
                             <button type="button" name="needed-now-item-minus" class="btn btn-item" onclick="decreaseProductAmount(<?php echo $p['id'];?>, <?php echo $p['product_price'];?>);">-</button>
                           </div>
                           <div class="col-xs-8">
-                            <img src="<?php echo $p['product_img'];?>" class="center-block img-responsive" alt="<?php echo $p['product_title'];?>" />
+                            <img src="<?php echo $p['product_img'];?>" class="center-block img-responsive" alt="<?php echo $p['product_name'];?>" />
                           </div>
                           <div class="col-xs-2">
                             <button type="button" name="needed-now-item-plus" class="btn btn-item" onclick="increaseProductAmount(<?php echo $p['id'];?>, <?php echo $p['product_price'];?>);">+</button>

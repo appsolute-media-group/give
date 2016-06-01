@@ -32,7 +32,9 @@ class Products extends Database  {
 		$sublocality_id = $_SESSION['sublocality_id'];
 
 		//this returns the full list of active records
-		$this->strSubQuery = "(SELECT p.*, '0' As user_qty
+		$this->strSubQuery = "(SELECT product_name, 
+					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
+					product_price, '0' As user_qty
 		FROM $this->strTableName p 
 		WHERE p.blnActive = 1 
 		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=0)";
@@ -42,7 +44,9 @@ class Products extends Database  {
 		}
 
 		$this->strSubQuery .= " ORDER BY p.id LIMIT 10) UNION 
-		(SELECT p.*, '0' As user_qty
+		(SELECT product_name, 
+					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
+					product_price, '0' As user_qty
 		FROM $this->strTableName p 
 		WHERE p.blnActive = 1 
 		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=$sublocality_id)";
@@ -52,6 +56,10 @@ class Products extends Database  {
 		}
 
 		$this->strSubQuery .= " ORDER BY p.id LIMIT 10)";
+
+
+
+
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
@@ -115,14 +123,28 @@ class Products extends Database  {
 					$max_mod = $max_mod[0];
 
 					//this returns the full list of active records
-					$this->strSubQuery = "SELECT *, '0' As user_qty
-					FROM $this->strTableName  
+					/*
+					update products SET product_img=REPLACE(product_img, 'http://datahqdemo.clubappetite.com', '')
+
+					ALTER TABLE `give`.`config` 
+					  ADD COLUMN `img_root`  VARCHAR(255) default 'https://give.clubappetite.com';
+
+					  */
+
+					$this->strSubQuery = "SELECT product_name, 
+					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
+					product_price, last_mod, '0' As user_qty
+					FROM products   
 					WHERE blnActive = 1";
 
 					$details = $this->getMysqliResults( $this->strSubQuery, true );
 					if(count($details) >0) {
 		           	 	$arrResult = array('result' => "success",'code' => "refresh") + $max_mod + array("details" => $details);
 		        	}
+
+
+
+
 		        }
 	        }
 	    }
