@@ -60,7 +60,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 	                  <p><?php echo $p['product_name'];?></p>
 	                </div>
 	                <div class="col-xs-4 quantity-wrapper">
-	                  <p>x<?php echo $_SESSION['arrQtys'][$idx];?> @<?php echo $p['product_price'];?></p>
+	                  <p>x&nbsp;<?php echo $_SESSION['arrQtys'][$idx];?>&nbsp;@&nbsp;<?php echo $p['product_price'];?></p>
 	                </div>
 	                <div class="col-xs-2 cost-wrapper">
 	                  <p>$<?php echo $new_price;?></p>
@@ -172,7 +172,9 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 <?php } else { ?>
 
 							      Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br /><br />
-							      <div class="text-center"><a href="javascript:confirmcarddelete();">delete this card</a></div>
+							      <div class="text-center link-button-container">
+							        <span class="link_button text-center" ><a href="javascript:confirmcarddelete();" >delete this card</a></span>
+                    </div>
 							      <input type="hidden" name="paymentprofileid" value="<?php echo $this->intPayProfileId; ?>" />
 
 <?php } ?>

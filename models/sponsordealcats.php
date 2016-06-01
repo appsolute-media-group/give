@@ -30,7 +30,7 @@ class SponsorDealCats extends Database  {
 
 	function getWebDealCats() {
 
-		$this->strSubQuery = "SELECT sdc.id, sdc.cat_title, sdc.search_data  
+		$this->strSubQuery = "SELECT sdc.id, sdc.cat_title, sdc.search_data, sdc.icon_font  
 		FROM $this->strTableName  sdc
 		WHERE sdc.blnActive = 1";
 
