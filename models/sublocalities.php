@@ -146,7 +146,7 @@ class SubLocalities extends Database  {
 		$r = array('result' => "error");
 
 		if($ID !='') {
-	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, sub_logo As logo, last_mod, address, city, prov, pc, tel, email, lat, lng, url   
+	        $this->strQuery = "SELECT sub_name AS `page_title`, sub_desc AS `text`, concat((SELECT img_root FROM config WHERE id=1),sub_logo) As logo, last_mod, address, city, prov, pc, tel, email, lat, lng, url   
                              From $this->strTableName 
                              WHERE id=$ID";
 		    //echo $this->strQuery;
