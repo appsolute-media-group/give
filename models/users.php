@@ -60,21 +60,23 @@ class Users extends Database  {
 
 	function updateWebUser($objData) {
 	
-		$sublocality_id = $_SESSION['sublocality_id'];
+		//$sublocality_id = $_SESSION['sublocality_id'];
 		$user_id = $_SESSION['userID'];
 	
 		$keys = array(
 			'first_name',
 			'last_name',
+			'sublocality_id',
 			'tax_address',
-			'tax_city','
-			tax_prov',
+			'tax_city',
+			'tax_prov',
 			'tax_country',
 			'tax_pc');
 
 		$vals = array(
 			$objData->strFirstName,
 			$objData->strLastName,
+			$objData->intSublocalityId,
 			$objData->strAddress,
 			$objData->strCity,
 			$objData->strProvince,
@@ -82,6 +84,9 @@ class Users extends Database  {
 			$objData->strPostal);
 
 		$error_message = $this->mysqliupdate('user_profiles',$keys,$vals,$user_id,'id');
+
+		$_SESSION['sublocality_id'] = $objData->intSublocalityId;
+
 
 		if($error_message != '') {
 			$arrResult = array('result' => "error",'code' => "update-fail","details" => $error_message, 'vals' => $vals);
