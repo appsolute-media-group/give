@@ -32,7 +32,7 @@ class Products extends Database  {
 		$sublocality_id = $_SESSION['sublocality_id'];
 
 		//this returns the full list of active records
-		$this->strSubQuery = "(SELECT product_name, 
+		$this->strSubQuery = "(SELECT id, product_name, 
 					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
 					product_price, '0' As user_qty
 		FROM $this->strTableName p 
@@ -44,7 +44,7 @@ class Products extends Database  {
 		}
 
 		$this->strSubQuery .= " ORDER BY p.id LIMIT 10) UNION 
-		(SELECT product_name, 
+		(SELECT id, product_name, 
 					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
 					product_price, '0' As user_qty
 		FROM $this->strTableName p 

@@ -121,12 +121,12 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
                 <select class="fld_select"  name="sublocality" id="sublocality">
                    <?php echo $this->listSublocalities; ?>          
                 </select><br /><br />
-                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo $this->strEmail;?>" readonly="true"></input>       
-                <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
-                <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
-                <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
-                <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input>
-                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input><br />
+                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo htmlspecialchars($this->strEmail);?>" readonly="true"></input>       
+                <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
+                <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
+                <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
+                <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
+                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input><br />
                 <div class=" text-left">
                   <span>Province&nbsp;&nbsp;
                     <select name="province" id="province" >

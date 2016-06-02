@@ -44,6 +44,19 @@ class Util {
     }
 
 
+    /**
+     * compares values for drop down lists
+     *
+     */
+
+    public static function handleQuotes($val) {
+      $result = str_replace('"','\"',$val);
+      return $result;
+    }
+
+
+
+
 
 
     /**

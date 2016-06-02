@@ -129,10 +129,10 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 		                <input type="hidden" value="<?php echo $total;?>" id="grand_total" name="grand_total" />
 							      <input type="hidden" name="doPost" value="true" />
 <?php if($_SESSION['APIprofileID'] == '') { ?>
-			              <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo $this->strFirstName;?>"></input>
-							      <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo $this->strLastName;?>"></input>
-							      <input type="text" placeholder='Address' name="address" id="address" value="<?php echo $this->strAddress;?>"></input>
-							      <input type="text" placeholder='City' name="city" id="city" value="<?php echo $this->strCity;?>"></input><br />
+			              <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
+							      <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
+							      <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
+							      <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input><br />
 							      <div class=" text-left">
 									    <span>Province&nbsp;&nbsp;
 									      <select name="province" id="province" >
@@ -145,9 +145,9 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 									      <?php echo $country_lst_dd; ?>
 									     </select></span><br />
 									  </div>   
-							      <input type="text" placeholder='Postal Code' name="postal" value="<?php echo $this->strPostal;?>"></input>
-							      <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo $this->strCCnum;?>"></input>
-							      <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo $this->strCCcode;?>"></input><br /><br />
+							      <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input>
+							      <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo htmlspecialchars($this->strCCnum);?>"></input>
+							      <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo htmlspecialchars($this->strCCcode);?>"></input><br /><br />
 							      <text>Exp. Month</text>
 							      <select name="expMonth" id="expMonth">
 <?php 
