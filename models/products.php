@@ -59,8 +59,6 @@ class Products extends Database  {
 
 
 
-
-
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
        	 	return $details;
