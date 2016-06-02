@@ -457,7 +457,7 @@ class Transactions extends Database  {
 
 		
 		//update the user profile
-	    $keys = array('user_points','APIprofileID','tax_fullname','first_name','last_name','tax_address','tax_prov','tax_city','tax_pc','tax_country');
+	    $keys = array('user_points','APIprofileID','tax_fullname','first_name','last_name','tax_address','tax_city','tax_prov','tax_pc','tax_country');
 	    $vals = array($_SESSION['user_points'],
 	    	$ProfileId,
 	    	$objCustomer['first_name'] . ' ' . $objCustomer['last_name'],

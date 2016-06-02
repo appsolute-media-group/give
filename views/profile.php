@@ -11,8 +11,8 @@ $prov_lst    = $objProvList->getProv_dd_List('CA');
 // create the list for populating a drop down for countries and provinces
 // create an instance of the util object
 $this->objUtils = new Util;
-$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst);
-$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
+$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst,$this->strCountry);
+$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvince);
 
 ?>
 
@@ -139,6 +139,9 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
                       <?php echo $country_lst_dd; ?>  
                     </select></span><br />
                 </div><br />
+
+
+
 
               </form>
             </div>
