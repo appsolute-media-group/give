@@ -34,7 +34,20 @@
               <div class="item-inner">
                 <div class="item-detail text-center dragon" id="scroll_view">
 
-<?php foreach($arrProducts As $p) { ?>
+<?php 
+if(count($arrProducts ==0)){ ?>
+
+
+  <div style="height:150px" class="row text-center"><h5>There are no products assigned to this food bank</h5></div>
+
+<?php
+} else {
+
+
+
+
+
+  foreach($arrProducts As $p) { ?>
                   <div class="item-detail-contents">
                     <div class="row needed-item-container">
                       <div class="needed-item-inner">
@@ -70,7 +83,10 @@
                     </div>
                   </div>     <!-- item-detail-contents -->
 
-<?php } ?>
+<?php 
+  }
+
+} ?>
 
                 </div>       <!-- item-detail -->
 
