@@ -1104,14 +1104,16 @@ input {
 .page.shop .business-links-container .btn-redeem,
 .page.shop .business-links-container .btn-shop-link,
 .page.shop .contact-business-links-container .btn-redeem,
-.page.shop .contact-business-links-container .btn-shop-link {
-  padding: 7px 10px;
+.page.shop .contact-business-links-container .btn-shop-link
+{
+  padding: 5px 5px;
   border-radius: 50px;
   color: #fff;
-  min-width: 125px;
+  min-width: 80px;
   background-color: #1b8889;
   display: inline-block;
-  margin: 5px;
+  margin: 3px;
+  font-size:12px !important;
 }
 
 .page.shop .pre-redeem-redemption-container img,

@@ -17,6 +17,7 @@ function rotateBanners(elem) {
 
 function trackImpression(id){
 
+  if(id != undefined){
     $.ajax({
       url: "/api/trackimpression/"+id+"/",
     })
@@ -29,10 +30,11 @@ function trackImpression(id){
         } else {
           console.log( "fail:", objResult.code );
           console.log( "details:", objResult.details );
+          console.log( "id:", id );
         }
       }
     });
-
+  }
 }
 
 function clickaction(id,url){

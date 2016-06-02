@@ -31,8 +31,8 @@ class Sponsors extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT s.*,  
-			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1) As sponsor_img,
-			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2) As sponsor_img2 
+			concat((SELECT img_root FROM config WHERE id=1),(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1)) As sponsor_img,
+			concat((SELECT img_root FROM config WHERE id=1),(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2)) As sponsor_img2 
 		FROM $this->strTableName s 
 		WHERE s.sublocality_id='$sublocality_id' 
 		AND s.blnActive = 1 
@@ -58,8 +58,8 @@ class Sponsors extends Database  {
 	function getWebSponsorById($id) {
 
 		$this->strSubQuery = "SELECT s.*,  
-			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1) As sponsor_img,
-			(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2) As sponsor_img2,
+			concat((SELECT img_root FROM config WHERE id=1),(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=1)) As sponsor_img,
+			concat((SELECT img_root FROM config WHERE id=1),(SELECT img_url FROM sponsor_img WHERE sponsor_id=s.id AND img_index=2)) As sponsor_img2,
 			l.lat As centerLat, l.lng As centerLng  
 		FROM $this->strTableName s 
 		LEFT JOIN sublocalities l on l.id=s.sublocality_id 

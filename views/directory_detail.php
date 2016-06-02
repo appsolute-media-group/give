@@ -24,7 +24,7 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 }
 
 ?>
-<body class="page needed-now">
+<body class="page shop">
 	<!--[if lt IE 10]>
 	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -48,7 +48,7 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		      </div>
 		      <div class="row business-title-container">
 		        <div class="col-xs-12 text-center">
-		          <h3 class="business-name"><?php echo $this->objSponsor['sponsor_name'];?>  directory_details</h3>
+		          <h3 class="business-name"><?php echo $this->objSponsor['sponsor_name'];?> </h3>
 		          <h5 class="business-category"><?php echo $this->objSponsor['sponsor_slogan'];?></h5>
 		        </div>
 		      </div>
@@ -61,34 +61,35 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		          </p>
 		        </div>
 		      </div>
+
+
+
 		      <div class="row business-links-container">
 		        <div class="col-xs-12 text-center">
+		          
 		          <button type="button" name="business_website" class="btn btn-shop-link" onclick="window.location.href='http://<?php echo $this->objSponsor['sponsor_url'];?>';">Website</button>
-		          <button type="button" name="business_offers" class="btn btn-shop-link" onclick="window.location.href='/shop/sponsors/<?php echo $this->objSponsor['id'];?>/';">View Offers</button>
+		          
+		          <button type="button" name="business_offers" class="btn btn-shop-link" onclick="goToView(2);">Contact</button>
+
+				  <button type="button" name="business_offers" class="btn btn-shop-link" onclick="window.location.href='/shop/sponsors/<?php echo $this->objSponsor['id'];?>/';">Deals</button>
+		        
+
 		        </div>
 		      </div>
-		      <div class="row" onclick="goToView(2)">
-		        <div class="col-xs-12 contact-button-container">
-		          <div class="contact-button-inner">
-		            <div class="col-xs-10 text-left">
-		              <h4>Contact</h4>
-		            </div>
-		            <div class="col-xs-2 text-right">
-		              <i class="fa fa-arrow-right "></i>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
+
+
+
+		
 		      <div class="row">
 		        <div class="col-xs-12 address-container">
 		          <div class="address-inner">
-		            <div class="col-xs-12 text-center">
+		            <div class="col-xs-12">
 		              <h6><?php 
 
-		              	  $address = ($this->objSponsor['sponsor_address']) ? $this->objSponsor['sponsor_address'] . '<br />' : "";
+		              	  $address = ($this->objSponsor['sponsor_address']) ? $this->objSponsor['sponsor_address'] . ' ' : "";
 		                  $city = ($this->objSponsor['sponsor_city']) ? $this->objSponsor['sponsor_city'] . ', ' : "";
-		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province']: "";
-		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '<br/>' . $this->objSponsor['sponsor_postal_code'] : "";
+		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province'] . " | " : " ";
+		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '' . $this->objSponsor['sponsor_postal_code'] : "";
 		                  echo $address . $city . $prov . $postalCode;
 		                  ?></h6>
 		            </div>

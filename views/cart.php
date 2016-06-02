@@ -70,6 +70,7 @@ if(count($arrProducts) ==0){ ?>
                             <button type="button" name="needed-now-item-plus" class="btn btn-item" onclick="increaseProductAmount(<?php echo $p['id'];?>, <?php echo $p['product_price'];?>);">+</button>
                           </div>
                         </div>
+                        <p class="points-hex-desc"><?php echo $p['product_name'];?></p>
                         <div class="row needed-item-bottom">
                           <div class="col-xs-12">
                             <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($p['user_qty'],2);?></span>
