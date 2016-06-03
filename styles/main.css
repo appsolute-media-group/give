@@ -1130,7 +1130,7 @@ input {
 .page.shop .redeem-header-container .business-logo-wrapper,
 .page.shop .business-logo-container .logo-shop-wrapper,
 .page.shop .business-logo-container .business-logo-wrapper {
-  padding: 40px 0 10px;
+  padding: 0px 0 10px;
 }
 
 .page.shop .redeem-header-container .logo-shop-wrapper img,
@@ -1505,8 +1505,12 @@ input {
   background-color: #fff;
   margin: 10px;
   padding: 10px;
+
 }
 
+.page.give .disclaimer-box {
+  margin-bottom:120px;
+}
 .page.give .amount-box .schedules-container .row .col-xs-6,
 .page.give .amount-box .amounts-container .col-xs-3,
 .page.give .schedule-box .schedules-container .row .col-xs-6,
@@ -1514,6 +1518,7 @@ input {
 .page.give .disclaimer-box .schedules-container .row .col-xs-6,
 .page.give .disclaimer-box .amounts-container .col-xs-3 {
   padding: 0;
+  
 }
 
 .page.give .amount-box .box-title,
@@ -1538,6 +1543,7 @@ input {
   appearance: none;
   outline: none;
   padding: 0;
+  
 }
 
 .page.give .amount-box .active,
@@ -1905,6 +1911,7 @@ max-height:180px;
 max-height:180px;
   height:30vw;
   width: 100%;
+  max-width:650px;
 }
 
 

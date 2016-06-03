@@ -5,7 +5,7 @@
 	$arrBanners = $objBanners->getSubBannerAds($_SESSION['sublocality_id'],'','1/1/1900');
 
 
-  if(isset($page) && $page == 'cart') {
+  if(isset($page) && ($page == 'cart' || $page == 'faq')) {
 
     $style = 'ad-container2';
 
