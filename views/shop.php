@@ -44,12 +44,12 @@
 
 if(count($this->arrDeals) > 0) {?>
 
-        <div class="row products-container col-xs-12 text-center">
+        <div class="row products-container">
 
 <?php foreach($this->arrDeals As $d) { ?>
 
           <div class="product-wrapper " onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
-            <div class="background-wrapper col-xs-12 text-center">
+            <div class="background-wrapper" style="width:100%;">
               <img src="<?php echo $d['deal_image']; ?>" class="center-block img-responsive" alt="" style="height:150px; width:auto;" />
             </div>
             <div class="product-top">

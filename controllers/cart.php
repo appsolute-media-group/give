@@ -254,6 +254,10 @@ class cart_controller {
 
 
 			if($this->strErrorMessage == ""){
+
+				$_SESSION['arrProducts'] = "";
+				$_SESSION['arrQtys'] = "";
+				
 				echo "<script>window.location.href='/cart/thankyou/$this->intAwardAmount/'</script>";
 			}
 

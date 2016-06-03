@@ -44,17 +44,39 @@ if(count($arrProducts) ==0){ ?>
 } else {
 
 
+$grand_total = 0;
+
+
+  foreach($arrProducts As $p) { 
+
+    $qty = 0;
+    $price = $p['product_price'];
+    $usr_price = 0;
+
+    if(is_array($_SESSION['arrProducts'])){
+      for($i=0;$i < count($_SESSION['arrProducts']);$i++){
+        if($_SESSION['arrProducts'][$i]['id'] == $p['id']){
+            $qty = $_SESSION['arrQtys'][$i];
+            $usr_price = $qty*$price;
+            $grand_total+=$usr_price;
+            //die($qty);
+        }
+
+      }
+
+    }
+    
 
 
 
-  foreach($arrProducts As $p) { ?>
+    ?>
                   <div class="item-detail-contents">
                     <div class="row needed-item-container">
                       <div class="needed-item-inner">
                         <div class="row needed-item-top">
                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 points-hex-container">
                             <div class="points-hex text-center">
-                              <p><?php echo $p['product_price']*1000;?></p>
+                              <p><?php echo $p['product_price']*100;?></p>
                             </div>
                             <p class="points-hex-desc">POINTS</p>
                           </div>
@@ -73,9 +95,9 @@ if(count($arrProducts) ==0){ ?>
                         <p class="points-hex-desc"><?php echo $p['product_name'];?></p>
                         <div class="row needed-item-bottom">
                           <div class="col-xs-12">
-                            <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($p['user_qty'],2);?></span>
-                              <input type="hidden" value="<?php echo $p['user_qty'];?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" class="user_qty"/>
-                              <input type="hidden" value="<?php echo $p['id'];?>" name="product_id[]" />
+                            <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($usr_price,2);?></span>
+                              <input type="hidden" value="<?php echo $qty;?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" class="user_qty" style="color:#000000"/>
+                              <input type="hidden" value="<?php echo $p['id'];?>" name="product_id[]" style="color:#000000" />
                             </span>
                             <p class="needed-now-item-cost">$<?php echo $p['product_price'];?></p>
                           </div>
@@ -102,11 +124,12 @@ if(count($arrProducts) ==0){ ?>
               <div class="row total-container">
                 <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3  text-center">
                   <p class="total">
-                    TOTAL = $<span id="grand_total_display">0.00</span><input type="hidden" value="0" id="grand_total" />
+                    TOTAL = $<span id="grand_total_display"><?php echo number_format($grand_total,2); ?></span><input type="hidden" value="<?php echo $grand_total; ?>" id="grand_total" />
                   </p>
                 </div>
                 <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3 text-center">
                   <!--<button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="validateCheckout();">VALIDATE</button> -->
+                  
                   <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="Checkout();">CHECKOUT</button>
                 </div>
               </div>

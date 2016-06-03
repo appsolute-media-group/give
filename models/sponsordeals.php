@@ -99,7 +99,7 @@ class SponsorDeals extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
-			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
 			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
@@ -135,7 +135,7 @@ class SponsorDeals extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
-			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
 			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
@@ -161,7 +161,7 @@ class SponsorDeals extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, s.sponsor_name, 
-			sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
 			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 

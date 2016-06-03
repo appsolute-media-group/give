@@ -96,6 +96,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 	        <div class="bottom-container">
 	          <div class="row checkout-button-container">
 	            <div class="col-xs-12 text-center">
+	              <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="window.location.href='/cart/';">GO BACK</button>
 	              <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="nextView()">CHECKOUT</button>
 	            </div>
 	          </div>
