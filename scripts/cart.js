@@ -21,6 +21,40 @@ function validateCheckout(){
 
 }
 
+
+function Clear(){
+
+	var user_qty = $('.user_qty');
+  	var grand_total = $('#grand_total');
+  	
+  	$('#grand_total_display').text('0.00');
+  	$('.user_qty_display').text('0.00');
+
+  	user_qty.val(0);
+  	grand_total.val(0);
+
+  	//need to post an ajax calls to clear the session
+  	$.ajax({
+      url: "/api/clearcart/",
+    })
+    .done(function( data ) {
+      if ( console && console.log ) {
+        var objResult = JSON.parse(data);
+
+        if(objResult.result == 'success'){
+          console.log( "success:", objResult.code );
+          console.log( "details:", objResult.details );
+        } else {
+          console.log( "fail:", objResult.code );
+          console.log( "details:", objResult.details );
+        }
+      }
+    });
+
+
+}
+
+
 function Checkout(){
 
 	var grand_total = $('#grand_total').val();

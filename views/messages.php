@@ -47,6 +47,7 @@
                   </div>
                   <div class="col-xs-10 text-left message-info">
                     <h4 class="message-title"><?php echo $m['message_title']; ?></h4>
+                    <h6 class="message-title">From <?php echo $m['fname'] . ' ' . $m['lname']; ?></h6>
                     <p class="message-text"><?php echo $msg_content; ?></p><br>
                     <p class="message-text"><?php echo $msg_expires; ?></p>
                   </div>

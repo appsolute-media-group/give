@@ -99,7 +99,10 @@ class SponsorDeals extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
-			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_title, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, 
+			sd.deal_price, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.barcode_image) As barcode_image,
 			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
@@ -135,22 +138,25 @@ class SponsorDeals extends Database  {
 
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
-			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
-			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+			sd.deal_title, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, 
+			sd.deal_price, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.barcode_image) As barcode_image,
+			sd.deal_short_desc, 
+			sd.deal_desc, 
+			sd.cat_id, 
+			dc.cat_title, 
+			sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
 		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
 		WHERE dc.id='$intId' 
 		AND sd.blnActive = 1";
 
-		
-//echo ($this->strSubQuery);
-
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
        	 	return $details;
     	}
-
 
 	}
 
@@ -158,20 +164,18 @@ class SponsorDeals extends Database  {
 	function getSponsorWebDealById($id) {
 
 
-
 		//this returns the full list of active sponsors
 		$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, s.sponsor_name, 
-			sd.deal_title, concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, sd.deal_price, sd.barcode_image,
+			sd.deal_title, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.deal_image) As deal_image, 
+			sd.deal_price, 
+			concat((SELECT img_root FROM config WHERE id=1),sd.barcode_image) As barcode_image,
 			sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
 		FROM $this->strTableName  sd
 		LEFT JOIN sponsors s On s.id=sd.sponsor_id 
 		LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
 		WHERE sd.id='$id' 
 		AND sd.blnActive = 1";
-
-
-//echo ($this->strSubQuery);
-
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if(count($details) >0) {
@@ -258,8 +262,15 @@ API functions only below this line
 
 					//this returns the full list of active sponsors
 					$this->strSubQuery = "SELECT sd.id, sd.sponsor_id, 
-						sd.deal_title, sd.deal_image, sd.deal_price, sd.barcode_image,
-						sd.deal_short_desc, sd.deal_desc, sd.cat_id, dc.cat_title, sd.search_data    
+						sd.deal_title, 
+						sd.deal_image, 
+						sd.deal_price, 
+						concat((SELECT img_root FROM config WHERE id=1),sd.barcode_image) As barcode_image,
+						sd.deal_short_desc, 
+						sd.deal_desc, 
+						sd.cat_id, 
+						dc.cat_title, 
+						sd.search_data    
 					FROM $this->strTableName  sd
 					LEFT JOIN sponsors s On s.id=sd.sponsor_id 
 					LEFT JOIN sponsor_deal_cat dc on dc.id=sd.cat_id 
@@ -365,11 +376,6 @@ API functions only below this line
 		return json_encode($arrResult);
 
 	}
-
-
-
-
-
 
 
 

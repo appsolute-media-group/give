@@ -149,6 +149,12 @@ class api_controller {
 			
 			echo $this->deleteCard();
 
+	    } elseif($this->strAction == 'clearcart') {
+			
+			$_SESSION['arrProducts'] = '';
+			$_SESSION['arrQtys'] = '';
+			echo json_encode(array('result' => "success",'code' => "done",'details' => "Cart has been cleared"));
+			
 		} else {
 
 			echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found"));

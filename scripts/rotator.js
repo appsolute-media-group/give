@@ -37,28 +37,39 @@ function trackImpression(id){
   }
 }
 
-function clickaction(id,url){
+$(document).ready(function () {
+  $('.banner_image').click(function(){
 
-  $.ajax({
-      url: "/api/trackwebclick/"+id+"/",
-    })
-    .done(function( data ) {
-      if ( console && console.log ) {
-        var objResult = JSON.parse(data);
 
-        if(objResult.result == 'success'){
-          console.log('tracking:',objResult.code);
-          console.log('going to url:',url);
-          window.location.href=url;
-        } else {
-          console.log( "fail:", objResult.code );
-          console.log( "details:", objResult.details );
+    var url = $(this).attr('data-url');
+    var id = $(this).attr('data-id');
+
+    $.ajax({
+        url: "/api/trackwebclick/"+id+"/",
+      })
+      .done(function( data ) {
+        if ( console && console.log ) {
+          var objResult = JSON.parse(data);
+
+          if(objResult.result == 'success'){
+            console.log('tracking:',objResult.code);
+            console.log('going to url:',url);
+       
+            var win = window.open(url, 'New Tab', '');
+            //win.focus();
+
+          } else {
+            console.log( "fail:", objResult.code );
+            console.log( "details:", objResult.details );
+          }
         }
-      }
-    });
-  
+      });
+    
 
-}
+  });
+
+});
+
 
 function prepareRotator(elem) {
   $(elem+" img").fadeOut(0);

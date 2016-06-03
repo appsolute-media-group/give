@@ -61,11 +61,11 @@ if(count($this->arrDeals) > 0) {?>
             </div>
             <div class="product-middle">
             </div>
-            <div class="product-bottom text-center">
+            <div class="product-bottom">
               <div class="col-xs-12 points-hex-container">
-                <div class="text-center">
+ 
                   <p><?php echo $d['deal_title']; ?></p>
-                </div>
+          
               </div>
             </div>
           </div>

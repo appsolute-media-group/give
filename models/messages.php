@@ -32,11 +32,19 @@ class Messages extends Database  {
 
 		$sublocality_id = $_SESSION['sublocality_id'];
 
-		$this->strQuery = "SELECT id, message_title, message_content, last_mod, start_date, end_date
-			                 FROM $this->strTableName  
-			                 WHERE sublocality_id='$sublocality_id' AND 
-			                       blnActive = 1 AND 
-			                       blnApproved = 1";
+		$this->strQuery = "SELECT m.id, 
+		m.message_title, 
+		m.message_content, 
+		m.last_mod, 
+		m.start_date, 
+		m.end_date,
+		a.fname,
+		a.lname
+         FROM $this->strTableName  m 
+         left join users_admin a on a.id=m.author 
+         WHERE (sublocality_id='$sublocality_id' OR all_foodbanks=1) AND 
+               m.blnActive = 1 AND 
+               m.blnApproved = 1";
 
 		$details = $this->getMysqliResults( $this->strQuery, true );
 		
@@ -66,6 +74,8 @@ class Messages extends Database  {
           $date_details[$i]['last_mod']        = $last_mod;    
           $date_details[$i]['start_date']      = $start_date;
           $date_details[$i]['end_date']        = $end_date;
+          $date_details[$i]['fname']        = $details[$i]['fname'];
+          $date_details[$i]['lname']        = $details[$i]['lname'];
         }
       }
       $details = $date_details;
@@ -75,10 +85,17 @@ class Messages extends Database  {
 
 	function getMessageById($id) {
 
-		$this->strQuery = "SELECT id, message_title, message_content, last_mod
-			FROM $this->strTableName  
-			WHERE id='$id' 
-			AND blnActive = 1 AND blnApproved=1";
+		$this->strQuery = "SELECT 
+			m.id, 
+			m.message_title, 
+			m.message_content, 
+			m.last_mod, 
+			a.fname, 
+			a.lname 
+		FROM $this->strTableName  m 
+		left join users_admin a on a.id=m.author 
+		WHERE m.id='$id' 
+		AND m.blnActive = 1 AND m.blnApproved=1";
 
 		$details = $this->getMysqliResults( $this->strQuery, true );
 		if(count($details) >0) {

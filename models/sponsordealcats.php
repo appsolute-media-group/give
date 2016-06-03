@@ -30,7 +30,12 @@ class SponsorDealCats extends Database  {
 
 	function getWebDealCats() {
 
-		$this->strSubQuery = "SELECT sdc.id, sdc.cat_title, sdc.search_data, sdc.icon_font  
+		$this->strSubQuery = "SELECT 
+		sdc.id, 
+		sdc.cat_title, 
+		sdc.search_data, 
+		sdc.icon_font, 
+		concat((SELECT img_root FROM config WHERE id=1),sdc.icon_img) As icon_img   
 		FROM $this->strTableName  sdc
 		WHERE sdc.blnActive = 1";
 
@@ -101,7 +106,11 @@ class SponsorDealCats extends Database  {
 					$max_mod = $max_mod[0];
 
 					//this returns the full list of active sponsors
-					$this->strSubQuery = "SELECT sdc.id, sdc.cat_title, sdc.search_data  
+					$this->strSubQuery = "SELECT 
+					sdc.id, 
+					sdc.cat_title, 
+					sdc.search_data,
+					concat((SELECT img_root FROM config WHERE id=1),sdc.icon_img) As icon_img   
 					FROM $this->strTableName  sdc
 					WHERE sdc.blnActive = 1";
 

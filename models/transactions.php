@@ -215,6 +215,9 @@ class Transactions extends Database  {
 
 			    $r = $this->mysqliupdate('user_profiles',$keys,$vals,$_SESSION['userID'],'id');
 
+			    $_SESSION['arrProducts'] = '';
+			    $_SESSION['arrQtys'] = '';
+
 		} else {
 
 		        
@@ -238,6 +241,14 @@ class Transactions extends Database  {
 					$errorMessageText = $errorNotice[0]->getText();
 		
         		}
+
+
+        		if($errorMessageText =='A duplicate transaction has been submitted.') {
+
+        			$errorMessageText = 'Your account is temporarily restricted while your previous transaction is fully proccessed. 
+        			This is to prevent accidental duplicate transactions. Please wait 60 seconds and try again.';
+        		}
+
 
 				//echo "Error Code : " . $errorMessageCode . "<br />";
 				//echo "Error Text : " . $errorMessageText . "<br />";
@@ -397,9 +408,9 @@ class Transactions extends Database  {
 				}
 				else
 				{
-				  echo "ERROR :  Invalid response<br />";
+				  //echo "ERROR :  Invalid response<br />";
 				  $errorMessages = $new_response->getMessages()->getMessage();
-				  echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
+				  //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "<br />";
 
 				  //Util::dump($new_response);
 				  $ProfileId = '';
@@ -407,7 +418,8 @@ class Transactions extends Database  {
 
 				$_SESSION['APIprofileID'] = $ProfileId;
 				$_SESSION['user_points'] = $_SESSION['user_points']+ ($objDetails['Amount']*100);
-
+				$_SESSION['arrProducts'] = '';
+			    $_SESSION['arrQtys'] = '';
 				
 
 
@@ -435,6 +447,12 @@ class Transactions extends Database  {
 		
         		}
 
+        		if($errorMessageText =='A duplicate transaction has been submitted.') {
+
+        			$errorMessageText = 'Your account is temporarily restricted while your previous transaction is fully proccessed. 
+        			This is to prevent accidental duplicate transactions. Please wait 60 seconds and try again.';
+        		
+        		}
 				//echo "Error Code : " . $errorMessageCode . "<br />";
 				//echo "Error Text : " . $errorMessageText . "<br />";
 

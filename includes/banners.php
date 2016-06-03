@@ -5,16 +5,26 @@
 	$arrBanners = $objBanners->getSubBannerAds($_SESSION['sublocality_id'],'','1/1/1900');
 
 
+  if(isset($page) && $page == 'cart') {
+
+    $style = 'ad-container2';
+
+  } else {
+
+    $style = 'ad-container';
+  }
+
+
   $s = '<div class="row">
-         <div class="ad-container">
-          <div class="col-xs-10 col-xs-offset-1 ad-contents text-center">
+         <div class="'.$style.'">
+          <div class="ad-contents text-center">
            <div id="rotator">';
 
 	echo $s;
 
 	foreach($arrBanners As $b){
 
-		echo '<img src="'.$b['media_file'].'" class="center-block img-responsive"  data-id="'.$b['ad_id'].'" onclick="clickaction('.$b['ad_id'].',\''.$b['url'].'\');" />';
+		echo '<img src="'.$b['media_file'].'" class="center-block banner_image"  data-id="'.$b['ad_id'].'" data-url="'.$b['url'].'" />';
 
 	}
 

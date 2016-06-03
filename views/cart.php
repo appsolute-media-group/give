@@ -53,7 +53,7 @@ $grand_total = 0;
     $price = $p['product_price'];
     $usr_price = 0;
 
-    if(is_array($_SESSION['arrProducts'])){
+    if(isset($_SESSION['arrProducts']) && is_array($_SESSION['arrProducts'])){
       for($i=0;$i < count($_SESSION['arrProducts']);$i++){
         if($_SESSION['arrProducts'][$i]['id'] == $p['id']){
             $qty = $_SESSION['arrQtys'][$i];
@@ -95,7 +95,7 @@ $grand_total = 0;
                         <p class="points-hex-desc"><?php echo $p['product_name'];?></p>
                         <div class="row needed-item-bottom">
                           <div class="col-xs-12">
-                            <span class="btn btn-item-amount">$<span id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($usr_price,2);?></span>
+                            <span class="btn btn-item-amount">$<span class="user_qty_display" id="user_qty_display_<?php echo $p['id'];?>"><?php echo number_format($usr_price,2);?></span>
                               <input type="hidden" value="<?php echo $qty;?>" name="user_qty[]" id="user_qty_<?php echo $p['id'];?>" class="user_qty" style="color:#000000"/>
                               <input type="hidden" value="<?php echo $p['id'];?>" name="product_id[]" style="color:#000000" />
                             </span>
@@ -122,14 +122,14 @@ $grand_total = 0;
               </div>         <!-- row -->
 
               <div class="row total-container">
-                <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3  text-center">
+                <div class="text-center">
                   <p class="total">
                     TOTAL = $<span id="grand_total_display"><?php echo number_format($grand_total,2); ?></span><input type="hidden" value="<?php echo $grand_total; ?>" id="grand_total" />
                   </p>
                 </div>
-                <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3 text-center">
+                <div class="text-center">
                   <!--<button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="validateCheckout();">VALIDATE</button> -->
-                  
+                  <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="Clear();">CLEAR CART</button>
                   <button type="button" name="needed-now-checkout" class="btn btn-checkout" onclick="Checkout();">CHECKOUT</button>
                 </div>
               </div>
@@ -139,7 +139,10 @@ $grand_total = 0;
       </form>
       
 
-<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+<?php 
+
+$page = 'cart';
+include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
     </div>     <!-- container-fluid -->
   </div>       <!-- main-wrapper -->

@@ -42,28 +42,30 @@ if(count($this->arrCats) > 0) {?>
 
           <div class="product-wrapper" onclick="window.location.href='/shop/cat/<?php echo $c['id']; ?>/';">
             <div class="background-wrapper">
-              <img src="" alt="" />
+              <img src="<?php echo $c['icon_img']; ?>" alt="" class="center-block img-responsive" />
 
 
             </div>
             <div class="product-top">
               <div class="col-xs-12 points-hex-container">
+               
+<?php   if ($c['icon_font'] != "") { ?>   
                 <div class="points-hex text-center">
-<?php   if ($c['icon_font'] != "") { ?>                
                   <p><i class="fa <?php echo $c['icon_font']; ?> fa-2x"></i></p>
-<?php   } else { ?>   
-                  <p></p>
-<?php   } ?>                  
                 </div>
+<?php   } else { ?>   
+                  
+<?php   } ?>                  
+                
               </div>
             </div>
             <div class="product-middle">
             </div>
-            <div class="product-bottom text-center">
+            <div class="product-bottom">
               <div class="col-xs-12 points-hex-container">
-                <div class="text-center">
+                
                   <p><?php echo $c['cat_title']; ?></p>
-                </div>
+                
               </div>
             </div>
           </div>

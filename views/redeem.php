@@ -27,13 +27,23 @@
             <div class="col-xs-12 text-left">
               <h6 class="product-value"><?php echo $this->objDeal['deal_price'];?> points</h6>
               <h6 class="product-value text-center" style="color:red;" id="error_message"></h6>
+
+              <div id="action_placeholder" class="text-center">
+                <h2 class="product-value text-center" style="color:red;" id="warning">WARNING!</h2>
+                <h6 class="product-value text-center" style="color:red;" id="warning_text">Offer VOID unless redeemed <br />in the presence of <br />
+                  a <?php echo $this->objDeal['sponsor_name'];?> employee!</h6>
+
+                <button type="button" name="cancel" class="btn btn-cancel" id="home" onclick="window.location.href='/main/'">Back To Home</button>
+
+              </div>
+
               <div id="redeem_placeholder" class="text-center">
                 <?php if($this->objDeal['barcode_image'] != '') {?>
                   <img src="<?php echo $this->objDeal['barcode_image'];?>" alt="" class="center-block img-responsive" onclick="redeem(<?php echo $this->objDeal['id'];?>)" />
                 <?php } else {?>
                   <div class="col-xs-12 button-container text-center">
                     <div class="button-inner">
-                        <button type="button" name="cancel" class="btn btn-cancel" onclick="redeem(<?php echo $this->objDeal['id'];?>)">Redeem</button>
+                        <button type="button" name="redeem" class="btn btn-cancel" onclick="redeem(<?php echo $this->objDeal['id'];?>)">Redeem</button>
                     </div>
                   </div> 
                 <?php } ?>
@@ -47,7 +57,7 @@
         <div class="col-xs-12 text-left">
             
           <p class="business-description">
-
+<br /><br /><br /><br />
           </p>
            
         </div>

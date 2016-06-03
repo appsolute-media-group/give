@@ -30,6 +30,7 @@
           <div class="col-xs-12 text-left">
             <div class="message-inner">
               <h4 class="message-title"><?php echo $this->arrMessages['message_title']; ?></h4>
+              <h6>From <?php echo $this->arrMessages['fname'] . ' ' . $this->arrMessages['lname']; ?></h6>
               <!--
               <h6 class="message-date"><?php echo $this->arrMessages['last_mod']; ?></h6>
               -->

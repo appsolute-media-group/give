@@ -97,6 +97,7 @@ input {
 
 .header .navbar {
   margin-bottom: 0;
+  background:#1b8889;
 }
 
 .header .navbar-default {
@@ -119,6 +120,8 @@ input {
 .item {
   margin-top: 0%;
   padding: 0 !important;
+  min-height:50px;
+  background-color: #f2f2f2;
 }
 
 .item h1, .item h2, .item h3, .item h4, .item h5, .item h6 {
@@ -133,6 +136,7 @@ input {
   background-color: #f2f2f2;
   width: 100%;
   margin: 0 auto;
+
 }
 
 .item .item-inner .item-header {
@@ -193,17 +197,6 @@ input {
   padding: 10px;
 }
 
-.ad-container .ad-contents {
-  padding: 0;
-  background-color: #f2f2f2;
-}
-
-.ad-container .ad-contents img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  position: absolute; 
-}
 
 .btn {
   text-transform: uppercase;
@@ -211,11 +204,11 @@ input {
 }
 
 .page.my-account .item-inner .item-detail .hero {
-  padding: 15% 0 10%;
+  padding: 0% 0 10%;
 }
 
 .page.my-account .item-inner .item-detail .stats {
-  padding: 5% 0;
+  padding: 0% 0;
 }
 
 .page.my-account .item-inner .item-detail .points {
@@ -231,7 +224,7 @@ input {
 .page.my-account .item-inner .item-detail .basic-navigation {
   width: 90%;
   margin: auto;
-  padding: 5% 0 10%;
+  padding: 0% 0 10%;
 }
 
 .page.my-account .item-inner .item-detail .basic-navigation h4 {
@@ -936,25 +929,30 @@ input {
 }
 
 .page.shop .products-container {
-  width: 100%;
-  font-size: 0em;
   height: 300px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  margin:0px;
+  padding:0px;
+  
 }
 
 .page.shop .product-wrapper {
   position: relative;
   width: 50%;
-  display: inline-block;
-  min-height: 150px;
-  font-size: 16px;
+  margin:0px;
+  padding:0px;
+  float:left;
+  height: 90px;
+  font-size: 14px;
   overflow: hidden;
 }
 
 .page.shop .product-wrapper .background-wrapper {
   position: absolute;
+  width:100%;
+  height: 90px;
   top: 0;
+  margin:0px;
+  padding:0px;
   z-index: 0;
 }
 
@@ -963,7 +961,7 @@ input {
 }
 
 .page.shop .product-wrapper .product-top {
-  margin-top: 0px;
+  margin-top: 2px;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -979,18 +977,18 @@ input {
   -o-align-items: center;
   align-items: center;
   -ms-flex-align: center;
+  height: 50px;
 }
 
 .page.shop .product-wrapper .product-top .points-hex-container .points-hex {
   max-width: 30%;
   background: url("../images/points-bg-hex-o.png");
-  background: url("../images/points-bg-hex-o.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 64px;
+  height: 50px;
   width: 64px;
-  margin: auto;
+  
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -1010,8 +1008,9 @@ input {
 
 .page.shop .product-wrapper .product-top .points-hex-container .points-hex p {
   margin: auto;
+  padding:0px;
   color: #fff;
-  font-size: .7em;
+  font-size: .6em;
 }
 
 .page.shop .product-wrapper .product-top .points-hex-container .points-hex-desc {
@@ -1045,11 +1044,11 @@ input {
 }
 
 .page.shop .product-wrapper .product-bottom span {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .page.shop .product-wrapper .product-bottom p {
-  padding: 5px 0;
+  padding: 0px 0;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   z-index: 10;
@@ -1168,6 +1167,7 @@ input {
 
 .page.shop .directory-list {
   padding: 10px 0 20px;
+  height:100vh;
 }
 
 .page.shop .directory-list .directory-item-container .directory-item-inner .business-info {
@@ -1859,6 +1859,52 @@ input {
 .page.food-bank .rep-inner img {
   max-width: 100%;
   padding: 0px 0 20px;
+}
+
+/*
+.ad-container .ad-contents {
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.ad-container .ad-contents img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  position: absolute; 
+}
+*/
+
+.ad-container {
+
+  background-color: #f2f2f2;
+  height:30vw;
+  overflow:hidden;
+  position:fixed;
+  bottom:0px;
+max-height:200px;
+  z-index:1000;
+  width: 100%;
+  left:0px;
+
+}
+.ad-container .banner_image {
+  margin-top:10px;
+  display:table-cell;
+  vertical-align:top;
+max-height:180px;
+  height:30vw;
+  width: 100vw;
+  max-width:650px;
+}
+
+.ad-container2 .banner_image {
+  margin-top:10px;
+  display:table-cell;
+  vertical-align:top;
+max-height:180px;
+  height:30vw;
+  width: 100%;
 }
 
 

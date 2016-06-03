@@ -25,6 +25,7 @@
         <div class="row pre-redeem-redemption-container">
           <div class="col-xs-12 text-center">
             <h6 class="product-value"><?php echo $this->objDeal['deal_price'];?> points</h6>
+            <button type="button" name="pre-redeem_redeem" class="btn btn-redeem" onclick="window.location.href='/shop/';">Back</button>
             <button type="button" name="pre-redeem_redeem" class="btn btn-redeem" onclick="window.location.href='/shop/redeem/<?php echo $this->objDeal['id'];?>/';">Redeem</button>
             <button type="button" name="pre-redeem_redeem" class="btn btn-redeem" onclick="window.location.href='/directory/details/<?php echo $this->objDeal['sponsor_id'];?>/';">View Business</button>
           </div>
@@ -34,9 +35,6 @@
             <p class="business-description">
             	<?php echo $this->objDeal['deal_desc'];?>
             </p>
-
-<?php //Util::dump($this->objDeal);?>
-
           </div>
         </div>
       </div>
