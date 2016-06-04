@@ -105,12 +105,12 @@ class Sponsors extends Database  {
 
 
 
+
+
+
 /****************
 
 API functions only below this line 
-
-
-
 */
 
 

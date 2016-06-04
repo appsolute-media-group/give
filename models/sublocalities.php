@@ -50,24 +50,30 @@ class SubLocalities extends Database  {
 
 	}
 
-  function verifySubLocalityId($id) {
 
-    $this->strQuery = "SELECT s.id, s.sub_name      
-                       FROM $this->strTableName s   
-                       WHERE id ='$id'";
 
-    if($this->query( $this->strQuery )) {
 
-      $res = $this->getMysqliResults( $this->strQuery, true );
-      if(count($res)>0) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
+	function verifySubLocalityId($id) {
+
+		$this->strQuery = "SELECT s.id, s.sub_name      
+		                   FROM $this->strTableName s   
+		                   WHERE id ='$id'";
+
+		if($this->query( $this->strQuery )) {
+
+		  $res = $this->getMysqliResults( $this->strQuery, true );
+		  if(count($res)>0) {
+		    return true;
+		  } else {
+		    return false;
+		  }
+		} else {
+		  return false;
+		}
+	}
+
+
+
 
 	function getSubLocalityList() {
 

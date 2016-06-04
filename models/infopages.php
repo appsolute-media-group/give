@@ -28,10 +28,6 @@ class InfoPages extends Database  {
 
 
 
-
-
-
-
 /*********************************************
 
 
@@ -50,7 +46,12 @@ do not modify anything below this line
 		$result = array('result' => "error");
 
 		if($name !='') {
-	        $this->strQuery = "SELECT page_title, concat((SELECT img_root FROM config WHERE id=1),logo) As logo, `text`,`last_mod` From $this->strTableName WHERE `name`='$name'";
+	        $this->strQuery = "SELECT 
+	        page_title, 
+	        concat((SELECT img_root FROM config WHERE id=1),logo) As logo, 
+	        `text`,
+	        `last_mod` 
+	        From $this->strTableName WHERE `name`='$name'";
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
 	            $details = $details[0];

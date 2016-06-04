@@ -221,7 +221,16 @@ API methds
 
 		//returns 1 random result for this sub
 		$this->strQuery = "SELECT 
-		c.ad_id, c.start_time, c.end_time, s.sponsor_name, a.ad_text, concat((SELECT img_root FROM config WHERE id=1),a.media_file) As media_file, a.url, a.ad_disp_zone_id, a.last_mod, 0 As views    
+		c.ad_id, 
+		c.start_time, 
+		c.end_time, 
+		s.sponsor_name, 
+		a.ad_text, 
+		concat((SELECT img_root FROM config WHERE id=1),a.media_file) As media_file, 
+		a.url, 
+		a.ad_disp_zone_id, 
+		a.last_mod, 
+		0 As views    
 		FROM campaigns c 
 		LEFT JOIN sponsors s on s.id=c.sponsor_id 
 		LEFT JOIN ads a ON a.id=c.ad_id 
