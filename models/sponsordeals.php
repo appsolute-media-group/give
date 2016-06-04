@@ -45,10 +45,6 @@ class SponsorDeals extends Database  {
        	 	$amount = $details[0]['deal_price'];
     	}
 
-    	
-
-//Util::dump($amount);
-
 		$arrResult = array('result' => "error");
 
 		$sublocality_id = $_SESSION['sublocality_id'];

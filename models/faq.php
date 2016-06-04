@@ -39,6 +39,4 @@ class Faq extends Database  {
 
 }
 
-
-
 ?>

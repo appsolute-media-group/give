@@ -49,6 +49,9 @@ class Messages extends Database  {
 		$details = $this->getMysqliResults( $this->strQuery, true );
 		
     // step thru the array, checking the start and end dates
+
+
+		//to be removed
     if (count($details) > 0) {
     	$today_str = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
     	$date_details = array();
@@ -83,6 +86,9 @@ class Messages extends Database  {
     return $details;
 	}
 
+
+
+
 	function getMessageById($id) {
 
 		$this->strQuery = "SELECT 
@@ -105,6 +111,9 @@ class Messages extends Database  {
 		}
 
 	}
+
+
+
 
 
 
