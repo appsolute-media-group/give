@@ -41,11 +41,9 @@ class SponsorDeals extends Database  {
 
 		$amount = 0;
 		$details = $this->getMysqliResults( "SELECT deal_price from sponsor_deals WHERE id=$deal_id", true );
-		if(count($details) >0) {
-       	 	$amount = $details[0]['deal_price'];
-    	}
-
-    	
+		if (count($details) > 0) {
+      $amount = $details[0]['deal_price'];
+    }
 
 //Util::dump($amount);
 
@@ -110,27 +108,29 @@ class SponsorDeals extends Database  {
 		WHERE s.sublocality_id='$sublocality_id' 
 		AND sd.blnActive = 1";
 
-
 		if($searchTerm != '') {
-
 			$this->strSubQuery .= " AND (deal_title like '%$searchTerm%' OR deal_desc like '%$searchTerm%' OR cat_title like '%$searchTerm%')";
-
 		}
 
 		if($intId != '') {
-
 			$this->strSubQuery .= " AND s.id='$intId'";
-
 		}
 //echo ($this->strSubQuery);
 
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details;
-    	}
-
-
+		if (count($details) > 0) {
+      $number_entries = count($details);
+      for ($i=0; $i < $number_entries; $i++) {
+        $details[$i]['deal_title']      = trim(stripslashes($details[$i]['deal_title']));  
+        $details[$i]['deal_image']      = trim(stripslashes($details[$i]['deal_image']));  
+        $details[$i]['deal_short_desc'] = trim(stripslashes($details[$i]['deal_short_desc']));  
+        $details[$i]['deal_desc']       = trim(stripslashes($details[$i]['deal_desc']));  
+        $details[$i]['cat_title']       = trim(stripslashes($details[$i]['cat_title']));  
+        $details[$i]['search_data']     = trim(stripslashes($details[$i]['search_data']));  
+      }
+      return $details;
+    }
 	}
 
 
@@ -154,9 +154,18 @@ class SponsorDeals extends Database  {
 		AND sd.blnActive = 1";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details;
-    	}
+		if (count($details) > 0) {
+      $number_entries = count($details);
+      for ($i=0; $i < $number_entries; $i++) {
+        $details[$i]['deal_title']      = trim(stripslashes($details[$i]['deal_title']));  
+        $details[$i]['deal_image']      = trim(stripslashes($details[$i]['deal_image']));  
+        $details[$i]['deal_short_desc'] = trim(stripslashes($details[$i]['deal_short_desc']));  
+        $details[$i]['deal_desc']       = trim(stripslashes($details[$i]['deal_desc']));  
+        $details[$i]['cat_title']       = trim(stripslashes($details[$i]['cat_title']));  
+        $details[$i]['search_data']     = trim(stripslashes($details[$i]['search_data']));  
+      }
+      return $details;
+    }
 
 	}
 
@@ -178,9 +187,16 @@ class SponsorDeals extends Database  {
 		AND sd.blnActive = 1";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details[0];
-    	}
+		if (count($details) > 0) {
+      $details[0]['sponsor_name']    = trim(stripslashes($details[0]['sponsor_name']));  
+      $details[0]['deal_title']      = trim(stripslashes($details[0]['deal_title']));  
+      $details[0]['deal_image']      = trim(stripslashes($details[0]['deal_image']));  
+      $details[0]['deal_short_desc'] = trim(stripslashes($details[0]['deal_short_desc']));  
+      $details[0]['deal_desc']       = trim(stripslashes($details[0]['deal_desc']));  
+      $details[0]['cat_title']       = trim(stripslashes($details[0]['cat_title']));  
+      $details[0]['search_data']     = trim(stripslashes($details[0]['search_data']));   
+      return $details[0];
+    }
 
 
 	}

@@ -151,11 +151,11 @@ class Users extends Database  {
 	function registerFromWebpage() {
 
 		
-		$this->strUseremail = isset($_POST['signup_email']) ? $_POST['signup_email'] : '';
-		$this->strPassword = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
-		$this->strUsername = isset($_POST['signup_username']) ? $_POST['signup_username'] : '';
+		$this->strUseremail   = isset($_POST['signup_email']) ? $_POST['signup_email'] : '';
+		$this->strPassword    = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
+		$this->strUsername    = isset($_POST['signup_username']) ? $_POST['signup_username'] : '';
 		$this->strSublocality = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
-		$this->referalCode = isset($_POST['referalCode']) ? $_POST['referalCode'] : '';
+		$this->referalCode    = isset($_POST['referalCode']) ? $_POST['referalCode'] : '';
 
 
 		do {
@@ -237,13 +237,13 @@ class Users extends Database  {
 
 			$this->mysqliinsert($keys,$vals);
 
-			$_SESSION['userID'] = $this->insert_id;
-			$_SESSION['name'] = $this->strUsername;
-			$_SESSION['email'] = $this->strUseremail;
-			$_SESSION['user_points'] = 0;
-			$_SESSION['refer_code'] = '';
+			$_SESSION['userID']         = $this->insert_id;
+			$_SESSION['name']           = $this->strUsername;
+			$_SESSION['email']          = $this->strUseremail;
+			$_SESSION['user_points']    = 0;
+			$_SESSION['refer_code']     = '';
 			$_SESSION['sublocality_id'] = $sublocality;
-			$_SESSION['APIprofileID'] = "";
+			$_SESSION['APIprofileID']   = "";
 
 			if(!empty($this->referalCode) && $this->referalCode != ''){
 				$res2 = $this->getSponsorByCode($this->referalCode);
@@ -290,13 +290,13 @@ class Users extends Database  {
 					$results = $this->getMysqliResults( $this->strQuery, true );
 					$results = $results[0];
 
-					$_SESSION['userID'] = $results['id'];
-					$_SESSION['name'] = $results['name'];
-					$_SESSION['email'] = $results['email'];
-					$_SESSION['user_points'] = $results['user_points'];
-					$_SESSION['refer_code'] = $results['refer_code'];
+					$_SESSION['userID']         = $results['id'];
+					$_SESSION['name']           = trim(stripslashes($results['name']));
+					$_SESSION['email']          = trim(stripslashes($results['email']));
+					$_SESSION['user_points']    = $results['user_points'];
+					$_SESSION['refer_code']     = $results['refer_code'];
 					$_SESSION['sublocality_id'] = $results['sublocality_id'];
-					$_SESSION['APIprofileID'] = $results['APIprofileID'];
+					$_SESSION['APIprofileID']   = $results['APIprofileID'];
 
 					echo "<script>window.location.href='/main/'</script>";
 					//return ('Valid login');

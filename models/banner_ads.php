@@ -243,6 +243,15 @@ API methds
 
 		if($this->query( $this->strQuery )) {
 			$r = $this->getMysqliResults( $this->strQuery, true );
+			$number_entries = count($r);
+      if ($number_entries > 0) {
+        for ($i=0; $i < $number_entries; $i++) {
+          $r[$i]['sponsor_name']  = trim(stripslashes($r[$i]['sponsor_name']));  
+          $r[$i]['ad_text']       = trim(stripslashes($r[$i]['ad_text']));  
+          $r[$i]['media_file']    = trim(stripslashes($r[$i]['media_file']));  
+          $r[$i]['url']           = trim(stripslashes($r[$i]['url']));  
+        }
+      }
 		} else {
 			$r = null;
 		}

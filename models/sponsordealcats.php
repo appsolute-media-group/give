@@ -40,19 +40,20 @@ class SponsorDealCats extends Database  {
 		WHERE sdc.blnActive = 1";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details;
-    	}
+		if (count($details) > 0) {
+      $number_entries = count($details);
+      for ($i=0; $i < $number_entries; $i++) {
+        $details[$i]['cat_title']   = trim(stripslashes($details[$i]['cat_title']));  
+        $details[$i]['search_data'] = trim(stripslashes($details[$i]['search_data']));  
+        $details[$i]['icon_img']    = trim(stripslashes($details[$i]['icon_img']));  
+      }
+      return $details;
+    }
 
 	}
 
 
-
-
-
     function getSponsorDealCats() {
-
-
 
 		$this->objUsers = new Users;
 

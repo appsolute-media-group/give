@@ -38,20 +38,24 @@ class Sponsors extends Database  {
 		AND s.blnActive = 1 
 		AND sponsor_type = 1 ";
 
-
 		if($searchTerm != ''){
-
 			$this->strSubQuery .= " AND sponsor_name like '%$searchTerm%'";
-
 		}
-
-
-
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details;
-    	}
+		if (count($details) > 0) {
+      $number_entries = count($details);
+      for ($i=0; $i < $number_entries; $i++) {
+        $details[$i]['sponsor_name']       = trim(stripslashes($details[$i]['sponsor_name']));  
+        $details[$i]['sponsor_url']        = trim(stripslashes($details[$i]['sponsor_url']));  
+        $details[$i]['sponsor_address']    = trim(stripslashes($details[$i]['sponsor_address']));  
 
+        $details[$i]['sponsor_slogan']     = trim(stripslashes($details[$i]['sponsor_slogan']));  
+        $details[$i]['sponsor_email']      = trim(stripslashes($details[$i]['sponsor_email']));  
+        $details[$i]['sponsor_city']       = trim(stripslashes($details[$i]['sponsor_city']));  
+        $details[$i]['sponsor_contact_nm'] = trim(stripslashes($details[$i]['sponsor_city']));  
+      }
+      return $details;
+    }
 	}
 
 
@@ -67,10 +71,17 @@ class Sponsors extends Database  {
 		AND s.blnActive = 1";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details[0];
-    	}
+		if (count($details) > 0) {
+      $details[0]['sponsor_name']       = trim(stripslashes($details[0]['sponsor_name']));  
+      $details[0]['sponsor_url']        = trim(stripslashes($details[0]['sponsor_url']));  
+      $details[0]['sponsor_address']    = trim(stripslashes($details[0]['sponsor_address']));  
 
+      $details[0]['sponsor_slogan']     = trim(stripslashes($details[0]['sponsor_slogan']));  
+      $details[0]['sponsor_email']      = trim(stripslashes($details[0]['sponsor_email']));  
+      $details[0]['sponsor_city']       = trim(stripslashes($details[0]['sponsor_city']));  
+      $details[0]['sponsor_contact_nm'] = trim(stripslashes($details[0]['sponsor_city'])); 
+      return $details[0];
+    }
 	}
 
 	function getWebSponsorContacts($id) {
@@ -82,9 +93,13 @@ class Sponsors extends Database  {
  
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details[0];
-    	}
+		if (count($details) > 0) {
+      $details[0]['fname']      = trim(stripslashes($details[0]['fname']));  
+      $details[0]['lname']      = trim(stripslashes($details[0]['lname']));  
+      $details[0]['email']      = trim(stripslashes($details[0]['email'])); 
+      $details[0]['position']   = trim(stripslashes($details[0]['position']));  
+      return $details[0];
+    }
 
 	}
 

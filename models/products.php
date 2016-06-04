@@ -57,14 +57,17 @@ class Products extends Database  {
 
 		$this->strSubQuery .= " ORDER BY p.id LIMIT 10)";
 
-
-
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
-		if(count($details) >0) {
-       	 	return $details;
-    	} else {
-    		return null;
-    	}
+		if (count($details) > 0) {
+		  $number_entries = count($details);
+      for ($i=0; $i < $number_entries; $i++) {
+        $details[$i]['product_name']  = trim(stripslashes($details[$i]['product_name']));  
+        $details[$i]['product_img']   = trim(stripslashes($details[$i]['product_img']));  
+      }
+   	 	return $details;
+    } else {
+    	return null;
+    }
 
 	}
 

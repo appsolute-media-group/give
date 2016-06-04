@@ -74,8 +74,8 @@ class Messages extends Database  {
           $date_details[$i]['last_mod']        = $last_mod;    
           $date_details[$i]['start_date']      = $start_date;
           $date_details[$i]['end_date']        = $end_date;
-          $date_details[$i]['fname']        = $details[$i]['fname'];
-          $date_details[$i]['lname']        = $details[$i]['lname'];
+          $date_details[$i]['fname']           = trim(stripslashes($details[$i]['fname']));
+          $date_details[$i]['lname']           = trim(stripslashes($details[$i]['lname']));
         }
       }
       $details = $date_details;
@@ -98,7 +98,11 @@ class Messages extends Database  {
 		AND m.blnActive = 1 AND m.blnApproved=1";
 
 		$details = $this->getMysqliResults( $this->strQuery, true );
-		if(count($details) >0) {
+		if (count($details) > 0) {
+      $details[0]['message_title']    = trim(stripslashes($details[0]['message_title']));  
+      $details[0]['message_content']  = trim(stripslashes($details[0]['message_content'])); 
+      $details[0]['fname']            = trim(stripslashes($details[0]['fname']));
+      $details[0]['lname']            = trim(stripslashes($details[0]['lname']));
 			return $details[0];
 		} else{
 			return null;

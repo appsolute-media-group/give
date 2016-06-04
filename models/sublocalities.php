@@ -75,9 +75,17 @@ class SubLocalities extends Database  {
 			FROM $this->strTableName s   
 			WHERE blnActive=1";
 
-		if($this->query( $this->strQuery )) {
+		if ($this->query( $this->strQuery )) {
 
 			$details = $this->getMysqliResults($this->strQuery,true);
+
+      $number_entries = count($details);
+      if ($number_entries > 0) {
+    
+        for ($i=0; $i < $number_entries; $i++) {
+          $details[$i]['sub_name'] = trim(stripslashes($details[$i]['sub_name']));  
+        }
+      }
 			return $details;
 
 		} else {
@@ -152,8 +160,20 @@ class SubLocalities extends Database  {
 		    //echo $this->strQuery;
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
-	            $details = $details[0];
-	            $r = $details;
+              if (count($details) > 0) {
+	              $details = $details[0];
+              
+                $details['page_title'] = stripcslashes($details['page_title']);
+                $details['text']       = stripcslashes($details['text']);
+                $details['logo']       = stripcslashes($details['logo']);
+                $details['address']    = stripcslashes($details['address']);
+                $details['city']       = stripcslashes($details['city']);
+                $details['email']      = stripcslashes($details['email']);
+                $details['url']        = stripcslashes($details['url']);
+	              $r = $details;
+              } else {
+                $r = $details;
+              }  
 	        }
 	    }
 
@@ -171,6 +191,12 @@ class SubLocalities extends Database  {
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
 	            $details = isset($details[0]) ? $details[0] : '';
+
+              if (isset($details['fname'])) {
+                $details['fname']       = stripcslashes($details['fname']);
+                $details['lname']       = stripcslashes($details['lname']);
+                $details['position']    = stripcslashes($details['position']);
+              }
 	            $r = $details;
 	        }
 	    }
@@ -186,7 +212,33 @@ class SubLocalities extends Database  {
 
         $details = $this->getAll();
 
-        if(!is_null($details)){
+        if (!is_null($details)) {
+          if (count($details) > 0) {
+            $number_entries = count($details);
+            for ($i=0; $i < $number_entries; $i++) {
+              $details[$i]['sub_name']                = trim(stripslashes($details[$i]['sub_name']));  
+              $details[$i]['sub_page_title']          = trim(stripslashes($details[$i]['sub_page_title']));
+              $details[$i]['sub_desc']                = trim(stripslashes($details[$i]['sub_desc']));
+              $details[$i]['sub_logo']                = trim(stripslashes($details[$i]['sub_logo']));  
+              $details[$i]['address']                 = trim(stripslashes($details[$i]['address']));  
+              $details[$i]['address2']                = trim(stripslashes($details[$i]['address2']));  
+              $details[$i]['city']                    = trim(stripslashes($details[$i]['city']));  
+
+              $details[$i]['contact_nm']              = trim(stripslashes($details[$i]['contact_nm'])); 
+              $details[$i]['email']                   = trim(stripslashes($details[$i]['email']));  
+              $details[$i]['img_file_name']           = trim(stripslashes($details[$i]['img_file_name']));  
+              $details[$i]['tax_charity_name']        = trim(stripslashes($details[$i]['tax_charity_name'])); 
+              $details[$i]['tax_charity_address']     = trim(stripslashes($details[$i]['tax_charity_address'])); 
+              $details[$i]['tax_charity_address2']    = trim(stripslashes($details[$i]['tax_charity_address2'])); 
+              $details[$i]['tax_charity_city']        = trim(stripslashes($details[$i]['tax_charity_city'])); 
+
+              $details[$i]['tax_charity_BN_number']   = trim(stripslashes($details[$i]['tax_charity_BN_number']));
+              $details[$i]['tax_charity_location']    = trim(stripslashes($details[$i]['tax_charity_location'])); 
+              $details[$i]['tax_charity_signature']   = trim(stripslashes($details[$i]['tax_charity_signature'])); 
+              $details[$i]['tax_charity_sig_file_nm'] = trim(stripslashes($details[$i]['tax_charity_sig_file_nm'])); 
+              $details[$i]['url']                     = trim(stripslashes($details[$i]['url']));  
+            }
+          }  
         	$arrData = array('result' => "success","details" => $details);
         } else {
         	$arrData = array('result' => "error");	
