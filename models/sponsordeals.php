@@ -41,17 +41,14 @@ class SponsorDeals extends Database  {
 
 		$amount = 0;
 		$details = $this->getMysqliResults( "SELECT deal_price from sponsor_deals WHERE id=$deal_id", true );
-<<<<<<< HEAD
-		if (count($details) > 0) {
-      $amount = $details[0]['deal_price'];
+
     }
 
-//Util::dump($amount);
-=======
+
 		if(count($details) >0) {
        	 	$amount = $details[0]['deal_price'];
     	}
->>>>>>> Repair-single-quote-bug
+
 
 		$arrResult = array('result' => "error");
 
