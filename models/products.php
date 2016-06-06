@@ -32,9 +32,9 @@ class Products extends Database  {
 		$sublocality_id = $_SESSION['sublocality_id'];
 
 		//this returns the full list of active records
-		$this->strSubQuery = "(SELECT id, product_name, 
+		$this->strSubQuery = "SELECT * FROM (SELECT id, product_name, 
 					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
-					product_price, '0' As user_qty
+					product_price, idx, '0' As user_qty
 		FROM $this->strTableName p 
 		WHERE p.blnActive = 1 
 		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=0)";
@@ -43,10 +43,10 @@ class Products extends Database  {
 			$this->strSubQuery .= " AND p.id IN ($product_ids)";
 		}
 
-		$this->strSubQuery .= " ORDER BY p.id LIMIT 10) UNION 
+		$this->strSubQuery .= " ORDER BY p.idx LIMIT 10) AS tableA UNION 
 		(SELECT id, product_name, 
 					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
-					product_price, '0' As user_qty
+					product_price, idx, '0' As user_qty
 		FROM $this->strTableName p 
 		WHERE p.blnActive = 1 
 		AND p.id in (SELECT product_id FROM needed_now_links WHERE charity_id=$sublocality_id)";
@@ -55,7 +55,7 @@ class Products extends Database  {
 			$this->strSubQuery .= " AND p.id IN ($product_ids)";
 		}
 
-		$this->strSubQuery .= " ORDER BY p.id LIMIT 10)";
+		$this->strSubQuery .= " ORDER BY p.idx LIMIT 10) ORDER BY idx";
 
 		$details = $this->getMysqliResults( $this->strSubQuery, true );
 		if (count($details) > 0) {
@@ -139,7 +139,7 @@ class Products extends Database  {
 					concat((SELECT img_root FROM config WHERE id=1),product_img) AS product_img, 
 					product_price, last_mod, '0' As user_qty
 					FROM products   
-					WHERE blnActive = 1";
+					WHERE blnActive = 1 ORDER BY idx";
 
 					$details = $this->getMysqliResults( $this->strSubQuery, true );
 					if(count($details) >0) {
