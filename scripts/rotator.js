@@ -1,8 +1,9 @@
 function rotateBanners(elem) {
-  var active = $(elem+" img.active");
-  var next = active.next();
+  var active = $(elem+" a.active");
+  var next = active.next('a');
+
   if (next.length == 0){
-    next = $(elem+" img:first");
+    next = $(elem+" a:first");
   } 
 
   var ad = next.attr('data-id');
@@ -38,10 +39,13 @@ function trackImpression(id){
 }
 
 $(document).ready(function () {
-  $('.banner_image').click(function(){
 
+  $('.banner_image').click(function(event){
+    
+   // event.preventDefault();
+    //event.stopPropagation();
 
-    var url = $(this).attr('data-url');
+    //var url = $(this).attr('data-url');
     var id = $(this).attr('data-id');
 
     $.ajax({
@@ -53,9 +57,9 @@ $(document).ready(function () {
 
           if(objResult.result == 'success'){
             console.log('tracking:',objResult.code);
-            console.log('going to url:',url);
+            //console.log('going to url:',url);
        
-            var win = window.open(url, 'New Tab', '');
+            //var win = window.open(url, '_blank', '');
             //win.focus();
 
           } else {
@@ -72,10 +76,10 @@ $(document).ready(function () {
 
 
 function prepareRotator(elem) {
-  $(elem+" img").fadeOut(0);
-  $(elem+" img:first").fadeIn(0).addClass("active");
+  $(elem+" a").fadeOut(0);
+  $(elem+" a:first").fadeIn(0).addClass("active");
 
-  var ad = $(elem+" img:first").attr('data-id');
+  var ad = $(elem+" a:first").attr('data-id');
 
   if(ad != ''){
     trackImpression(ad);

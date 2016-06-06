@@ -202,7 +202,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 	      </div>
 	  	</div>      <!-- data-view="2" -->
 
-
+		<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
 
     </div>     <!-- container-fluid -->

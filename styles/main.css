@@ -1710,9 +1710,9 @@ input {
   width: 80%;
 }
 
-.page.food-bank .description-container {
+.page.food-bank .description-container, .info-inner {
   padding: 20px 0 10px;
-  margin: 10px;
+  margin: 10px 0 150px 0;
   color: #a3a3a3;
   background-color: #fff;
 }

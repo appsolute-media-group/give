@@ -139,10 +139,7 @@ $grand_total = 0;
       </form>
       
 
-<?php 
-
-$page = 'cart';
-include_once(ROOT_DIR.'/includes/banners.php'); ?>
+<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
     </div>     <!-- container-fluid -->
   </div>       <!-- main-wrapper -->

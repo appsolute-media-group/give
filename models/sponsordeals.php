@@ -42,7 +42,7 @@ class SponsorDeals extends Database  {
 		$amount = 0;
 		$details = $this->getMysqliResults( "SELECT deal_price from sponsor_deals WHERE id=$deal_id", true );
 
-    }
+    
 
 
 		if(count($details) >0) {

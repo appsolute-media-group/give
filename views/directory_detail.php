@@ -102,7 +102,10 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		          <div class="map-container" style="width:100%;height:280px;">
 		            <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
 						<script>
-
+ 						<?php 
+                          $title = htmlspecialchars(str_replace("'","\'",$this->objSponsor["sponsor_name"]));
+                          $address = htmlspecialchars(str_replace("'","''",$address . $city . $prov . $postalCode));
+                          ?>
 							function initialize_map() {
 								//49.8996081,-119.5947451
 								center = new google.maps.LatLng(<?php echo $this->objSponsor['centerLat'];?>,<?php echo $this->objSponsor['centerLng'];?>);
@@ -113,26 +116,26 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 						          mapTypeId: google.maps.MapTypeId.ROADMAP
 						        };
 						      
-						    fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
+							    fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
 
-						    var title = '<?php echo $this->objSponsor["sponsor_name"];?>';
-		            var address ='<?php echo $address . $city . $prov . $postalCode;?>';
+							    var title = '<?php echo $title;?>';
+					            var address ='<?php echo $address;?>';
 
-		            var marker = new google.maps.Marker({
-		                 position: center,
-		                 map: fb_map,
-		                 title: title
-		                });
+					            var marker = new google.maps.Marker({
+					                 position: center,
+					                 map: fb_map,
+					                 title: title
+					                });
 
-		            var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
+					            var contentString = '<div id="content" style="min-width:150px;" class="text-left"><p><b>'+title+'</b></p><p>'+address+'</p></div>';
 
-		            var infowindow = new google.maps.InfoWindow({
-		                   content: contentString
-		                 });
+					            var infowindow = new google.maps.InfoWindow({
+					                   content: contentString
+					                 });
 
-		            marker.addListener('click', function() {
-		                infowindow.open(fb_map, marker);
-		            });
+					            marker.addListener('click', function() {
+					                infowindow.open(fb_map, marker);
+					            });
 
 							}
 
@@ -211,7 +214,7 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		              <i class="fa fa-globe fa-2x"></i>
 		            </div>
 		            <div class="col-xs-10 text-left">
-		              <a href="http://<?php echo $this->objSponsor['sponsor_url'];?>"><h4><?php echo $this->objSponsor['sponsor_url'];?></h4></a>
+		              <a href="<?php echo $this->objSponsor['sponsor_url'];?>" target="_new"><h4><?php echo $this->objSponsor['sponsor_url'];?></h4></a>
 		            </div>
 		          </div>
 		        </div>

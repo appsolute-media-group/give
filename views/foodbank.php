@@ -151,7 +151,14 @@
                       function initialize_map() {
                         //49.8996081,-119.5947451
 
-                        <?php if($objCurrent['lat'] != '' && $objCurrent['lng'] != '') { ?>
+                        <?php 
+
+                        if($objCurrent['lat'] != '' && $objCurrent['lng'] != '') { 
+
+
+                          $title = htmlspecialchars(str_replace("'","\'",$objCurrent["page_title"]));
+                          $address = htmlspecialchars(str_replace("'","''",$address . $city . $prov . $postalCode));
+                          ?>
                         center = new google.maps.LatLng(<?php echo $objCurrent['lat'];?>,<?php echo $objCurrent['lng'];?>);
 
                         var mapOptions = {
@@ -162,8 +169,8 @@
                           
                         fb_map = new google.maps.Map(document.getElementById('map_div'), mapOptions);
 
-                        var title = '<?php echo $objCurrent["page_title"];?>';
-                        var address ='<?php echo $address . $city . $prov . $postalCode;?>';
+                        var title = '<?php echo $title;?>';
+                        var address ='<?php echo $address;?>';
 
 
 
