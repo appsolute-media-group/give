@@ -3,6 +3,8 @@
 
 	$objBanners = new BannerAd;
 	$arrBanners = $objBanners->getSubBannerAds($_SESSION['sublocality_id'],'','1/1/1900');
+  
+  shuffle($arrBanners);
 
   $s = '<div class="row">
          <div class="ad-container">
