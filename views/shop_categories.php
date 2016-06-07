@@ -42,7 +42,7 @@ if(count($this->arrCats) > 0) {?>
 
           <div class="product-wrapper" onclick="window.location.href='/shop/cat/<?php echo $c['id']; ?>/';">
             <div class="background-wrapper">
-              <img src="<?php echo $c['icon_img']; ?>" alt="" class="center-block img-responsive" />
+              <img src="<?php echo $c['icon_img']; ?>" alt="" class="img-responsive" />
 
 
             </div>

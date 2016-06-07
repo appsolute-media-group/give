@@ -44,13 +44,13 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		      <div class="row business-header-container">
 		        <div class="text-center" style="position:relative;">
 		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" class="center-block img-responsive" alt="" style="max-height:300px;"  />
-		          <img src="<?php echo $this->objSponsor['sponsor_img'];?>" class="center-block img-responsive" alt="" style="width:25%;margin-top:-35px;max-width:100px;" />
+		          <!--<img src="<?php echo $this->objSponsor['sponsor_img'];?>" class="center-block img-responsive" alt="" style="width:25%;margin-top:-35px;max-width:100px;" />-->
 		        </div>
 		      </div>
-		      <div class="row business-title-container" style="margin-top:-15px;">
-		        <div class="col-xs-12">
-		          <h2 class="business-name"><?php echo $this->objSponsor['sponsor_name'];?> </h2>
-		          <h5 class="business-category"><?php echo $this->objSponsor['sponsor_slogan'];?></h5>
+		      <div class="row" style="margin-top:15px;">
+		        <div class="col-xs-12 business-title-container text-center">
+		          <h3 class="business-title"><?php echo $this->objSponsor['sponsor_name'];?></h3>
+		          <h6 class="business-category"><?php echo $this->objSponsor['sponsor_slogan'];?></h6>
 		        </div>
 		      </div>
 		      <div class="row business-info-container">
@@ -153,7 +153,7 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		    <div class="view-container">
 		      <div class="row business-logo-container">
 		        <div class="logo-shop-wrapper text-center">
-		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" class="center-block img-responsive" alt="" style="height:150px;width:auto;" />
+		          <img src="<?php echo $this->objSponsor['sponsor_img2'];?>" class="center-block img-responsive" alt="" style="max-height:350px;width:auto;" />
 		        </div>
 		      </div>
 		      <div class="row">

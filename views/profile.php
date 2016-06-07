@@ -39,7 +39,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>your profile</h1>
+                  <h1>Your Profile</h1>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>edit profile</h1>
+                  <h1>Edit Profile</h1>
                 </div>
               </div>
             </div>
@@ -117,28 +117,34 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
               <form action="/profile/?doPost=true" method="post" id="profile_form" />
   
                 <input type="hidden" name="doPost" value="true" />
-                <text>Location</text>
-                <select class="fld_select"  name="sublocality" id="sublocality">
-                   <?php echo $this->listSublocalities; ?>          
-                </select><br /><br />
-                <input type="text" placeholder='Email' name="email" id="email" value="<?php echo htmlspecialchars($this->strEmail);?>" readonly="true"></input>       
-                <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
-                <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
-                <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
-                <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
-                <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input><br />
-                <div class=" text-left">
+                
+                <div class="fld_select text-left">
+                  <span>Location&nbsp;&nbsp;
+                    <select class="fld_select"  name="sublocality" id="sublocality">
+                       <?php echo $this->listSublocalities; ?>          
+                    </select></span><br />
+                </div>
+                <div class="fld_select text-left">
                   <span>Province&nbsp;&nbsp;
                     <select name="province" id="province" >
                      <?php echo $prov_lst_dd; ?>          
                     </select></span><br />
                 </div>
-                <div class=" text-left">
+                <div class="fld_select text-left">
                   <span class="text-left">Country&nbsp;&nbsp;
                     <select name="country" id="country" >
                       <?php echo $country_lst_dd; ?>  
                     </select></span><br />
+                </div>
+                <div class="fld_select text-left">
+                  <input type="text" placeholder='Email' name="email" id="email" value="<?php echo htmlspecialchars($this->strEmail);?>" readonly="true"></input>       
+                  <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
+                  <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
+                  <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
+                  <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
+                  <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input><br />
                 </div><br />
+
 
 
 
@@ -171,7 +177,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>edit donation schedule</h1>
+                  <h1>Your Donation Schedule</h1>
                 </div>
               </div>
             </div>
@@ -212,7 +218,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
                    <option value="4" <?php echo Util::isSelected($this->objDonations['freq'],'4'); ?>>Anually</option>       
                 </select><br /><br />
 
-                <p><text>Next Bill Date: 1/1/2018</text></p>
+               <!-- <p><text>Next Bill Date: 1/1/2018</text></p> -->
 
                 <div class="text-center link-button-container">
                   <span class="link_button text-center" ><a href="javascript:confirmdelete();">Cancel this donation schedule</a></span>
@@ -255,7 +261,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
             <div class="item-inner">
               <div class="item-header">
                 <div class="text-center">
-                  <h1>edit donation schedule</h1>
+                  <h1>Your Donation History</h1>
                 </div>
               </div>
             </div>
@@ -313,7 +319,9 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
       </div>
     </div>   <!-- data-view="5" -->
 
-    <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+    <?php 
+    //$blnLockBanner = false;
+    include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
   </div>     <!-- container-fluid -->
 </div>       <!-- main-wrapper -->

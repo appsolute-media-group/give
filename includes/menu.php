@@ -23,6 +23,7 @@
           <li><a href="/foodbank/" >My Food Bank</a></li>
           <li><a href="/faq/" >FAQs</a></li>
           <li><a href="/terms/" >Terms</a></li>
+          <li><a href="/contact/" >Contact</a></li>
           <li><a href="/main/logout/" >Logout</a></li>
         </ul>
        </div><!-- /.navbar-collapse -->

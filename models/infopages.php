@@ -54,13 +54,15 @@ do not modify anything below this line
 	        From $this->strTableName WHERE `name`='$name'";
 	        if($this->query($this->strQuery)) {
 	            $details = $this->getMysqliResults($this->strQuery,true);
-	            $details = $details[0];
-
-              $details['page_title']  = trim(stripslashes($details['page_title']));  
-              $details['text']        = trim(stripslashes($details['text']));  
-              $details['logo']        = trim(stripslashes($details['logo']));  
- 
+	            
+	          if(isset($details[0])) {
+				  $details = $details[0];
+	              $details['page_title']  = trim(stripslashes($details['page_title']));  
+	              $details['text']        = trim(stripslashes($details['text']));  
+	              $details['logo']        = trim(stripslashes($details['logo']));  
+ 				
 	            $result = $details;
+	          }
 	        }
 	    }
 		return $result;

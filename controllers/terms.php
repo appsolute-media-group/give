@@ -14,8 +14,14 @@ class terms_controller {
 		if($this->strMethod == ''){ //main view
 
 			$this->objTerms = new InfoPages;
+
+
 			$this->pageName = "terms";
 			$objTerms = $this->objTerms->getInfoPageData($this->pageName);
+
+
+			$this->pageName = "privacy";
+			$objPrivacy = $this->objTerms->getInfoPageData($this->pageName);
 
 			include_once(ROOT_DIR.'/views/terms.php'); 
 

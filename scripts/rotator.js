@@ -2,18 +2,26 @@ function rotateBanners(elem) {
   var active = $(elem+" a.active");
   var next = active.next('a');
 
+  var time = Math.floor(Date.now() / 1000);
+  //console.log('start time1:',time);
+
   if (next.length == 0){
     next = $(elem+" a:first");
   } 
 
   var ad = next.attr('data-id');
 
+  active.removeClass("active").hide();
+  next.addClass("active").show();
+
+  //console.log('time2:',time);
+
   if(ad != ''){
     trackImpression(ad);
   }
 
-  active.removeClass("active").fadeOut(200);
-  next.addClass("active").fadeIn(200);
+  //console.log('time3:',time);
+  
 }
 
 function trackImpression(id){
@@ -91,7 +99,7 @@ function startRotator(elem) {
   
   if($(elem).length > 0){
     prepareRotator(elem);
-    setInterval("rotateBanners('"+elem+"')", 5000);
+    setInterval("rotateBanners('"+elem+"')", 15000);
   }
   
 }

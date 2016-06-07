@@ -11,8 +11,8 @@ $prov_lst    = $objProvList->getProv_dd_List('CA');
 // create the list for populating a drop down for countries and provinces
 // create an instance of the util object
 $this->objUtils = new Util;
-$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst);
-$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
+$country_lst_dd = $this->objUtils->get_dropdown_items($country_lst,$this->strCountry);
+$prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvince);
 
 ?>
 <body class="page needed-now">
@@ -44,7 +44,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 	        <div class="card-container">
 	          <div class="row">
 	            <div class="col-xs-12 input-container text-center">
-	              <div class="input-inner">
+	              <div class="cc-container">
 
 							    <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" id="cc_error" >
               					<p><?php echo $this->strErrorMessage; ?></p>
@@ -61,43 +61,89 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst);
 
 								<?php if($_SESSION['APIprofileID'] == '') {?>
 
-                    <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
-                    <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
-									  <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
-									  <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input><br />
-									  <div class=" text-left">
-									    <span>Province&nbsp;&nbsp;
-									      <select name="province" id="province" >
-									        <?php echo $prov_lst_dd; ?>
-									      </select></span><br />
-									  </div>
-									  <div class=" text-left">
-									    <span class="text-left">Country&nbsp;&nbsp;
-									     <select name="country" id="country" >
-									      <?php echo $country_lst_dd; ?>
-									     </select></span><br />
-									  </div>   
-									  <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input>
-									  <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo htmlspecialchars($this->strCCnum);?>"></input>
-									  <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo htmlspecialchars($this->strCCcode);?>"></input><br />
-									  <text>Exp. Month</text>
-									  <select name="expMonth" id="expMonth">
-<?php							      for($mo=1; $mo<=12; $mo++) {
-									        echo '<option value="' .$mo. '"';
-									        echo '>' .$mo. '</option>';
-									      } ?>
-								    </select>&nbsp;&nbsp;
-									  <text>Exp. Year</text>
+
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">First Name&nbsp;&nbsp;</span>
+				              		  <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
+								      
+								  </div> 
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">Last Name&nbsp;&nbsp;</span>
+								      <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
+								      
+								  </div> 
+
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">Address&nbsp;&nbsp;</span>
+								      <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
+								  	  
+								  </div> 
+
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">City&nbsp;&nbsp; </span>  
+								      <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
+								   	 
+								  </div> 
+
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">Postal Code&nbsp;&nbsp;</span>    
+								      <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input>
+								 
+								  </div>
+
+								  
+
+							      <div class="fld_select text-left">
+									<span>Province&nbsp;&nbsp;</span> 
+								      <select name="province" id="province" >
+								        <?php echo $prov_lst_dd; ?>
+								      </select>
+								  </div>
+								  <div class="fld_select text-left">
+								    <span class="text-left">Country&nbsp;&nbsp;</span>  
+								     <select name="country" id="country" >
+								      <?php echo $country_lst_dd; ?>
+								     </select>
+								  </div> 
+
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">Credit Card&nbsp;&nbsp;</span>  
+								      <input type="text" placeholder='Credit Card Number' name="cc_num" id="cc_num" value="<?php echo htmlspecialchars($this->strCCnum);?>"></input>
+								   	 
+								  </div> 
+								  <div class="fld_select text-left">
+				              		  <span class="text-left">CVV&nbsp;&nbsp;  </span>   
+								      <input type="text" placeholder='CCV' name="cc_code" id="cc_code" value="<?php echo htmlspecialchars($this->strCCcode);?>"></input>
+							     	
+							      </div>
+
+							      <div class="fld_select text-left">
+									    <span class="text-left">Exp. Month&nbsp;&nbsp;</span>  
+										  <select name="expMonth" id="expMonth">
+	<?php							      for($mo=1; $mo<=12; $mo++) {
+										        echo '<option value="' .$mo. '"';
+										        echo '>' .$mo. '</option>';
+										      } ?>
+									      </select>
+									</div>
+
+
+									<div class="fld_select text-left">
+									    <span class="text-left">Exp. Year&nbsp;&nbsp;</span>  
 									  <select name="expYear" id="expYear">
-<?php 			            
-                        $str_yr = date('Y');
-                        $end_yr = $str_yr + 10;
-                        for($year = $str_yr; $year <= $end_yr; $year++) {
+	<?php 			            
+				                        $str_yr = date('Y');
+				                        $end_yr = $str_yr + 10;
+				                        for($year = $str_yr; $year <= $end_yr; $year++) {
 									        echo '<option value="' .$year. '"';
 									        echo '>' . $year. '</option>';
 									      }  ?>
 								 	  </select>
-								 	  <br /><br />
+								    </div>
+								  </div><br />
+
+
+
 
 <?php } else { ?>
 							    	<p>Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br />

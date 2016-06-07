@@ -8,6 +8,7 @@ class donate_controller {
 	public $strErrorMessage = "";
 	public $decAmount = "";
 	public $intFreq = "";
+	public $intAwardAmount = 0;
 	public $strCCnum =  "";
 	public $strCCmonth = "";
 	public $strCCyear = "";
@@ -86,11 +87,11 @@ class donate_controller {
 					include_once(ROOT_DIR.'/views/ccform.php');
 
 				} else {
-
-					//insert a schedual record
-					$this->objDS = new DonationSched;
-					$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
-
+					if($this->intFreq > 1) {
+						//insert a schedual record
+						$this->objDS = new DonationSched;
+						$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
+					}
 					include_once(ROOT_DIR.'/views/thankyou.php');
 
 				}
@@ -131,21 +132,24 @@ class donate_controller {
 
 	function handleForm() {
 
-		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
-		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
-		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
-		$this->strCCcode = isset($_POST['cc_code']) ? $_POST['cc_code'] : '';
-		$this->strFirstName = isset($_POST['first_name']) ? $_POST['first_name'] : '';
-		$this->strLastName = isset($_POST['last_name']) ? $_POST['last_name'] : '';
-		$this->strAddress = isset($_POST['address']) ? $_POST['address'] : '';
-		$this->strCity = isset($_POST['city']) ? $_POST['city'] : '';
-		$this->strProvince = isset($_POST['province']) ? $_POST['province'] : '';
-		$this->strCountry = isset($_POST['country']) ? $_POST['country'] : '';
-		$this->strPostal = isset($_POST['postal']) ? $_POST['postal'] : '';
 
 
 
 		if(isset($_POST['doPost'])){
+
+
+
+			$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
+			$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
+			$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
+			$this->strCCcode = isset($_POST['cc_code']) ? $_POST['cc_code'] : '';
+			$this->strFirstName = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+			$this->strLastName = isset($_POST['last_name']) ? $_POST['last_name'] : '';
+			$this->strAddress = isset($_POST['address']) ? $_POST['address'] : '';
+			$this->strCity = isset($_POST['city']) ? $_POST['city'] : '';
+			$this->strProvince = isset($_POST['province']) ? $_POST['province'] : '';
+			$this->strCountry = isset($_POST['country']) ? $_POST['country'] : '';
+			$this->strPostal = isset($_POST['postal']) ? $_POST['postal'] : '';
 
 			do {
 
@@ -260,9 +264,10 @@ class donate_controller {
 			if($this->strErrorMessage == ""){
 
 				//insert a schedual record
-				$this->objDS = new DonationSched;
-				$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
-
+				if($this->intFreq > 1) {
+					$this->objDS = new DonationSched;
+					$this->objDS->insertDonationSchedule($this->intPayProfileId,$this->decAmount,$this->intFreq);
+				}
 
 				include_once(ROOT_DIR.'/views/thankyou.php');
 
@@ -285,6 +290,21 @@ class donate_controller {
 				include_once(ROOT_DIR.'/views/donate.php');
 
 			} else {
+
+
+				$this->objUser = new Users;
+				$r = json_decode($this->objUser->showUserById($_SESSION['userID']));
+
+				//var_dump($r);
+				$this->strFirstName = isset($r->first_name) ? $r->first_name : '';
+				$this->strLastName = isset($r->last_name) ? $r->last_name : '';
+				$this->strAddress = isset($r->tax_address) ? $r->tax_address : '';
+				$this->strCity = isset($r->tax_city) ? $r->tax_city : '';
+				$this->strProvince = isset($r->tax_prov) ? $r->tax_prov : '';
+				$this->strCountry = isset($r->tax_country) ? $r->tax_country : '';
+				$this->strPostal = isset($r->tax_pc) ? $r->tax_pc : '';
+
+
 				include_once(ROOT_DIR.'/views/ccform.php');
 
 			}

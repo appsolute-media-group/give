@@ -35,12 +35,12 @@ if(file_exists(ROOT_DIR.'/controllers/'.$strController.'.php')) {
 
 
 } else {
-    header('content-type: application/json; charset=utf-8');
-    echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found."));
-    die();
-    //include_once(ROOT_DIR.'/controllers/404.php');
-    //$strController = 'notfound_controller';
-    //$objController = new $strController();
+    //header('content-type: application/json; charset=utf-8');
+    //echo json_encode(array('result' => "error",'code' => "404",'details' => "Not found."));
+    //die();
+    include_once(ROOT_DIR.'/controllers/404.php');
+    $strController = 'notfound_controller';
+    $objController = new $strController();
 
 }
 

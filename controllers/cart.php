@@ -10,6 +10,11 @@ class cart_controller {
 	public $intPayProfileId;
 	public $intAwardAmount;
 	public $decAmount;
+	public $strCCnum =  "";
+	public $strCCmonth = "";
+	public $strCCyear = "";
+	public $strCCcode = "";
+	
 
 	public function __construct() {
 
@@ -137,21 +142,25 @@ class cart_controller {
 
 		$this->decAmount = isset($_POST['grand_total']) ? $_POST['grand_total'] : '.01';
 		$this->intAwardAmount = $this->decAmount*100;
-		$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
-		$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
-		$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
-		$this->strCCcode = isset($_POST['cc_code']) ? $_POST['cc_code'] : '';
-		$this->strFirstName = isset($_POST['first_name']) ? $_POST['first_name'] : '';
-		$this->strLastName = isset($_POST['last_name']) ? $_POST['last_name'] : '';
-		$this->strAddress = isset($_POST['address']) ? $_POST['address'] : '';
-		$this->strCity = isset($_POST['city']) ? $_POST['city'] : '';
-		$this->strProvince = isset($_POST['province']) ? $_POST['province'] : '';
-		$this->strCountry = isset($_POST['country']) ? $_POST['country'] : '';
-		$this->strPostal = isset($_POST['postal']) ? $_POST['postal'] : '';
+		
 
 
 
 		if(isset($_POST['doPost'])){
+
+
+			$this->strCCnum = isset($_POST['cc_num']) ? $_POST['cc_num'] : '';
+			$this->strCCmonth = isset($_POST['expMonth']) ? $_POST['expMonth'] : '';
+			$this->strCCyear = isset($_POST['expYear']) ? $_POST['expYear'] : '';
+			$this->strCCcode = isset($_POST['cc_code']) ? $_POST['cc_code'] : '';
+			$this->strFirstName = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+			$this->strLastName = isset($_POST['last_name']) ? $_POST['last_name'] : '';
+			$this->strAddress = isset($_POST['address']) ? $_POST['address'] : '';
+			$this->strCity = isset($_POST['city']) ? $_POST['city'] : '';
+			$this->strProvince = isset($_POST['province']) ? $_POST['province'] : '';
+			$this->strCountry = isset($_POST['country']) ? $_POST['country'] : '';
+			$this->strPostal = isset($_POST['postal']) ? $_POST['postal'] : '';
+
 
 			do {
 
@@ -260,6 +269,22 @@ class cart_controller {
 				
 				echo "<script>window.location.href='/cart/thankyou/$this->intAwardAmount/'</script>";
 			}
+
+
+
+		} else {
+
+			$this->objUser = new Users;
+			$r = json_decode($this->objUser->showUserById($_SESSION['userID']));
+
+			//var_dump($r);
+			$this->strFirstName = isset($r->first_name) ? $r->first_name : '';
+			$this->strLastName = isset($r->last_name) ? $r->last_name : '';
+			$this->strAddress = isset($r->tax_address) ? $r->tax_address : '';
+			$this->strCity = isset($r->tax_city) ? $r->tax_city : '';
+			$this->strProvince = isset($r->tax_prov) ? $r->tax_prov : '';
+			$this->strCountry = isset($r->tax_country) ? $r->tax_country : '';
+			$this->strPostal = isset($r->tax_pc) ? $r->tax_pc : '';
 
 
 

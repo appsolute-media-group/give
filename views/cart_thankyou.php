@@ -19,7 +19,7 @@
               <div class="item-inner">
                 <div class="item-header">
                   <div class="text-center">
-                    <h1>your cart&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-shopping-cart fa-1x"></i></h1>
+                    <h1>Thank you for your donation</h1>
                   </div>
                 </div>
               </div>
@@ -27,11 +27,7 @@
           </div>
           <div class="receipt-container">
             <div class="receipt-wrapper">
-              <div class="row">
-                <div class="col-xs-12 text-center">
-                  <h2>Thank you for your donation</h2>
-                </div>
-              </div>
+              
               
               <div class="row receipt-points">
                 <div class="col-xs-12 points-hex-container text-center">

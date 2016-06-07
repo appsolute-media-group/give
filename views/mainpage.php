@@ -13,17 +13,7 @@
 
     </div>
     <div class="view-container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
-          <div class="item-inner">
-            <div class="item-header">
-              <div class="text-center">
-                <h1>Account Overview</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
+            
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1  col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 item">
           <div class="item-inner">
@@ -31,10 +21,10 @@
               <div class="item-detail-contents">
                 <div class="row hero">
                   <div class="col-xs-12">
-                    <h3>Your Account</h3>
-                    <h2 class="points"><?=$_SESSION['user_points'];?></h2>
+                    <h5>Your Account</h5>
+                    <h3 class="points"><?=$_SESSION['user_points'];?></h3>
                     <p>points</p>
-                    <h5 class="name"><?=$_SESSION['name'];?></h5>
+         
                   </div>
                 </div>
                 <!--

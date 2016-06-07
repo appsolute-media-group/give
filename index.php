@@ -21,7 +21,10 @@
   <link rel="stylesheet" href="/styles/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
   <link rel="stylesheet" href="/styles/main.css">
-  
+
+
+  <link href="/scripts/videoplayer/assets/css/video-default.css" rel="stylesheet">
+
   <!-- javascript libraries -->
   <script src="/scripts/vendor/modernizr.js"></script>
   <script src="/scripts/jquery-1.12.2.js"></script>

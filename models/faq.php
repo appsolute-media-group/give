@@ -28,7 +28,7 @@ class Faq extends Database  {
 
 		$result = array('result' => "error");
 
-		$this->strQuery = "SELECT question, answer, category, id From $this->strTableName order by question ";
+		$this->strQuery = "SELECT question, answer, category, id From $this->strTableName order by idx ";
 	  if ($this->query($this->strQuery)) {
 	    $result = $this->getMysqliResults($this->strQuery,true);
 	    $number_entries = count($result);

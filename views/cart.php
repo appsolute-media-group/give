@@ -139,7 +139,10 @@ $grand_total = 0;
       </form>
       
 
-<?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
+<?php 
+
+$blnLockBanner = false;
+include_once(ROOT_DIR.'/includes/banners.php'); ?>
 
     </div>     <!-- container-fluid -->
   </div>       <!-- main-wrapper -->

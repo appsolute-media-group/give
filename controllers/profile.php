@@ -116,13 +116,13 @@ class profile_controller {
 		$this->strProvince = isset($_POST['province']) ? $_POST['province'] : '';
 		$this->strCountry = isset($_POST['country']) ? $_POST['country'] : '';
 		$this->strPostal = isset($_POST['postal']) ? $_POST['postal'] : '';
-		$this->intSublocalityId = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
+		$this->intSublocalityId = isset($_POST['sublocality']) ? $_POST['sublocality'] : '0';
 
 
 		do {
 
 
-			if($this->intSublocalityId == ''){
+			if($this->intSublocalityId == '0'){
 				$this->strErrorMessage = "Please choose a Location<br />";
 				break;
 			}
@@ -155,16 +155,15 @@ class profile_controller {
 				break;
 			}
 
+
+
 			break;
 		} while ($this->strErrorMessage == "");
 
-
-		$res = $this->objUsers->updateWebUser($this);
-
-
-
-		$this->strSuccessMessage = "Your record has been saved";
-
+		if($this->strErrorMessage == ""){
+			$res = $this->objUsers->updateWebUser($this);
+			$this->strSuccessMessage = "Your record has been saved";
+		}
 
 
 	}

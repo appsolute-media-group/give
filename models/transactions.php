@@ -32,14 +32,22 @@ class Transactions extends Database  {
     	$this->API_SANDBOX = "https://apitest.authorize.net";
     	$this->API_PRODUCTION = "https://api2.authorize.net";
 
-
-    	//set this to switch between live and sandbox
-    	$this->strActiveServerURL = $this->API_SANDBOX;
-
+   
 		$objSubLocalities = new SubLocalities;
 		$objSubDetails = $objSubLocalities->getAPIAuthNetKey($_SESSION['sublocality_id']); //this comes from the users session variables
-		$strAPI_Login = $objSubDetails['API_Login'];
-		$strAPI_Key = $objSubDetails['API_Key'];
+		
+
+    	//set this to switch between live and sandbox
+    	if(strpos(ROOT_URL,"localhost") > 0) {
+    		$this->strActiveServerURL = $this->API_SANDBOX;
+    		$strAPI_Login = "93pWcL9c";
+			$strAPI_Key = "45Z2mz9bzTMq8B7M";
+    	} else {
+			$this->strActiveServerURL = $this->API_PRODUCTION;
+			$strAPI_Login = $objSubDetails['API_Login'];
+			$strAPI_Key = $objSubDetails['API_Key'];
+    	}
+
 
 		// Common setup for API credentials
 		$this->merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
@@ -56,7 +64,7 @@ class Transactions extends Database  {
 
  		// Use an existing payment profile ID for this Merchant name and Transaction key
   		//validationmode tests , does not send an email receipt
-  		$validationmode = "testMode";
+  		$validationmode = "liveMode";
 
 		$request = new AnetAPI\ValidateCustomerPaymentProfileRequest();
 		  
@@ -81,7 +89,7 @@ class Transactions extends Database  {
 		}
 		else
 		{
-		  // echo "ERROR :  Validate Customer Payment Profile: Invalid response\n";
+		  //echo "ERROR :  Validate Customer Payment Profile: Invalid response\n";
 		  $errorMessages = $response->getMessages()->getMessage();
 		  //echo "Response : " . $errorMessages[0]->getCode() . "  " .$errorMessages[0]->getText() . "\n";
 

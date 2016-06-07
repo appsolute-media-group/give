@@ -18,7 +18,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
               <div class="my-food-bank-header-container">
                 <div class="text-center">
-                  <h1>my food bank</h1>
+                  <h1><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Foodbank" ?></h1>
                 </div>
               </div>
             </div>
@@ -29,12 +29,12 @@
               <img src="<?php echo $objCurrent['logo'] ?>" class="center-block img-responsive" alt="" />
             </div>
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-xs-12 food-bank-title-container text-center">
-              <h3 class="food-bank-title"><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Local Foodbank" ?></h3>
+              <h3 class="food-bank-title"><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Foodbank" ?></h3>
               <h6 class="food-bank-category"><?php echo $objCurrent['address'] ?></h6>
             </div>
-          </div>
+          </div>-->
           <div class="row" onclick="nextView();initialize_map();">
             <div class="col-xs-12 contact-button-container">
               <div class="contact-button-inner">
@@ -69,7 +69,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
               <div class="my-food-bank-header-container">
                 <div class="text-center">
-                  <h1>my food bank</h1>
+                  <h1><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Foodbank" ?></h1>
                 </div>
               </div>
             </div>
@@ -79,11 +79,7 @@
               <img src="<?php echo $objCurrent['logo'] ?>" class="center-block img-responsive" alt="" />
             </div>
           </div>
-          <div class="row">
-            <div class="col-xs-12 food-bank-title-container text-center">
-              <h3 class="food-bank-title"><?php echo ($objCurrent['page_title']) ? $objCurrent['page_title'] : "Your Local Foodbank" ?></h3>
-            </div>
-          </div>
+
           <div class="row">
             <div class="col-xs-12 contact-address-container">
               <div class="contact-address-inner">
@@ -107,6 +103,8 @@
             </div>
           </div>
           <div class="contact-options-container">
+            
+            <?php if($objCurrent['email'] != '') { ?>
             <div class="row">
               <div class="col-xs-12 contact-option-container">
                 <div class="col-xs-2 text-center">
@@ -117,6 +115,10 @@
                 </div>
               </div>
             </div>
+            <?php } 
+
+            if($objCurrent['tel'] != '') {
+            ?>
             <div class="row">
               <div class="col-xs-12 contact-option-container">
                 <div class="col-xs-2 text-center">
@@ -127,18 +129,21 @@
                 </div>
               </div>
             </div>
+            <?php } 
 
+            if($objCurrent['url'] != '') {
+            ?>
             <div class="row">
               <div class="col-xs-12 contact-option-container">
                 <div class="col-xs-2 text-center">
                   <i class="fa fa-globe fa-2x"></i>
                 </div>
                 <div class="col-xs-10 text-left">
-                  <a href="<?php echo ($objCurrent['url']) ? $objCurrent['url'] : "#" ?>"><h5><?php echo ($objCurrent['url']) ? $objCurrent['url'] : "" ?></h5>
+                  <a href="<?php echo ($objCurrent['url']) ? $objCurrent['url'] : "#" ?>"><h5><?php echo ($objCurrent['url']) ? $objCurrent['url'] : "" ?></h5></a>
                 </div>
               </div>
             </div>
-
+            <?php }  ?>
           </div>
           <div class="row">
             <div class="col-xs-12 address-container">
