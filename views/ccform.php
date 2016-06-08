@@ -28,7 +28,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 
 	    </div>
 
-	    <div class="view initial" data-view="1">
+	    <div class="view initial" data-view="1" style="margin-bottom:50px;">
 	      <div class="view-container">
 	        <div class="row">  
 	          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
@@ -166,7 +166,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 	              </div>
 	            </div>
 	          </div>
-	          <div class="row">
+	          <div class="row" >
 	            <div class="col-xs-12 button-container text-center">
 	              <div class="button-inner">
 	                  <button type="button" name="cancel" class="btn btn-cancel" onclick="window.location.href='/donate/';">Cancel</button>

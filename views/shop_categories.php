@@ -42,7 +42,7 @@ if(count($this->arrCats) > 0) {?>
 
           <div class="product-wrapper" onclick="window.location.href='/shop/cat/<?php echo $c['id']; ?>/';">
             <div class="background-wrapper">
-              <img src="<?php echo $c['icon_img']; ?>" alt="" class="img-responsive" />
+              <img src="<?php echo $c['icon_img']; ?>" alt="" />
 
 
             </div>
@@ -79,7 +79,7 @@ if(count($this->arrCats) > 0) {?>
         <div class="row text-center">
           <br clear="all" />
           <div style="height:150px">
-             <p>Sorry, no categories for this sponsor.</p>
+             <p>Rewards for Redemption Coming Soon.</p>
           </div>
         </div>
 

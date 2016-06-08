@@ -17,6 +17,14 @@ class directory_controller {
 
 		$this->objSponsors = new Sponsors;
 
+
+	
+	}
+
+
+
+	function showView() {
+
 		if($this->strMethod == '' ){ //shop view
 
 			$this->arrSponsors = $this->objSponsors->getWebSponsors();
@@ -39,7 +47,10 @@ class directory_controller {
 
 
 		}
-	
+
+
 	}
+
+
 
 }

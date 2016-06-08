@@ -27,6 +27,14 @@ class donate_controller {
 
 		$this->strMethod = isset($_GET['method']) ? $_GET['method'] : '';
 	
+	}
+
+
+
+	
+
+	function showView() {
+
 
 		if($this->strMethod == ''){ //main view
 
@@ -49,9 +57,8 @@ class donate_controller {
 			include_once(ROOT_DIR.'/views/thankyou.php'); 
 
 		}
-	
-	}
 
+	}
 
 
 

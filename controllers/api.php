@@ -31,7 +31,7 @@ class api_controller {
 
 
 		if($this->strAction == 'sublocalities') {
-			//http://restapi.clubappetite.com/api.php?controller=api&action=sublocalities
+			//https://give.clubappetite.com/api/sublocalities/
 			//Needs to be accessed by non-authenticated users. This method is not validated with a token by design.
 			echo $this->showSubLocalities();
 

@@ -50,7 +50,7 @@ if(count($this->arrDeals) > 0) {?>
 
           <div class="product-wrapper " onclick="window.location.href='/shop/details/<?php echo $d['id']; ?>/';">
             <div class="background-wrapper" style="width:100%;">
-              <img src="<?php echo $d['deal_image']; ?>" class="img-responsive" alt="" style="height:150px; width:auto;" />
+              <img src="<?php echo $d['deal_image']; ?>" class="" alt="" style="height:150px; width:auto;" />
             </div>
             <div class="product-top">
               <div class="col-xs-12 points-hex-container">
@@ -79,7 +79,7 @@ if(count($this->arrDeals) > 0) {?>
         <div class="row text-center">
           <br clear="all" />
           <div style="height:150px">
-             <p>Sorry, no deals to display.</p>
+             <p>Rewards for Redemption Coming Soon.</p>
           </div>
         </div>
 

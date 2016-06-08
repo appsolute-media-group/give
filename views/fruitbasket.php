@@ -17,7 +17,7 @@
 	        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
               <div class="give-title-container">
                 <div class="text-center">
-                  <h1>naked in vegas</h1>
+                  <h1>Naked In Vegas!</h1>
                 </div>
               </div>
             </div>

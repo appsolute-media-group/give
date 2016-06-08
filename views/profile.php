@@ -106,7 +106,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 
         <div class="row">
           <div class="col-xs-12 input-container ">
-            <div class="input-inner">
+            <div class="cc-container">
               <div style="color:red;font-weight:bold;font-family:'Gill-Sans'" class="text-center" id="profile_error" >
                 <p><?php echo $this->strErrorMessage; ?></p>
               </div>
@@ -119,30 +119,50 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
                 <input type="hidden" name="doPost" value="true" />
                 
                 <div class="fld_select text-left">
-                  <span>Location&nbsp;&nbsp;
+                  <span>Location</span>
                     <select class="fld_select"  name="sublocality" id="sublocality">
                        <?php echo $this->listSublocalities; ?>          
-                    </select></span><br />
+                    </select>
                 </div>
                 <div class="fld_select text-left">
-                  <span>Province&nbsp;&nbsp;
-                    <select name="province" id="province" >
-                     <?php echo $prov_lst_dd; ?>          
-                    </select></span><br />
+                  <span>Province&nbsp;&nbsp;</span> 
+                      <select name="province" id="province" >
+                        <?php echo $prov_lst_dd; ?>
+                      </select>
                 </div>
                 <div class="fld_select text-left">
-                  <span class="text-left">Country&nbsp;&nbsp;
-                    <select name="country" id="country" >
-                      <?php echo $country_lst_dd; ?>  
-                    </select></span><br />
-                </div>
+                    <span class="text-left">Country&nbsp;&nbsp;</span>  
+                     <select name="country" id="country" >
+                      <?php echo $country_lst_dd; ?>
+                     </select>
+                </div> 
                 <div class="fld_select text-left">
-                  <input type="text" placeholder='Email' name="email" id="email" value="<?php echo htmlspecialchars($this->strEmail);?>" readonly="true"></input>       
-                  <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
-                  <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
-                  <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
-                  <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
-                  <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input><br />
+                    <span class="text-left">First Name&nbsp;&nbsp;</span>
+                    <input type="text" placeholder='First name' name="first_name" id="first_name" value="<?php echo htmlspecialchars($this->strFirstName);?>"></input>
+                    
+                </div> 
+                <div class="fld_select text-left">
+                    <span class="text-left">Last Name&nbsp;&nbsp;</span>
+                    <input type="text" placeholder='Last name' name="last_name" id="last_name" value="<?php echo htmlspecialchars($this->strLastName);?>"></input>
+                    
+                </div> 
+
+                <div class="fld_select text-left">
+                    <span class="text-left">Address&nbsp;&nbsp;</span>
+                    <input type="text" placeholder='Address' name="address" id="address" value="<?php echo htmlspecialchars($this->strAddress);?>"></input>
+                    
+                </div> 
+
+                <div class="fld_select text-left">
+                    <span class="text-left">City&nbsp;&nbsp; </span>  
+                    <input type="text" placeholder='City' name="city" id="city" value="<?php echo htmlspecialchars($this->strCity);?>"></input>
+                   
+                </div> 
+
+                <div class="fld_select text-left">
+                    <span class="text-left">Postal Code&nbsp;&nbsp;</span>    
+                    <input type="text" placeholder='Postal Code' name="postal" value="<?php echo htmlspecialchars($this->strPostal);?>"></input>
+               
                 </div><br />
 
 

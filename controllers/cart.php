@@ -23,6 +23,23 @@ class cart_controller {
 
 		$this->objProducts = new Products;
 
+
+	
+	}
+
+
+	function showMetaData(){
+
+		echo "<script src='/scripts/dragdivscroll.js'></script>";
+
+
+
+	}
+
+
+	function showView() {
+
+		
 		if($this->strMethod == ''){ //cart view
 
 			$arrProducts = $this->objProducts->getWebProducts("");
@@ -44,7 +61,9 @@ class cart_controller {
 
 			include_once(ROOT_DIR.'/views/cart_thankyou.php');
 		}
-	
+
+
+
 	}
 
 

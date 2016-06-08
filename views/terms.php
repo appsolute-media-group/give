@@ -10,7 +10,9 @@
 	      <?php include_once(ROOT_DIR.'/includes/menu.php'); ?>
 
 	    </div>
+
 		<div class="view initial" data-view="1">
+
 		    <div class="view-container">
 		      <div class="row ">
 		          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
@@ -27,51 +29,17 @@
 		          <div class="col-xs-12 info-wrapper">
 		            <div class="info-inner">
 		                <?=$objTerms['text'];?>
-		                <div class="text-center">
-		                	<p><button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(2);">Privacy Policy</button></p>
-		                </div>
 		            </div>
 		          </div>	
 		        </div>
-		      </div>
-
-
-		    
-			    
-
+		      </div>   
 			</div>
+
 		</div>
-		<div class="view" data-view="2">
-		    <div class="view-container">
-		      <div class="row ">
-		          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
-		            <div class="info-header-container">
-		              <div class="text-center">
-		               <h1><?=$objPrivacy['page_title']?></h1>
-		              </div>
-		            </div>
-		          </div>
-	          </div> 
-		      
-		      <div class="info-container">
-		        <div class="row">
-		          <div class="col-xs-12 info-wrapper">
-		            <div class="info-inner">
-	                <?=$objPrivacy['text'];?>
-	                <div class="text-center">
-	                	<p><button type="button" name="cancel" class="btn btn-cancel" onclick="goToView(1);">Go Back</button></p>
-	                </div>
-	              </div>
-	            </div>	
-	          </div>
-	        </div>
-	    </div>
-
-
 
 	</div>
-</div>
 
+</div>
 
 <?php include_once(ROOT_DIR.'/includes/banners.php'); ?>
 

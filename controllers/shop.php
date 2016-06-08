@@ -17,6 +17,15 @@ class shop_controller {
 
 		$this->objSponsorDeals = new SponsorDeals;
 
+
+	
+	}
+
+
+
+
+	function showView() {
+
 		if($this->strMethod == '') {
 			$this->objCats = new SponsorDealCats;
 			$this->arrCats = $this->objCats->getWebDealCats();
@@ -50,7 +59,9 @@ class shop_controller {
 			include_once(ROOT_DIR.'/views/redeem.php'); 
 
 		}
-	
+
+
 	}
+
 
 }

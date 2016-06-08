@@ -10,8 +10,16 @@ class messages_controller {
 	public function __construct() {
 
 		$this->strMessageId = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
-		$objMessages = new Messages;
+		
 
+	
+	}
+
+
+
+	function showView() {
+
+		$objMessages = new Messages;
 		if($this->strMessageId == ''){ //main view
 
 			$this->arrMessages = $objMessages->getMessageArray();
@@ -25,7 +33,10 @@ class messages_controller {
 			include_once(ROOT_DIR.'/views/message_details.php'); 
 
 		}
-	
+
 	}
+
+
+	
 
 }

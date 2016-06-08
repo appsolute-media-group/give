@@ -66,12 +66,25 @@ class profile_controller {
 			// create the list for populating a drop down for food banks
 			$this->listSublocalities = Util::get_dropdown_items($this->arrSubs, $this->intSublocalityId);
 
-			include_once(ROOT_DIR.'/views/profile.php'); 
+			
 
 		} 
 		
 
 	}
+
+
+
+
+
+	function showView() {
+
+		include_once(ROOT_DIR.'/views/profile.php'); 
+
+	}
+
+
+
 
 
 	function initializeForm() {

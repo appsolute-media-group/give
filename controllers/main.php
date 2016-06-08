@@ -11,6 +11,10 @@ class main_controller {
 
 		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
 
+	}
+
+	function showView() {
+
 		if($this->strMethod == 'sublocalities') {
 			//http://localhost:83/main/sublocalities/
 			$this->showSubLocalities();
@@ -26,12 +30,9 @@ class main_controller {
 
 			$this->showMainPage();
 
-		}
+		} 
 
 	}
-
-
-
 
 
 	function showMainPage() {

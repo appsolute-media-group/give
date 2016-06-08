@@ -1,5 +1,6 @@
 <?php include_once('system/config.php'); ?>
 <?php include_once('system/security.php'); ?>
+<?php include_once('system/core.php'); ?>
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -23,18 +24,26 @@
   <link rel="stylesheet" href="/styles/main.css">
 
 
-  <link href="/scripts/videoplayer/assets/css/video-default.css" rel="stylesheet">
+  
 
   <!-- javascript libraries -->
   <script src="/scripts/vendor/modernizr.js"></script>
   <script src="/scripts/jquery-1.12.2.js"></script>
   <script src="/scripts/jquery-ui.1.11.4.js"></script>
-  <script src='/scripts/dragdivscroll.js'></script>
-  <script src='/scripts/rotator.js'></script>
   
+  <script src='/scripts/rotator.js'></script>
+
+  <?php if(method_exists($objController,'showMetaData')) {
+
+    $objController->showMetaData();
+
+  } ?>
+
+
+
 </head>
 
-<?php include_once('system/core.php'); ?>
 
+<?php $objController->showView();?>
 
 </html>

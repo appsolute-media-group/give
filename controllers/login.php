@@ -49,16 +49,20 @@ class login_controller {
 		//use this to see all the data being passed to the view
 		//var_dump($objUsers);
 
-		include_once(ROOT_DIR.'/views/login.php'); 
 
 		
-
 	}
 
 
 
 
 
+
+	function showView() {
+
+		include_once(ROOT_DIR.'/views/login.php'); 
+
+	}
 
 
 

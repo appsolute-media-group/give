@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">
-          <img src="/images/CA_Logo_simple_white.png" alt="" height="34" width="87"/>
+          <img src="/images/CA_Logo_simple_white.png" alt="" height="40" />
         </a>
       </div>
 
@@ -22,7 +22,7 @@
           <li><a href="/messages/" >Messages</a></li>
           <li><a href="/foodbank/" >My Food Bank</a></li>
           <li><a href="/faq/" >FAQs</a></li>
-          <li><a href="/terms/" >Terms</a></li>
+          <li><a href="/terms/" >Terms & Policies</a></li>
           <li><a href="/contact/" >Contact</a></li>
           <li><a href="/main/logout/" >Logout</a></li>
         </ul>

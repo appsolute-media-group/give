@@ -25,7 +25,7 @@ $CC_Info    = $objCC_info->getInfoPageData($pageName);
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
             <div class="give-title-container">
               <div class="text-center">
-                <h1>give&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-group fa-1x"></i></h1>
+                <h1>Give&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-group fa-1x"></i></h1>
               </div>
             </div>
           </div>

@@ -28,7 +28,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 
 	    </div>
 
-	    <div class="view initial" data-view="1">
+	    <div class="view initial" data-view="1" style="margin-bottom:-50px;">
 	      <div class="view-container">
           <div class="row">  
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
@@ -104,7 +104,7 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 	      </div>
 	    </div>     <!-- data-view="1" -->
 		  
-		  <div class="view" data-view="2">
+		  <div class="view" data-view="2" style="margin-bottom:-50px;">
 	      <div class="view-container">
 	        <div class="row">  
 	          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">

@@ -10,7 +10,12 @@ class terms_controller {
 
 		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
 	
+	}
 
+
+	function showView() {
+
+				
 		if($this->strMethod == ''){ //main view
 
 			$this->objTerms = new InfoPages;
@@ -26,7 +31,8 @@ class terms_controller {
 			include_once(ROOT_DIR.'/views/terms.php'); 
 
 		}
-	
+
 	}
+
 
 }

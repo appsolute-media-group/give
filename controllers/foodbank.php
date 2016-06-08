@@ -13,9 +13,14 @@ class foodbank_controller {
 		$this->strMethod = isset($_REQUEST['method']) ? $_REQUEST['method'] : '';
 		$this->sublocality_id = $_SESSION['sublocality_id'];
 
-
 		$this->objSubLocalities = new SubLocalities;
 
+	
+	}
+
+	function showView() {
+
+			
 		$objCurrent = $this->objSubLocalities->getFoodBankInfo($this->sublocality_id);
 		$objCurrentContact = $this->objSubLocalities->getFoodBankContact($this->sublocality_id);
 
@@ -24,7 +29,7 @@ class foodbank_controller {
 			include_once(ROOT_DIR.'/views/foodbank.php'); 
 
 		}
-	
+
 	}
 
 
