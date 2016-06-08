@@ -14,7 +14,9 @@ class cart_controller {
 	public $strCCmonth = "";
 	public $strCCyear = "";
 	public $strCCcode = "";
-	
+	public $strCountry = "";
+	public $strProvince = "";
+	public $strPageName = "Needed Now Products";
 
 	public function __construct() {
 
@@ -22,29 +24,9 @@ class cart_controller {
 		$this->intAwardAmount = isset($_REQUEST['var1']) ? $_REQUEST['var1'] : '';
 
 		$this->objProducts = new Products;
-
-
-	
-	}
-
-
-	function showMetaData(){
-
-		echo "<script src='/scripts/dragdivscroll.js'></script>";
-
-
-
-	}
-
-
-	function showView() {
-
-		
 		if($this->strMethod == ''){ //cart view
 
-			$arrProducts = $this->objProducts->getWebProducts("");
-
-			include_once(ROOT_DIR.'/views/cart.php'); 
+			$this->arrProducts = $this->objProducts->getWebProducts("");
 
 		} elseif($this->strMethod == 'checkout'){
 
@@ -54,8 +36,23 @@ class cart_controller {
 				$this->handleProfileCheckout();
 			}
 
-			include_once(ROOT_DIR.'/views/checkout.php');
+		}
 
+	
+	}
+
+
+
+
+	function showView() {
+
+		if($this->strMethod == ''){ //cart view
+
+			include_once(ROOT_DIR.'/views/cart.php'); 
+
+		} elseif($this->strMethod == 'checkout'){
+
+			include_once(ROOT_DIR.'/views/checkout.php');
 
 		} elseif($this->strMethod == 'thankyou'){
 
@@ -63,8 +60,18 @@ class cart_controller {
 		}
 
 
+	}
+
+
+
+
+	function showMetaData(){
+
+		echo "<script src='/scripts/dragdivscroll.js'></script>";
 
 	}
+
+
 
 
 

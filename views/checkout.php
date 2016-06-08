@@ -211,6 +211,14 @@ $prov_lst_dd    = $this->objUtils->get_dropdown_items($prov_lst,$this->strProvin
 								 	  </select>
 								    </div>
 								  </div><br />
+
+			  <div class="row">
+	            <div class="col-xs-12 text-center">
+	              <img src="/images/visa-mastercard2.jpg" class="visa_im" />
+	            </div>
+	          </div>
+
+
 <?php } else { ?>
 
 							      Your payment info is already on file (<?php echo $this->intPayProfileId; ?>)<br /><br />

@@ -36,7 +36,7 @@ a:link {
   cursor: auto;
 }
 
-input {
+input[type=text], input[type=password]{
   border: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -44,6 +44,13 @@ input {
   -o-appearance: none;
   appearance: none;
 }
+
+input[type=checkbox]{
+  border:1px solid #000000 !important;
+  width:20px;
+  height:20px;
+} 
+
 
 .container-fluid {
   padding: 0;
@@ -293,7 +300,7 @@ input {
 }
 
 .page.login .logo-container {
-  padding: 5% 10% 5%;
+  padding: 5% 10% 0%;
 }
 
 .page.login .logo-container .logo-inner img {
@@ -317,6 +324,7 @@ input {
 
 .page.login .input-container .input-inner input {
   width: 100%;
+  max-width: 250px;
   padding: 5px;
   text-align: left;
   color: #1b8889;
@@ -327,7 +335,11 @@ input {
   -o-appearance: none;
   appearance: none;
 }
+.page.login #regForm {
 
+  max-width:900px;
+  margin:0 auto 0 auto;
+}
 
 
 .page.login .input-container .input-inner input::-webkit-input-placeholder {
@@ -1978,7 +1990,6 @@ max-height:150px;
 .fld_desc {
   width: 100%;
   padding: 5px;
-  text-align: left;
   color: #1b8889;
   margin: 2px 0;
   -webkit-appearance: none;
@@ -2002,5 +2013,11 @@ margin-bottom: 100px;
 
 }
 
+.visa_im {
+
+  width:150px;
+  margin-top:-10px;
+
+}
 
 

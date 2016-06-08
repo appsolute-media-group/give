@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><?php echo $page_name;?></title>
+  <title><?php echo isset($objController->strPageName) ? $objController->strPageName : 'Welcome To Club Appetite';?></title>
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->

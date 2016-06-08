@@ -5,7 +5,7 @@ class contact_controller {
 
 	public $strMethod = "";
 	public $intUserId = "";
-
+	public $strPageName = "Club Appetite - Contact";
 
 	public function __construct() {
 

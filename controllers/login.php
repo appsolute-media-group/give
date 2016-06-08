@@ -8,6 +8,7 @@ class login_controller {
 	public $intUserId = "";
 	public $arrSublocalities = array();
 	public $listSublocalities = '';
+	public $strPageName = "Club Appetite - Login";
 
 	public function __construct() {
 
@@ -18,8 +19,6 @@ class login_controller {
 		$this->objUsers = new Users;
     // create an instance of the sublocatities object
 		$this->objSubs = new SubLocalities;
-		// create an instance of the util object
-		$this->objUtils = new Util;
 
     // get a list of food banks
 		$tArray = $this->objSubs->getSubLocalityList();
@@ -31,9 +30,10 @@ class login_controller {
 
 		$this->arrSublocalities = json_encode($this->arrSublocalities);
 
-    $tdropdownArray = $this->objSubs->getSubLocality_dropdown_List(1);
+    	$tdropdownArray = $this->objSubs->getSubLocality_dropdown_List(1);
 		// create the list for populating a drop down for food banks
-		$this->listSublocalities = $this->objUtils->get_dropdown_items($tdropdownArray);
+		$this->strSublocality = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
+		$this->listSublocalities = Util::get_dropdown_items($tdropdownArray,$this->strSublocality);
 
 		if($this->doLogin != ''){
 			$result = $this->objUsers->loginFromWebpage();

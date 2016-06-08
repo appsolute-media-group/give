@@ -13,6 +13,7 @@ class Users extends Database  {
 	public $strLoginErrorMessage;
 	public $strSuccessMessage;
 	public $strPassword;
+	public $strPassword2;
 	public $strUsername;
 	public $strUseremail;
 	public $strTimeout; 
@@ -33,6 +34,45 @@ class Users extends Database  {
 
 
 	}
+
+
+	function recoverPassword() {
+
+		$this->strUseremail   = isset($_POST['email']) ? $_POST['email'] : '';
+		$this->strErrorMessage = "That email address is not found in our database. Please check that your information is correct and try again.";
+		
+	    $this->strQuery = "SELECT u.email, u.id, u.password, u.first_name      
+		FROM user_profiles u 
+		WHERE u.email ='" . $this->getCleanVar($this->strUseremail) . "' AND u.email <>''";
+
+		if($this->query( $this->strQuery )) {
+
+			$r = $this->getMysqliResults( $this->strQuery, true );
+			if (!empty($r)) {
+				$res = $r[0];
+				$email = $res['email'];
+				$user_id = $res['id'];	
+				$first_name = $res['first_name'];	
+				$password = $res['password'];
+
+				$bodyText = "Hello $first_name, \n\r This is a email reminder that your password is $password";
+				if(mail($email,"Forgot password reminder",$bodyText)){
+					$this->strErrorMessage = "Success! An email has been sent to $email.";
+				} else{
+				    $this->strErrorMessage = 'Unable to send email. Please try again.';
+				    print_r(error_get_last());
+				}
+				
+			}
+
+		}
+
+
+
+							 
+
+	}
+
 
 	function deleteCard() {
 
@@ -153,6 +193,7 @@ class Users extends Database  {
 		
 		$this->strUseremail   = isset($_POST['signup_email']) ? $_POST['signup_email'] : '';
 		$this->strPassword    = isset($_POST['signup_password']) ? $_POST['signup_password'] : '';
+		$this->strPassword2    = isset($_POST['signup_password2']) ? $_POST['signup_password2'] : '';
 		$this->strUsername    = isset($_POST['signup_username']) ? $_POST['signup_username'] : '';
 		$this->strSublocality = isset($_POST['sublocality']) ? $_POST['sublocality'] : '';
 		$this->referalCode    = isset($_POST['referalCode']) ? $_POST['referalCode'] : '';
@@ -179,6 +220,14 @@ class Users extends Database  {
 			if($this->strPassword == ''){
 				$this->strErrorMessage = "Please enter a password";
 				break;
+			} else {
+
+				if($this->strPassword != $this->strPassword2){
+					$this->strErrorMessage = "Your passwords don't match. Please enter them again";
+					$this->strPassword = '';
+					break;
+				}
+
 			}
 
 			if($this->strSublocality == '0'){

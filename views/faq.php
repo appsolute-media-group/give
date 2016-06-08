@@ -28,8 +28,8 @@
 	          <div class="col-xs-12 info-wrapper">
 	            <div class="info-inner">
 
-<?php if (count($objFaq) > 0) { 
-        foreach ($objFaq As $info) { 
+<?php if (count($this->objFaq) > 0) { 
+        foreach ($this->objFaq As $info) { 
           echo "<strong>".$info['question']."</strong><br><br>"; 
           echo $info['answer']."<br><br>";
         }

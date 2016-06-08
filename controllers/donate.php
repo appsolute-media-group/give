@@ -22,6 +22,7 @@ class donate_controller {
 	public $strPostal = "";
 	private $objPayProfile;
 	public $intPayProfileId;
+	public $strPageName = "Club Appetite - Donations";
 
 	public function __construct() {
 

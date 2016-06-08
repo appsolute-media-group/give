@@ -38,6 +38,15 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3  button-container text-center">
+            <div class="button-inner">
+               <a href="/forgotpassword/">Forgot Password?</a>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>   <!-- data-view 1 -->
 
@@ -62,10 +71,10 @@
               </div>
           </div>    
             <div class="row">
-              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1  input-container ">
                 <div class="fld_desc text-right">Food Bank</div>  
               </div>
-              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8input-container text-left">
                 <div class="input-inner">
                   <select class="fld_select"  name="sublocality" id="sublocality">
                      <?php echo $this->listSublocalities; ?>          
@@ -74,45 +83,69 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 input-container ">
                 <div class="fld_desc text-right">Email</div>  
               </div>
-              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 input-container text-left">
                 <div class="input-inner">
                   <input type="text"     name="signup_email"    id="signup_email"    value="<?php echo $this->objUsers->strUseremail; ?>" placeholder="Email">
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 input-container ">
                 <div class="fld_desc text-right">Password</div>  
               </div>
-              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 input-container text-left">
                 <div class="input-inner">
                   <input type="password" name="signup_password" id="signup_password" value="<?php echo $this->objUsers->strPassword; ?>" placeholder="Password">
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-3  col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3 input-container ">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 input-container ">
+                <div class="fld_desc text-right">Repeat Password</div>  
+              </div>
+              <div class="col-xs-9 col-sm-8 input-container text-left">
+                <div class="input-inner">
+                  <input type="password" name="signup_password2" id="signup_password2" value="<?php echo $this->objUsers->strPassword2; ?>" placeholder="Repeat Password">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 input-container ">
                 <div class="fld_desc text-right">Referral Code</div>  
               </div>
-              <div class="col-xs-9 col-sm-8 col-md-8 col-lg-7 input-container text-left">
+              <div class="col-xs-9 col-sm-8 input-container text-left">
                 <div class="input-inner">
                   <input type="text"     name="referalCode"     id="referalCode"     value="<?php echo $this->objUsers->referalCode; ?>" placeholder="Referral Code">
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-xs-3  col-sm-2 col-sm-offset-1 input-container ">
+                <div class="fld_desc text-right">
+                 <input type="checkbox" name="terms" id="terms" value="true" />
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-8 input-container text-left">
+                <div class="input-inner fld_desc">
+                 I agree to the <a href="/terms/"><u>terms and conditions</u></a>
+                </div>
+              </div>
+            </div>
+
+
 
           <div class="row">
-            <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3  button-container text-center">
+            <div class="col-xs-12  col-sm-10 col-sm-offset-1 button-container text-center">
               <div class="button-inner">
                 <button type="button" name="sign_up" class="btn btn-signup" onclick="validateRegister();">Sign-Up</button>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3  button-container text-center">
+            <div class="col-xs-12  col-sm-10 col-sm-offset-1 button-container text-center">
               <div class="button-inner">
                 <button type="button" name="sign_up" class="btn btn-cancel" onclick="goToView(1)">Cancel</button>
               </div>

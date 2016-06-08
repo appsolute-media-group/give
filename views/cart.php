@@ -35,7 +35,7 @@
                 <div class="item-detail text-center dragon" id="scroll_view">
 
 <?php 
-if(count($arrProducts) ==0){ ?>
+if(count($this->arrProducts) ==0){ ?>
 
 
   <div style="height:150px" class="row text-center"><h5>There are no products assigned to this food bank</h5></div>
@@ -47,7 +47,7 @@ if(count($arrProducts) ==0){ ?>
 $grand_total = 0;
 
 
-  foreach($arrProducts As $p) { 
+  foreach($this->arrProducts As $p) { 
 
     $qty = 0;
     $price = $p['product_price'];

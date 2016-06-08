@@ -5,7 +5,7 @@ class fruitbasket_controller {
 
 	public $strMethod = "";
 	public $intUserId = "";
-
+	public $strPageName = "Club Appetite - Naked In Vegas";
 
 	public function __construct() {
 

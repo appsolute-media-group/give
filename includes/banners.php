@@ -1,17 +1,24 @@
 <?php
 
-
+if(isset($_SESSION['sublocality_id'])){
 	$objBanners = new BannerAd;
-	$arrBanners = $objBanners->getSubBannerAds($_SESSION['sublocality_id'],'','1/1/1900');
+  $arrBanners = $objBanners->getSubBannerAds($_SESSION['sublocality_id'],'','1/1/1900');
+}
+
+
+if(isset($arrBanners)){
+
+  
   
   shuffle($arrBanners);
 
-if(isset($blnLockBanner) && $blnLockBanner === false) {
-  $class="ad-container2";
-} else {
-  $class="ad-container";
-}
+  if(isset($blnLockBanner) && $blnLockBanner === false) {
+    $class="ad-container2";
+  } else {
+    $class="ad-container";
+  }
 
+  
 
   $s = '<div class="row">
          <div class="'.$class.'">
@@ -34,6 +41,8 @@ if(isset($blnLockBanner) && $blnLockBanner === false) {
         </div>';
 	echo $s;
 
+
+}
 //Util::dump($arrBanners); 
 
 

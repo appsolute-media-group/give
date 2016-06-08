@@ -42,6 +42,7 @@ function validateLogin(){
 
   var email    = $('#signin_email').val();
   var password = $('#signin_password').val();
+  var password2 = $('#signin_password2').val();
   var error    = false;
 
   if (email == '') {
@@ -52,7 +53,9 @@ function validateLogin(){
   if (!error && password == '') {
     $('#login_error').html('Please enter a password');
     error = true;
-  }
+  } 
+
+  
 
   if (!error){
     document.getElementById('loginForm').submit();
@@ -65,9 +68,12 @@ function validateRegister(){
   var sublocality = $('#sublocality').val();
   var email       = $('#signup_email').val();
   var password    = $('#signup_password').val();
+  var password2 = $('#signup_password2').val();
+  var terms = $('#terms');
+
   var error       = false;
 
-  if (sublocality == '0') {
+  if (sublocality == '0' || sublocality == '') {
     $('#reg_error').html('Please select a food bank');
     error = true;
   }
@@ -77,10 +83,26 @@ function validateRegister(){
     error = true;
   }
 
+
   if (!error && password == '') {
     $('#reg_error').html('Please enter a password');
     error = true;
+  } else {
+
+    if (!error && password != password2) {
+      $('#reg_error').html('Your passwords do not match, please enter them again.<br /');
+      error = true;
+    }
+  
   }
+
+  if (!error && !terms.is(':checked')) {
+    $('#reg_error').html('You must agree to the terms and conditions to use this service.');
+    error = true;
+  } 
+
+
+
 
   if (!error){
     document.getElementById('regForm').submit();

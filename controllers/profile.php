@@ -22,6 +22,7 @@ class profile_controller {
 	public $strProvince = "";
 	public $strCountry = "";
 	public $strPostal = "";
+	public $strPageName = "Club Appetite - Your Profile";
 	
 
 	public function __construct() {
