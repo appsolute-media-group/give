@@ -38,14 +38,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3  button-container text-center">
-            <div class="button-inner">
-               <a href="/forgotpassword/">Forgot Password?</a>
-            </div>
-          </div>
-        </div>
-
+        
 
       </div>
     </div>   <!-- data-view 1 -->
@@ -200,6 +193,13 @@
               </div>
             </div>
           </div> 
+<div class="row">
+          <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3  button-container text-center">
+            <div style="height:60px;line-height:60px;">
+               <a href="/forgotpassword/">Forgot Password?</a>
+            </div>
+          </div>
+        </div>
 
           <div class="row">
             <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 button-container text-left"> 

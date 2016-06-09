@@ -56,7 +56,14 @@ class Users extends Database  {
 				$password = $res['password'];
 
 				$bodyText = "Hello $first_name, \n\r This is a email reminder that your password is $password";
-				if(mail($email,"Forgot password reminder",$bodyText)){
+
+				$headers = 'From:Club Appetite <info@clubappetite.com>' . "\r\n";
+				$headers .= "MIME-Version: 1.0\r\n";
+				$headers .= "\r\nReply-To: info@clubappetite.com";
+				$headers .= "\r\nX-Mailer: PHP/".phpversion();
+
+				if(mail($email,"Forgot password reminder",$bodyText,$headers)){
+				//if(mail("kirk@kirkwalker.ca","Forgot password reminder",$bodyText,$headers)){	
 					$this->strErrorMessage = "Success! An email has been sent to $email.";
 				} else{
 				    $this->strErrorMessage = 'Unable to send email. Please try again.';
