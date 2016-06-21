@@ -30,7 +30,7 @@ class BannerAd extends Database  {
 		$user_id = $_SESSION['userID'];
 
 
-		$this->strQuery = "UPDATE ads_impress set views=views+1 WHERE ad_id=$ad_id";
+		$this->strQuery = "INSERT INTO ads_impress (ad_id,views,clicks) VALUES ($ad_id,1,0) ON DUPLICATE KEY UPDATE views=views+1";
 		$error_message = $this->short_query($this->strQuery);
 
 

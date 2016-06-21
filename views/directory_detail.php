@@ -67,9 +67,9 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 
 		      <div class="row business-links-container">
 		        <div class="col-xs-12 text-center">
-		          
-		          <button type="button" name="business_website" class="btn btn-shop-link" onclick="window.location.href='http://<?php echo $this->objSponsor['sponsor_url'];?>';">Website</button>
-		          
+		          <?php if($this->objSponsor['sponsor_url'] != '') {?>
+		          <button type="button" name="business_website" class="btn btn-shop-link"><a href="<?php echo $this->objSponsor['sponsor_url'];?>" target="blank" style="text-decoration:none !important;">Website</a></button>
+		          <?php } ?>
 		          <button type="button" name="business_offers" class="btn btn-shop-link" onclick="goToView(2);">Contact</button>
 
 				  <button type="button" name="business_offers" class="btn btn-shop-link" onclick="window.location.href='/shop/sponsors/<?php echo $this->objSponsor['id'];?>/';">Deals</button>
@@ -89,8 +89,8 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 
 		              	  $address = ($this->objSponsor['sponsor_address']) ? $this->objSponsor['sponsor_address'] . ' ' : "";
 		                  $city = ($this->objSponsor['sponsor_city']) ? $this->objSponsor['sponsor_city'] . ', ' : "";
-		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province'] . " | " : " ";
-		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? '' . $this->objSponsor['sponsor_postal_code'] : "";
+		                  $prov = ($this->objSponsor['sponsor_province']) ? $this->objSponsor['sponsor_province'] : " ";
+		                  $postalCode = ($this->objSponsor['sponsor_postal_code']) ? ' | ' . $this->objSponsor['sponsor_postal_code'] : "";
 		                  echo $address . $city . $prov . $postalCode;
 		                  ?></h6>
 		            </div>
@@ -103,16 +103,20 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		            <div id="map_div" class="div_maps" style="width:100%;height:100%;"></div>
 						<script>
  						<?php 
-                          $title = htmlspecialchars(str_replace("'","\'",$this->objSponsor["sponsor_name"]));
+                          $title = htmlspecialchars($this->objSponsor["sponsor_name"]);
                           $address = htmlspecialchars(str_replace("'","''",$address . $city . $prov . $postalCode));
+                          $lat = $this->objSponsor["lat"];
+                          $long = $this->objSponsor["lng"];
                           ?>
 							function initialize_map() {
 								//49.8996081,-119.5947451
-								center = new google.maps.LatLng(<?php echo $this->objSponsor['centerLat'];?>,<?php echo $this->objSponsor['centerLng'];?>);
+								//center = new google.maps.LatLng(<?php echo $this->objSponsor['centerLat'];?>,<?php echo $this->objSponsor['centerLng'];?>);
+								center = new google.maps.LatLng(<?php echo $this->objSponsor['lat'];?>,<?php echo $this->objSponsor['lng'];?>);
+								var myLatLng = {lat: <?php echo $lat; ?>, lng: <?php echo $long; ?>};
 
 								var mapOptions = {
 						          center: center,
-						          zoom: 10,
+						          zoom: 14,
 						          mapTypeId: google.maps.MapTypeId.ROADMAP
 						        };
 						      
@@ -120,9 +124,9 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 
 							    var title = '<?php echo $title;?>';
 					            var address ='<?php echo $address;?>';
-
+								
 					            var marker = new google.maps.Marker({
-					                 position: center,
+					                 position: myLatLng,
 					                 map: fb_map,
 					                 title: title
 					                });
@@ -180,6 +184,10 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		          <button type="button" name="business_offers" class="btn btn-shop-link" onclick="goToView(1)">Go Back</button>
 		        </div>
 		      </div>
+
+
+
+		 <?php if($email != '' && $tel != '' && $this->objSponsor['sponsor_url'] != '') {?>     
 		      <div class="contact-options-container">
 		      	<?php if($email != '') {?>
 		        <div class="row">
@@ -220,18 +228,7 @@ if ($tel == '' and $this->objSponsor['sponsor_tel'] != '') {
 		        </div>
 		        <?php } ?>
 		      </div>
-		      <div class="row">
-		        <div class="col-xs-12 address-container">
-		          <div class="address-inner">
-		            <div class="col-xs-12 text-center">
-		              <div class="map-container">
-		                
-						
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>   <!-- row -->
+		    <?php } ?>
 		    </div>
 		  </div>
 

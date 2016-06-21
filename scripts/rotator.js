@@ -14,7 +14,7 @@ function rotateBanners(elem) {
   active.removeClass("active").hide();
   next.addClass("active").show();
 
-  //console.log('time2:',time);
+  console.log('ad:',ad);
 
   if(ad != ''){
     trackImpression(ad);

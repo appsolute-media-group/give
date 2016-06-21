@@ -131,9 +131,11 @@ class Users extends Database  {
 			$objData->strPostal);
 
 		$error_message = $this->mysqliupdate('user_profiles',$keys,$vals,$user_id,'id');
-
-		$_SESSION['sublocality_id'] = $objData->intSublocalityId;
-
+		if($objData->intSublocalityId <> $_SESSION['sublocality_id']){
+			$_SESSION['sublocality_id'] = $objData->intSublocalityId;
+			$_SESSION['APIprofileID'] = '';
+		}
+		
 
 		if($error_message != '') {
 			$arrResult = array('result' => "error",'code' => "update-fail","details" => $error_message, 'vals' => $vals);

@@ -9,7 +9,7 @@
     </div>
 
 
-  <div class="view initial" data-view="1">
+  <div class="view initial" data-view="1" style="margin-bottom:80px;">
     <div class="view-container">
       <div class="row">
         <div class="col-xs-12 directory-header-container text-center">

@@ -234,12 +234,11 @@ class Transactions extends Database  {
         		$errorNotice = $response->getMessages()->getMessage();
 				//echo "Response : " . $errorNotice[0]->getCode() . "  " .$errorNotice[0]->getText() . "<br />";
 
-        		$errorMessages = $tresponse->getErrors();
-	        	$errorMessages = $errorMessages[0];
+    
+        		if(!empty($tresponse)){
 
-        		if($errorMessages != null){
-
-					
+					$errorMessages = $tresponse->getErrors();
+	        		$errorMessages = $errorMessages[0];
 	        		$errorMessageText = $errorMessages->getErrorText();
 					$errorMessageCode = $errorMessages->getErrorCode();
 
@@ -439,12 +438,10 @@ class Transactions extends Database  {
         		$errorNotice = $response->getMessages()->getMessage();
 				//echo "Response : " . $errorNotice[0]->getCode() . "  " .$errorNotice[0]->getText() . "<br />";
 
-        		$errorMessages = $tresponse->getErrors();
-	        	$errorMessages = $errorMessages[0];
+        		if(!empty($tresponse)){
 
-        		if($errorMessages != null){
-
-					
+					$errorMessages = $tresponse->getErrors();
+	        		$errorMessages = $errorMessages[0];
 	        		$errorMessageText = $errorMessages->getErrorText();
 					$errorMessageCode = $errorMessages->getErrorCode();
 

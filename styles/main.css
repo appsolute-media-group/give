@@ -11,21 +11,7 @@ body {
   background-color: #f2f2f2;
 }
 
-.ad-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 90px;
-  width: 100%;
-}
 
-.ad-footer2 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 108px;
-  width: 100%;
-}
 
 a,
 a:hover,
@@ -1193,7 +1179,7 @@ input[type=checkbox]{
 
 .page.shop .directory-list {
   padding: 10px 0 20px;
-  height:100vh;
+
 }
 
 .page.shop .directory-list .directory-item-container .directory-item-inner .business-info {
@@ -1967,7 +1953,7 @@ max-height:150px;
 }
 
 .ad-container .banner_image, .ad-container2 .banner_image {
-  margin-top:10px;
+
   display:table-cell;
   vertical-align:top;
 max-height:150px;
